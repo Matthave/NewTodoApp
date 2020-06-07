@@ -10,6 +10,7 @@ const StyledNav = styled.nav`
 
 const StyledUl = styled.ul`
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   flex-shrink: 1;
@@ -21,18 +22,18 @@ const StyledUl = styled.ul`
 `;
 
 const StyledList = styled.li`
-  width: ${(props) => (props.lastEle ? "auto" : "75px")};
+  width: ${props => (props.lastEle ? "auto" : "75px")};
   height: 100%;
   text-align: center;
-  background-color: ${(props) => (props.lastEle ? "none" : "#79be8c")};
+  background-color: ${props => (props.lastEle ? "none" : "#79be8c")};
   border-radius: 4px;
   transition: 0.1s linear;
   margin-right: 4px;
-  margin-left: ${(props) => (props.lastEle ? "auto" : "initial")};
-  padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
+  margin-left: ${props => (props.lastEle ? "auto" : "initial")};
+  padding: ${props => (props.lastEle ? "initial" : "8px 0px")};
 
   &:hover {
-    background-color: ${(props) => (props.lastEle ? "none" : "#64b37a")};
+    background-color: ${props => (props.lastEle ? "none" : "#64b37a")};
   }
 `;
 
@@ -77,9 +78,9 @@ const navigation = () => {
         <StyledList>
           <Link>Help</Link>
         </StyledList>
-        <StyledList lastEle>
+        {/* <StyledList lastEle>
           <StyledInput placeholder="Search..." />
-        </StyledList>
+        </StyledList> */}
       </StyledUl>
     </StyledNav>
   );

@@ -7,11 +7,46 @@ const GlobalStyle = createGlobalStyle`
     font-family: Arial, Helvetica, sans-serif;
     box-sizing:border-box;
     border:none;
+    outline:none;
   }
 
   html{
     font-size:10px;
   }
+
+  body{
+    min-width:350px;
+  }
+
+  .card{
+  display:flex;
+  justify-content:space-between;
+  word-break: break-all;
+  margin: 10px 0px;
+  padding: 9px 7.5px;
+  font-size: 1.4rem;
+  box-shadow: 0px 1px 0.5px 0.5px #bbb;
+  background-color: #fff;
+  border-radius:3px;
+  cursor: pointer;
+  transition: 0.1s linear;
+  color:black;
+
+  &:hover {
+    background-color: #ebecf0;
+  }
+
+  &:hover > *{
+  color:#777;
+  }
+  }
+
+  .fa-highlighter{
+    color:#fff;
+    align-self:center;
+    margin-left:2px;
+  }
+  
 `;
 
 export default GlobalStyle;
