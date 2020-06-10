@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const StyledTaskSection = styled.section`
@@ -68,20 +68,32 @@ const StyledSpanX = styled.span`
   cursor: pointer;
 `;
 
-const TaskStatus = ({ title }) => {
+const TaskStatus = ({ title, addListFeatue }) => {
   const [inputValue, setInputValue] = useState(title);
   const [toDoInput, handleToDoInput] = useState(false);
   const [textArea, handletextArea] = useState("");
 
-  const handleInputValue = e => {
+  useEffect(() => {
+    document.addEventListener("click", hideAll);
+  });
+
+  const hideAll = (e) => {
+    const searchingClass = e.target.className;
+    if (searchingClass.includes("main") || searchingClass.includes("input")) {
+      handleToDoInput(false);
+      addListFeatue(false);
+    }
+  };
+
+  const handleInputValue = (e) => {
     setInputValue(e.target.value);
   };
 
-  const nameNewCard = e => {
+  const nameNewCard = (e) => {
     handleToDoInput(!toDoInput);
   };
 
-  const addNewCard = e => {
+  const addNewCard = (e) => {
     const card = e.target.parentNode;
     const newTask = document.createElement("div");
     const newSpanIcon = document.createElement("span");
@@ -95,7 +107,7 @@ const TaskStatus = ({ title }) => {
     newTask.appendChild(newSpanIcon);
   };
 
-  const textAreaFeature = e => {
+  const textAreaFeature = (e) => {
     handletextArea(e.target.value);
   };
 
@@ -106,23 +118,27 @@ const TaskStatus = ({ title }) => {
 
   return (
     <StyledTaskSection>
-      <StyledInput onChange={e => handleInputValue(e)} value={inputValue} />
+      <StyledInput
+        onChange={(e) => handleInputValue(e)}
+        className="input"
+        value={inputValue}
+      />
       {toDoInput ? (
         <StyledTextArea
           placeholder="Enter title for this card..."
           value={textArea}
-          onChange={e => textAreaFeature(e)}
+          onChange={(e) => textAreaFeature(e)}
         />
       ) : null}
       {toDoInput ? (
         <>
-          <StyledAddButton onClick={e => addNewCard(e)}>
+          <StyledAddButton onClick={(e) => addNewCard(e)}>
             Add Card
           </StyledAddButton>
           <StyledSpanX className="fas fa-times" onClick={handleEscapeButton} />
         </>
       ) : (
-        <StyledButton onClick={e => nameNewCard(e)}>
+        <StyledButton onClick={(e) => nameNewCard(e)}>
           <StyledSpan className="fas fa-plus" />
           Add another card
         </StyledButton>

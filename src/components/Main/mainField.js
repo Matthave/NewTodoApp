@@ -17,7 +17,7 @@ const StyledWrapDiv = styled.div`
   flex-direction: column;
   width: 275px;
   height: auto;
-  background-color: ${props => (props.bgc ? "#ebecf0" : "#4bbf6b")};
+  background-color: ${(props) => (props.bgc ? "#ebecf0" : "#4bbf6b")};
   margin: 0 auto;
   padding: 3px 5px;
   border-radius: 5px;
@@ -85,31 +85,29 @@ const MainField = () => {
       ...newListList,
       {
         title: inputValue,
-        id: newListList.length + 1
-      }
+        id: newListList.length + 1,
+      },
     ]);
-
-    console.log(newListList);
   };
 
-  const handleInputValue = e => {
+  const handleInputValue = (e) => {
     setInputValue(e.target.value);
   };
 
   return (
-    <StyledMain>
+    <StyledMain className="main">
       <div className="co" style={{ margin: "0 auto" }}>
-        <TaskStatus title="To do" />
-        <TaskStatus title="In progress" />
-        <TaskStatus title="Finished" />
-        {newListList.map(list => (
+        <TaskStatus addListFeatue={showAddList} title="To do" />
+        <TaskStatus addListFeatue={showAddList} title="In progress" />
+        <TaskStatus addListFeatue={showAddList} title="Finished" />
+        {newListList.map((list) => (
           <TaskStatus key={list.id} title={list.title} />
         ))}
       </div>
       <StyledWrapDiv bgc={addList ? true : false}>
         <StyledListInput
           onClick={showAddListHandle}
-          onChange={e => handleInputValue(e)}
+          onChange={(e) => handleInputValue(e)}
           value={inputValue}
           placeholder="+ Add another list"
         />
