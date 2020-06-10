@@ -68,7 +68,7 @@ const StyledSpanX = styled.span`
   cursor: pointer;
 `;
 
-const TaskStatus = ({ title, addListFeatue }) => {
+const TaskStatus = ({ title, addListFeature }) => {
   const [inputValue, setInputValue] = useState(title);
   const [toDoInput, handleToDoInput] = useState(false);
   const [textArea, handletextArea] = useState("");
@@ -81,7 +81,7 @@ const TaskStatus = ({ title, addListFeatue }) => {
     const searchingClass = e.target.className;
     if (searchingClass.includes("main") || searchingClass.includes("input")) {
       handleToDoInput(false);
-      addListFeatue(false);
+      addListFeature(false);
     }
   };
 
@@ -99,6 +99,7 @@ const TaskStatus = ({ title, addListFeatue }) => {
     const newSpanIcon = document.createElement("span");
     newSpanIcon.classList.add("fas");
     newSpanIcon.classList.add("fa-highlighter");
+    newSpanIcon.addEventListener("click", (e) => taskEdit(e));
     newTask.textContent = textArea;
     newTask.classList.add("card");
     card.appendChild(newTask);
@@ -114,6 +115,10 @@ const TaskStatus = ({ title, addListFeatue }) => {
   const handleEscapeButton = () => {
     handleToDoInput(!toDoInput);
     handletextArea("");
+  };
+
+  const taskEdit = (e) => {
+    e.target.parentNode.remove();
   };
 
   return (

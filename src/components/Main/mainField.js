@@ -97,11 +97,15 @@ const MainField = () => {
   return (
     <StyledMain className="main">
       <div className="co" style={{ margin: "0 auto" }}>
-        <TaskStatus addListFeatue={showAddList} title="To do" />
-        <TaskStatus addListFeatue={showAddList} title="In progress" />
-        <TaskStatus addListFeatue={showAddList} title="Finished" />
+        <TaskStatus addListFeature={showAddList} title="To do" />
+        <TaskStatus addListFeature={showAddList} title="In progress" />
+        <TaskStatus addListFeature={showAddList} title="Finished" />
         {newListList.map((list) => (
-          <TaskStatus key={list.id} title={list.title} />
+          <TaskStatus
+            key={list.id}
+            title={list.title}
+            addListFeature={showAddList}
+          />
         ))}
       </div>
       <StyledWrapDiv bgc={addList ? true : false}>
