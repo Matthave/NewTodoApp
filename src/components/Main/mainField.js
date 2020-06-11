@@ -68,10 +68,28 @@ const StyledSpan = styled.span`
   margin-right: 10px;
 `;
 
+// COMPONENT //
+
 const MainField = () => {
   const [addList, showAddList] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [newListList, setAllList] = useState([]);
+  const [newListItem, setAllList] = useState([
+    {
+      title: "To Do",
+      id: 0,
+      tasks: ["work", "home"],
+    },
+    {
+      title: "In Progress",
+      id: 1,
+      tasks: ["co"],
+    },
+    {
+      title: "Finished",
+      id: 2,
+      tasks: ["Finished"],
+    },
+  ]);
 
   const showAddListHandle = () => {
     showAddList(true);
@@ -82,10 +100,11 @@ const MainField = () => {
     setInputValue("");
     if (inputValue === "") return;
     setAllList([
-      ...newListList,
+      ...newListItem,
       {
         title: inputValue,
-        id: newListList.length + 1,
+        id: newListItem.length,
+        tasks: [],
       },
     ]);
   };
@@ -94,17 +113,22 @@ const MainField = () => {
     setInputValue(e.target.value);
   };
 
+  const addNewCard = (newTask, id) => {
+    const copyListItem = newListItem.filter((list) => list.id === id);
+    copyListItem[0].tasks.push(newTask);
+  };
+
   return (
     <StyledMain className="main">
       <div className="co" style={{ margin: "0 auto" }}>
-        <TaskStatus addListFeature={showAddList} title="To do" />
-        <TaskStatus addListFeature={showAddList} title="In progress" />
-        <TaskStatus addListFeature={showAddList} title="Finished" />
-        {newListList.map((list) => (
+        {newListItem.map((list) => (
           <TaskStatus
             key={list.id}
             title={list.title}
+            tasks={list.tasks}
             addListFeature={showAddList}
+            addNewCard={addNewCard}
+            id={list.id}
           />
         ))}
       </div>

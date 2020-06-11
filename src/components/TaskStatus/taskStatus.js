@@ -68,7 +68,7 @@ const StyledSpanX = styled.span`
   cursor: pointer;
 `;
 
-const TaskStatus = ({ title, addListFeature }) => {
+const TaskStatus = ({ title, addListFeature, tasks, addNewCard, id }) => {
   const [inputValue, setInputValue] = useState(title);
   const [toDoInput, handleToDoInput] = useState(false);
   const [textArea, handletextArea] = useState("");
@@ -93,20 +93,20 @@ const TaskStatus = ({ title, addListFeature }) => {
     handleToDoInput(!toDoInput);
   };
 
-  const addNewCard = (e) => {
-    const card = e.target.parentNode;
-    const newTask = document.createElement("div");
-    const newSpanIcon = document.createElement("span");
-    newSpanIcon.classList.add("fas");
-    newSpanIcon.classList.add("fa-highlighter");
-    newSpanIcon.addEventListener("click", (e) => taskEdit(e));
-    newTask.textContent = textArea;
-    newTask.classList.add("card");
-    card.appendChild(newTask);
-    handleToDoInput(!inputValue);
-    handletextArea("");
-    newTask.appendChild(newSpanIcon);
-  };
+  // const addNewCard = (e) => {
+  //   const card = e.target.parentNode;
+  //   const newTask = document.createElement("div");
+  //   const newSpanIcon = document.createElement("span");
+  //   newSpanIcon.classList.add("fas");
+  //   newSpanIcon.classList.add("fa-highlighter");
+  //   newSpanIcon.addEventListener("click", (e) => taskEdit(e));
+  //   newTask.textContent = textArea;
+  //   newTask.classList.add("card");
+  //   card.appendChild(newTask);
+  //   handleToDoInput(!inputValue);
+  //   handletextArea("");
+  //   newTask.appendChild(newSpanIcon);
+  // };
 
   const textAreaFeature = (e) => {
     handletextArea(e.target.value);
@@ -118,6 +118,7 @@ const TaskStatus = ({ title, addListFeature }) => {
   };
 
   const taskEdit = (e) => {
+    console.log(tasks);
     e.target.parentNode.remove();
   };
 
@@ -128,6 +129,15 @@ const TaskStatus = ({ title, addListFeature }) => {
         className="input"
         value={inputValue}
       />
+      {tasks.map((task) => (
+        <div key={task} className="card">
+          {task}
+          <span
+            className="fas fa-highlighter"
+            onClick={() => taskEdit()}
+          ></span>
+        </div>
+      ))}
       {toDoInput ? (
         <StyledTextArea
           placeholder="Enter title for this card..."
@@ -137,7 +147,7 @@ const TaskStatus = ({ title, addListFeature }) => {
       ) : null}
       {toDoInput ? (
         <>
-          <StyledAddButton onClick={(e) => addNewCard(e)}>
+          <StyledAddButton onClick={() => addNewCard(textArea, id)}>
             Add Card
           </StyledAddButton>
           <StyledSpanX className="fas fa-times" onClick={handleEscapeButton} />
