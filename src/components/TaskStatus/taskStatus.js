@@ -68,10 +68,19 @@ const StyledSpanX = styled.span`
   cursor: pointer;
 `;
 
-const TaskStatus = ({ title, addListFeature, tasks, addNewCard, id }) => {
+const TaskStatus = ({
+  title,
+  addListFeature,
+  tasks,
+  addNewCard,
+  id,
+  taskEditCard,
+  list,
+}) => {
   const [inputValue, setInputValue] = useState(title);
-  const [toDoInput, handleToDoInput] = useState(false);
+
   const [textArea, handletextArea] = useState("");
+  const [toDoInput, handleToDoInput] = useState(false);
 
   useEffect(() => {
     document.addEventListener("click", hideAll);
@@ -117,11 +126,6 @@ const TaskStatus = ({ title, addListFeature, tasks, addNewCard, id }) => {
     handletextArea("");
   };
 
-  const taskEdit = (e) => {
-    console.log(tasks);
-    e.target.parentNode.remove();
-  };
-
   return (
     <StyledTaskSection>
       <StyledInput
@@ -134,7 +138,7 @@ const TaskStatus = ({ title, addListFeature, tasks, addNewCard, id }) => {
           {task}
           <span
             className="fas fa-highlighter"
-            onClick={() => taskEdit()}
+            onClick={() => taskEditCard(id, task)}
           ></span>
         </div>
       ))}
@@ -147,7 +151,11 @@ const TaskStatus = ({ title, addListFeature, tasks, addNewCard, id }) => {
       ) : null}
       {toDoInput ? (
         <>
-          <StyledAddButton onClick={() => addNewCard(textArea, id)}>
+          <StyledAddButton
+            onClick={() =>
+              addNewCard(textArea, id, handleToDoInput, handletextArea)
+            }
+          >
             Add Card
           </StyledAddButton>
           <StyledSpanX className="fas fa-times" onClick={handleEscapeButton} />

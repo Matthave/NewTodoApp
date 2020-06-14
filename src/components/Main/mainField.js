@@ -64,30 +64,30 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledSpan = styled.span`
-  margin-right: 10px;
-`;
-
 // COMPONENT //
 
 const MainField = () => {
   const [addList, showAddList] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
   const [newListItem, setAllList] = useState([
     {
       title: "To Do",
       id: 0,
-      tasks: ["work", "home"],
+      tasks: [],
+      activeInput: false,
     },
     {
       title: "In Progress",
       id: 1,
-      tasks: ["co"],
+      tasks: [],
+      activeInput: false,
     },
     {
       title: "Finished",
       id: 2,
-      tasks: ["Finished"],
+      tasks: [],
+      activeInput: false,
     },
   ]);
 
@@ -113,9 +113,40 @@ const MainField = () => {
     setInputValue(e.target.value);
   };
 
-  const addNewCard = (newTask, id) => {
+  const addNewCard = (newTask, id, closeAddInput, clearTextArea) => {
+    if (newTask === "") return closeAddInput(false);
+    if (newListItem[id].tasks.includes(newTask)) {
+      const returnCloseFunc = closeAddInput(false);
+      const returnClearFunc = clearTextArea("");
+      return returnCloseFunc && returnClearFunc;
+    }
+
     const copyListItem = newListItem.filter((list) => list.id === id);
     copyListItem[0].tasks.push(newTask);
+    closeAddInput(false);
+    clearTextArea("");
+  };
+
+  const taskEditCard = (id, currentTask) => {
+    const copyListForDelete = newListItem.filter((list) => list.id === id);
+    const tasksAfterDelete = copyListForDelete[0].tasks.filter(
+      (task) => task !== currentTask
+    );
+
+    const copyStayElement = newListItem.filter((list) => list.id !== id);
+    const newList = {
+      title: newListItem[id].title,
+      id: id,
+      tasks: tasksAfterDelete,
+      activeInput: false,
+    };
+
+    copyStayElement.push(newList);
+    copyStayElement.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+    setAllList(copyStayElement);
   };
 
   return (
@@ -129,6 +160,8 @@ const MainField = () => {
             addListFeature={showAddList}
             addNewCard={addNewCard}
             id={list.id}
+            taskEditCard={taskEditCard}
+            list={list}
           />
         ))}
       </div>
