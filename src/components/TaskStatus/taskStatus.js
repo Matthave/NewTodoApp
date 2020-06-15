@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { device } from "../mq";
 
 const StyledTaskSection = styled.section`
   width: 275px;
@@ -8,6 +9,10 @@ const StyledTaskSection = styled.section`
   padding: 10px 7.5px;
   margin: 0 auto;
   margin-bottom: 15px;
+
+  @media ${device.laptop} {
+    margin-right: 15px;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -16,9 +21,12 @@ const StyledInput = styled.input`
   font-size: 1.4rem;
   font-weight: 600;
   color: #172b4d;
+  box-sizing: border-box;
+  margin-bottom: 5px;
 
   &:focus {
     background-color: white;
+    box-shadow: 0px 0px 2px 1px #0079bf;
   }
 `;
 
@@ -75,7 +83,6 @@ const TaskStatus = ({
   addNewCard,
   id,
   taskEditCard,
-  list,
 }) => {
   const [inputValue, setInputValue] = useState(title);
 
@@ -102,21 +109,6 @@ const TaskStatus = ({
     handleToDoInput(!toDoInput);
   };
 
-  // const addNewCard = (e) => {
-  //   const card = e.target.parentNode;
-  //   const newTask = document.createElement("div");
-  //   const newSpanIcon = document.createElement("span");
-  //   newSpanIcon.classList.add("fas");
-  //   newSpanIcon.classList.add("fa-highlighter");
-  //   newSpanIcon.addEventListener("click", (e) => taskEdit(e));
-  //   newTask.textContent = textArea;
-  //   newTask.classList.add("card");
-  //   card.appendChild(newTask);
-  //   handleToDoInput(!inputValue);
-  //   handletextArea("");
-  //   newTask.appendChild(newSpanIcon);
-  // };
-
   const textAreaFeature = (e) => {
     handletextArea(e.target.value);
   };
@@ -130,7 +122,7 @@ const TaskStatus = ({
     <StyledTaskSection>
       <StyledInput
         onChange={(e) => handleInputValue(e)}
-        className="input"
+        className="inputs"
         value={inputValue}
       />
       {tasks.map((task) => (

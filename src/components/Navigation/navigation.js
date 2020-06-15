@@ -6,6 +6,7 @@ const StyledNav = styled.nav`
   height: 40px;
   background-color: #40a35b;
   padding: 0px 4px;
+  transition: 0.1s linear;
 `;
 
 const StyledUl = styled.ul`
@@ -22,18 +23,18 @@ const StyledUl = styled.ul`
 `;
 
 const StyledList = styled.li`
-  width: ${props => (props.lastEle ? "auto" : "75px")};
+  width: ${(props) => (props.lastEle ? "auto" : "75px")};
   height: 100%;
   text-align: center;
-  background-color: ${props => (props.lastEle ? "none" : "#79be8c")};
+  background-color: ${(props) => (props.lastEle ? "none" : "#76CE8E")};
   border-radius: 4px;
   transition: 0.1s linear;
   margin-right: 4px;
-  margin-left: ${props => (props.lastEle ? "auto" : "initial")};
-  padding: ${props => (props.lastEle ? "initial" : "8px 0px")};
+  margin-left: ${(props) => (props.lastEle ? "auto" : "initial")};
+  padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
 
   &:hover {
-    background-color: ${props => (props.lastEle ? "none" : "#64b37a")};
+    background-color: ${(props) => (props.lastEle ? "none" : "#64b37a")};
   }
 `;
 
@@ -44,7 +45,7 @@ const Link = styled.a`
 `;
 
 const StyledInput = styled.input`
-  width: 150px;
+  width: 120px;
   height: 100%;
   border-radius: 4px;
   padding: 7.5px;
@@ -62,25 +63,25 @@ const StyledInput = styled.input`
   }
 `;
 
-const navigation = () => {
+const navigation = ({ themeToggle, themeOption }) => {
+  const themeFunction = () => {
+    themeToggle(!themeOption);
+  };
   return (
-    <StyledNav>
+    <StyledNav className="nav">
       <StyledUl>
-        <StyledList>
-          <Link>Home</Link>
-        </StyledList>
-        <StyledList>
+        <StyledList className={"list"}>
           <Link>Your List</Link>
         </StyledList>
-        <StyledList>
-          <Link>Add List</Link>
+        <StyledList className={"list"} onClick={themeFunction}>
+          <Link>Theme</Link>
         </StyledList>
-        <StyledList>
+        <StyledList className={"list"}>
           <Link>Help</Link>
         </StyledList>
-        {/* <StyledList lastEle>
-          <StyledInput placeholder="Search..." />
-        </StyledList> */}
+        <StyledList className={"list"} lastEle>
+          <StyledInput className={"item"} placeholder="Search..." />
+        </StyledList>
       </StyledUl>
     </StyledNav>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TaskStatus from "../TaskStatus/taskStatus";
+import { device } from "../mq";
 
 const StyledMain = styled.main`
   display: flex;
@@ -10,6 +11,10 @@ const StyledMain = styled.main`
   min-height: calc(100vh - 40px);
   background-color: #4bbf6b;
   padding: 40px 15px 0px 15px;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
 `;
 
 const StyledWrapDiv = styled.div`
@@ -17,26 +22,26 @@ const StyledWrapDiv = styled.div`
   flex-direction: column;
   width: 275px;
   height: auto;
-  background-color: ${(props) => (props.bgc ? "#ebecf0" : "#4bbf6b")};
+  background-color: ${(props) => (props.bgc ? "#ebecf0" : "#79be8c")};
   margin: 0 auto;
-  padding: 3px 5px;
+  padding: 5px;
   border-radius: 5px;
   transition: 0.1s linear;
+
+  @media ${device.laptop} {
+    margin: 0 auto 0 0;
+  }
 `;
 
 const StyledListInput = styled.input`
   width: 265px;
-  background-color: #76ce8e;
+  background-color: #79be8c;
   border-radius: 4px;
   padding: 12px 7.5px;
   text-align: left;
   cursor: pointer;
   transition: 0.1s linear;
   box-shadow: 0px 0px 1px 0px #888;
-
-  &:hover {
-    background-color: #86c497;
-  }
 
   &::placeholder {
     color: white;
@@ -61,6 +66,16 @@ const StyledButton = styled.button`
 
   &:hover {
     background-color: #67ba50;
+  }
+`;
+
+const StyledListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @media ${device.laptop} {
+    flex-direction: row;
+    margin: 0 0 0 0 !important;
   }
 `;
 
@@ -151,7 +166,7 @@ const MainField = () => {
 
   return (
     <StyledMain className="main">
-      <div className="co" style={{ margin: "0 auto" }}>
+      <StyledListContainer style={{ margin: "0 auto" }}>
         {newListItem.map((list) => (
           <TaskStatus
             key={list.id}
@@ -164,13 +179,14 @@ const MainField = () => {
             list={list}
           />
         ))}
-      </div>
-      <StyledWrapDiv bgc={addList ? true : false}>
+      </StyledListContainer>
+      <StyledWrapDiv bgc={addList ? true : false} className={"item"}>
         <StyledListInput
           onClick={showAddListHandle}
           onChange={(e) => handleInputValue(e)}
           value={inputValue}
           placeholder="+ Add another list"
+          className={"item"}
         />
         {addList ? (
           <StyledButton onClick={addNewList}>Enter title of list</StyledButton>
