@@ -41,7 +41,6 @@ const StyledListInput = styled.input`
   text-align: left;
   cursor: pointer;
   transition: 0.1s linear;
-  box-shadow: 0px 0px 1px 0px #888;
 
   &::placeholder {
     color: white;

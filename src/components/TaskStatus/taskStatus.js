@@ -95,7 +95,11 @@ const TaskStatus = ({
 
   const hideAll = (e) => {
     const searchingClass = e.target.className;
-    if (searchingClass.includes("main") || searchingClass.includes("input")) {
+    if (
+      searchingClass.includes("main") ||
+      searchingClass.includes("input") ||
+      searchingClass.includes("nav")
+    ) {
       handleToDoInput(false);
       addListFeature(false);
     }
@@ -119,7 +123,7 @@ const TaskStatus = ({
   };
 
   return (
-    <StyledTaskSection>
+    <StyledTaskSection className="listCard">
       <StyledInput
         onChange={(e) => handleInputValue(e)}
         className="inputs"
