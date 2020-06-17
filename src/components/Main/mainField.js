@@ -119,6 +119,7 @@ const MainField = () => {
         title: inputValue,
         id: newListItem.length,
         tasks: [],
+        activeInput: false,
       },
     ]);
   };
@@ -163,6 +164,22 @@ const MainField = () => {
     setAllList(copyStayElement);
   };
 
+  const clickListOption = (id) => {
+    console.log(newListItem);
+    const listItemCopy = newListItem;
+    const listItemAfterDelete = listItemCopy.filter((list) => list.id !== id);
+    for (let i = 0; i < listItemAfterDelete.length; i++) {
+      listItemAfterDelete[i].id = i;
+    }
+
+    listItemAfterDelete.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+    console.log(listItemAfterDelete);
+    setAllList(listItemAfterDelete);
+  };
+
   return (
     <StyledMain className="main">
       <StyledListContainer style={{ margin: "0 auto" }}>
@@ -176,6 +193,7 @@ const MainField = () => {
             id={list.id}
             taskEditCard={taskEditCard}
             list={list}
+            clickListOption={clickListOption}
           />
         ))}
       </StyledListContainer>

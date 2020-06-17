@@ -9,6 +9,9 @@ const StyledTaskSection = styled.section`
   padding: 10px 7.5px;
   margin: 0 auto;
   margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 
   @media ${device.laptop} {
     margin-right: 15px;
@@ -16,6 +19,7 @@ const StyledTaskSection = styled.section`
 `;
 
 const StyledInput = styled.input`
+  flex-grow: 1;
   background-color: #ebecf0;
   padding: 5px 4px;
   font-size: 1.4rem;
@@ -83,6 +87,7 @@ const TaskStatus = ({
   addNewCard,
   id,
   taskEditCard,
+  clickListOption,
 }) => {
   const [inputValue, setInputValue] = useState(title);
 
@@ -129,6 +134,10 @@ const TaskStatus = ({
         className="inputs"
         value={inputValue}
       />
+      <span
+        className="fas fa-ellipsis-h"
+        onClick={() => clickListOption(id)}
+      ></span>
       {tasks.map((task) => (
         <div key={task} className="card">
           {task}

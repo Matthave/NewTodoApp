@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
   .card{
   display:flex;
   justify-content:space-between;
+  width: 100%;
   word-break: break-all;
   margin: 10px 0px;
   padding: 9px 7.5px;
@@ -47,6 +48,18 @@ const GlobalStyle = createGlobalStyle`
     margin-left:2px;
   }
   
+  .fa-ellipsis-h{
+   padding: 9px ;
+   margin-left:2px;
+   margin-bottom: 5px;
+   font-size: 13px;
+   color: #777;
+   cursor: pointer;
+
+   &:hover{
+    background-color: #dddfe5;
+   }
+  }
 `;
 
 export default GlobalStyle;
