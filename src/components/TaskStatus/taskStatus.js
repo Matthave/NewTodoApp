@@ -96,7 +96,13 @@ const TaskStatus = ({
 
   useEffect(() => {
     document.addEventListener("click", hideAll);
+    refresh();
   });
+
+  const refresh = () => {
+    setInputValue(title);
+    //Is it fine?
+  };
 
   const hideAll = (e) => {
     const searchingClass = e.target.className;

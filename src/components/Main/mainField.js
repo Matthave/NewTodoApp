@@ -165,7 +165,6 @@ const MainField = () => {
   };
 
   const clickListOption = (id) => {
-    console.log(newListItem);
     const listItemCopy = newListItem;
     const listItemAfterDelete = listItemCopy.filter((list) => list.id !== id);
     for (let i = 0; i < listItemAfterDelete.length; i++) {
@@ -176,7 +175,6 @@ const MainField = () => {
       return a.id - b.id;
     });
 
-    console.log(listItemAfterDelete);
     setAllList(listItemAfterDelete);
   };
 
