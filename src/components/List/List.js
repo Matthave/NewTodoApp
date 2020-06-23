@@ -72,6 +72,25 @@ class List extends Component {
     textAreaValue: "",
   };
 
+  componentDidMount() {
+    document.addEventListener("click", this.hideAll);
+  }
+
+  hideAll = (e) => {
+    const searchingClass = e.target.className;
+    if (
+      searchingClass.includes("main") ||
+      searchingClass.includes("input") ||
+      searchingClass.includes("nav")
+    ) {
+      this.setState({
+        showAddField: false,
+      });
+      this.props.showListHandle(false);
+      this.props.setListInput("");
+    }
+  };
+
   setListTitle = (e) => {
     this.setState({
       inputTitle: e.target.value,
@@ -113,6 +132,7 @@ class List extends Component {
         <StyledInput
           value={this.state.inputTitle}
           onChange={(e) => this.setListTitle(e)}
+          className="input"
         />
         <span
           className="fas fa-ellipsis-h"

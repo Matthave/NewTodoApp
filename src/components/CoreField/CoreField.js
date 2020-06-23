@@ -47,20 +47,9 @@ const StyledWrapList = styled.div`
   flex-direction: column;
   width: 275px;
   height: auto;
-  background-color: ${(props) => (props.bgc ? "#ebecf0" : "#4bbf6b")};
+  background-color: transparent;
   margin: 0 auto;
-  padding: 3px 5px;
-  border-radius: 5px;
-  transition: 0.1s linear;
-`;
-
-const StyledWrapAddButton = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 275px;
-  height: auto;
-  background-color: ${(props) => (props.bgc ? "#ebecf0" : "#4bbf6b")};
-  margin: 0 auto;
+  margin-bottom: 10px;
   padding: 3px 5px;
   border-radius: 5px;
   transition: 0.1s linear;
@@ -83,9 +72,9 @@ const StyledButton = styled.button`
 const StyledWrapDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 275px;
   height: auto;
-  background-color: ${(props) => (props.bgc ? "#ebecf0" : "#79be8c")};
+  background-color: ${(props) => (props.bgc ? "#ebecf0" : "transparent")};
   margin: 0 auto;
   padding: 5px;
   border-radius: 5px;
@@ -129,26 +118,28 @@ const MainField = ({
             listOption={listOption}
             addNewCard={addNewCard}
             deleteCard={deleteCard}
+            showListHandle={showListHandle}
+            setListInput={setListInput}
           />
         ))}
       </StyledWrapList>
-      <StyledWrapDiv bgc={showList ? true : false} className={"item"}>
-        <StyledWrapAddButton>
-          <StyledListInput
-            placeholder="Add another list"
-            onClick={showAddListHandle}
-            onChange={(e) => listInputHandle(e)}
-          />
-          {showList ? (
-            <StyledButton
-              onClick={() =>
-                addNewList(listInputValue, showListHandle, setListInput)
-              }
-            >
-              Add List
-            </StyledButton>
-          ) : null}
-        </StyledWrapAddButton>
+      <StyledWrapDiv bgc={showList ? true : false}>
+        <StyledListInput
+          placeholder="Add another list"
+          onClick={showAddListHandle}
+          onChange={(e) => listInputHandle(e)}
+          className="list"
+          value={listInputValue}
+        />
+        {showList ? (
+          <StyledButton
+            onClick={() =>
+              addNewList(listInputValue, showListHandle, setListInput)
+            }
+          >
+            Add List
+          </StyledButton>
+        ) : null}
       </StyledWrapDiv>
     </StyledMain>
   );

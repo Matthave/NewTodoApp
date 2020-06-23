@@ -82,7 +82,9 @@ const Main = () => {
       ...wholeList,
       {
         title: listInputValue,
-        id: wholeList.length,
+        id: `${
+          wholeList.length !== 0 ? wholeList[wholeList.length - 1].id + 1 : 0
+        }`,
         tasks: [],
         activeInput: false,
       },
