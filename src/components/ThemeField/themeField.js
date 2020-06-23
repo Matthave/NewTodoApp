@@ -52,7 +52,7 @@ const StyledThemeDivTitle = styled.h3`
   font-size: 2rem;
 `;
 
-function themeField({ themeOption }) {
+function ThemeField({ themeOption, setWhichColor }) {
   const changeColor = (mainColor, navColor, listColor, inputColor) => {
     const main = document.querySelector(".main");
     main.style.backgroundColor = mainColor;
@@ -69,48 +69,68 @@ function themeField({ themeOption }) {
     inputs.forEach((input) => {
       input.style.backgroundColor = inputColor;
     });
+
+    setWhichColor([listColor]);
   };
   return (
     <StyledThemeDiv showTheme={themeOption}>
       <StyledThemeDivTitle>Colors</StyledThemeDivTitle>
       <StyledColorDiv
-        onClick={() => changeColor("#0079BF", "#0067A3", "#3D99CE", "#4D95BE")}
+        onClick={() =>
+          changeColor("#0079BF", "#0067A3", "#3D99CE", "#4D95BE", 1)
+        }
         style={{ backgroundColor: "#0079BF" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#D29034", "#B37B2C", "#DDAB65", "#C9A26C")}
+        onClick={() =>
+          changeColor("#D29034", "#B37B2C", "#DDAB65", "#C9A26C", 2)
+        }
         style={{ backgroundColor: "#D29034" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#519839", "#458131", "#7BB168", "#7DA76F")}
+        onClick={() =>
+          changeColor("#519839", "#458131", "#7BB168", "#7DA76F", 3)
+        }
         style={{ backgroundColor: "#519839" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#B04632", "#963C2B", "#C37263", "#B5766B")}
+        onClick={() =>
+          changeColor("#B04632", "#963C2B", "#C37263", "#B5766B", 4)
+        }
         style={{ backgroundColor: "#B04632" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#89609E", "#755286", "#A586B5", "#9E86AB")}
+        onClick={() =>
+          changeColor("#89609E", "#755286", "#A586B5", "#9E86AB", 5)
+        }
         style={{ backgroundColor: "#89609E" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#CD5A91", "#AE4D7B", "#D981AB", "#C682A3")}
+        onClick={() =>
+          changeColor("#CD5A91", "#AE4D7B", "#D981AB", "#C682A3", 6)
+        }
         style={{ backgroundColor: "#CD5A91" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#4BBF6B", "#40A35B", "#76CE8E", "#79BE8C")}
+        onClick={() =>
+          changeColor("#4BBF6B", "#40A35B", "#76CE8E", "#79BE8C", 7)
+        }
         style={{ backgroundColor: "#4BBF6B" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#00AECC", "#0094AE", "#3DC1D8", "#4DB4C6")}
+        onClick={() =>
+          changeColor("#00AECC", "#0094AE", "#3DC1D8", "#4DB4C6", 8)
+        }
         style={{ backgroundColor: "#00AECC" }}
       />
       <StyledColorDiv
-        onClick={() => changeColor("#838C91", "#6F777B", "#A1A8AB", "#9BA0A3")}
+        onClick={() =>
+          changeColor("#838C91", "#6F777B", "#A1A8AB", "#9BA0A3", 9)
+        }
         style={{ backgroundColor: "#838C91" }}
       />
     </StyledThemeDiv>
   );
 }
 
-export default themeField;
+export default ThemeField;

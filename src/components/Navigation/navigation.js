@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Color from "color";
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -26,16 +27,12 @@ const StyledList = styled.li`
   width: ${(props) => (props.lastEle ? "auto" : "75px")};
   height: 100%;
   text-align: center;
-  background-color: ${(props) => (props.lastEle ? "none" : "#76CE8E")};
+  background-color: #76ce8e;
   border-radius: 4px;
   transition: 0.1s linear;
   margin-right: 4px;
   margin-left: ${(props) => (props.lastEle ? "auto" : "initial")};
   padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
-
-  &:hover {
-    background-color: ${(props) => (props.lastEle ? "none" : "#64b37a")};
-  }
 `;
 
 const Link = styled.a`
@@ -63,20 +60,65 @@ const StyledInput = styled.input`
   }
 `;
 
-const navigation = ({ themeToggle, themeOption }) => {
+//FEATURES
+
+const Navigation = ({ themeToggle, themeOption, whichColor }) => {
   const themeFunction = () => {
     themeToggle(!themeOption);
   };
+
+  const navHoverEnter = (e) => {
+    const arrayClassList = [];
+    e.target.classList.forEach((item) => {
+      arrayClassList.push(item);
+    });
+
+    if (arrayClassList.includes("list")) {
+      const currentLiColor = Color(
+        `${
+          e.target.style.backgroundColor
+            ? e.target.style.backgroundColor
+            : "#76ce8e"
+        }`
+      );
+      return (e.target.style.backgroundColor = currentLiColor.lighten(0.1));
+    }
+  };
+
+  const navHoverLeave = (e) => {
+    const arrayClassList = [];
+    e.target.classList.forEach((item) => {
+      arrayClassList.push(item);
+    });
+
+    if (arrayClassList.includes("list")) {
+      return (e.target.style.backgroundColor = whichColor);
+    }
+  };
+
   return (
     <StyledNav className="nav">
       <StyledUl>
-        <StyledList className={"list"}>
+        <StyledList
+          className={"list"}
+          onMouseEnter={(e) => navHoverEnter(e)}
+          onMouseLeave={(e) => navHoverLeave(e)}
+        >
           <Link>Your List</Link>
         </StyledList>
-        <StyledList className={"list"} onClick={themeFunction}>
+        <StyledList
+          className={"list"}
+          onClick={themeFunction}
+          onMouseEnter={(e) => navHoverEnter(e)}
+          onMouseLeave={(e) => navHoverLeave(e)}
+        >
           <Link>Theme</Link>
         </StyledList>
-        <StyledList className={"list"}>
+        <StyledList
+          className={"list"}
+          onMouseEnter={(e) => navHoverEnter(e)}
+          onMouseLeave={(e) => navHoverLeave(e)}
+        >
           <Link>Help</Link>
         </StyledList>
         <StyledList className={"list"} lastEle>
@@ -87,4 +129,4 @@ const navigation = ({ themeToggle, themeOption }) => {
   );
 };
 
-export default navigation;
+export default Navigation;

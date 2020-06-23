@@ -60,6 +60,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #dddfe5;
    }
   }
+
 `;
 
 export default GlobalStyle;
