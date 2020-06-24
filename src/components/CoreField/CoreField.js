@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import List from "../List/List";
 import { device } from "../mq";
@@ -104,6 +104,16 @@ const MainField = ({
 
   const listInputHandle = (e) => {
     setListInput(e.target.value);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keypress", (e) => addNewListByKey(e));
+  });
+
+  const addNewListByKey = (e) => {
+    if (e.which === 13 && showList) {
+      addNewList(listInputValue, showListHandle, setListInput);
+    }
   };
 
   return (

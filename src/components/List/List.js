@@ -74,6 +74,16 @@ class List extends Component {
 
   componentDidMount() {
     document.addEventListener("click", this.hideAll);
+    document.addEventListener("keypress", (e) =>
+      this.addNewCardFeatureByKey(e, this.props.id, this.state.textAreaValue)
+    );
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.hideAll);
+    document.removeEventListener("keypress", (e) =>
+      this.addNewCardFeatureByKey(e, this.props.id, this.state.textAreaValue)
+    );
   }
 
   hideAll = (e) => {
@@ -117,6 +127,16 @@ class List extends Component {
     });
   };
 
+  addNewCardFeatureByKey = (e, id, textAreaValue) => {
+    if (e.which === 13 && this.state.showAddField) {
+      this.props.addNewCard(id, textAreaValue);
+      this.setState({
+        showAddField: false,
+        textAreaValue: "",
+      });
+    }
+  };
+
   deleteCardFeature = (e) => {
     this.props.deleteCard(e, this.props.id);
     this.setState({
@@ -150,7 +170,7 @@ class List extends Component {
         {showAddField ? (
           <>
             <StyledTextArea
-              value={this.state.textAreaValue}
+              value={textAreaValue}
               onChange={(e) => this.setTextAreaValue(e)}
             />
             <StyledAddButton
