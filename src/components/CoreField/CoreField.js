@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import List from "../List/List";
 import { device } from "../mq";
@@ -6,7 +6,7 @@ import { device } from "../mq";
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100vw;
   min-height: calc(100vh - 40px);
   background-color: #4bbf6b;
@@ -14,6 +14,8 @@ const StyledMain = styled.main`
 
   @media ${device.laptop} {
     flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 `;
 
@@ -48,20 +50,27 @@ const StyledWrapList = styled.div`
   width: 275px;
   height: auto;
   background-color: transparent;
-  margin: 0 auto;
   margin-bottom: 10px;
   padding: 3px 5px;
   border-radius: 5px;
   transition: 0.1s linear;
+
+  @media ${device.laptop} {
+    width: auto;
+    max-width: 100vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 const StyledButton = styled.button`
+  align-self: flex-start;
   width: 50%;
   background-color: #5aac44;
   border-radius: 5px;
   color: white;
   padding: 8px 20px;
-  margin: 5px 0px;
+  margin-top: 5px;
   cursor: pointer;
 
   &:hover {
@@ -69,20 +78,17 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledWrapDiv = styled.div`
+const StyledWrapAddListBtn = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
   width: 275px;
-  height: auto;
+  border-radius: 4px;
+  padding: 0px 5px 5px 5px;
+  padding-top: ${(props) => (props.bgc ? "5px" : "0px")};
   background-color: ${(props) => (props.bgc ? "#ebecf0" : "transparent")};
-  margin: 0 auto;
-  padding: 5px;
-  border-radius: 5px;
-  transition: 0.1s linear;
-
-  @media ${device.laptop} {
-    margin: 0 auto 0 0;
-  }
+  transition: 0.2s linear;
 `;
 
 // COMPONENT //
@@ -106,10 +112,6 @@ const MainField = ({
     setListInput(e.target.value);
   };
 
-  useEffect(() => {
-    document.addEventListener("keypress", (e) => addNewListByKey(e));
-  });
-
   const addNewListByKey = (e) => {
     if (e.which === 13 && showList) {
       addNewList(listInputValue, showListHandle, setListInput);
@@ -132,25 +134,26 @@ const MainField = ({
             setListInput={setListInput}
           />
         ))}
+        <StyledWrapAddListBtn bgc={showList ? true : false}>
+          <StyledListInput
+            placeholder="Add another list"
+            onClick={showAddListHandle}
+            onChange={(e) => listInputHandle(e)}
+            className="list"
+            value={listInputValue}
+            onKeyPress={(e) => addNewListByKey(e)}
+          />
+          {showList ? (
+            <StyledButton
+              onClick={() =>
+                addNewList(listInputValue, showListHandle, setListInput)
+              }
+            >
+              Add List
+            </StyledButton>
+          ) : null}
+        </StyledWrapAddListBtn>
       </StyledWrapList>
-      <StyledWrapDiv bgc={showList ? true : false}>
-        <StyledListInput
-          placeholder="Add another list"
-          onClick={showAddListHandle}
-          onChange={(e) => listInputHandle(e)}
-          className="list"
-          value={listInputValue}
-        />
-        {showList ? (
-          <StyledButton
-            onClick={() =>
-              addNewList(listInputValue, showListHandle, setListInput)
-            }
-          >
-            Add List
-          </StyledButton>
-        ) : null}
-      </StyledWrapDiv>
     </StyledMain>
   );
 };

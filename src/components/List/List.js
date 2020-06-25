@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { device } from "../mq";
 
 const StyledList = styled.section`
   width: 275px;
   background-color: #ebecf0;
   border-radius: 4px;
   padding: 10px 7.5px;
-  margin: 0 auto;
   margin-bottom: 15px;
+
+  @media ${device.laptop} {
+    margin-right: 10px;
+    align-self: flex-start;
+  }
 `;
 
 const StyledInput = styled.input`
   width: 220px;
   background-color: #ebecf0;
+  border-radius: 1px;
   padding: 5px 4px;
   font-size: 1.4rem;
   font-weight: 600;
@@ -20,6 +26,7 @@ const StyledInput = styled.input`
 
   &:focus {
     background-color: white;
+    box-shadow: 0px 0px 1px 1.5px #0079bf;
   }
 `;
 
