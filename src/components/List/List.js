@@ -45,10 +45,18 @@ const StyledButton = styled.button`
 
 const StyledTextArea = styled.textarea`
   width: 100%;
-  height: 50px;
+  height: 35px;
+  background-color: ${(props) => (props.showStyle ? "#fff" : "#ebecf0")};
   border-radius: 5px;
   padding: 7.5px;
+  color: #779;
   resize: none;
+  cursor: pointer;
+  transition: 0.1s linear;
+
+  &:hover {
+    background-color: ${(props) => (props.showStyle ? null : "#dddfe5")};
+  }
 `;
 
 const StyledAddButton = styled.button`
@@ -114,10 +122,16 @@ class List extends Component {
     });
   };
 
-  swapAddFieldFeature = () => {
-    this.setState({
-      showAddField: !this.state.showAddField,
-    });
+  swapAddFieldFeature = (buttonId) => {
+    if (buttonId === "textArea") {
+      this.setState({
+        showAddField: true,
+      });
+    } else {
+      this.setState({
+        showAddField: false,
+      });
+    }
   };
 
   setTextAreaValue = (e) => {
@@ -174,12 +188,14 @@ class List extends Component {
             />
           </div>
         ))}
+        <StyledTextArea
+          value={showAddField ? textAreaValue : "Add Another Card"}
+          onChange={(e) => this.setTextAreaValue(e)}
+          onClick={() => this.swapAddFieldFeature("textArea")}
+          showStyle={showAddField}
+        />
         {showAddField ? (
           <>
-            <StyledTextArea
-              value={textAreaValue}
-              onChange={(e) => this.setTextAreaValue(e)}
-            />
             <StyledAddButton
               onClick={() => this.addNewCardFeature(id, textAreaValue)}
             >
@@ -187,14 +203,10 @@ class List extends Component {
             </StyledAddButton>
             <StyledSpanX
               className="fas fa-times"
-              onClick={this.swapAddFieldFeature}
+              onClick={() => this.swapAddFieldFeature("SpanX")}
             />
           </>
-        ) : (
-          <StyledButton onClick={this.swapAddFieldFeature}>
-            <span className="fas fa-plus"></span> Add Another Card
-          </StyledButton>
-        )}
+        ) : null}
       </StyledList>
     );
   }

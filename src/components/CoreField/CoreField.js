@@ -28,16 +28,13 @@ const StyledListInput = styled.input`
   cursor: pointer;
   transition: 0.1s linear;
   box-shadow: 0px 0px 1px 0px #888;
-  &:hover {
-    background-color: #86c497;
-  }
 
   &::placeholder {
     color: white;
   }
 
   &:focus {
-    background-color: #fff;
+    background-color: #fff !important;
     ::placeholder {
       color: black;
     }
@@ -88,7 +85,7 @@ const StyledWrapAddListBtn = styled.div`
   padding: 0px 5px 5px 5px;
   padding-top: ${(props) => (props.bgc ? "5px" : "0px")};
   background-color: ${(props) => (props.bgc ? "#ebecf0" : "transparent")};
-  transition: 0.2s linear;
+  transition: 0.1s linear;
 `;
 
 // COMPONENT //
@@ -136,6 +133,7 @@ const MainField = ({
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>
           <StyledListInput
+            bgc={showList ? true : false}
             placeholder="Add another list"
             onClick={showAddListHandle}
             onChange={(e) => listInputHandle(e)}
