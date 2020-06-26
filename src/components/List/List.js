@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import Card from "../Card/Card";
 import { device } from "../mq";
 
 const StyledList = styled.section`
+  position: relative;
   width: 275px;
   background-color: #ebecf0;
   border-radius: 4px;
@@ -30,22 +32,9 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledButton = styled.button`
-  width: 100%;
-  text-align: left;
-  margin-left: 5px;
-  padding: 7.5px 3px;
-  color: #779;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #dddfe5;
-  }
-`;
-
 const StyledTextArea = styled.textarea`
   width: 100%;
-  height: 35px;
+  height: ${(props) => (props.showStyle ? "60px" : "31px")};
   background-color: ${(props) => (props.showStyle ? "#fff" : "#ebecf0")};
   border-radius: 5px;
   padding: 7.5px;
@@ -53,6 +42,8 @@ const StyledTextArea = styled.textarea`
   resize: none;
   cursor: pointer;
   transition: 0.1s linear;
+  box-shadow: ${(props) =>
+    props.showStyle ? "0px 0.5px 0px 0.5px #aaa" : "none"};
 
   &:hover {
     background-color: ${(props) => (props.showStyle ? null : "#dddfe5")};
@@ -180,13 +171,7 @@ class List extends Component {
           onClick={() => listOption(id)}
         ></span>
         {tasks.map((task) => (
-          <div key={task} className="card">
-            {task}
-            <span
-              className="fas fa-highlighter"
-              onClick={(e) => this.deleteCardFeature(e)}
-            />
-          </div>
+          <Card task={task} deleteCardFeature={this.deleteCardFeature} />
         ))}
         <StyledTextArea
           value={showAddField ? textAreaValue : "Add Another Card"}

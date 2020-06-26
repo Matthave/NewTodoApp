@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navigation from "./Navigation/navigation";
 import CoreField from "./CoreField/CoreField";
 import ThemeField from "./ThemeField/themeField";
+import Color from "color";
 
 const Main = () => {
   const [showThemeOption, showThemeOptionFunction] = useState(false);
@@ -91,12 +92,43 @@ const Main = () => {
     ]);
   };
 
+  const elementHoverEnter = (e) => {
+    const arrayClassList = [];
+    e.target.classList.forEach((item) => {
+      arrayClassList.push(item);
+    });
+
+    if (arrayClassList.includes("list")) {
+      const currentLiColor = Color(
+        `${
+          e.target.style.backgroundColor
+            ? e.target.style.backgroundColor
+            : "#76ce8e"
+        }`
+      );
+      return (e.target.style.backgroundColor = currentLiColor.lighten(0.1));
+    }
+  };
+
+  const elementHoverLeave = (e) => {
+    const arrayClassList = [];
+    e.target.classList.forEach((item) => {
+      arrayClassList.push(item);
+    });
+
+    if (arrayClassList.includes("list")) {
+      return (e.target.style.backgroundColor = whichColor);
+    }
+  };
+
   return (
     <main>
       <Navigation
         themeToggle={showThemeOptionFunction}
         themeOption={showThemeOption}
         whichColor={whichColor}
+        elementHoverEnter={elementHoverEnter}
+        elementHoverLeave={elementHoverLeave}
       />
       <ThemeField themeOption={showThemeOption} setWhichColor={setWhichColor} />
       <CoreField
@@ -106,6 +138,8 @@ const Main = () => {
         addNewCard={addNewCard}
         deleteCard={deleteCard}
         addNewList={addNewList}
+        elementHoverEnter={elementHoverEnter}
+        elementHoverLeave={elementHoverLeave}
       />
     </main>
   );

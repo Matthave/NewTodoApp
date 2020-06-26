@@ -28,6 +28,7 @@ const StyledListInput = styled.input`
   cursor: pointer;
   transition: 0.1s linear;
   box-shadow: 0px 0px 1px 0px #888;
+  font-size: 15px;
 
   &::placeholder {
     color: white;
@@ -96,6 +97,8 @@ const MainField = ({
   addNewCard,
   deleteCard,
   addNewList,
+  elementHoverEnter,
+  elementHoverLeave,
 }) => {
   const [showList, showListHandle] = useState(false);
 
@@ -140,6 +143,8 @@ const MainField = ({
             className="list"
             value={listInputValue}
             onKeyPress={(e) => addNewListByKey(e)}
+            onMouseEnter={(e) => elementHoverEnter(e)}
+            onMouseLeave={(e) => elementHoverLeave(e)}
           />
           {showList ? (
             <StyledButton

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { device } from "../mq";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -26,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   margin: 10px 0px;
   padding: 9px 7.5px;
   font-size: 1.4rem;
-  box-shadow: 0px 1px 0.5px 0.5px #bbb;
+  box-shadow: 0px 0.5px 0px 0.5px #aaa;
   background-color: #fff;
   border-radius:3px;
   cursor: pointer;
@@ -43,9 +44,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .fa-highlighter{
-    color:#fff;
+    color:#777;
     align-self:center;
     margin-left:2px;
+    @media ${device.laptop} {
+      color:#fff;
+  }
   }
   
   .fa-ellipsis-h{

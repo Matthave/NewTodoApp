@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Color from "color";
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -62,38 +61,14 @@ const StyledInput = styled.input`
 
 //FEATURES
 
-const Navigation = ({ themeToggle, themeOption, whichColor }) => {
+const Navigation = ({
+  themeToggle,
+  themeOption,
+  elementHoverEnter,
+  elementHoverLeave,
+}) => {
   const themeFunction = () => {
     themeToggle(!themeOption);
-  };
-
-  const navHoverEnter = (e) => {
-    const arrayClassList = [];
-    e.target.classList.forEach((item) => {
-      arrayClassList.push(item);
-    });
-
-    if (arrayClassList.includes("list")) {
-      const currentLiColor = Color(
-        `${
-          e.target.style.backgroundColor
-            ? e.target.style.backgroundColor
-            : "#76ce8e"
-        }`
-      );
-      return (e.target.style.backgroundColor = currentLiColor.lighten(0.1));
-    }
-  };
-
-  const navHoverLeave = (e) => {
-    const arrayClassList = [];
-    e.target.classList.forEach((item) => {
-      arrayClassList.push(item);
-    });
-
-    if (arrayClassList.includes("list")) {
-      return (e.target.style.backgroundColor = whichColor);
-    }
   };
 
   return (
@@ -101,23 +76,23 @@ const Navigation = ({ themeToggle, themeOption, whichColor }) => {
       <StyledUl>
         <StyledList
           className={"list"}
-          onMouseEnter={(e) => navHoverEnter(e)}
-          onMouseLeave={(e) => navHoverLeave(e)}
+          onMouseEnter={(e) => elementHoverEnter(e)}
+          onMouseLeave={(e) => elementHoverLeave(e)}
         >
           <Link>Your List</Link>
         </StyledList>
         <StyledList
           className={"list"}
           onClick={themeFunction}
-          onMouseEnter={(e) => navHoverEnter(e)}
-          onMouseLeave={(e) => navHoverLeave(e)}
+          onMouseEnter={(e) => elementHoverEnter(e)}
+          onMouseLeave={(e) => elementHoverLeave(e)}
         >
           <Link>Theme</Link>
         </StyledList>
         <StyledList
           className={"list"}
-          onMouseEnter={(e) => navHoverEnter(e)}
-          onMouseLeave={(e) => navHoverLeave(e)}
+          onMouseEnter={(e) => elementHoverEnter(e)}
+          onMouseLeave={(e) => elementHoverLeave(e)}
         >
           <Link>Help</Link>
         </StyledList>
