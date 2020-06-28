@@ -20,9 +20,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .card{
+  top:0;
+  left:0;
   display:flex;
   justify-content:space-between;
   width: 100%;
+  max-width:260px;
   word-break: break-all;
   margin: 10px 0px;
   padding: 9px 7.5px;
@@ -31,8 +34,8 @@ const GlobalStyle = createGlobalStyle`
   background-color: #fff;
   border-radius:3px;
   cursor: pointer;
-  transition: 0.1s linear;
   color:black;
+  z-index:999;
 
   &:hover {
     background-color: #ebecf0;

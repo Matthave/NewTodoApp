@@ -10,6 +10,7 @@ class Card extends Component {
       selected: true,
     });
     e.target.style.cursor = "grabbing";
+    e.target.style.background = "#fff";
   };
 
   mouseUpFeature = (e) => {
@@ -17,13 +18,21 @@ class Card extends Component {
       selected: false,
     });
     e.target.style.cursor = "pointer";
+    e.target.style.position = "static";
+    e.target.style.transform = "rotate(0deg)";
   };
 
   mouseMoveFeature = (e) => {
     if (this.state.selected) {
-      e.target.style.left = `${e.clientX - 430}px`;
-      e.target.style.top = `${e.clientY - 60}px`;
+      e.target.style.left = `${e.clientX - 130}px`;
+      e.target.style.top = `${e.clientY - 26}px`;
+      e.target.style.position = "fixed";
+      e.target.style.transform = "rotate(5deg)";
     }
+  };
+
+  mouseLeaveFeature = (e) => {
+    e.target.style.cursor = "pointer";
   };
 
   render() {
@@ -34,6 +43,7 @@ class Card extends Component {
         onMouseDown={(e) => this.mouseDownFeature(e)}
         onMouseUp={(e) => this.mouseUpFeature(e)}
         onMouseMove={(e) => this.mouseMoveFeature(e)}
+        onMouseLeave={(e) => this.mouseLeaveFeature(e)}
       >
         {this.props.task}
         <span
