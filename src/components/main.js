@@ -6,6 +6,7 @@ import Color from "color";
 
 const Main = () => {
   const [showThemeOption, showThemeOptionFunction] = useState(false);
+  const [numberOfTask, numberOfTaskFunction] = useState(0);
   const [whichColor, setWhichColor] = useState(["#76ce8e"]);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
@@ -60,19 +61,24 @@ const Main = () => {
     if (correctList[0].tasks.includes(newTask)) return;
     if (newTask.length < 2) return;
     correctList[0].tasks.push(newTask);
-    showThemeOptionFunction(false);
+    numberOfTaskFunction(numberOfTask + 1);
   };
 
   const deleteCard = (e, listId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
 
-    const taskValue = e.target.parentNode.textContent;
+    const taskValue = `${
+      e.target.classList[0] === "card"
+        ? e.target.textContent
+        : e.target.parentNode.textContent
+    }`;
 
     const taskIndex = correctList[0].tasks.findIndex(
       (element) => element === taskValue
     );
 
     correctList[0].tasks.splice(taskIndex, 1);
+    numberOfTaskFunction(numberOfTask - 1);
   };
 
   const addNewList = (listInputValue, showListHandle, setListInput) => {

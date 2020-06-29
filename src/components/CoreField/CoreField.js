@@ -123,6 +123,7 @@ const MainField = ({
       <StyledWrapList>
         {wholeList.map((list) => (
           <List
+            wholeList={wholeList}
             key={list.id}
             id={list.id}
             title={list.title}

@@ -22,17 +22,35 @@ class Card extends Component {
     e.target.style.transform = "rotate(0deg)";
 
     if (e.pageX < 285) {
-      this.props.addNewCard(0, e.target.textContent);
+      this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     }
-    if (e.pageX > 285 && e.pageX < 570) {
-      this.props.addNewCard(1, e.target.textContent);
+    if (e.pageX > 285 && e.pageX < 570 && this.props.wholeList.length >= 2) {
+      this.props.addNewCard(this.props.wholeList[1].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (e.pageX > 570 && e.pageX < 855) {
-      this.props.addNewCard(2, e.target.textContent);
+    } else if (
+      e.pageX > 570 &&
+      e.pageX < 855 &&
+      this.props.wholeList.length >= 3
+    ) {
+      this.props.addNewCard(this.props.wholeList[2].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (e.pageX > 855) {
-      this.props.addNewCard(3, e.target.textContent);
+    } else if (
+      e.pageX > 855 &&
+      e.pageX < 1140 &&
+      this.props.wholeList.length >= 4
+    ) {
+      this.props.addNewCard(this.props.wholeList[3].id, e.target.textContent);
+      this.props.deleteCardFeatureByMove(e, this.props.id);
+    } else if (
+      e.pageX > 1140 &&
+      e.pageX < 1425 &&
+      this.props.wholeList.length >= 5
+    ) {
+      this.props.addNewCard(this.props.wholeList[4].id, e.target.textContent);
+      this.props.deleteCardFeatureByMove(e, this.props.id);
+    } else if (e.pageX > 1425 && this.props.wholeList.length >= 6) {
+      this.props.addNewCard(this.props.wholeList[5].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     }
 

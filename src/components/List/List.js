@@ -149,7 +149,7 @@ class List extends Component {
     }
   };
 
-  deleteCardFeature = (e, id) => {
+  deleteCardFeature = (e) => {
     this.props.deleteCard(e, this.props.id);
     this.setState({
       textAreaValue: "",
@@ -164,7 +164,7 @@ class List extends Component {
   };
 
   render() {
-    const { listOption, id, tasks } = this.props;
+    const { listOption, id, tasks, wholeList } = this.props;
     const { showAddField, textAreaValue } = this.state;
     return (
       <StyledList>
@@ -179,6 +179,7 @@ class List extends Component {
         ></span>
         {tasks.map((task) => (
           <Card
+            wholeList={wholeList}
             key={task}
             task={task}
             deleteCardFeature={this.deleteCardFeature}
