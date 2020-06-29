@@ -149,8 +149,15 @@ class List extends Component {
     }
   };
 
-  deleteCardFeature = (e) => {
+  deleteCardFeature = (e, id) => {
     this.props.deleteCard(e, this.props.id);
+    this.setState({
+      textAreaValue: "",
+    });
+  };
+
+  deleteCardFeatureByMove = (targetName, id) => {
+    this.props.deleteCard(targetName, id);
     this.setState({
       textAreaValue: "",
     });
@@ -171,7 +178,14 @@ class List extends Component {
           onClick={() => listOption(id)}
         ></span>
         {tasks.map((task) => (
-          <Card task={task} deleteCardFeature={this.deleteCardFeature} />
+          <Card
+            key={task}
+            task={task}
+            deleteCardFeature={this.deleteCardFeature}
+            id={id}
+            addNewCard={this.addNewCardFeature}
+            deleteCardFeatureByMove={this.deleteCardFeatureByMove}
+          />
         ))}
         <StyledTextArea
           value={showAddField ? textAreaValue : "Add Another Card"}

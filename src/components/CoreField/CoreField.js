@@ -10,7 +10,7 @@ const StyledMain = styled.main`
   width: 100vw;
   min-height: calc(100vh - 40px);
   background-color: #4bbf6b;
-  padding: 40px 15px 0px 15px;
+  padding: 40px 6px 0px 6px;
 
   @media ${device.laptop} {
     flex-direction: row;

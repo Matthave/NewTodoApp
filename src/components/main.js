@@ -60,6 +60,7 @@ const Main = () => {
     if (correctList[0].tasks.includes(newTask)) return;
     if (newTask.length < 2) return;
     correctList[0].tasks.push(newTask);
+    showThemeOptionFunction(false);
   };
 
   const deleteCard = (e, listId) => {
