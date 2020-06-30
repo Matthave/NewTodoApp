@@ -23,6 +23,8 @@ class Card extends Component {
     e.target.style.transform = "rotate(0deg)";
 
     if (e.pageX < 285) {
+      if (this.props.wholeList[0].tasks.includes(e.target.textContent))
+        return this.mouseLeaveFeature(e);
       this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     } else if (
@@ -30,6 +32,8 @@ class Card extends Component {
       e.pageX < 570 &&
       this.props.wholeList.length >= 2
     ) {
+      if (this.props.wholeList[1].tasks.includes(e.target.textContent))
+        return this.mouseLeaveFeature(e);
       this.props.addNewCard(this.props.wholeList[1].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     } else if (
@@ -37,6 +41,8 @@ class Card extends Component {
       e.pageX < 855 &&
       this.props.wholeList.length >= 3
     ) {
+      if (this.props.wholeList[2].tasks.includes(e.target.textContent))
+        return this.mouseLeaveFeature(e);
       this.props.addNewCard(this.props.wholeList[2].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     } else if (
@@ -44,6 +50,8 @@ class Card extends Component {
       e.pageX < 1140 &&
       this.props.wholeList.length >= 4
     ) {
+      if (this.props.wholeList[3].tasks.includes(e.target.textContent))
+        return this.mouseLeaveFeature(e);
       this.props.addNewCard(this.props.wholeList[3].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     } else if (
@@ -51,9 +59,13 @@ class Card extends Component {
       e.pageX < 1425 &&
       this.props.wholeList.length >= 5
     ) {
+      if (this.props.wholeList[4].tasks.includes(e.target.textContent))
+        return this.mouseLeaveFeature(e);
       this.props.addNewCard(this.props.wholeList[4].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     } else if (e.pageX > 1425 && this.props.wholeList.length >= 6) {
+      if (this.props.wholeList[5].tasks.includes(e.target.textContent))
+        return this.mouseLeaveFeature(e);
       this.props.addNewCard(this.props.wholeList[5].id, e.target.textContent);
       this.props.deleteCardFeatureByMove(e, this.props.id);
     }
