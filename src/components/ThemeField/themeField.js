@@ -15,6 +15,7 @@ const StyledThemeDiv = styled.div`
   background-color: #f4f5f7;
   padding: 10px;
   transition: 0.3s linear;
+  z-index: 999;
 
   @media ${device.laptop} {
     top: calc(0% + 40px);

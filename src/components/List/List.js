@@ -167,7 +167,7 @@ class List extends Component {
     const { listOption, id, tasks, wholeList } = this.props;
     const { showAddField, textAreaValue } = this.state;
     return (
-      <StyledList>
+      <StyledList className="lists">
         <StyledInput
           value={this.state.inputTitle}
           onChange={(e) => this.setListTitle(e)}
@@ -188,6 +188,7 @@ class List extends Component {
             deleteCardFeatureByMove={this.deleteCardFeatureByMove}
           />
         ))}
+        <div className="blank"></div>
         <StyledTextArea
           value={showAddField ? textAreaValue : "Add Another Card"}
           onChange={(e) => this.setTextAreaValue(e)}
