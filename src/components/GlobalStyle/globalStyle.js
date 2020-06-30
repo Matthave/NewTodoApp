@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body{
-    min-width:350px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -43,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
   color:black;
 
   &:hover {
-    background-color: #ebecf0;
+    background-color: #F4F5F7;
   }
 
   &:hover > *{
@@ -73,6 +72,19 @@ const GlobalStyle = createGlobalStyle`
    }
   }
 
+::-webkit-scrollbar{
+    height:17.5px;
+}::-webkit-scrollbar-track{
+    background:rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,0.3);
+  border-radius: 10px;
+  height:10px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:rgba(0,0,0,0.5);
+}
 `;
 
 export default GlobalStyle;

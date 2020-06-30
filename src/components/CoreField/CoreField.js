@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import List from "../List/List";
-import { device } from "../mq";
 
 const StyledMain = styled.main`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
+  align-items: flex-start;
+  width: auto;
   min-height: calc(100vh - 40px);
   background-color: #4bbf6b;
   padding: 40px 6px 0px 6px;
-
-  @media ${device.laptop} {
-    flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
+  overflow-x: scroll;
 `;
 
 const StyledListInput = styled.input`
@@ -44,21 +37,14 @@ const StyledListInput = styled.input`
 
 const StyledWrapList = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 275px;
+  width: auto;
+  flex-direction: row;
   height: auto;
   background-color: transparent;
   margin-bottom: 10px;
   padding: 3px 5px;
   border-radius: 5px;
   transition: 0.1s linear;
-
-  @media ${device.laptop} {
-    width: auto;
-    max-width: 100vw;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 `;
 
 const StyledButton = styled.button`

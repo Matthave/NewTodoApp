@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class Card extends Component {
   state = {
     selected: false,
+    scrollHeight: 0,
   };
 
   mouseDownFeature = (e) => {
@@ -57,6 +58,14 @@ class Card extends Component {
       this.props.deleteCardFeatureByMove(e, this.props.id);
     }
 
+    this.clearAllBlankSpan();
+
+    this.setState({
+      selected: false,
+    });
+  };
+
+  clearAllBlankSpan = () => {
     const allBlank = document.querySelectorAll(".blank");
 
     allBlank.forEach((blank) => {
@@ -64,10 +73,6 @@ class Card extends Component {
       blank.style.height = "0";
       blank.style.backgroundColor = "transparent";
       blank.style.borderRadius = "0";
-    });
-
-    this.setState({
-      selected: false,
     });
   };
 
@@ -140,6 +145,7 @@ class Card extends Component {
     e.target.style.cursor = "pointer";
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
+    this.clearAllBlankSpan();
     this.setState({
       selected: false,
     });

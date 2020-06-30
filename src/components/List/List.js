@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Card from "../Card/Card";
-import { device } from "../mq";
 
 const StyledList = styled.section`
   position: relative;
   width: 275px;
+  margin-right: 10px;
+  align-self: flex-start;
   background-color: #ebecf0;
   border-radius: 4px;
   padding: 10px 7.5px;
   margin-bottom: 15px;
-
-  @media ${device.laptop} {
-    margin-right: 10px;
-    align-self: flex-start;
-  }
 `;
 
 const StyledInput = styled.input`

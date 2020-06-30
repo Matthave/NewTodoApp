@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledNav = styled.nav`
-  width: 100%;
+  width: 100vw;
   height: 40px;
   background-color: #40a35b;
   padding: 0px 4px;
