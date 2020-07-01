@@ -87,6 +87,8 @@ const MainField = ({
   elementHoverLeave,
 }) => {
   const [showList, showListHandle] = useState(false);
+  const [scrollPosition, updatedScrollPosition] = useState(0);
+  const [isDragDropTrue, isDragDropTrueFeature] = useState("");
 
   const showAddListHandle = () => {
     showListHandle(true);
@@ -104,8 +106,41 @@ const MainField = ({
     }
   };
 
+  const scroll = (e) => {
+    const scrollPosition = e.target.scrollLeft;
+    updatedScrollPosition(scrollPosition);
+  };
+
+  const mousePositionX = (e) => {
+    const main = document.querySelector(".main");
+    const windowWidth = window.innerWidth;
+    const mousePositionX = e.clientX;
+
+    if (mousePositionX <= 75 && isDragDropTrue) {
+      main.scroll({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+
+    if (mousePositionX >= windowWidth - 75 && isDragDropTrue) {
+      main.scroll({
+        left: windowWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const isDragAndDropTrue = (isTrue) => {
+    isDragDropTrueFeature(isTrue);
+  };
+
   return (
-    <StyledMain className="main">
+    <StyledMain
+      className="main"
+      onScroll={(e) => scroll(e)}
+      onMouseMove={(e) => mousePositionX(e)}
+    >
       <StyledWrapList>
         {wholeList.map((list) => (
           <List
@@ -119,6 +154,8 @@ const MainField = ({
             deleteCard={deleteCard}
             showListHandle={showListHandle}
             setListInput={setListInput}
+            scrollPosition={scrollPosition}
+            isDragAndDropTrue={isDragAndDropTrue}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>

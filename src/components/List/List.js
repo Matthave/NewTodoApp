@@ -160,7 +160,14 @@ class List extends Component {
   };
 
   render() {
-    const { listOption, id, tasks, wholeList } = this.props;
+    const {
+      listOption,
+      id,
+      tasks,
+      wholeList,
+      scrollPosition,
+      isDragAndDropTrue,
+    } = this.props;
     const { showAddField, textAreaValue } = this.state;
     return (
       <StyledList className="lists">
@@ -182,6 +189,8 @@ class List extends Component {
             id={id}
             addNewCard={this.addNewCardFeature}
             deleteCardFeatureByMove={this.deleteCardFeatureByMove}
+            scrollPosition={scrollPosition}
+            isDragAndDropTrue={isDragAndDropTrue}
           />
         ))}
         <div className="blank"></div>
