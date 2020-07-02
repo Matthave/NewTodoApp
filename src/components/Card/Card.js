@@ -4,6 +4,7 @@ class Card extends Component {
   state = {
     selected: false,
     scrollHeight: 0,
+    touchesMovePageX: 0,
   };
 
   mouseDownFeature = (e) => {
@@ -24,57 +25,25 @@ class Card extends Component {
 
     const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
 
-    if (e.pageX < 285 - scrollHeighFromMain) {
-      if (this.props.wholeList[0].tasks.includes(e.target.textContent))
-        return this.mouseLeaveFeature(e);
-      this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
-      this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (
-      e.pageX > 285 - scrollHeighFromMain &&
-      e.pageX < 570 - scrollHeighFromMain &&
-      this.props.wholeList.length >= 2
-    ) {
-      if (this.props.wholeList[1].tasks.includes(e.target.textContent))
-        return this.mouseLeaveFeature(e);
-      this.props.addNewCard(this.props.wholeList[1].id, e.target.textContent);
-      this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (
-      e.pageX > 570 - scrollHeighFromMain &&
-      e.pageX < 855 - scrollHeighFromMain &&
-      this.props.wholeList.length >= 3
-    ) {
-      if (this.props.wholeList[2].tasks.includes(e.target.textContent))
-        return this.mouseLeaveFeature(e);
-      this.props.addNewCard(this.props.wholeList[2].id, e.target.textContent);
-      this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (
-      e.pageX > 855 - scrollHeighFromMain &&
-      e.pageX < 1140 - scrollHeighFromMain &&
-      this.props.wholeList.length >= 4
-    ) {
-      if (this.props.wholeList[3].tasks.includes(e.target.textContent))
-        return this.mouseLeaveFeature(e);
-      this.props.addNewCard(this.props.wholeList[3].id, e.target.textContent);
-      this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (
-      e.pageX > 1140 - scrollHeighFromMain &&
-      e.pageX < 1425 - scrollHeighFromMain &&
-      this.props.wholeList.length >= 5
-    ) {
-      if (this.props.wholeList[4].tasks.includes(e.target.textContent))
-        return this.mouseLeaveFeature(e);
-      this.props.addNewCard(this.props.wholeList[4].id, e.target.textContent);
-      this.props.deleteCardFeatureByMove(e, this.props.id);
-    } else if (
-      e.pageX > 1425 - scrollHeighFromMain &&
-      this.props.wholeList.length >= 6
-    ) {
-      if (this.props.wholeList[5].tasks.includes(e.target.textContent))
-        return this.mouseLeaveFeature(e);
-      this.props.addNewCard(this.props.wholeList[5].id, e.target.textContent);
-      this.props.deleteCardFeatureByMove(e, this.props.id);
+    for (let i = 1; i < 10; i++) {
+      if (e.pageX < 285 - scrollHeighFromMain) {
+        if (this.props.wholeList[0].tasks.includes(e.target.textContent))
+          return this.mouseLeaveFeature(e);
+        this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
+        this.props.deleteCardFeatureByMove(e, this.props.id);
+      } else if (
+        e.pageX > 285 * i - scrollHeighFromMain &&
+        e.pageX < 285 * i + 285 - scrollHeighFromMain &&
+        this.props.wholeList.length >= i + 1
+      ) {
+        if (this.props.wholeList[i].tasks.includes(e.target.textContent))
+          return this.mouseLeaveFeature(e);
+        this.props.addNewCard(this.props.wholeList[i].id, e.target.textContent);
+        this.props.deleteCardFeatureByMove(e, this.props.id);
+      }
     }
 
+    this.props.isDragAndDropTrue(false);
     this.clearAllBlankSpan();
 
     this.setState({
@@ -109,58 +78,26 @@ class Card extends Component {
         all.style.backgroundColor = "transparent";
       });
 
-      if (e.pageX < 285 - scrollHeighFromMain) {
-        allBlankSpan[0].style.width = "100%";
-        allBlankSpan[0].style.height = "35px";
-        allBlankSpan[0].style.backgroundColor = "#dddfe5";
-        allBlankSpan[0].style.borderRadius = "5px";
-      } else if (
-        e.pageX > 285 - scrollHeighFromMain &&
-        e.pageX < 570 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 2
-      ) {
-        allBlankSpan[1].style.width = "100%";
-        allBlankSpan[1].style.height = "35px";
-        allBlankSpan[1].style.backgroundColor = "#dddfe5";
-        allBlankSpan[1].style.borderRadius = "5px";
-      } else if (
-        e.pageX > 570 - scrollHeighFromMain &&
-        e.pageX < 855 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 3
-      ) {
-        allBlankSpan[2].style.width = "100%";
-        allBlankSpan[2].style.height = "35px";
-        allBlankSpan[2].style.backgroundColor = "#dddfe5";
-        allBlankSpan[2].style.borderRadius = "5px";
-      } else if (
-        e.pageX > 855 - scrollHeighFromMain &&
-        e.pageX < 1140 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 4
-      ) {
-        allBlankSpan[3].style.width = "100%";
-        allBlankSpan[3].style.height = "35px";
-        allBlankSpan[3].style.backgroundColor = "#dddfe5";
-        allBlankSpan[3].style.borderRadius = "5px";
-      } else if (
-        e.pageX > 1140 - scrollHeighFromMain &&
-        e.pageX < 1425 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 5
-      ) {
-        allBlankSpan[4].style.width = "100%";
-        allBlankSpan[4].style.height = "35px";
-        allBlankSpan[4].style.backgroundColor = "#dddfe5";
-        allBlankSpan[4].style.borderRadius = "5px";
-      } else if (
-        e.pageX > 1425 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 6
-      ) {
-        allBlankSpan[5].style.width = "100%";
-        allBlankSpan[5].style.height = "35px";
-        allBlankSpan[5].style.backgroundColor = "#dddfe5";
-        allBlankSpan[5].style.borderRadius = "5px";
+      for (let i = 1; i < 10; i++) {
+        if (e.pageX < 285 - scrollHeighFromMain) {
+          allBlankSpan[0].style.width = "100%";
+          allBlankSpan[0].style.height = "35px";
+          allBlankSpan[0].style.backgroundColor = "#dddfe5";
+          allBlankSpan[0].style.borderRadius = "5px";
+        } else if (
+          e.pageX > 285 * i - scrollHeighFromMain &&
+          e.pageX < 285 * i + 285 - scrollHeighFromMain &&
+          this.props.wholeList.length >= i + 1
+        ) {
+          allBlankSpan[i].style.width = "100%";
+          allBlankSpan[i].style.height = "35px";
+          allBlankSpan[i].style.backgroundColor = "#dddfe5";
+          allBlankSpan[i].style.borderRadius = "5px";
+        }
       }
     }
-    this.props.isDragAndDropTrue(this.state.selected);
+
+    this.props.isDragAndDropTrue(true);
   };
 
   mouseLeaveFeature = (e) => {
@@ -168,6 +105,7 @@ class Card extends Component {
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
     this.clearAllBlankSpan();
+    this.props.isDragAndDropTrue(false);
     this.setState({
       selected: false,
     });
@@ -177,11 +115,13 @@ class Card extends Component {
 
   touchDownFeature = (e) => {
     if (e.target.classList[0] !== "card") return;
+    const main = document.querySelector(".main");
     this.setState({
       selected: true,
     });
     e.target.style.cursor = "grabbing";
     e.target.style.background = "#fff";
+    main.style.overflowY = "hidden";
   };
 
   touchMoveFeature = (e) => {
@@ -200,58 +140,77 @@ class Card extends Component {
         all.style.backgroundColor = "transparent";
       });
 
-      if (e.touches[0].pageX < 285 - scrollHeighFromMain) {
-        allBlankSpan[0].style.width = "100%";
-        allBlankSpan[0].style.height = "35px";
-        allBlankSpan[0].style.backgroundColor = "#dddfe5";
-        allBlankSpan[0].style.borderRadius = "5px";
-      } else if (
-        e.touches[0].pageX > 285 - scrollHeighFromMain &&
-        e.touches[0].pageX < 570 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 2
-      ) {
-        allBlankSpan[1].style.width = "100%";
-        allBlankSpan[1].style.height = "35px";
-        allBlankSpan[1].style.backgroundColor = "#dddfe5";
-        allBlankSpan[1].style.borderRadius = "5px";
-      } else if (
-        e.touches[0].pageX > 570 - scrollHeighFromMain &&
-        e.touches[0].pageX < 855 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 3
-      ) {
-        allBlankSpan[2].style.width = "100%";
-        allBlankSpan[2].style.height = "35px";
-        allBlankSpan[2].style.backgroundColor = "#dddfe5";
-        allBlankSpan[2].style.borderRadius = "5px";
-      } else if (
-        e.touches[0].pageX > 855 - scrollHeighFromMain &&
-        e.touches[0].pageX < 1140 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 4
-      ) {
-        allBlankSpan[3].style.width = "100%";
-        allBlankSpan[3].style.height = "35px";
-        allBlankSpan[3].style.backgroundColor = "#dddfe5";
-        allBlankSpan[3].style.borderRadius = "5px";
-      } else if (
-        e.touches[0].pageX > 1140 - scrollHeighFromMain &&
-        e.touches[0].pageX < 1425 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 5
-      ) {
-        allBlankSpan[4].style.width = "100%";
-        allBlankSpan[4].style.height = "35px";
-        allBlankSpan[4].style.backgroundColor = "#dddfe5";
-        allBlankSpan[4].style.borderRadius = "5px";
-      } else if (
-        e.touches[0].pageX > 1425 - scrollHeighFromMain &&
-        this.props.wholeList.length >= 6
-      ) {
-        allBlankSpan[5].style.width = "100%";
-        allBlankSpan[5].style.height = "35px";
-        allBlankSpan[5].style.backgroundColor = "#dddfe5";
-        allBlankSpan[5].style.borderRadius = "5px";
+      this.setState({
+        touchesMovePageX: e.touches[0].pageX,
+      });
+      //For loop - Handle for every moveing card with touch
+      for (let i = 1; i < 10; i++) {
+        if (e.touches[0].pageX < 285 - scrollHeighFromMain) {
+          allBlankSpan[0].style.width = "100%";
+          allBlankSpan[0].style.height = "35px";
+          allBlankSpan[0].style.backgroundColor = "#dddfe5";
+          allBlankSpan[0].style.borderRadius = "5px";
+        } else if (
+          e.touches[0].pageX > 285 * i - scrollHeighFromMain &&
+          e.touches[0].pageX < 285 * i + 285 - scrollHeighFromMain &&
+          this.props.wholeList.length >= i + 1
+        ) {
+          allBlankSpan[i].style.width = "100%";
+          allBlankSpan[i].style.height = "35px";
+          allBlankSpan[i].style.backgroundColor = "#dddfe5";
+          allBlankSpan[i].style.borderRadius = "5px";
+        }
       }
     }
-    this.props.isDragAndDropTrue(this.state.selected);
+    this.props.isDragAndDropTrue(true);
+  };
+
+  touchUpFeature = (e, pageX) => {
+    console.log(pageX);
+    if (e.target.classList[0] !== "card") return;
+
+    e.target.style.cursor = "pointer";
+    e.target.style.position = "static";
+    e.target.style.transform = "rotate(0deg)";
+
+    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
+
+    //For loop - Handle for every adding card to list
+    for (let i = 1; i < 10; i++) {
+      if (pageX < 285 - scrollHeighFromMain) {
+        if (this.props.wholeList[0].tasks.includes(e.target.textContent))
+          return this.mouseLeaveFeature(e);
+        this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
+        this.props.deleteCardFeatureByMove(e, this.props.id);
+      } else if (
+        pageX > 285 * i - scrollHeighFromMain &&
+        pageX < 285 * i + 285 - scrollHeighFromMain &&
+        this.props.wholeList.length >= i + 1
+      ) {
+        if (this.props.wholeList[i].tasks.includes(e.target.textContent))
+          return this.mouseLeaveFeature(e);
+        this.props.addNewCard(this.props.wholeList[i].id, e.target.textContent);
+        this.props.deleteCardFeatureByMove(e, this.props.id);
+      }
+    }
+
+    this.props.isDragAndDropTrue(false);
+    this.clearAllBlankSpan();
+
+    this.setState({
+      selected: false,
+    });
+  };
+
+  clearAllBlankSpan = () => {
+    const allBlank = document.querySelectorAll(".blank");
+
+    allBlank.forEach((blank) => {
+      blank.style.width = "0";
+      blank.style.height = "0";
+      blank.style.backgroundColor = "transparent";
+      blank.style.borderRadius = "0";
+    });
   };
 
   render() {
@@ -265,7 +224,7 @@ class Card extends Component {
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
         onTouchStart={(e) => this.touchDownFeature(e)}
         onTouchMove={(e) => this.touchMoveFeature(e)}
-        // onTouchCancel={(e) => this.touchLeaveFeature(e)}
+        onTouchEnd={(e) => this.touchUpFeature(e, this.state.touchesMovePageX)}
       >
         {this.props.task}
         <span

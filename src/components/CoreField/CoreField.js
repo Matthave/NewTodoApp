@@ -113,9 +113,8 @@ const MainField = ({
 
   const mousePositionX = (e) => {
     const main = document.querySelector(".main");
-    const windowWidth = window.innerWidth;
+    const mainWidth = main.offsetWidth;
     const mousePositionX = e.clientX;
-
     if (mousePositionX <= 75 && isDragDropTrue) {
       main.scroll({
         left: 0,
@@ -123,9 +122,29 @@ const MainField = ({
       });
     }
 
-    if (mousePositionX >= windowWidth - 75 && isDragDropTrue) {
+    if (mousePositionX >= mainWidth - 75 && isDragDropTrue) {
       main.scroll({
-        left: windowWidth,
+        left: mainWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const touchesPositionX = (e) => {
+    const main = document.querySelector(".main");
+    const mainWidth = main.offsetWidth;
+    const touchesPositionX = e.touches[0].clientX;
+
+    if (touchesPositionX <= 50 && isDragDropTrue) {
+      main.scroll({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+
+    if (touchesPositionX >= mainWidth - 50 && isDragDropTrue) {
+      main.scroll({
+        left: mainWidth * 2.5,
         behavior: "smooth",
       });
     }
@@ -140,6 +159,7 @@ const MainField = ({
       className="main"
       onScroll={(e) => scroll(e)}
       onMouseMove={(e) => mousePositionX(e)}
+      onTouchMove={(e) => touchesPositionX(e)}
     >
       <StyledWrapList>
         {wholeList.map((list) => (
