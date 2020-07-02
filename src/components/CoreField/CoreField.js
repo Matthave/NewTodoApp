@@ -124,7 +124,7 @@ const MainField = ({
 
     if (mousePositionX >= mainWidth - 75 && isDragDropTrue) {
       main.scroll({
-        left: mainWidth,
+        left: mainWidth + 285 * (wholeList.length + 1),
         behavior: "smooth",
       });
     }
@@ -144,13 +144,14 @@ const MainField = ({
 
     if (touchesPositionX >= mainWidth - 50 && isDragDropTrue) {
       main.scroll({
-        left: mainWidth * 2.5,
+        left: mainWidth + 285 * (wholeList.length + 1),
         behavior: "smooth",
       });
     }
   };
 
   const isDragAndDropTrue = (isTrue) => {
+    console.log(isTrue);
     isDragDropTrueFeature(isTrue);
   };
 

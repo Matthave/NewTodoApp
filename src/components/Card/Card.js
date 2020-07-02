@@ -143,7 +143,7 @@ class Card extends Component {
       this.setState({
         touchesMovePageX: e.touches[0].pageX,
       });
-      //For loop - Handle for every moveing card with touch
+      //For loop - Handle for every moving card with touch
       for (let i = 1; i < 10; i++) {
         if (e.touches[0].pageX < 285 - scrollHeighFromMain) {
           allBlankSpan[0].style.width = "100%";

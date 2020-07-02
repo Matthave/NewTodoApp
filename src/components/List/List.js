@@ -79,6 +79,12 @@ class List extends Component {
     document.addEventListener("keypress", (e) =>
       this.addNewCardFeatureByKey(e, this.props.id, this.state.textAreaValue)
     );
+    const main = document.querySelector(".main");
+    const mainWidth = main.offsetWidth;
+    main.scroll({
+      left: mainWidth + 285 * (this.props.wholeList.length + 1),
+      behavior: "smooth",
+    });
   }
 
   componentWillUnmount() {
