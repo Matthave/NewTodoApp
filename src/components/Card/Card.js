@@ -4,19 +4,19 @@ class Card extends Component {
   state = {
     selected: false,
     scrollHeight: 0,
-    touchesMovePageX: 0,
+    touchesMovePageX: 0
   };
 
-  mouseDownFeature = (e) => {
+  mouseDownFeature = e => {
     if (e.target.classList[0] !== "card") return;
     this.setState({
-      selected: true,
+      selected: true
     });
     e.target.style.cursor = "grabbing";
     e.target.style.background = "#fff";
   };
 
-  mouseUpFeature = (e) => {
+  mouseUpFeature = e => {
     if (e.target.classList[0] !== "card") return;
 
     e.target.style.cursor = "pointer";
@@ -47,14 +47,14 @@ class Card extends Component {
     this.clearAllBlankSpan();
 
     this.setState({
-      selected: false,
+      selected: false
     });
   };
 
   clearAllBlankSpan = () => {
     const allBlank = document.querySelectorAll(".blank");
 
-    allBlank.forEach((blank) => {
+    allBlank.forEach(blank => {
       blank.style.width = "0";
       blank.style.height = "0";
       blank.style.backgroundColor = "transparent";
@@ -62,7 +62,7 @@ class Card extends Component {
     });
   };
 
-  mouseMoveFeature = (e) => {
+  mouseMoveFeature = e => {
     const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
     if (this.state.selected && e.target.classList[0] === "card") {
       e.target.style.left = `${e.clientX - 130}px`;
@@ -72,7 +72,7 @@ class Card extends Component {
       e.target.style.zIndex = 999;
 
       const allBlankSpan = document.querySelectorAll(".blank");
-      allBlankSpan.forEach((all) => {
+      allBlankSpan.forEach(all => {
         all.style.width = "0";
         all.style.height = "0";
         all.style.backgroundColor = "transparent";
@@ -100,31 +100,31 @@ class Card extends Component {
     this.props.isDragAndDropTrue(true);
   };
 
-  mouseLeaveFeature = (e) => {
+  mouseLeaveFeature = e => {
     e.target.style.cursor = "pointer";
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
     this.clearAllBlankSpan();
     this.props.isDragAndDropTrue(false);
     this.setState({
-      selected: false,
+      selected: false
     });
   };
 
   /* TOUCH HANDLER TOUCH HADLER */
 
-  touchDownFeature = (e) => {
+  touchDownFeature = e => {
     if (e.target.classList[0] !== "card") return;
     const main = document.querySelector(".main");
     this.setState({
-      selected: true,
+      selected: true
     });
     e.target.style.cursor = "grabbing";
     e.target.style.background = "#fff";
     main.style.overflowY = "hidden";
   };
 
-  touchMoveFeature = (e) => {
+  touchMoveFeature = e => {
     const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
     if (this.state.selected && e.target.classList[0] === "card") {
       e.target.style.left = `${e.touches[0].clientX - 130}px`;
@@ -134,14 +134,14 @@ class Card extends Component {
       e.target.style.zIndex = 999;
 
       const allBlankSpan = document.querySelectorAll(".blank");
-      allBlankSpan.forEach((all) => {
+      allBlankSpan.forEach(all => {
         all.style.width = "0";
         all.style.height = "0";
         all.style.backgroundColor = "transparent";
       });
 
       this.setState({
-        touchesMovePageX: e.touches[0].pageX,
+        touchesMovePageX: e.touches[0].pageX
       });
       //For loop - Handle for every moving card with touch
       for (let i = 1; i < 10; i++) {
@@ -198,14 +198,14 @@ class Card extends Component {
     this.clearAllBlankSpan();
 
     this.setState({
-      selected: false,
+      selected: false
     });
   };
 
   clearAllBlankSpan = () => {
     const allBlank = document.querySelectorAll(".blank");
 
-    allBlank.forEach((blank) => {
+    allBlank.forEach(blank => {
       blank.style.width = "0";
       blank.style.height = "0";
       blank.style.backgroundColor = "transparent";
@@ -218,18 +218,18 @@ class Card extends Component {
       <div
         key={this.props.task}
         className="card"
-        onMouseDown={(e) => this.mouseDownFeature(e)}
-        onMouseUp={(e) => this.mouseUpFeature(e)}
-        onMouseMove={(e) => this.mouseMoveFeature(e)}
-        onMouseLeave={(e) => this.mouseLeaveFeature(e)}
-        onTouchStart={(e) => this.touchDownFeature(e)}
-        onTouchMove={(e) => this.touchMoveFeature(e)}
-        onTouchEnd={(e) => this.touchUpFeature(e, this.state.touchesMovePageX)}
+        onMouseDown={e => this.mouseDownFeature(e)}
+        onMouseUp={e => this.mouseUpFeature(e)}
+        onMouseMove={e => this.mouseMoveFeature(e)}
+        onMouseLeave={e => this.mouseLeaveFeature(e)}
+        onTouchStart={e => this.touchDownFeature(e)}
+        onTouchMove={e => this.touchMoveFeature(e)}
+        onTouchEnd={e => this.touchUpFeature(e, this.state.touchesMovePageX)}
       >
         {this.props.task}
         <span
           className="fas fa-highlighter"
-          onClick={(e) => this.props.deleteCardFeature(e)}
+          onClick={e => this.props.visibilityOptionFunction(true)}
         />
       </div>
     );

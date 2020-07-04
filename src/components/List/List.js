@@ -30,19 +30,19 @@ const StyledInput = styled.input`
 
 const StyledTextArea = styled.textarea`
   width: 100%;
-  height: ${(props) => (props.showStyle ? "60px" : "31px")};
-  background-color: ${(props) => (props.showStyle ? "#fff" : "#ebecf0")};
+  height: ${props => (props.showStyle ? "60px" : "31px")};
+  background-color: ${props => (props.showStyle ? "#fff" : "#ebecf0")};
   border-radius: 5px;
   padding: 7.5px;
   color: #779;
   resize: none;
   cursor: pointer;
   transition: 0.1s linear;
-  box-shadow: ${(props) =>
+  box-shadow: ${props =>
     props.showStyle ? "0px 0.5px 0px 0.5px #aaa" : "none"};
 
   &:hover {
-    background-color: ${(props) => (props.showStyle ? null : "#dddfe5")};
+    background-color: ${props => (props.showStyle ? null : "#dddfe5")};
   }
 `;
 
@@ -71,30 +71,30 @@ class List extends Component {
   state = {
     inputTitle: this.props.title,
     showAddField: false,
-    textAreaValue: "",
+    textAreaValue: ""
   };
 
   componentDidMount() {
     document.addEventListener("click", this.hideAll);
-    document.addEventListener("keypress", (e) =>
+    document.addEventListener("keypress", e =>
       this.addNewCardFeatureByKey(e, this.props.id, this.state.textAreaValue)
     );
     const main = document.querySelector(".main");
     const mainWidth = main.offsetWidth;
     main.scroll({
       left: mainWidth + 285 * (this.props.wholeList.length + 1),
-      behavior: "smooth",
+      behavior: "smooth"
     });
   }
 
   componentWillUnmount() {
     document.removeEventListener("click", this.hideAll);
-    document.removeEventListener("keypress", (e) =>
+    document.removeEventListener("keypress", e =>
       this.addNewCardFeatureByKey(e, this.props.id, this.state.textAreaValue)
     );
   }
 
-  hideAll = (e) => {
+  hideAll = e => {
     const searchingClass = e.target.className;
     if (
       searchingClass.includes("main") ||
@@ -102,34 +102,34 @@ class List extends Component {
       searchingClass.includes("nav")
     ) {
       this.setState({
-        showAddField: false,
+        showAddField: false
       });
       this.props.showListHandle(false);
       this.props.setListInput("");
     }
   };
 
-  setListTitle = (e) => {
+  setListTitle = e => {
     this.setState({
-      inputTitle: e.target.value,
+      inputTitle: e.target.value
     });
   };
 
-  swapAddFieldFeature = (buttonId) => {
+  swapAddFieldFeature = buttonId => {
     if (buttonId === "textArea") {
       this.setState({
-        showAddField: true,
+        showAddField: true
       });
     } else {
       this.setState({
-        showAddField: false,
+        showAddField: false
       });
     }
   };
 
-  setTextAreaValue = (e) => {
+  setTextAreaValue = e => {
     this.setState({
-      textAreaValue: e.target.value,
+      textAreaValue: e.target.value
     });
   };
 
@@ -137,7 +137,7 @@ class List extends Component {
     this.props.addNewCard(id, textAreaValue);
     this.setState({
       showAddField: false,
-      textAreaValue: "",
+      textAreaValue: ""
     });
   };
 
@@ -146,22 +146,23 @@ class List extends Component {
       this.props.addNewCard(id, textAreaValue);
       this.setState({
         showAddField: false,
-        textAreaValue: "",
+        textAreaValue: ""
       });
     }
   };
 
-  deleteCardFeature = (e) => {
+  deleteCardFeature = e => {
+    this.props.isDragAndDropTrue(false);
     this.props.deleteCard(e, this.props.id);
     this.setState({
-      textAreaValue: "",
+      textAreaValue: ""
     });
   };
 
   deleteCardFeatureByMove = (targetName, id) => {
     this.props.deleteCard(targetName, id);
     this.setState({
-      textAreaValue: "",
+      textAreaValue: ""
     });
   };
 
@@ -173,20 +174,18 @@ class List extends Component {
       wholeList,
       scrollPosition,
       isDragAndDropTrue,
+      visibilityOptionFunction
     } = this.props;
     const { showAddField, textAreaValue } = this.state;
     return (
       <StyledList className="lists">
         <StyledInput
           value={this.state.inputTitle}
-          onChange={(e) => this.setListTitle(e)}
+          onChange={e => this.setListTitle(e)}
           className="input"
         />
-        <span
-          className="fas fa-ellipsis-h"
-          onClick={() => listOption(id)}
-        ></span>
-        {tasks.map((task) => (
+        <span className="fas fa-ellipsis-h" onClick={() => listOption(id)} />
+        {tasks.map(task => (
           <Card
             wholeList={wholeList}
             key={task}
@@ -197,12 +196,13 @@ class List extends Component {
             deleteCardFeatureByMove={this.deleteCardFeatureByMove}
             scrollPosition={scrollPosition}
             isDragAndDropTrue={isDragAndDropTrue}
+            visibilityOptionFunction={visibilityOptionFunction}
           />
         ))}
-        <div className="blank"></div>
+        <div className="blank" />
         <StyledTextArea
           value={showAddField ? textAreaValue : "Add Another Card"}
-          onChange={(e) => this.setTextAreaValue(e)}
+          onChange={e => this.setTextAreaValue(e)}
           onClick={() => this.swapAddFieldFeature("textArea")}
           showStyle={showAddField}
         />

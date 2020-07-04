@@ -70,8 +70,8 @@ const StyledWrapAddListBtn = styled.div`
   width: 275px;
   border-radius: 4px;
   padding: 0px 5px 5px 5px;
-  padding-top: ${(props) => (props.bgc ? "5px" : "0px")};
-  background-color: ${(props) => (props.bgc ? "#ebecf0" : "transparent")};
+  padding-top: ${props => (props.bgc ? "5px" : "0px")};
+  background-color: ${props => (props.bgc ? "#ebecf0" : "transparent")};
   transition: 0.1s linear;
 `;
 
@@ -85,6 +85,7 @@ const MainField = ({
   addNewList,
   elementHoverEnter,
   elementHoverLeave,
+  visibilityOptionFunction
 }) => {
   const [showList, showListHandle] = useState(false);
   const [scrollPosition, updatedScrollPosition] = useState(0);
@@ -96,41 +97,41 @@ const MainField = ({
 
   const [listInputValue, setListInput] = useState("");
 
-  const listInputHandle = (e) => {
+  const listInputHandle = e => {
     setListInput(e.target.value);
   };
 
-  const addNewListByKey = (e) => {
+  const addNewListByKey = e => {
     if (e.which === 13 && showList) {
       addNewList(listInputValue, showListHandle, setListInput);
     }
   };
 
-  const scroll = (e) => {
+  const scroll = e => {
     const scrollPosition = e.target.scrollLeft;
     updatedScrollPosition(scrollPosition);
   };
 
-  const mousePositionX = (e) => {
+  const mousePositionX = e => {
     const main = document.querySelector(".main");
     const mainWidth = main.offsetWidth;
     const mousePositionX = e.clientX;
     if (mousePositionX <= 75 && isDragDropTrue) {
       main.scroll({
         left: 0,
-        behavior: "smooth",
+        behavior: "smooth"
       });
     }
 
     if (mousePositionX >= mainWidth - 75 && isDragDropTrue) {
       main.scroll({
         left: mainWidth + 285 * (wholeList.length + 1),
-        behavior: "smooth",
+        behavior: "smooth"
       });
     }
   };
 
-  const touchesPositionX = (e) => {
+  const touchesPositionX = e => {
     const main = document.querySelector(".main");
     const mainWidth = main.offsetWidth;
     const touchesPositionX = e.touches[0].clientX;
@@ -138,32 +139,31 @@ const MainField = ({
     if (touchesPositionX <= 50 && isDragDropTrue) {
       main.scroll({
         left: 0,
-        behavior: "smooth",
+        behavior: "smooth"
       });
     }
 
     if (touchesPositionX >= mainWidth - 50 && isDragDropTrue) {
       main.scroll({
         left: mainWidth + 285 * (wholeList.length + 1),
-        behavior: "smooth",
+        behavior: "smooth"
       });
     }
   };
 
-  const isDragAndDropTrue = (isTrue) => {
-    console.log(isTrue);
+  const isDragAndDropTrue = isTrue => {
     isDragDropTrueFeature(isTrue);
   };
 
   return (
     <StyledMain
       className="main"
-      onScroll={(e) => scroll(e)}
-      onMouseMove={(e) => mousePositionX(e)}
-      onTouchMove={(e) => touchesPositionX(e)}
+      onScroll={e => scroll(e)}
+      onMouseMove={e => mousePositionX(e)}
+      onTouchMove={e => touchesPositionX(e)}
     >
       <StyledWrapList>
-        {wholeList.map((list) => (
+        {wholeList.map(list => (
           <List
             wholeList={wholeList}
             key={list.id}
@@ -177,6 +177,7 @@ const MainField = ({
             setListInput={setListInput}
             scrollPosition={scrollPosition}
             isDragAndDropTrue={isDragAndDropTrue}
+            visibilityOptionFunction={visibilityOptionFunction}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>
@@ -184,12 +185,12 @@ const MainField = ({
             bgc={showList ? true : false}
             placeholder="Add another list"
             onClick={showAddListHandle}
-            onChange={(e) => listInputHandle(e)}
+            onChange={e => listInputHandle(e)}
             className="list"
             value={listInputValue}
-            onKeyPress={(e) => addNewListByKey(e)}
-            onMouseEnter={(e) => elementHoverEnter(e)}
-            onMouseLeave={(e) => elementHoverLeave(e)}
+            onKeyPress={e => addNewListByKey(e)}
+            onMouseEnter={e => elementHoverEnter(e)}
+            onMouseLeave={e => elementHoverLeave(e)}
           />
           {showList ? (
             <StyledButton
