@@ -218,7 +218,9 @@ class Card extends Component {
       <div
         key={this.props.task}
         className="card"
-        onDoubleClick={(e) => this.props.taskDetailsFunction(e)}
+        onDoubleClick={(e) =>
+          this.props.taskDetailsFunction(e, this.props.wholeList, this.props.id)
+        }
         onMouseDown={(e) => this.mouseDownFeature(e)}
         onMouseUp={(e) => this.mouseUpFeature(e)}
         onMouseMove={(e) => this.mouseMoveFeature(e)}

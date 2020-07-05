@@ -72,6 +72,22 @@ const GlobalStyle = createGlobalStyle`
    }
   }
 
+  .fa-credit-card{
+    margin-right: 7.5px;
+     color:#42526E;
+     font-size: 19px;
+     
+   }
+
+   .detail > .fa-times{
+     position: absolute;
+     top:15px;
+     right:15px;
+     font-size: 20px;
+     color:#42526E;
+     cursor: pointer;
+   }
+
 ::-webkit-scrollbar{
     height:17.5px;
 }::-webkit-scrollbar-track{

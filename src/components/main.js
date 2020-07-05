@@ -12,6 +12,7 @@ const Main = () => {
   const [whichColor, setWhichColor] = useState(["#76ce8e"]);
   const [visibilityOptionsCover, setVisibilityOptionCover] = useState(false);
   const [visibilityTaskDetails, setVisibilityTaskDetails] = useState(false);
+  const [taskTitleList, setTaskTitleList] = useState();
   const [taskName, setTaskName] = useState("");
   useEffect(() => {
     document.addEventListener("click", hideTheme);
@@ -46,9 +47,6 @@ const Main = () => {
       searchingClass.includes("item")
     ) {
       showThemeOptionFunction(false);
-    } else if (searchingClass.includes("cover")) {
-      setVisibilityOptionCover(false);
-      setVisibilityTaskDetails(false);
     }
   };
 
@@ -140,9 +138,27 @@ const Main = () => {
     setVisibilityOptionCover(swap);
   };
 
-  const taskDetailsFunction = (e) => {
+  const taskDetailsFunction = (e, wholeList, id) => {
+    setTaskTitleList(wholeList[id].title);
     setTaskName(e.target.textContent);
     setVisibilityTaskDetails(true);
+  };
+
+  const updateCard = (e, updatedTitle) => {
+    if (
+      e.target.className.includes("cover") ||
+      e.target.className.includes("fas")
+    ) {
+      const correctList = wholeList.filter(
+        (list) => list.title === taskTitleList
+      );
+
+      if (correctList[0]) {
+        const index = correctList[0].tasks.indexOf(taskName);
+        correctList[0].tasks[index] = updatedTitle;
+        setVisibilityTaskDetails(false);
+      }
+    }
   };
 
   return (
@@ -168,7 +184,13 @@ const Main = () => {
         taskDetailsFunction={taskDetailsFunction}
       />
       {visibilityOptionsCover ? <OptionCover /> : null}
-      {visibilityTaskDetails ? <DetailCover taskName={taskName} /> : null}
+      {visibilityTaskDetails ? (
+        <DetailCover
+          taskName={taskName}
+          taskTitleList={taskTitleList}
+          updateCard={updateCard}
+        />
+      ) : null}
     </main>
   );
 };

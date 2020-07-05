@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledCover = styled.div`
@@ -17,12 +17,13 @@ const StyledDetail = styled.div`
   transform: translate(-50%, -50%);
   height: 90vh;
   width: 75vw;
-  padding: 20px;
+  max-width: 775px;
+  padding: 15px;
   background-color: #f4f5f7;
 `;
 
 const StyledTaskName = styled.input`
-  width: 220px;
+  width: calc(100% - 50px);
   background-color: #f4f5f7;
   border-radius: 1px;
   padding: 5px 4px;
@@ -36,11 +37,39 @@ const StyledTaskName = styled.input`
   }
 `;
 
-const DetailCover = ({ taskName }) => {
+const StyledLightText = styled.h3`
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #172b4d;
+`;
+
+const StyledStrongText = styled.strong`
+  cursor: pointer;
+`;
+
+const DetailCover = ({ taskName, taskTitleList, updateCard }) => {
+  const [taskTitle, setTaskTitle] = useState(taskName);
+
+  const taskTitleFeature = (e) => {
+    setTaskTitle(e.target.value);
+  };
   return (
-    <StyledCover className="cover">
-      <StyledDetail>
-        <StyledTaskName value={taskName} />
+    <StyledCover className="cover" onClick={(e) => updateCard(e, taskTitle)}>
+      <StyledDetail className="detail">
+        <span className="fas fa-credit-card"></span>
+
+        <StyledTaskName
+          value={taskTitle}
+          onChange={(e) => taskTitleFeature(e)}
+        />
+        <span
+          className="fas fa-times"
+          onClick={(e) => updateCard(e, taskTitle)}
+        ></span>
+        <StyledLightText>
+          On the list <StyledStrongText>{taskTitleList}</StyledStrongText>
+        </StyledLightText>
       </StyledDetail>
     </StyledCover>
   );
