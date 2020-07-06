@@ -14,6 +14,10 @@ const Main = () => {
   const [visibilityTaskDetails, setVisibilityTaskDetails] = useState(false);
   const [taskTitleList, setTaskTitleList] = useState();
   const [taskName, setTaskName] = useState("");
+  const [idUpdatedList, setIdUpdatedList] = useState();
+  const [visibilityChangeListInDetails, setChangeListInDetails] = useState(
+    false
+  );
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -138,8 +142,9 @@ const Main = () => {
     setVisibilityOptionCover(swap);
   };
 
-  const taskDetailsFunction = (e, wholeList, id) => {
-    setTaskTitleList(wholeList[id].title);
+  const taskDetailsFunction = (e, inputTitle, id) => {
+    setIdUpdatedList(id);
+    setTaskTitleList(inputTitle);
     setTaskName(e.target.textContent);
     setVisibilityTaskDetails(true);
   };
@@ -147,18 +152,23 @@ const Main = () => {
   const updateCard = (e, updatedTitle) => {
     if (
       e.target.className.includes("cover") ||
-      e.target.className.includes("fas")
+      e.target.className.includes("close")
     ) {
-      const correctList = wholeList.filter(
-        (list) => list.title === taskTitleList
-      );
+      const correctList = wholeList.filter((list) => list.id === idUpdatedList);
 
+      if (correctList[0].tasks.includes(updatedTitle)) {
+        return setVisibilityTaskDetails(false);
+      }
       if (correctList[0]) {
         const index = correctList[0].tasks.indexOf(taskName);
         correctList[0].tasks[index] = updatedTitle;
         setVisibilityTaskDetails(false);
       }
     }
+  };
+
+  const changeListInDetails = () => {
+    setChangeListInDetails(!visibilityChangeListInDetails);
   };
 
   return (
@@ -189,6 +199,9 @@ const Main = () => {
           taskName={taskName}
           taskTitleList={taskTitleList}
           updateCard={updateCard}
+          changeListInDetails={changeListInDetails}
+          visibilityChangeListInDetails={visibilityChangeListInDetails}
+          wholeList={wholeList}
         />
       ) : null}
     </main>

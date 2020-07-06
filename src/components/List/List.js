@@ -199,6 +199,7 @@ class List extends Component {
             isDragAndDropTrue={isDragAndDropTrue}
             visibilityOptionFunction={visibilityOptionFunction}
             taskDetailsFunction={taskDetailsFunction}
+            inputTitle={this.state.inputTitle}
           />
         ))}
         <div className="blank" />

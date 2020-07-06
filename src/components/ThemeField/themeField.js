@@ -5,9 +5,9 @@ import { device } from "../mq";
 const StyledThemeDiv = styled.div`
   position: fixed;
   bottom: 17.5px;
-  right: calc(50% - (375px / 2));
-  width: 375px;
-  transform: ${props =>
+  right: 0;
+  width: 100%;
+  transform: ${(props) =>
     props.showTheme ? "translateX(0px)" : "translateX(100vw)"};
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +20,6 @@ const StyledThemeDiv = styled.div`
   @media ${device.laptop} {
     top: calc(0% + 40px);
     right: 0;
-    bottom: 0;
     width: 375px;
     align-content: flex-start;
   }
@@ -62,12 +61,12 @@ function ThemeField({ themeOption, setWhichColor }) {
     nav.style.backgroundColor = navColor;
 
     const lists = document.querySelectorAll(".list");
-    lists.forEach(list => {
+    lists.forEach((list) => {
       list.style.backgroundColor = listColor;
     });
 
     const inputs = document.querySelectorAll(".item");
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       input.style.backgroundColor = inputColor;
     });
 
