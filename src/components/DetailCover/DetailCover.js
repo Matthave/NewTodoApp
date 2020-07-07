@@ -55,7 +55,6 @@ const StyledChangeListDetails = styled.div`
   flex-wrap: wrap;
   position: fixed;
   width: 300px;
-  height: 400px;
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0px 0px 4px 0.5px #ccc;
@@ -67,12 +66,13 @@ const StyledReplaceTitle = styled.h3`
   width: 100%;
   position: relative;
   flex-grow: 1;
-  text-align: center;
+  text-align: ${(props) => (props.alignCenter ? "center" : "left")};
   font-size: 1.5rem;
   border-bottom: ${(props) => (props.border ? "1px solid #aaa" : "null")};
   padding-bottom: 6px;
   color: #555;
   font-weight: 400;
+  margin-bottom: ${(props) => (props.biggerMargin ? "27.5px" : "5px")};
 
   & > .fa-times {
     position: absolute;
@@ -84,18 +84,20 @@ const StyledReplaceTitle = styled.h3`
 
 const StyledSuggestList = styled.div`
   width: 100%;
-  max-width: 260px;
+  max-width: 275px;
   word-break: break-all;
   margin: 0 auto;
+  margin-bottom: 7px;
   padding: 9px 7.5px;
   font-size: 1.4rem;
-  background-color: #eee;
+  background-color: #f5f6f8;
   border-radius: 3px;
   cursor: pointer;
   color: black;
+  transition: 0.1s linear;
 
   &:hover {
-    background-color: #f4f5f7;
+    background-color: #e6e8ed;
   }
 `;
 
@@ -117,6 +119,7 @@ const DetailCover = ({
       <StyledDetail className="detail">
         <span className="fas fa-credit-card"></span>
         <StyledTaskName
+          className="input"
           value={taskTitle}
           onChange={(e) => taskTitleFeature(e)}
         />
@@ -130,15 +133,15 @@ const DetailCover = ({
             {taskTitleList}
           </StyledStrongText>
           {visibilityChangeListInDetails ? (
-            <StyledChangeListDetails>
-              <StyledReplaceTitle border>
+            <StyledChangeListDetails className="replaceCard">
+              <StyledReplaceTitle border alignCenter biggerMargin>
                 Replace Card
                 <span
                   className="fas fa-times"
                   onClick={() => changeListInDetails()}
                 ></span>
               </StyledReplaceTitle>
-              <StyledReplaceTitle>Suggest</StyledReplaceTitle>
+              <StyledReplaceTitle>Suggested</StyledReplaceTitle>
               {wholeList.map((list) => (
                 <StyledSuggestList>{list.title}</StyledSuggestList>
               ))}

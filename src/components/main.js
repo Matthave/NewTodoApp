@@ -52,6 +52,14 @@ const Main = () => {
     ) {
       showThemeOptionFunction(false);
     }
+
+    if (
+      searchingClass.includes("cover") ||
+      searchingClass.includes("detail") ||
+      searchingClass.includes("input")
+    ) {
+      setChangeListInDetails(false);
+    }
   };
 
   const listOption = (listId) => {
