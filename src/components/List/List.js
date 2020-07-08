@@ -109,10 +109,11 @@ class List extends Component {
     }
   };
 
-  setListTitle = (e) => {
+  setListTitle = (e, listId) => {
     this.setState({
       inputTitle: e.target.value,
     });
+    this.props.updateListTitle(e.target.value, listId);
   };
 
   swapAddFieldFeature = (buttonId) => {
@@ -182,7 +183,7 @@ class List extends Component {
       <StyledList className="lists">
         <StyledInput
           value={this.state.inputTitle}
-          onChange={(e) => this.setListTitle(e)}
+          onChange={(e) => this.setListTitle(e, id)}
           className="input"
         />
         <span className="fas fa-ellipsis-h" onClick={() => listOption(id)} />

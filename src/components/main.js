@@ -56,7 +56,8 @@ const Main = () => {
     if (
       searchingClass.includes("cover") ||
       searchingClass.includes("detail") ||
-      searchingClass.includes("input")
+      searchingClass.includes("input") ||
+      searchingClass.includes("close")
     ) {
       setChangeListInDetails(false);
     }
@@ -117,6 +118,11 @@ const Main = () => {
     ]);
   };
 
+  const updateListTitle = (newTitle, listId) => {
+    const updatedList = wholeList.filter((list) => list.id === listId);
+    updatedList[0].title = newTitle;
+  };
+
   const elementHoverEnter = (e) => {
     const arrayClassList = [];
     e.target.classList.forEach((item) => {
@@ -167,10 +173,23 @@ const Main = () => {
       if (correctList[0].tasks.includes(updatedTitle)) {
         return setVisibilityTaskDetails(false);
       }
+
+      if (updatedTitle.length < 2) return setVisibilityTaskDetails(false);
       if (correctList[0]) {
         const index = correctList[0].tasks.indexOf(taskName);
         correctList[0].tasks[index] = updatedTitle;
         setVisibilityTaskDetails(false);
+      }
+    }
+
+    if (e.target.className.includes("detail")) {
+      const correctList = wholeList.filter((list) => list.id === idUpdatedList);
+      if (correctList[0].tasks.includes(updatedTitle)) return;
+      if (updatedTitle.length < 2) return;
+      if (correctList[0]) {
+        const index = correctList[0].tasks.indexOf(taskName);
+        correctList[0].tasks[index] = updatedTitle;
+        setTaskName(updatedTitle);
       }
     }
   };
@@ -178,6 +197,8 @@ const Main = () => {
   const changeListInDetails = () => {
     setChangeListInDetails(!visibilityChangeListInDetails);
   };
+
+  const replaceCardFeature = (e, currentList, taskTitle, listId) => {};
 
   return (
     <main>
@@ -200,6 +221,7 @@ const Main = () => {
         elementHoverLeave={elementHoverLeave}
         visibilityOptionFunction={visibilityOptionFunction}
         taskDetailsFunction={taskDetailsFunction}
+        updateListTitle={updateListTitle}
       />
       {visibilityOptionsCover ? <OptionCover /> : null}
       {visibilityTaskDetails ? (
@@ -210,6 +232,7 @@ const Main = () => {
           changeListInDetails={changeListInDetails}
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}
+          replaceCardFeature={replaceCardFeature}
         />
       ) : null}
     </main>

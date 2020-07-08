@@ -108,6 +108,7 @@ const DetailCover = ({
   changeListInDetails,
   visibilityChangeListInDetails,
   wholeList,
+  replaceCardFeature,
 }) => {
   const [taskTitle, setTaskTitle] = useState(taskName);
 
@@ -116,7 +117,10 @@ const DetailCover = ({
   };
   return (
     <StyledCover className="cover" onClick={(e) => updateCard(e, taskTitle)}>
-      <StyledDetail className="detail">
+      <StyledDetail
+        className="detail"
+        onClick={(e) => updateCard(e, taskTitle)}
+      >
         <span className="fas fa-credit-card"></span>
         <StyledTaskName
           className="input"
@@ -143,7 +147,14 @@ const DetailCover = ({
               </StyledReplaceTitle>
               <StyledReplaceTitle>Suggested</StyledReplaceTitle>
               {wholeList.map((list) => (
-                <StyledSuggestList>{list.title}</StyledSuggestList>
+                <StyledSuggestList
+                  onClick={(e) =>
+                    replaceCardFeature(e, taskTitleList, taskTitle, list.id)
+                  }
+                  key={list.id}
+                >
+                  {list.title}
+                </StyledSuggestList>
               ))}
             </StyledChangeListDetails>
           ) : null}

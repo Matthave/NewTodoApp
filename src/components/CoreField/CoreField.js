@@ -83,6 +83,7 @@ const MainField = ({
   addNewCard,
   deleteCard,
   addNewList,
+  updateListTitle,
   elementHoverEnter,
   elementHoverLeave,
   visibilityOptionFunction,
@@ -180,6 +181,7 @@ const MainField = ({
             isDragAndDropTrue={isDragAndDropTrue}
             visibilityOptionFunction={visibilityOptionFunction}
             taskDetailsFunction={taskDetailsFunction}
+            updateListTitle={updateListTitle}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>
