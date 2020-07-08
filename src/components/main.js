@@ -198,7 +198,29 @@ const Main = () => {
     setChangeListInDetails(!visibilityChangeListInDetails);
   };
 
-  const replaceCardFeature = (e, currentList, taskTitle, listId) => {};
+  const moveCardToAnotherList = (
+    e,
+    currentList,
+    taskTitleToMove,
+    clickedListId
+  ) => {
+    //FindListWhereDelete
+    const deleteFromList = wholeList.filter(
+      (list) => list.title === currentList
+    );
+
+    //AddToAnotherList
+    const addToList = wholeList.filter((list) => list.id === clickedListId);
+    if (addToList[0].tasks.includes(taskTitleToMove)) return;
+
+    addToList[0].tasks.push(taskTitleToMove);
+
+    //DeleteFromCurrentList
+    const taskToRemoveId = deleteFromList[0].tasks.indexOf(taskTitleToMove);
+    deleteFromList[0].tasks.splice(taskToRemoveId, 1);
+
+    setVisibilityTaskDetails(false);
+  };
 
   return (
     <main>
@@ -232,7 +254,7 @@ const Main = () => {
           changeListInDetails={changeListInDetails}
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}
-          replaceCardFeature={replaceCardFeature}
+          moveCardToAnotherList={moveCardToAnotherList}
         />
       ) : null}
     </main>

@@ -108,7 +108,7 @@ const DetailCover = ({
   changeListInDetails,
   visibilityChangeListInDetails,
   wholeList,
-  replaceCardFeature,
+  moveCardToAnotherList,
 }) => {
   const [taskTitle, setTaskTitle] = useState(taskName);
 
@@ -149,7 +149,7 @@ const DetailCover = ({
               {wholeList.map((list) => (
                 <StyledSuggestList
                   onClick={(e) =>
-                    replaceCardFeature(e, taskTitleList, taskTitle, list.id)
+                    moveCardToAnotherList(e, taskTitleList, taskTitle, list.id)
                   }
                   key={list.id}
                 >
