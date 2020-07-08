@@ -146,7 +146,6 @@ class List extends Component {
     if (e.which === 13 && this.state.showAddField) {
       this.props.addNewCard(id, textAreaValue);
       this.setState({
-        showAddField: false,
         textAreaValue: "",
       });
     }

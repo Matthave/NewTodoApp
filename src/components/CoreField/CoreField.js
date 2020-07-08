@@ -106,6 +106,7 @@ const MainField = ({
   const addNewListByKey = (e) => {
     if (e.which === 13 && showList) {
       addNewList(listInputValue, showListHandle, setListInput);
+      showListHandle(true);
     }
   };
 

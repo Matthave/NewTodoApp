@@ -220,6 +220,7 @@ const Main = () => {
     deleteFromList[0].tasks.splice(taskToRemoveId, 1);
 
     setVisibilityTaskDetails(false);
+    setChangeListInDetails(false);
   };
 
   return (
