@@ -99,7 +99,8 @@ class List extends Component {
     if (
       searchingClass.includes("main") ||
       searchingClass.includes("input") ||
-      searchingClass.includes("nav")
+      searchingClass.includes("nav") ||
+      searchingClass.includes("wrapList")
     ) {
       this.setState({
         showAddField: false,
@@ -144,6 +145,7 @@ class List extends Component {
 
   addNewCardFeatureByKey = (e, id, textAreaValue) => {
     if (e.which === 13 && this.state.showAddField) {
+      e.preventDefault();
       this.props.addNewCard(id, textAreaValue);
       this.setState({
         textAreaValue: "",

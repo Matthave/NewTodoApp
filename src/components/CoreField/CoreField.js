@@ -165,7 +165,7 @@ const MainField = ({
       onMouseMove={(e) => mousePositionX(e)}
       onTouchMove={(e) => touchesPositionX(e)}
     >
-      <StyledWrapList>
+      <StyledWrapList className="wrapList">
         {wholeList.map((list) => (
           <List
             wholeList={wholeList}
