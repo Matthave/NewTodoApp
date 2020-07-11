@@ -23,13 +23,13 @@ class Card extends Component {
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
 
-    const [
+    const {
       scrollPosition,
       wholeList,
       addNewCard,
       deleteCardFeatureByMove,
       id,
-    ] = this.props;
+    } = this.props;
 
     const scrollHeighFromMain = Math.floor(scrollPosition);
 
@@ -179,13 +179,13 @@ class Card extends Component {
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
 
-    const [
+    const {
       scrollPosition,
       wholeList,
       addNewCard,
       deleteCardFeatureByMove,
       id,
-    ] = this.props;
+    } = this.props;
 
     const scrollHeighFromMain = Math.floor(scrollPosition);
 
@@ -228,15 +228,15 @@ class Card extends Component {
   };
 
   render() {
-    const [
+    const {
       task,
       inputTitle,
       id,
       taskDetailsFunction,
       visibilityOptionFunction,
-    ] = this.props;
+    } = this.props;
 
-    const [touchesMovePageX] = this.state;
+    const { touchesMovePageX } = this.state;
     return (
       <div
         key={task}
