@@ -23,23 +23,31 @@ class Card extends Component {
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
 
-    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
+    const [
+      scrollPosition,
+      wholeList,
+      addNewCard,
+      deleteCardFeatureByMove,
+      id,
+    ] = this.props;
+
+    const scrollHeighFromMain = Math.floor(scrollPosition);
 
     for (let i = 1; i < 10; i++) {
       if (e.pageX < 285 - scrollHeighFromMain) {
-        if (this.props.wholeList[0].tasks.includes(e.target.textContent))
+        if (wholeList[0].tasks.includes(e.target.textContent))
           return this.mouseLeaveFeature(e);
-        this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
-        this.props.deleteCardFeatureByMove(e, this.props.id);
+        addNewCard(wholeList[0].id, e.target.textContent);
+        deleteCardFeatureByMove(e, id);
       } else if (
         e.pageX > 285 * i - scrollHeighFromMain &&
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
-        this.props.wholeList.length >= i + 1
+        wholeList.length >= i + 1
       ) {
-        if (this.props.wholeList[i].tasks.includes(e.target.textContent))
+        if (wholeList[i].tasks.includes(e.target.textContent))
           return this.mouseLeaveFeature(e);
-        this.props.addNewCard(this.props.wholeList[i].id, e.target.textContent);
-        this.props.deleteCardFeatureByMove(e, this.props.id);
+        addNewCard(wholeList[i].id, e.target.textContent);
+        deleteCardFeatureByMove(e, id);
       }
     }
 
@@ -166,31 +174,37 @@ class Card extends Component {
   };
 
   touchUpFeature = (e, pageX) => {
-    console.log(pageX);
     if (e.target.classList[0] !== "card") return;
-
     e.target.style.cursor = "pointer";
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
 
-    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
+    const [
+      scrollPosition,
+      wholeList,
+      addNewCard,
+      deleteCardFeatureByMove,
+      id,
+    ] = this.props;
+
+    const scrollHeighFromMain = Math.floor(scrollPosition);
 
     //For loop - Handle for every adding card to list
     for (let i = 1; i < 10; i++) {
       if (pageX < 285 - scrollHeighFromMain) {
-        if (this.props.wholeList[0].tasks.includes(e.target.textContent))
+        if (wholeList[0].tasks.includes(e.target.textContent))
           return this.mouseLeaveFeature(e);
-        this.props.addNewCard(this.props.wholeList[0].id, e.target.textContent);
-        this.props.deleteCardFeatureByMove(e, this.props.id);
+        addNewCard(wholeList[0].id, e.target.textContent);
+        deleteCardFeatureByMove(e, id);
       } else if (
         pageX > 285 * i - scrollHeighFromMain &&
         pageX < 285 * i + 285 - scrollHeighFromMain &&
-        this.props.wholeList.length >= i + 1
+        wholeList.length >= i + 1
       ) {
-        if (this.props.wholeList[i].tasks.includes(e.target.textContent))
+        if (wholeList[i].tasks.includes(e.target.textContent))
           return this.mouseLeaveFeature(e);
-        this.props.addNewCard(this.props.wholeList[i].id, e.target.textContent);
-        this.props.deleteCardFeatureByMove(e, this.props.id);
+        addNewCard(wholeList[i].id, e.target.textContent);
+        deleteCardFeatureByMove(e, id);
       }
     }
 
@@ -214,29 +228,32 @@ class Card extends Component {
   };
 
   render() {
+    const [
+      task,
+      inputTitle,
+      id,
+      taskDetailsFunction,
+      visibilityOptionFunction,
+    ] = this.props;
+
+    const [touchesMovePageX] = this.state;
     return (
       <div
-        key={this.props.task}
+        key={task}
         className="card"
-        onDoubleClick={(e) =>
-          this.props.taskDetailsFunction(
-            e,
-            this.props.inputTitle,
-            this.props.id
-          )
-        }
+        onDoubleClick={(e) => taskDetailsFunction(e, inputTitle, id)}
         onMouseDown={(e) => this.mouseDownFeature(e)}
         onMouseUp={(e) => this.mouseUpFeature(e)}
         onMouseMove={(e) => this.mouseMoveFeature(e)}
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
         onTouchStart={(e) => this.touchDownFeature(e)}
         onTouchMove={(e) => this.touchMoveFeature(e)}
-        onTouchEnd={(e) => this.touchUpFeature(e, this.state.touchesMovePageX)}
+        onTouchEnd={(e) => this.touchUpFeature(e, touchesMovePageX)}
       >
-        {this.props.task}
+        {task}
         <span
           className="fas fa-highlighter"
-          onClick={(e) => this.props.visibilityOptionFunction(e)}
+          onClick={(e) => visibilityOptionFunction(e)}
         />
       </div>
     );

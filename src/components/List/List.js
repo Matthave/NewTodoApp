@@ -169,90 +169,6 @@ class List extends Component {
     });
   };
 
-  mouseDownList = (e) => {
-    console.log(e.target.classList[2]);
-    if (e.target.classList[2] !== "lists") return;
-    this.setState({
-      selected: true,
-    });
-    e.target.style.cursor = "grabbing";
-    e.target.style.zIndex = 999;
-  };
-
-  mouseUpList = (e) => {
-    e.target.style.cursor = "pointer";
-    e.target.style.position = "static";
-    e.target.style.transform = "rotate(0deg)";
-
-    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
-    const movingListIndex = this.props.wholeList.findIndex(
-      (list) => list.id === this.props.id
-    );
-    const movingList = this.props.wholeList.filter(
-      (list) => list.id === this.props.id
-    );
-    for (let i = 1; i < 10; i++) {
-      if (e.pageX < 285 - scrollHeighFromMain) {
-        this.props.wholeList.splice(movingListIndex, 1);
-        this.props.wholeList[0] = movingList;
-      } else if (
-        e.pageX > 285 * i - scrollHeighFromMain &&
-        e.pageX < 285 * i + 285 - scrollHeighFromMain &&
-        this.props.wholeList.length >= i + 1
-      ) {
-        //Coś
-      }
-    }
-
-    const allBlank = document.querySelectorAll(".blanForList");
-
-    allBlank.forEach((blank) => {
-      blank.style.width = "0";
-      blank.style.height = "0";
-      blank.style.backgroundColor = "transparent";
-    });
-
-    this.setState({
-      selected: false,
-    });
-  };
-
-  mouseMoveList = (e) => {
-    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
-    if (this.state.selected && e.target.classList[2] === "lists") {
-      e.target.style.left = `${e.clientX - 135}px`;
-      e.target.style.top = `${e.clientY - 40}px`;
-      e.target.style.position = "fixed";
-      e.target.style.transform = "rotate(5deg)";
-
-      const allBlankSpan = document.querySelectorAll(".blanForList");
-      allBlankSpan.forEach((all) => {
-        all.style.width = "0";
-        all.style.height = "0";
-        all.style.backgroundColor = "transparent";
-        all.style.borderRadius = "5px";
-      });
-
-      for (let i = 1; i < 10; i++) {
-        if (e.pageX < 285 - scrollHeighFromMain) {
-          allBlankSpan[0].style.width = "270px";
-          allBlankSpan[0].style.height = "90px";
-          allBlankSpan[0].style.backgroundColor = "rgba(0,0,0,0.1)";
-          allBlankSpan[0].style.borderRadius = "5px";
-        } else if (
-          e.pageX > 285 * i - scrollHeighFromMain &&
-          e.pageX < 285 * i + 285 - scrollHeighFromMain &&
-          this.props.wholeList.length >= i + 1
-        ) {
-          allBlankSpan[i].style.width = "270px";
-          allBlankSpan[i].style.height = "90px";
-          allBlankSpan[i].style.backgroundColor = "rgba(0,0,0,0.1)";
-          allBlankSpan[i].style.borderRadius = "5px";
-        }
-      }
-    }
-  };
-
   render() {
     const {
       listOption,
@@ -267,13 +183,7 @@ class List extends Component {
     const { showAddField, textAreaValue } = this.state;
     return (
       <>
-        <span className="blanForList"></span>
-        <StyledList
-          className="lists"
-          onMouseDown={(e) => this.mouseDownList(e)}
-          onMouseUp={(e) => this.mouseUpList(e)}
-          onMouseMove={(e) => this.mouseMoveList(e)}
-        >
+        <StyledList className="lists">
           <StyledInput
             value={this.state.inputTitle}
             onChange={(e) => this.setListTitle(e, id)}
