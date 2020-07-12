@@ -105,13 +105,15 @@ const Main = () => {
     setListInput("");
     if (listInputValue === "") return;
     if (listInputValue.length < 2) return;
+
+    let biggerThanLast = [];
+    wholeList.forEach((list) => biggerThanLast.push(list.id));
+    const theBiggest = Math.max(...biggerThanLast);
     setWholeList([
       ...wholeList,
       {
         title: listInputValue,
-        id: `${
-          wholeList.length !== 0 ? wholeList[wholeList.length - 1].id + 1 : 0
-        }`,
+        id: theBiggest + 1,
         tasks: [],
         activeInput: false,
       },
@@ -223,6 +225,13 @@ const Main = () => {
     setChangeListInDetails(false);
   };
 
+  const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
+    const copy = [...wholeList];
+    const splicedElement = copy.splice(draggedListIndex, 1);
+    copy.splice(addToThisIndex, 0, ...splicedElement);
+    setWholeList(copy);
+  };
+
   return (
     <main>
       <Navigation
@@ -245,6 +254,7 @@ const Main = () => {
         visibilityOptionFunction={visibilityOptionFunction}
         taskDetailsFunction={taskDetailsFunction}
         updateListTitle={updateListTitle}
+        moveListToAnotherPlace={moveListToAnotherPlace}
       />
       {visibilityOptionsCover ? <OptionCover /> : null}
       {visibilityTaskDetails ? (

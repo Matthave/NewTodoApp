@@ -64,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
   cursor: pointer;
   }
   
-  .listWrap{
+  .singleListWrap{
      position:relative;
      width: 285px;
      display:flex;

@@ -88,6 +88,7 @@ const MainField = ({
   elementHoverLeave,
   visibilityOptionFunction,
   taskDetailsFunction,
+  moveListToAnotherPlace,
 }) => {
   const [showList, showListHandle] = useState(false);
   const [scrollPosition, updatedScrollPosition] = useState(0);
@@ -183,6 +184,7 @@ const MainField = ({
             visibilityOptionFunction={visibilityOptionFunction}
             taskDetailsFunction={taskDetailsFunction}
             updateListTitle={updateListTitle}
+            moveListToAnotherPlace={moveListToAnotherPlace}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>

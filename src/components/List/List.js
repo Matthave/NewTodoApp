@@ -102,7 +102,8 @@ class List extends Component {
       searchingClass.includes("main") ||
       searchingClass.includes("input") ||
       searchingClass.includes("nav") ||
-      searchingClass.includes("wrapList")
+      searchingClass.includes("wrapList") ||
+      searchingClass.includes("singleListWrap")
     ) {
       this.setState({
         showAddField: false,
@@ -237,13 +238,19 @@ class List extends Component {
       all.style.display = "none";
     });
 
+    const draggedListIndex = this.props.wholeList.findIndex(
+      (list) => list.id === this.props.id
+    );
+
     for (let i = 1; i < 10; i++) {
       if (e.pageX < 285 - scrollHeighFromMain) {
+        this.props.moveListToAnotherPlace(draggedListIndex, 0);
       } else if (
         e.pageX > 285 * i - scrollHeighFromMain &&
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
         wholeList.length >= i + 1
       ) {
+        this.props.moveListToAnotherPlace(draggedListIndex, i);
       }
     }
 
@@ -290,7 +297,7 @@ class List extends Component {
       selectedList,
     } = this.state;
     return (
-      <div className="listWrap">
+      <div className="singleListWrap">
         <div className="frontBlankList"></div>
         <div
           className="lists"
