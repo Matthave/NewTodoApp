@@ -51,6 +51,26 @@ const GlobalStyle = createGlobalStyle`
   }
   }
 
+  .lists{
+  top:0;
+  left:0;
+  width: 275px;
+  margin-right: 10px;
+  align-self: flex-start;
+  background-color: #ebecf0;
+  border-radius: 4px;
+  padding: 10px 7.5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  }
+  
+  .listWrap{
+     position:relative;
+     width: 285px;
+     display:flex;
+     flex-direction:column;
+   }
+
   .fa-highlighter{
     color:#777;
     align-self:center;

@@ -2,17 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Card from "../Card/Card";
 
-const StyledList = styled.section`
-  position: relative;
-  width: 275px;
-  margin-right: 10px;
-  align-self: flex-start;
-  background-color: #ebecf0;
-  border-radius: 4px;
-  padding: 10px 7.5px;
-  margin-bottom: 15px;
-`;
-
 const StyledInput = styled.input`
   width: 220px;
   background-color: #ebecf0;
@@ -67,12 +56,24 @@ const StyledSpanX = styled.span`
   cursor: pointer;
 `;
 
+const StyledInputCover = styled.div`
+  display: inline-block;
+  width: 220px;
+  background-color: #ebecf0;
+  border-radius: 1px;
+  padding: 5px 4px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #172b4d;
+  margin-bottom: 25px;
+`;
+
 class List extends Component {
   state = {
     inputTitle: this.props.title,
     showAddField: false,
     textAreaValue: "",
-    selected: false,
+    selectedList: false,
   };
 
   componentDidMount() {
@@ -169,6 +170,108 @@ class List extends Component {
     });
   };
 
+  mouseDownFeature = (e) => {
+    if (e.target.classList[0] !== "lists") return;
+    this.setState({
+      selectedList: true,
+    });
+    e.target.style.zIndex = 999;
+    e.target.style.cursor = "grabbing";
+    e.target.style.boxShadow = "0px 0px 20px 0.5px rgba(0,0,0,0.1";
+  };
+
+  mouseMoveFeature = (e) => {
+    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
+    if (this.state.selectedList && e.target.classList[0] === "lists") {
+      e.target.style.left = `${e.clientX - 135}px`;
+      e.target.style.top = `${e.clientY - 45}px`;
+      e.target.style.position = "fixed";
+      e.target.style.transform = "rotate(5deg)";
+
+      const allBlankSpan = document.querySelectorAll(".frontBlankList");
+      allBlankSpan.forEach((all) => {
+        all.style.display = "none";
+      });
+
+      for (let i = 1; i < 10; i++) {
+        if (e.pageX < 285 - scrollHeighFromMain) {
+          allBlankSpan[0].style.width = "275px";
+          allBlankSpan[0].style.height = "10px";
+          allBlankSpan[0].style.backgroundColor = "rgba(0,0,0,0.15)";
+          allBlankSpan[0].style.marginRight = "10px";
+          allBlankSpan[0].style.borderRadius = "4px";
+          allBlankSpan[0].style.display = "initial";
+          allBlankSpan[0].style.position = "absolute";
+          allBlankSpan[0].style.top = "-17.5px";
+        } else if (
+          e.pageX > 285 * i - scrollHeighFromMain &&
+          e.pageX < 285 * i + 285 - scrollHeighFromMain &&
+          this.props.wholeList.length >= i + 1
+        ) {
+          allBlankSpan[i].style.width = "275px";
+          allBlankSpan[i].style.height = "10px";
+          allBlankSpan[i].style.backgroundColor = "rgba(0,0,0,0.15)";
+          allBlankSpan[i].style.marginRight = "10px";
+          allBlankSpan[i].style.borderRadius = "4px";
+          allBlankSpan[i].style.display = "initial";
+          allBlankSpan[i].style.position = "absolute";
+          allBlankSpan[i].style.top = "-17.5px";
+        }
+      }
+    }
+  };
+
+  mouseUpFeature = (e) => {
+    if (e.target.classList[0] !== "lists") return;
+    e.target.style.position = "static";
+    e.target.style.cursor = "pointer";
+    e.target.style.zIndex = null;
+    e.target.style.boxShadow = null;
+    e.target.style.transform = null;
+
+    const { scrollPosition, wholeList } = this.props;
+    const scrollHeighFromMain = Math.floor(scrollPosition);
+
+    const allBlankSpan = document.querySelectorAll(".frontBlankList");
+    allBlankSpan.forEach((all) => {
+      all.style.display = "none";
+    });
+
+    for (let i = 1; i < 10; i++) {
+      if (e.pageX < 285 - scrollHeighFromMain) {
+      } else if (
+        e.pageX > 285 * i - scrollHeighFromMain &&
+        e.pageX < 285 * i + 285 - scrollHeighFromMain &&
+        wholeList.length >= i + 1
+      ) {
+      }
+    }
+
+    this.setState({
+      selectedList: false,
+    });
+  };
+
+  mouseLeaveFeature = (e) => {
+    const list = document.querySelectorAll(".lists");
+    list.forEach((all) => {
+      all.style.position = "static";
+      all.style.cursor = "pointer";
+      all.style.boxShadow = null;
+      all.style.transform = null;
+      all.style.zIndex = null;
+    });
+
+    const allBlankSpan = document.querySelectorAll(".frontBlankList");
+    allBlankSpan.forEach((all) => {
+      all.style.display = "none";
+    });
+
+    this.setState({
+      selectedList: false,
+    });
+  };
+
   render() {
     const {
       listOption,
@@ -180,15 +283,36 @@ class List extends Component {
       visibilityOptionFunction,
       taskDetailsFunction,
     } = this.props;
-    const { showAddField, textAreaValue } = this.state;
+    const {
+      showAddField,
+      textAreaValue,
+      inputTitle,
+      selectedList,
+    } = this.state;
     return (
-      <>
-        <StyledList className="lists">
-          <StyledInput
-            value={this.state.inputTitle}
-            onChange={(e) => this.setListTitle(e, id)}
-            className="input"
-          />
+      <div className="listWrap">
+        <div className="frontBlankList"></div>
+        <div
+          className="lists"
+          onMouseDown={(e) => this.mouseDownFeature(e)}
+          onMouseMove={(e) => this.mouseMoveFeature(e)}
+          onMouseUp={(e) => this.mouseUpFeature(e)}
+          onMouseLeave={(e) => this.mouseLeaveFeature(e)}
+        >
+          {selectedList ? (
+            <StyledInputCover
+              onChange={(e) => this.setListTitle(e, id)}
+              className="input"
+            >
+              {this.state.inputTitle}
+            </StyledInputCover>
+          ) : (
+            <StyledInput
+              value={this.state.inputTitle}
+              onChange={(e) => this.setListTitle(e, id)}
+              className="input"
+            />
+          )}
           <span className="fas fa-ellipsis-h" onClick={() => listOption(id)} />
           {tasks.map((task) => (
             <Card
@@ -203,7 +327,7 @@ class List extends Component {
               isDragAndDropTrue={isDragAndDropTrue}
               visibilityOptionFunction={visibilityOptionFunction}
               taskDetailsFunction={taskDetailsFunction}
-              inputTitle={this.state.inputTitle}
+              inputTitle={inputTitle}
             />
           ))}
           <div className="blank" />
@@ -226,8 +350,8 @@ class List extends Component {
               />
             </>
           ) : null}
-        </StyledList>
-      </>
+        </div>
+      </div>
     );
   }
 }

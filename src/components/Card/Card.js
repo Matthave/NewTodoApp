@@ -14,6 +14,7 @@ class Card extends Component {
     });
     e.target.style.cursor = "grabbing";
     e.target.style.background = "#fff";
+    e.target.style.zIndex = 999;
   };
 
   mouseUpFeature = (e) => {
@@ -22,6 +23,7 @@ class Card extends Component {
     e.target.style.cursor = "pointer";
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
+    e.target.style.zIndex = 0;
 
     const {
       scrollPosition,
@@ -112,6 +114,7 @@ class Card extends Component {
     e.target.style.cursor = "pointer";
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
+    e.target.style.zIndex = 0;
     this.clearAllBlankSpan();
     this.props.isDragAndDropTrue(false);
     this.setState({
