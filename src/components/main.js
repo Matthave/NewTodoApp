@@ -113,7 +113,7 @@ const Main = () => {
       ...wholeList,
       {
         title: listInputValue,
-        id: theBiggest + 1,
+        id: `${wholeList.length === 0 ? 0 : theBiggest + 1}`,
         tasks: [],
         activeInput: false,
       },
