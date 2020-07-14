@@ -74,6 +74,7 @@ class List extends Component {
     showAddField: false,
     textAreaValue: "",
     selectedList: false,
+    touchesMovePageX: 0,
   };
 
   componentDidMount() {
@@ -259,7 +260,7 @@ class List extends Component {
     });
   };
 
-  mouseLeaveFeature = (e) => {
+  mouseLeaveFeature = () => {
     const list = document.querySelectorAll(".lists");
     list.forEach((all) => {
       all.style.position = "static";
@@ -279,6 +280,100 @@ class List extends Component {
     });
   };
 
+  // TOUCHES HANDLER
+
+  touchDownFeature = (e) => {
+    if (e.target.classList[0] !== "lists") return;
+    this.setState({
+      selectedList: true,
+    });
+    e.target.style.zIndex = 999;
+    e.target.style.cursor = "grabbing";
+    e.target.style.boxShadow = "0px 0px 20px 0.5px rgba(0,0,0,0.1";
+  };
+
+  touchMoveFeature = (e) => {
+    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
+    if (this.state.selectedList && e.target.classList[0] === "lists") {
+      e.target.style.left = `${e.touches[0].clientX - 135}px`;
+      e.target.style.top = `${e.touches[0].clientY - 45}px`;
+      e.target.style.position = "fixed";
+      e.target.style.transform = "rotate(5deg)";
+
+      const allBlankSpan = document.querySelectorAll(".frontBlankList");
+      allBlankSpan.forEach((all) => {
+        all.style.display = "none";
+      });
+
+      this.setState({
+        touchesMovePageX: e.touches[0].pageX,
+      });
+
+      for (let i = 1; i < 10; i++) {
+        if (e.touches[0].pageX < 285 - scrollHeighFromMain) {
+          allBlankSpan[0].style.width = "275px";
+          allBlankSpan[0].style.height = "10px";
+          allBlankSpan[0].style.backgroundColor = "rgba(0,0,0,0.15)";
+          allBlankSpan[0].style.marginRight = "10px";
+          allBlankSpan[0].style.borderRadius = "4px";
+          allBlankSpan[0].style.display = "initial";
+          allBlankSpan[0].style.position = "absolute";
+          allBlankSpan[0].style.top = "-17.5px";
+        } else if (
+          e.touches[0].pageX > 285 * i - scrollHeighFromMain &&
+          e.touches[0].pageX < 285 * i + 285 - scrollHeighFromMain &&
+          this.props.wholeList.length >= i + 1
+        ) {
+          allBlankSpan[i].style.width = "275px";
+          allBlankSpan[i].style.height = "10px";
+          allBlankSpan[i].style.backgroundColor = "rgba(0,0,0,0.15)";
+          allBlankSpan[i].style.marginRight = "10px";
+          allBlankSpan[i].style.borderRadius = "4px";
+          allBlankSpan[i].style.display = "initial";
+          allBlankSpan[i].style.position = "absolute";
+          allBlankSpan[i].style.top = "-17.5px";
+        }
+      }
+    }
+  };
+
+  touchUpFeature = (e, pageX) => {
+    if (e.target.classList[0] !== "lists") return;
+    e.target.style.position = "static";
+    e.target.style.cursor = "pointer";
+    e.target.style.zIndex = null;
+    e.target.style.boxShadow = null;
+    e.target.style.transform = null;
+
+    const { scrollPosition, wholeList } = this.props;
+    const scrollHeighFromMain = Math.floor(scrollPosition);
+
+    const allBlankSpan = document.querySelectorAll(".frontBlankList");
+    allBlankSpan.forEach((all) => {
+      all.style.display = "none";
+    });
+
+    const draggedListIndex = this.props.wholeList.findIndex(
+      (list) => list.id === this.props.id
+    );
+
+    for (let i = 1; i < 10; i++) {
+      if (pageX < 285 - scrollHeighFromMain) {
+        this.props.moveListToAnotherPlace(draggedListIndex, 0);
+      } else if (
+        pageX > 285 * i - scrollHeighFromMain &&
+        pageX < 285 * i + 285 - scrollHeighFromMain &&
+        wholeList.length >= i + 1
+      ) {
+        this.props.moveListToAnotherPlace(draggedListIndex, i);
+      }
+    }
+
+    this.setState({
+      selectedList: false,
+    });
+  };
+
   render() {
     const {
       listOption,
@@ -289,12 +384,14 @@ class List extends Component {
       isDragAndDropTrue,
       visibilityOptionFunction,
       taskDetailsFunction,
+      clearAllBlankSpan,
     } = this.props;
     const {
       showAddField,
       textAreaValue,
       inputTitle,
       selectedList,
+      touchesMovePageX,
     } = this.state;
     return (
       <div className="singleListWrap">
@@ -305,6 +402,9 @@ class List extends Component {
           onMouseMove={(e) => this.mouseMoveFeature(e)}
           onMouseUp={(e) => this.mouseUpFeature(e)}
           onMouseLeave={(e) => this.mouseLeaveFeature(e)}
+          onTouchStart={(e) => this.touchDownFeature(e)}
+          onTouchMove={(e) => this.touchMoveFeature(e)}
+          onTouchEnd={(e) => this.touchUpFeature(e, touchesMovePageX)}
         >
           {selectedList ? (
             <StyledInputCover
@@ -335,6 +435,7 @@ class List extends Component {
               visibilityOptionFunction={visibilityOptionFunction}
               taskDetailsFunction={taskDetailsFunction}
               inputTitle={inputTitle}
+              clearAllBlankSpan={clearAllBlankSpan}
             />
           ))}
           <div className="blank" />

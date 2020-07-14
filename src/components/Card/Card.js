@@ -54,21 +54,10 @@ class Card extends Component {
     }
 
     this.props.isDragAndDropTrue(false);
-    this.clearAllBlankSpan();
+    this.props.clearAllBlankSpan();
 
     this.setState({
       selected: false,
-    });
-  };
-
-  clearAllBlankSpan = () => {
-    const allBlank = document.querySelectorAll(".blank");
-
-    allBlank.forEach((blank) => {
-      blank.style.width = "0";
-      blank.style.height = "0";
-      blank.style.backgroundColor = "transparent";
-      blank.style.borderRadius = "0";
     });
   };
 
@@ -115,7 +104,7 @@ class Card extends Component {
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
     e.target.style.zIndex = 0;
-    this.clearAllBlankSpan();
+    this.props.clearAllBlankSpan();
     this.props.isDragAndDropTrue(false);
     this.setState({
       selected: false,
@@ -212,21 +201,10 @@ class Card extends Component {
     }
 
     this.props.isDragAndDropTrue(false);
-    this.clearAllBlankSpan();
+    this.props.clearAllBlankSpan();
 
     this.setState({
       selected: false,
-    });
-  };
-
-  clearAllBlankSpan = () => {
-    const allBlank = document.querySelectorAll(".blank");
-
-    allBlank.forEach((blank) => {
-      blank.style.width = "0";
-      blank.style.height = "0";
-      blank.style.backgroundColor = "transparent";
-      blank.style.borderRadius = "0";
     });
   };
 

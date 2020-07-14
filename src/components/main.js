@@ -232,6 +232,17 @@ const Main = () => {
     setWholeList(copy);
   };
 
+  const clearAllBlankSpan = (e) => {
+    const allBlank = document.querySelectorAll(".blank");
+
+    allBlank.forEach((blank) => {
+      blank.style.width = "0";
+      blank.style.height = "0";
+      blank.style.backgroundColor = "transparent";
+      blank.style.borderRadius = "0";
+    });
+  };
+
   return (
     <main>
       <Navigation
@@ -255,6 +266,7 @@ const Main = () => {
         taskDetailsFunction={taskDetailsFunction}
         updateListTitle={updateListTitle}
         moveListToAnotherPlace={moveListToAnotherPlace}
+        clearAllBlankSpan={clearAllBlankSpan}
       />
       {visibilityOptionsCover ? <OptionCover /> : null}
       {visibilityTaskDetails ? (
