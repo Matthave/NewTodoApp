@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import NavListView from "./NavListView/NavListView";
 
 const StyledNav = styled.nav`
   width: 100vw;
@@ -34,12 +35,6 @@ const StyledList = styled.li`
   padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
 `;
 
-const Link = styled.a`
-  text-decoration: none;
-  font-size: 1.5rem;
-  color: #fff;
-`;
-
 const StyledInput = styled.input`
   width: 120px;
   height: 100%;
@@ -59,45 +54,27 @@ const StyledInput = styled.input`
   }
 `;
 
-//FEATURES
+const navigationElements = ["Your list", "Theme", "Help"];
 
 const Navigation = ({
-  themeToggle,
-  themeOption,
   elementHoverEnter,
   elementHoverLeave,
+  themeFunction,
 }) => {
-  const themeFunction = () => {
-    themeToggle(!themeOption);
-  };
-
   return (
     <StyledNav className="nav">
       <StyledUl>
-        <StyledList
-          className={"list"}
-          onMouseEnter={(e) => elementHoverEnter(e)}
-          onMouseLeave={(e) => elementHoverLeave(e)}
-        >
-          <Link>Your List</Link>
-        </StyledList>
-        <StyledList
-          className={"list"}
-          onClick={themeFunction}
-          onMouseEnter={(e) => elementHoverEnter(e)}
-          onMouseLeave={(e) => elementHoverLeave(e)}
-        >
-          <Link>Theme</Link>
-        </StyledList>
-        <StyledList
-          className={"list"}
-          onMouseEnter={(e) => elementHoverEnter(e)}
-          onMouseLeave={(e) => elementHoverLeave(e)}
-        >
-          <Link>Help</Link>
-        </StyledList>
-        <StyledList className={"list"} lastEle>
-          <StyledInput className={"item"} placeholder="Search..." />
+        {navigationElements.map((element) => (
+          <NavListView
+            themeFunction={element === "Theme" ? themeFunction : null}
+            elementHoverEnter={(e) => elementHoverEnter(e)}
+            elementHoverLeave={(e) => elementHoverLeave(e)}
+            linkTitle={element}
+            key={element}
+          />
+        ))}
+        <StyledList lastEle>
+          <StyledInput className="item" placeholder="Search..." />
         </StyledList>
       </StyledUl>
     </StyledNav>

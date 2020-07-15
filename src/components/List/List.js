@@ -70,7 +70,7 @@ const StyledInputCover = styled.div`
 
 class List extends Component {
   state = {
-    inputTitle: this.props.title,
+    inputTitle: "",
     showAddField: false,
     textAreaValue: "",
     selectedList: false,
@@ -87,6 +87,10 @@ class List extends Component {
     main.scroll({
       left: mainWidth + 285 * (this.props.wholeList.length + 1),
       behavior: "smooth",
+    });
+
+    this.setState({
+      inputTitle: this.props.title,
     });
   }
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "./Navigation/navigation";
-import CoreField from "./CoreField/CoreField";
-import ThemeField from "./ThemeField/themeField";
-import OptionCover from "./OptionCover/OptionCover";
-import DetailCover from "./DetailCover/DetailCover";
+import Navigations from "../Naviagtion/Navigations";
+import CoreField from "../../components/CoreField/CoreField";
+import ThemeField from "../ThemeField/ThemeField";
+import OptionCover from "../../components/OptionCover/OptionCover";
+import DetailCover from "../DetailCover/DetailCover";
 import Color from "color";
 
 const Main = () => {
@@ -245,10 +245,9 @@ const Main = () => {
 
   return (
     <main>
-      <Navigation
+      <Navigations
         themeToggle={showThemeOptionFunction}
         themeOption={showThemeOption}
-        whichColor={whichColor}
         elementHoverEnter={elementHoverEnter}
         elementHoverLeave={elementHoverLeave}
       />
