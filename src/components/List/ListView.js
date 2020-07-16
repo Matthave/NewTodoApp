@@ -27,10 +27,6 @@ function ListView({
   mouseMoveFeature,
   mouseUpFeature,
   mouseLeaveFeature,
-  touchDownFeature,
-  touchMoveFeature,
-  touchUpFeature,
-  touchesMovePageX,
   selectedList,
   listOption,
   wholeList,
@@ -58,9 +54,6 @@ function ListView({
       onMouseMove={(e) => mouseMoveFeature(e)}
       onMouseUp={(e) => mouseUpFeature(e)}
       onMouseLeave={(e) => mouseLeaveFeature(e)}
-      onTouchStart={(e) => touchDownFeature(e)}
-      onTouchMove={(e) => touchMoveFeature(e)}
-      onTouchEnd={(e) => touchUpFeature(e, touchesMovePageX)}
     >
       <ListInput
         selectedList={selectedList}

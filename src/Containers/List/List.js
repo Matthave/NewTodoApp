@@ -7,7 +7,6 @@ class List extends Component {
     showAddField: false,
     textAreaValue: "",
     selectedList: false,
-    touchesMovePageX: 0,
   };
 
   componentDidMount() {
@@ -217,100 +216,6 @@ class List extends Component {
     });
   };
 
-  // TOUCHES HANDLER
-
-  touchDownFeature = (e) => {
-    if (e.target.classList[0] !== "lists") return;
-    this.setState({
-      selectedList: true,
-    });
-    e.target.style.zIndex = 999;
-    e.target.style.cursor = "grabbing";
-    e.target.style.boxShadow = "0px 0px 20px 0.5px rgba(0,0,0,0.1";
-  };
-
-  touchMoveFeature = (e) => {
-    const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
-    if (this.state.selectedList && e.target.classList[0] === "lists") {
-      e.target.style.left = `${e.touches[0].clientX - 135}px`;
-      e.target.style.top = `${e.touches[0].clientY - 45}px`;
-      e.target.style.position = "fixed";
-      e.target.style.transform = "rotate(5deg)";
-
-      const allBlankSpan = document.querySelectorAll(".frontBlankList");
-      allBlankSpan.forEach((all) => {
-        all.style.display = "none";
-      });
-
-      this.setState({
-        touchesMovePageX: e.touches[0].pageX,
-      });
-
-      for (let i = 1; i < 10; i++) {
-        if (e.touches[0].pageX < 285 - scrollHeighFromMain) {
-          allBlankSpan[0].style.width = "275px";
-          allBlankSpan[0].style.height = "10px";
-          allBlankSpan[0].style.backgroundColor = "rgba(0,0,0,0.15)";
-          allBlankSpan[0].style.marginRight = "10px";
-          allBlankSpan[0].style.borderRadius = "4px";
-          allBlankSpan[0].style.display = "initial";
-          allBlankSpan[0].style.position = "absolute";
-          allBlankSpan[0].style.top = "-17.5px";
-        } else if (
-          e.touches[0].pageX > 285 * i - scrollHeighFromMain &&
-          e.touches[0].pageX < 285 * i + 285 - scrollHeighFromMain &&
-          this.props.wholeList.length >= i + 1
-        ) {
-          allBlankSpan[i].style.width = "275px";
-          allBlankSpan[i].style.height = "10px";
-          allBlankSpan[i].style.backgroundColor = "rgba(0,0,0,0.15)";
-          allBlankSpan[i].style.marginRight = "10px";
-          allBlankSpan[i].style.borderRadius = "4px";
-          allBlankSpan[i].style.display = "initial";
-          allBlankSpan[i].style.position = "absolute";
-          allBlankSpan[i].style.top = "-17.5px";
-        }
-      }
-    }
-  };
-
-  touchUpFeature = (e, pageX) => {
-    if (e.target.classList[0] !== "lists") return;
-    e.target.style.position = "static";
-    e.target.style.cursor = "pointer";
-    e.target.style.zIndex = null;
-    e.target.style.boxShadow = null;
-    e.target.style.transform = null;
-
-    const { scrollPosition, wholeList } = this.props;
-    const scrollHeighFromMain = Math.floor(scrollPosition);
-
-    const allBlankSpan = document.querySelectorAll(".frontBlankList");
-    allBlankSpan.forEach((all) => {
-      all.style.display = "none";
-    });
-
-    const draggedListIndex = this.props.wholeList.findIndex(
-      (list) => list.id === this.props.id
-    );
-
-    for (let i = 1; i < 10; i++) {
-      if (pageX < 285 - scrollHeighFromMain) {
-        this.props.moveListToAnotherPlace(draggedListIndex, 0);
-      } else if (
-        pageX > 285 * i - scrollHeighFromMain &&
-        pageX < 285 * i + 285 - scrollHeighFromMain &&
-        wholeList.length >= i + 1
-      ) {
-        this.props.moveListToAnotherPlace(draggedListIndex, i);
-      }
-    }
-
-    this.setState({
-      selectedList: false,
-    });
-  };
-
   render() {
     const {
       listOption,
@@ -328,13 +233,11 @@ class List extends Component {
       textAreaValue,
       inputTitle,
       selectedList,
-      touchesMovePageX,
     } = this.state;
     return (
       <div className="singleListWrap">
         <div className="frontBlankList"></div>
         <ListView
-          touchesMovePageX={touchesMovePageX}
           selectedList={selectedList}
           listOption={listOption}
           wholeList={wholeList}
@@ -352,9 +255,6 @@ class List extends Component {
           mouseMoveFeature={this.mouseMoveFeature}
           mouseUpFeature={this.mouseUpFeature}
           mouseLeaveFeature={this.mouseLeaveFeature}
-          touchDownFeature={this.touchDownFeature}
-          touchMoveFeature={this.touchMoveFeature}
-          touchUpFeature={this.touchUpFeature}
           setTextAreaValue={this.setTextAreaValue}
           swapAddFieldFeature={this.swapAddFieldFeature}
           setListTitle={this.setListTitle}
