@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import List from "../../Containers/List/List";
+import styled from "styled-components";
 
 const StyledMain = styled.main`
   display: flex;
@@ -75,97 +75,36 @@ const StyledWrapAddListBtn = styled.div`
   transition: 0.1s linear;
 `;
 
-// COMPONENT //
-
-const MainField = ({
+function CoreFieldView({
+  scroll,
+  mousePositionX,
   wholeList,
   listOption,
   addNewCard,
   deleteCard,
-  addNewList,
-  updateListTitle,
-  elementHoverEnter,
-  elementHoverLeave,
+  showListHandle,
+  setListInput,
+  scrollPosition,
+  isDragAndDropTrue,
   visibilityOptionFunction,
   taskDetailsFunction,
+  updateListTitle,
   moveListToAnotherPlace,
   clearAllBlankSpan,
-}) => {
-  const [showList, showListHandle] = useState(false);
-  const [scrollPosition, updatedScrollPosition] = useState(0);
-  const [isDragDropTrue, isDragDropTrueFeature] = useState("");
-
-  const showAddListHandle = () => {
-    showListHandle(true);
-  };
-
-  const [listInputValue, setListInput] = useState("");
-
-  const listInputHandle = (e) => {
-    setListInput(e.target.value);
-  };
-
-  const addNewListByKey = (e) => {
-    if (e.which === 13 && showList) {
-      addNewList(listInputValue, showListHandle, setListInput);
-      showListHandle(true);
-    }
-  };
-
-  const scroll = (e) => {
-    const scrollPosition = e.target.scrollLeft;
-    updatedScrollPosition(scrollPosition);
-  };
-
-  const mousePositionX = (e) => {
-    const main = document.querySelector(".main");
-    const mainWidth = main.offsetWidth;
-    const mousePositionX = e.clientX;
-    if (mousePositionX <= 75 && isDragDropTrue) {
-      main.scroll({
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-
-    if (mousePositionX >= mainWidth - 75 && isDragDropTrue) {
-      main.scroll({
-        left: mainWidth + 285 * (wholeList.length + 1),
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const touchesPositionX = (e) => {
-    const main = document.querySelector(".main");
-    const mainWidth = main.offsetWidth;
-    const touchesPositionX = e.touches[0].clientX;
-
-    if (touchesPositionX <= 50 && isDragDropTrue) {
-      main.scroll({
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-
-    if (touchesPositionX >= mainWidth - 50 && isDragDropTrue) {
-      main.scroll({
-        left: mainWidth + 285 * (wholeList.length + 1),
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const isDragAndDropTrue = (isTrue) => {
-    isDragDropTrueFeature(isTrue);
-  };
-
+  showList,
+  showAddListHandle,
+  listInputHandle,
+  listInputValue,
+  addNewList,
+  addNewListByKey,
+  elementHoverEnter,
+  elementHoverLeave,
+}) {
   return (
     <StyledMain
       className="main"
       onScroll={(e) => scroll(e)}
       onMouseMove={(e) => mousePositionX(e)}
-      onTouchMove={(e) => touchesPositionX(e)}
     >
       <StyledWrapList className="wrapList">
         {wholeList.map((list) => (
@@ -214,6 +153,6 @@ const MainField = ({
       </StyledWrapList>
     </StyledMain>
   );
-};
+}
 
-export default MainField;
+export default CoreFieldView;

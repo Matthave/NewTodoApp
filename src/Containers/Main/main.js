@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigations from "../Naviagtion/Navigations";
-import CoreField from "../../components/CoreField/CoreField";
+import CoreField from "../CoreField/CoreField";
 import ThemeField from "../ThemeField/ThemeField";
 import OptionCover from "../../components/OptionCover/OptionCover";
 import DetailCover from "../DetailCover/DetailCover";
