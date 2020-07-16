@@ -1,72 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import Card from "../Card/Card";
-
-const StyledInput = styled.input`
-  width: 220px;
-  background-color: #ebecf0;
-  border-radius: 1px;
-  padding: 5px 4px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #172b4d;
-
-  &:focus {
-    background-color: white;
-    box-shadow: 0px 0px 1px 1.5px #0079bf;
-  }
-`;
-
-const StyledTextArea = styled.textarea`
-  width: 100%;
-  height: ${(props) => (props.showStyle ? "60px" : "31px")};
-  background-color: ${(props) => (props.showStyle ? "#fff" : "#ebecf0")};
-  border-radius: 5px;
-  padding: 7.5px;
-  color: #779;
-  resize: none;
-  cursor: pointer;
-  transition: 0.1s linear;
-  box-shadow: ${(props) =>
-    props.showStyle ? "0px 0.5px 0px 0.5px #aaa" : "none"};
-
-  &:hover {
-    background-color: ${(props) => (props.showStyle ? null : "#dddfe5")};
-  }
-`;
-
-const StyledAddButton = styled.button`
-  background-color: #5aac44;
-  border-radius: 5px;
-  color: white;
-  padding: 8px 20px;
-  margin: 5px 0px;
-  margin-right: 10px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #67ba50;
-  }
-`;
-
-const StyledSpanX = styled.span`
-  font-size: 2.3rem;
-  vertical-align: middle;
-  color: #666;
-  cursor: pointer;
-`;
-
-const StyledInputCover = styled.div`
-  display: inline-block;
-  width: 220px;
-  background-color: #ebecf0;
-  border-radius: 1px;
-  padding: 5px 4px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #172b4d;
-  margin-bottom: 25px;
-`;
+import ListView from "../../components/List/ListView";
 
 class List extends Component {
   state = {
@@ -400,69 +333,35 @@ class List extends Component {
     return (
       <div className="singleListWrap">
         <div className="frontBlankList"></div>
-        <div
-          className="lists"
-          onMouseDown={(e) => this.mouseDownFeature(e)}
-          onMouseMove={(e) => this.mouseMoveFeature(e)}
-          onMouseUp={(e) => this.mouseUpFeature(e)}
-          onMouseLeave={(e) => this.mouseLeaveFeature(e)}
-          onTouchStart={(e) => this.touchDownFeature(e)}
-          onTouchMove={(e) => this.touchMoveFeature(e)}
-          onTouchEnd={(e) => this.touchUpFeature(e, touchesMovePageX)}
-        >
-          {selectedList ? (
-            <StyledInputCover
-              onChange={(e) => this.setListTitle(e, id)}
-              className="input"
-            >
-              {this.state.inputTitle}
-            </StyledInputCover>
-          ) : (
-            <StyledInput
-              value={this.state.inputTitle}
-              onChange={(e) => this.setListTitle(e, id)}
-              className="input"
-            />
-          )}
-          <span className="fas fa-ellipsis-h" onClick={() => listOption(id)} />
-          {tasks.map((task) => (
-            <Card
-              wholeList={wholeList}
-              key={task}
-              task={task}
-              deleteCardFeature={this.deleteCardFeature}
-              id={id}
-              addNewCard={this.addNewCardFeature}
-              deleteCardFeatureByMove={this.deleteCardFeatureByMove}
-              scrollPosition={scrollPosition}
-              isDragAndDropTrue={isDragAndDropTrue}
-              visibilityOptionFunction={visibilityOptionFunction}
-              taskDetailsFunction={taskDetailsFunction}
-              inputTitle={inputTitle}
-              clearAllBlankSpan={clearAllBlankSpan}
-            />
-          ))}
-          <div className="blank" />
-          <StyledTextArea
-            value={showAddField ? textAreaValue : "Add Another Card"}
-            onChange={(e) => this.setTextAreaValue(e)}
-            onClick={() => this.swapAddFieldFeature("textArea")}
-            showStyle={showAddField}
-          />
-          {showAddField ? (
-            <>
-              <StyledAddButton
-                onClick={() => this.addNewCardFeature(id, textAreaValue)}
-              >
-                Add Card
-              </StyledAddButton>
-              <StyledSpanX
-                className="fas fa-times"
-                onClick={() => this.swapAddFieldFeature("SpanX")}
-              />
-            </>
-          ) : null}
-        </div>
+        <ListView
+          touchesMovePageX={touchesMovePageX}
+          selectedList={selectedList}
+          listOption={listOption}
+          wholeList={wholeList}
+          id={id}
+          tasks={tasks}
+          scrollPosition={scrollPosition}
+          isDragAndDropTrue={isDragAndDropTrue}
+          visibilityOptionFunction={visibilityOptionFunction}
+          taskDetailsFunction={taskDetailsFunction}
+          inputTitle={inputTitle}
+          clearAllBlankSpan={clearAllBlankSpan}
+          showAddField={showAddField}
+          textAreaValue={textAreaValue}
+          mouseDownFeature={this.mouseDownFeature}
+          mouseMoveFeature={this.mouseMoveFeature}
+          mouseUpFeature={this.mouseUpFeature}
+          mouseLeaveFeature={this.mouseLeaveFeature}
+          touchDownFeature={this.touchDownFeature}
+          touchMoveFeature={this.touchMoveFeature}
+          touchUpFeature={this.touchUpFeature}
+          setTextAreaValue={this.setTextAreaValue}
+          swapAddFieldFeature={this.swapAddFieldFeature}
+          setListTitle={this.setListTitle}
+          addNewCardFeature={this.addNewCardFeature}
+          deleteCardFeature={this.deleteCardFeature}
+          deleteCardFeatureByMove={this.deleteCardFeatureByMove}
+        />
       </div>
     );
   }

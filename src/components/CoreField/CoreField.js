@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import List from "../List/List";
+import List from "../../Containers/List/List";
 
 const StyledMain = styled.main`
   display: flex;
