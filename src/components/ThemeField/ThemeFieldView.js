@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { device } from "../mq";
+import { device } from "../../Style/MediaQuery/mq";
 
 const StyledColorDiv = styled.div`
   width: 75px;

@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../Containers/Main/main";
-import GlobalStyle from "./GlobalStyle/globalStyle";
+import GlobalStyle from "../Style/GlobalStyle/globalStyle";
 
 function App() {
   return (
