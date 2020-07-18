@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navigations from "../Naviagtion/Navigations";
 import CoreField from "../CoreField/CoreField";
 import ThemeField from "../ThemeField/ThemeField";
-import OptionCover from "../../components/OptionCover/OptionCover";
+import OptionCover from "../OptionCover/OptionCover";
 import DetailCover from "../DetailCover/DetailCover";
 import Color from "color";
 
@@ -11,6 +11,7 @@ const Main = () => {
   const [numberOfTask, numberOfTaskFunction] = useState(0);
   const [whichColor, setWhichColor] = useState(["#76ce8e"]);
   const [visibilityOptionsCover, setVisibilityOptionCover] = useState(false);
+  const [optionCoverData, setOptionCoverData] = useState("");
   const [visibilityTaskDetails, setVisibilityTaskDetails] = useState(false);
   const [taskTitleList, setTaskTitleList] = useState();
   const [taskName, setTaskName] = useState("");
@@ -154,8 +155,18 @@ const Main = () => {
     }
   };
 
-  const visibilityOptionFunction = (swap) => {
+  const visibilityOptionFunction = (e, swap, listId) => {
+    if (swap === null) return setVisibilityOptionCover(false);
     setVisibilityOptionCover(swap);
+    setOptionCoverData([
+      {
+        id: listId,
+        top: e.target.parentNode.offsetTop,
+        left: e.target.parentNode.offsetLeft,
+        taskTitle: taskName,
+        wholeList: wholeList,
+      },
+    ]);
   };
 
   const taskDetailsFunction = (e, inputTitle, id) => {
@@ -168,7 +179,8 @@ const Main = () => {
   const updateCard = (e, updatedTitle) => {
     if (
       e.target.className.includes("cover") ||
-      e.target.className.includes("close")
+      e.target.className.includes("close") ||
+      e.target.className.includes("cover_saveBtn")
     ) {
       const correctList = wholeList.filter((list) => list.id === idUpdatedList);
 
@@ -181,6 +193,7 @@ const Main = () => {
         const index = correctList[0].tasks.indexOf(taskName);
         correctList[0].tasks[index] = updatedTitle;
         setVisibilityTaskDetails(false);
+        setVisibilityOptionCover(false);
       }
     }
 
@@ -267,7 +280,14 @@ const Main = () => {
         moveListToAnotherPlace={moveListToAnotherPlace}
         clearAllBlankSpan={clearAllBlankSpan}
       />
-      {visibilityOptionsCover ? <OptionCover /> : null}
+      {visibilityOptionsCover ? (
+        <OptionCover
+          optionCoverData={optionCoverData}
+          taskName={taskName}
+          updateCard={updateCard}
+          visibilityOptionFunction={visibilityOptionFunction}
+        />
+      ) : null}
       {visibilityTaskDetails ? (
         <DetailCover
           taskName={taskName}

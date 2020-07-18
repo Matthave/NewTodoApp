@@ -133,7 +133,7 @@ class Card extends Component {
         {task}
         <span
           className="fas fa-highlighter"
-          onClick={(e) => visibilityOptionFunction(e)}
+          onClick={(e) => visibilityOptionFunction(e, true, id)}
         />
       </div>
     );
