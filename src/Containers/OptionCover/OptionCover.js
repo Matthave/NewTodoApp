@@ -7,6 +7,7 @@ function OptionCover({
   taskName,
   updateCard,
   visibilityOptionFunction,
+  deleteCard,
 }) {
   useEffect(() => {
     setOptionCoverPostion(optionCoverData);
@@ -20,7 +21,7 @@ function OptionCover({
       document.querySelector(".main").scrollLeft
     );
 
-    //listIndex, when list is moving to another place
+    //ListIndex, when list is moving to another place
     const listIndex = taskData[0].wholeList.findIndex(
       (element) => element.id === taskData[0].id
     );
@@ -34,7 +35,7 @@ function OptionCover({
     coverBox.style.left = `${positionX}px`;
   };
 
-  const [taskTitle, setTaskTitle] = useState(taskName);
+  const [taskTitle, setTaskTitle] = useState(optionCoverData[0].taskTitle);
 
   const taskTitleFeature = (e) => {
     setTaskTitle(e.target.value);
@@ -49,6 +50,7 @@ function OptionCover({
         taskTitle={taskTitle}
         updateCard={updateCard}
         visibilityOptionFunction={visibilityOptionFunction}
+        deleteCard={deleteCard}
       />
     </>
   );

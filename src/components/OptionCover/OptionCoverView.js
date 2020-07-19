@@ -9,6 +9,7 @@ const StyledCover = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.65);
+  z-index: 0;
 `;
 
 const StyledOptionBox = styled.div`
@@ -19,6 +20,7 @@ const StyledOptionBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-radius: 5px;
+  z-index: 999;
 `;
 
 const StyledTextArea = styled.textarea`
@@ -52,19 +54,20 @@ const OptionCover = ({
   taskTitle,
   visibilityOptionFunction,
   updateCard,
+  deleteCard,
 }) => {
   return (
-    <StyledCover
-      className="coverOption"
-      onClick={(e) => visibilityOptionFunction(e, null, null)}
-    >
+    <StyledCover className="coverOption">
       <StyledOptionBox className="cover_box">
         <StyledTextArea
           className="cover_textArea"
           onChange={(e) => taskTitleFeature(e)}
           value={taskTitle}
         />
-        <OptionCoverListView />
+        <OptionCoverListView
+          deleteCard={deleteCard}
+          listId={optionCoverData[0].id}
+        />
         <StyledSaveButton
           className="cover_saveBtn"
           onClick={(e) => updateCard(e, taskTitle)}

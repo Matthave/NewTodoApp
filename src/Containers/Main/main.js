@@ -62,6 +62,13 @@ const Main = () => {
     ) {
       setChangeListInDetails(false);
     }
+
+    if (
+      searchingClass.includes("coverOption") ||
+      searchingClass.includes("cover_box")
+    ) {
+      setVisibilityOptionCover(false);
+    }
   };
 
   const listOption = (listId) => {
@@ -99,6 +106,7 @@ const Main = () => {
 
     correctList[0].tasks.splice(taskIndex, 1);
     numberOfTaskFunction(numberOfTask - 1);
+    setVisibilityOptionCover(false);
   };
 
   const addNewList = (listInputValue, showListHandle, setListInput) => {
@@ -155,15 +163,16 @@ const Main = () => {
     }
   };
 
-  const visibilityOptionFunction = (e, swap, listId) => {
-    if (swap === null) return setVisibilityOptionCover(false);
+  const visibilityOptionFunction = (e, swap, inputTitle, listId) => {
     setVisibilityOptionCover(swap);
+    setIdUpdatedList(listId);
+    setTaskName(inputTitle);
     setOptionCoverData([
       {
         id: listId,
         top: e.target.parentNode.offsetTop,
         left: e.target.parentNode.offsetLeft,
-        taskTitle: taskName,
+        taskTitle: inputTitle,
         wholeList: wholeList,
       },
     ]);
@@ -286,6 +295,7 @@ const Main = () => {
           taskName={taskName}
           updateCard={updateCard}
           visibilityOptionFunction={visibilityOptionFunction}
+          deleteCard={deleteCard}
         />
       ) : null}
       {visibilityTaskDetails ? (

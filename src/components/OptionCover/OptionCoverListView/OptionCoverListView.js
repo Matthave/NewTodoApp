@@ -31,7 +31,7 @@ const StyledIcon = styled.span`
   font-size: 13px;
 `;
 
-function OptionCoverListView() {
+function OptionCoverListView({ deleteCard, listId }) {
   return (
     <StyledListBlock className="cover_listBlock">
       <ul>
@@ -51,7 +51,7 @@ function OptionCoverListView() {
           <StyledIcon className="far fa-clock" />
           Date Change
         </StyledList>
-        <StyledList>
+        <StyledList onClick={(e) => deleteCard(e, listId)}>
           <StyledIcon className="fas fa-archive" />
           Archive
         </StyledList>
