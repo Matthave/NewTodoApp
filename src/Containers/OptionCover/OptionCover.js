@@ -6,7 +6,6 @@ function OptionCover({
   optionCoverData,
   taskName,
   updateCard,
-  visibilityOptionFunction,
   deleteCard,
 }) {
   useEffect(() => {
@@ -49,7 +48,6 @@ function OptionCover({
         taskTitleFeature={taskTitleFeature}
         taskTitle={taskTitle}
         updateCard={updateCard}
-        visibilityOptionFunction={visibilityOptionFunction}
         deleteCard={deleteCard}
       />
     </>

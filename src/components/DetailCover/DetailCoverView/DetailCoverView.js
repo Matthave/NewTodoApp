@@ -1,6 +1,7 @@
 import React from "react";
 import DetailInputElement from "../DetailElements/DetailInputElement";
 import DetailSuggestedElement from "../DetailElements/DetailSuggestedElement";
+import DetailTools from "../DetailTools/DetailTools";
 import styled from "styled-components";
 
 const StyledCover = styled.div`
@@ -55,6 +56,7 @@ function DetailCoverView({
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
         />
+        <DetailTools />
       </StyledDetail>
     </StyledCover>
   );

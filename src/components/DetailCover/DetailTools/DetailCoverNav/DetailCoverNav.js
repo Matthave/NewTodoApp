@@ -1,0 +1,96 @@
+import React from "react";
+import styled from "styled-components";
+import { device } from "../../../../Style/MediaQuery/mq";
+
+const StyledDetailNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  @media ${device.laptop} {
+    width: 200px;
+  }
+`;
+
+const StyledDetailUl = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media ${device.laptop} {
+    flex-direction: column;
+    width: 100%;
+  }
+`;
+
+const StyledIcon = styled.span`
+  margin-right: 6px;
+  font-size: 13px;
+  color: #42516e;
+`;
+
+const StyledDetailList = styled.li`
+  width: ${(props) => (props.first ? "100%" : "45%")};
+  background-color: ${(props) => (props.first ? "transparent" : "#eaecf0")};
+  border-radius: ${(props) => (props.first ? "null" : "3px")};
+  padding: 7.5px;
+  margin-right: ${(props) => (props.first ? "0px" : "10px")};
+  margin-bottom: ${(props) => (props.first ? "5px" : "10px")};
+  list-style: none;
+  font-size: 14px;
+  color: #42516e;
+  cursor: ${(props) => (props.first ? "initial" : "pointer")};
+
+  &:hover {
+    background-color: ${(props) => (props.first ? "transparent" : "#dadce0")};
+  }
+
+  @media ${device.laptop} {
+    width: 100%;
+  }
+`;
+
+function DetailCoverNav() {
+  return (
+    <StyledDetailNav>
+      <StyledDetailUl>
+        <StyledDetailList first> ADD TO CARD</StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="fas fa-tag" />
+          Edit lables
+        </StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="fas fa-list-alt" />
+          Tasks list
+        </StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="far fa-clock" />
+          Term
+        </StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="far fa-image" />
+          Cover
+        </StyledDetailList>
+      </StyledDetailUl>
+      <StyledDetailUl>
+        <StyledDetailList first> ACTIONS</StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="fas fa-long-arrow-alt-right" />
+          Move
+        </StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="far fa-clipboard" />
+          Copy
+        </StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="fas fa-exclamation-circle" />
+          Priority
+        </StyledDetailList>
+        <StyledDetailList>
+          <StyledIcon className="fas fa-archive" />
+          Archive
+        </StyledDetailList>
+      </StyledDetailUl>
+    </StyledDetailNav>
+  );
+}
+
+export default DetailCoverNav;

@@ -294,7 +294,6 @@ const Main = () => {
           optionCoverData={optionCoverData}
           taskName={taskName}
           updateCard={updateCard}
-          visibilityOptionFunction={visibilityOptionFunction}
           deleteCard={deleteCard}
         />
       ) : null}

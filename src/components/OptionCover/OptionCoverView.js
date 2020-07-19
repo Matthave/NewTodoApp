@@ -52,7 +52,6 @@ const OptionCover = ({
   optionCoverData,
   taskTitleFeature,
   taskTitle,
-  visibilityOptionFunction,
   updateCard,
   deleteCard,
 }) => {

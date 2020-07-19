@@ -77,6 +77,10 @@ const GlobalStyle = createGlobalStyle`
     margin-left:2px;
     @media ${device.laptop} {
       color:#fff;
+
+      &:hover{
+        color:#000;
+      }
   }
   }
   
