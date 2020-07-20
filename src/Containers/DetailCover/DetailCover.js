@@ -5,6 +5,8 @@ const DetailCover = ({
   taskName,
   taskTitleList,
   updateCard,
+  deleteCard,
+  idUpdatedList,
   changeListInDetails,
   visibilityChangeListInDetails,
   wholeList,
@@ -29,6 +31,8 @@ const DetailCover = ({
       moveCardToAnotherList={moveCardToAnotherList}
       labelsVisibility={labelsVisibility}
       handleLabelsVisibility={handleLabelsVisibility}
+      deleteCard={deleteCard}
+      idUpdatedList={idUpdatedList}
     />
   );
 };

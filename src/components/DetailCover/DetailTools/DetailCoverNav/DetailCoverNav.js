@@ -48,7 +48,12 @@ const StyledDetailList = styled.li`
   }
 `;
 
-function DetailCoverNav({ handleLabelsVisibility, labelsVisibility }) {
+function DetailCoverNav({
+  handleLabelsVisibility,
+  labelsVisibility,
+  deleteCard,
+  idUpdatedList,
+}) {
   return (
     <StyledDetailNav>
       <StyledDetailUl>
@@ -87,7 +92,7 @@ function DetailCoverNav({ handleLabelsVisibility, labelsVisibility }) {
           <StyledIcon className="fas fa-exclamation-circle" />
           Priority
         </StyledDetailList>
-        <StyledDetailList>
+        <StyledDetailList onClick={(e) => deleteCard(e, idUpdatedList)}>
           <StyledIcon className="fas fa-archive" />
           Archive
         </StyledDetailList>

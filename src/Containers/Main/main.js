@@ -117,6 +117,7 @@ const Main = () => {
     correctList[0].tasks.splice(taskIndex, 1);
     numberOfTaskFunction(numberOfTask - 1);
     setVisibilityOptionCover(false);
+    setVisibilityTaskDetails(false);
   };
 
   const addNewList = (listInputValue, showListHandle, setListInput) => {
@@ -323,6 +324,8 @@ const Main = () => {
           taskName={taskName}
           taskTitleList={taskTitleList}
           updateCard={updateCard}
+          deleteCard={deleteCard}
+          idUpdatedList={idUpdatedList}
           changeListInDetails={changeListInDetails}
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}

@@ -14,13 +14,20 @@ const StyledDetailToolsWrap = styled.div`
   }
 `;
 
-function DetailTools({ labelsVisibility, handleLabelsVisibility }) {
+function DetailTools({
+  labelsVisibility,
+  handleLabelsVisibility,
+  deleteCard,
+  idUpdatedList,
+}) {
   return (
     <StyledDetailToolsWrap>
       <DetailCoverMarks />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}
         labelsVisibility={labelsVisibility}
+        deleteCard={deleteCard}
+        idUpdatedList={idUpdatedList}
       />
     </StyledDetailToolsWrap>
   );

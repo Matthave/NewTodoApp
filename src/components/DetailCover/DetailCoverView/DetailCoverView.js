@@ -29,6 +29,8 @@ const StyledDetail = styled.div`
 
 function DetailCoverView({
   updateCard,
+  deleteCard,
+  idUpdatedList,
   taskTitle,
   taskTitleFeature,
   changeListInDetails,
@@ -62,6 +64,8 @@ function DetailCoverView({
         <DetailTools
           labelsVisibility={labelsVisibility}
           handleLabelsVisibility={handleLabelsVisibility}
+          deleteCard={deleteCard}
+          idUpdatedList={idUpdatedList}
         />
         {labelsVisibility ? (
           <Labels
