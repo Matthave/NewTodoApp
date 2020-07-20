@@ -7,6 +7,7 @@ function OptionCover({
   updateCard,
   deleteCard,
   handleLabelsVisibility,
+  labelsVisibility,
 }) {
   useEffect(() => {
     setOptionCoverPostion(optionCoverData);
@@ -50,6 +51,7 @@ function OptionCover({
         updateCard={updateCard}
         deleteCard={deleteCard}
         handleLabelsVisibility={handleLabelsVisibility}
+        labelsVisibility={labelsVisibility}
       />
     </>
   );

@@ -52,7 +52,10 @@ function DetailCoverMarks() {
           <StyledIcon className="fas fa-stream" />
           Description
         </StyledTitle>
-        <StyledTextArea placeholder="Add more detail comment..."></StyledTextArea>
+        <StyledTextArea
+          placeholder="Add more detail comment..."
+          className="input"
+        ></StyledTextArea>
       </StyledDetailDescription>
     </StyledDetailMarks>
   );

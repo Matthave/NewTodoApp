@@ -5,10 +5,11 @@ const StyledLabels = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  top: 0;
-  left: 0;
+  top: ${(props) => (props.detailCover ? "96px" : "0")};
+  left: ${(props) => (props.detailCover ? "390px" : "0")};
   width: 310px;
-  height: 650px;
+  height: 605px;
+  transform: translate(270px);
   background-color: #fff;
   border-radius: 4px;
   padding: 5px;
@@ -88,6 +89,16 @@ const StyledBtn = styled.div`
   }
 `;
 
+const StyledX = styled.span`
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  margin-left: 10px;
+  font-size: 15px;
+  color: #42516e;
+  cursor: pointer;
+`;
+
 const labelColors = [
   "#61BD4F",
   "#F2D600",
@@ -102,18 +113,27 @@ const labelColors = [
   "#B3BAC5",
 ];
 
-function LabelsView() {
+function LabelsView({ handleLabelsVisibility, detailCover }) {
   return (
-    <StyledLabels>
-      <StyledLabelTitle>Labels</StyledLabelTitle>
-      <StyledLabelInput placeholder="Search Labels..." />
+    <StyledLabels className="label" detailCover={detailCover}>
+      <StyledLabelTitle className="label">
+        Labels{" "}
+        <StyledX
+          className="fas fa-times"
+          onClick={() => handleLabelsVisibility(false)}
+        />
+      </StyledLabelTitle>
+      <StyledLabelInput placeholder="Search Labels..." className="label" />
       {labelColors.map((color) => (
-        <StyledLabelWrapEle key={color}>
-          <StyledLabelElement style={{ backgroundColor: `${color}` }} />{" "}
-          <StyledIcon className="fas fa-pen" />
+        <StyledLabelWrapEle key={color} className="label">
+          <StyledLabelElement
+            style={{ backgroundColor: `${color}` }}
+            className="label"
+          />{" "}
+          <StyledIcon className="fas fa-pen label" />
         </StyledLabelWrapEle>
       ))}
-      <StyledBtn>Create Label</StyledBtn>
+      <StyledBtn className="label">Create Label</StyledBtn>
     </StyledLabels>
   );
 }

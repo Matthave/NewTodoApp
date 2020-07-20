@@ -48,13 +48,16 @@ const StyledDetailList = styled.li`
   }
 `;
 
-function DetailCoverNav() {
+function DetailCoverNav({ handleLabelsVisibility, labelsVisibility }) {
   return (
     <StyledDetailNav>
       <StyledDetailUl>
         <StyledDetailList first> ADD TO CARD</StyledDetailList>
-        <StyledDetailList>
-          <StyledIcon className="fas fa-tag" />
+        <StyledDetailList
+          onClick={() => handleLabelsVisibility(!labelsVisibility)}
+          className="label"
+        >
+          <StyledIcon className="fas fa-tag label" />
           Edit lables
         </StyledDetailList>
         <StyledDetailList>

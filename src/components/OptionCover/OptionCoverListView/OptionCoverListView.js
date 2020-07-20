@@ -35,7 +35,7 @@ function OptionCoverListView({ deleteCard, listId, handleLabelsVisibility }) {
   return (
     <StyledListBlock className="cover_listBlock">
       <ul>
-        <StyledList onClick={() => handleLabelsVisibility()}>
+        <StyledList onClick={() => handleLabelsVisibility(true)}>
           <StyledIcon className="fas fa-tag" />
           Edit labels
         </StyledList>

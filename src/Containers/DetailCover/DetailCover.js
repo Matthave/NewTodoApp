@@ -9,6 +9,8 @@ const DetailCover = ({
   visibilityChangeListInDetails,
   wholeList,
   moveCardToAnotherList,
+  labelsVisibility,
+  handleLabelsVisibility,
 }) => {
   const [taskTitle, setTaskTitle] = useState(taskName);
 
@@ -25,6 +27,8 @@ const DetailCover = ({
       visibilityChangeListInDetails={visibilityChangeListInDetails}
       wholeList={wholeList}
       moveCardToAnotherList={moveCardToAnotherList}
+      labelsVisibility={labelsVisibility}
+      handleLabelsVisibility={handleLabelsVisibility}
     />
   );
 };

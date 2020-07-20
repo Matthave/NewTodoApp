@@ -4,7 +4,6 @@ import CoreField from "../CoreField/CoreField";
 import ThemeField from "../ThemeField/ThemeField";
 import OptionCover from "../OptionCover/OptionCover";
 import DetailCover from "../DetailCover/DetailCover";
-import Labels from "../Labels/Labels";
 import Color from "color";
 
 const Main = () => {
@@ -21,6 +20,11 @@ const Main = () => {
     false
   );
   const [labelsVisibility, setLabelsVisibility] = useState(false);
+  const [
+    labelsVisibilityDetailsComp,
+    setLabelsVisibilityDetailsComp,
+  ] = useState(false);
+
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -56,12 +60,7 @@ const Main = () => {
       showThemeOptionFunction(false);
     }
 
-    if (
-      searchingClass.includes("cover") ||
-      searchingClass.includes("detail") ||
-      searchingClass.includes("input") ||
-      searchingClass.includes("close")
-    ) {
+    if (!searchingClass.includes("suggested")) {
       setChangeListInDetails(false);
     }
 
@@ -70,6 +69,15 @@ const Main = () => {
       searchingClass.includes("cover_box")
     ) {
       setVisibilityOptionCover(false);
+      setLabelsVisibility(false);
+    }
+
+    if (searchingClass.includes("cover_textArea")) {
+      setLabelsVisibility(false);
+    }
+
+    if (!searchingClass.includes("label")) {
+      setLabelsVisibilityDetailsComp(false);
     }
   };
 
@@ -218,6 +226,7 @@ const Main = () => {
         setTaskName(updatedTitle);
       }
     }
+    setLabelsVisibility(false);
   };
 
   const changeListInDetails = () => {
@@ -267,8 +276,12 @@ const Main = () => {
     });
   };
 
-  const handleLabelsVisibility = () => {
-    setLabelsVisibility(true);
+  const handleLabelsVisibility = (toggle) => {
+    setLabelsVisibility(toggle);
+  };
+
+  const handleLabelsVisibilityDetailsComp = (toggle) => {
+    setLabelsVisibilityDetailsComp(toggle);
   };
 
   return (
@@ -302,6 +315,7 @@ const Main = () => {
           updateCard={updateCard}
           deleteCard={deleteCard}
           handleLabelsVisibility={handleLabelsVisibility}
+          labelsVisibility={labelsVisibility}
         />
       ) : null}
       {visibilityTaskDetails ? (
@@ -313,9 +327,10 @@ const Main = () => {
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
+          handleLabelsVisibility={handleLabelsVisibilityDetailsComp}
+          labelsVisibility={labelsVisibilityDetailsComp}
         />
       ) : null}
-      <Labels labelsVisibility={labelsVisibility} />
     </main>
   );
 };

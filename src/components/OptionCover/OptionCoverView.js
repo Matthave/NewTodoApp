@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import OptionCoverListView from "./OptionCoverListView/OptionCoverListView";
+import Labels from "../../Containers/Labels/Labels";
 
 const StyledCover = styled.div`
   position: fixed;
@@ -55,6 +56,7 @@ const OptionCover = ({
   updateCard,
   deleteCard,
   handleLabelsVisibility,
+  labelsVisibility,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -75,6 +77,9 @@ const OptionCover = ({
         >
           Save
         </StyledSaveButton>
+        {labelsVisibility ? (
+          <Labels handleLabelsVisibility={handleLabelsVisibility} />
+        ) : null}
       </StyledOptionBox>
     </StyledCover>
   );

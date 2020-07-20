@@ -73,23 +73,34 @@ function DetailSuggestedElement({
   moveCardToAnotherList,
 }) {
   return (
-    <StyledLightText>
+    <StyledLightText className="suggested">
       On the list{" "}
-      <StyledStrongText onClick={() => changeListInDetails()}>
+      <StyledStrongText
+        onClick={() => changeListInDetails()}
+        className="suggested"
+      >
         {taskTitleList}
       </StyledStrongText>
       {visibilityChangeListInDetails ? (
-        <StyledChangeListDetails className="replaceCard">
-          <StyledReplaceTitle border alignCenter biggerMargin>
+        <StyledChangeListDetails className="replaceCard suggested">
+          <StyledReplaceTitle
+            border
+            alignCenter
+            biggerMargin
+            className="suggested"
+          >
             Replace Card
             <span
               className="fas fa-times"
               onClick={() => changeListInDetails()}
             ></span>
           </StyledReplaceTitle>
-          <StyledReplaceTitle>Suggested</StyledReplaceTitle>
+          <StyledReplaceTitle className="suggested">
+            Suggested
+          </StyledReplaceTitle>
           {wholeList.map((list) => (
             <StyledSuggestList
+              className="suggested"
               onClick={(e) =>
                 moveCardToAnotherList(e, taskTitleList, taskTitle, list.id)
               }

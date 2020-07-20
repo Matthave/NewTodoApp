@@ -14,11 +14,14 @@ const StyledDetailToolsWrap = styled.div`
   }
 `;
 
-function DetailTools() {
+function DetailTools({ labelsVisibility, handleLabelsVisibility }) {
   return (
     <StyledDetailToolsWrap>
       <DetailCoverMarks />
-      <DetailCoverNav />
+      <DetailCoverNav
+        handleLabelsVisibility={handleLabelsVisibility}
+        labelsVisibility={labelsVisibility}
+      />
     </StyledDetailToolsWrap>
   );
 }

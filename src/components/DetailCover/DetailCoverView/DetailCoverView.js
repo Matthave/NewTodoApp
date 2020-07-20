@@ -2,6 +2,7 @@ import React from "react";
 import DetailInputElement from "../DetailElements/DetailInputElement";
 import DetailSuggestedElement from "../DetailElements/DetailSuggestedElement";
 import DetailTools from "../DetailTools/DetailTools";
+import Labels from "../../../Containers/Labels/Labels";
 import styled from "styled-components";
 
 const StyledCover = styled.div`
@@ -35,6 +36,8 @@ function DetailCoverView({
   visibilityChangeListInDetails,
   wholeList,
   moveCardToAnotherList,
+  labelsVisibility,
+  handleLabelsVisibility,
 }) {
   return (
     <StyledCover className="cover" onClick={(e) => updateCard(e, taskTitle)}>
@@ -56,7 +59,16 @@ function DetailCoverView({
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
         />
-        <DetailTools />
+        <DetailTools
+          labelsVisibility={labelsVisibility}
+          handleLabelsVisibility={handleLabelsVisibility}
+        />
+        {labelsVisibility ? (
+          <Labels
+            detailCover={true}
+            handleLabelsVisibility={handleLabelsVisibility}
+          />
+        ) : null}
       </StyledDetail>
     </StyledCover>
   );
