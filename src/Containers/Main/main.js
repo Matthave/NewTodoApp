@@ -216,7 +216,7 @@ const Main = () => {
       }
     }
 
-    if (e.target.className.includes("detail")) {
+    if (!e.target.className.includes("input")) {
       const correctList = wholeList.filter((list) => list.id === idUpdatedList);
       if (correctList[0].tasks.includes(updatedTitle)) return;
       if (updatedTitle.length < 2) return;
