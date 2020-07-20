@@ -4,9 +4,9 @@ import OptionCoverView from "../../components/OptionCover/OptionCoverView";
 function OptionCover({
   optionCoverWhichList,
   optionCoverData,
-  taskName,
   updateCard,
   deleteCard,
+  handleLabelsVisibility,
 }) {
   useEffect(() => {
     setOptionCoverPostion(optionCoverData);
@@ -49,6 +49,7 @@ function OptionCover({
         taskTitle={taskTitle}
         updateCard={updateCard}
         deleteCard={deleteCard}
+        handleLabelsVisibility={handleLabelsVisibility}
       />
     </>
   );

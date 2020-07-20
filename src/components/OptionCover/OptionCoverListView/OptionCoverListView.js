@@ -31,11 +31,11 @@ const StyledIcon = styled.span`
   font-size: 13px;
 `;
 
-function OptionCoverListView({ deleteCard, listId }) {
+function OptionCoverListView({ deleteCard, listId, handleLabelsVisibility }) {
   return (
     <StyledListBlock className="cover_listBlock">
       <ul>
-        <StyledList>
+        <StyledList onClick={() => handleLabelsVisibility()}>
           <StyledIcon className="fas fa-tag" />
           Edit labels
         </StyledList>

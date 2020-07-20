@@ -54,6 +54,7 @@ const OptionCover = ({
   taskTitle,
   updateCard,
   deleteCard,
+  handleLabelsVisibility,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -66,6 +67,7 @@ const OptionCover = ({
         <OptionCoverListView
           deleteCard={deleteCard}
           listId={optionCoverData[0].id}
+          handleLabelsVisibility={handleLabelsVisibility}
         />
         <StyledSaveButton
           className="cover_saveBtn"

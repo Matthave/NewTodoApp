@@ -4,6 +4,7 @@ import CoreField from "../CoreField/CoreField";
 import ThemeField from "../ThemeField/ThemeField";
 import OptionCover from "../OptionCover/OptionCover";
 import DetailCover from "../DetailCover/DetailCover";
+import Labels from "../Labels/Labels";
 import Color from "color";
 
 const Main = () => {
@@ -19,6 +20,7 @@ const Main = () => {
   const [visibilityChangeListInDetails, setChangeListInDetails] = useState(
     false
   );
+  const [labelsVisibility, setLabelsVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -265,6 +267,10 @@ const Main = () => {
     });
   };
 
+  const handleLabelsVisibility = () => {
+    setLabelsVisibility(true);
+  };
+
   return (
     <main>
       <Navigations
@@ -295,6 +301,7 @@ const Main = () => {
           taskName={taskName}
           updateCard={updateCard}
           deleteCard={deleteCard}
+          handleLabelsVisibility={handleLabelsVisibility}
         />
       ) : null}
       {visibilityTaskDetails ? (
@@ -308,6 +315,7 @@ const Main = () => {
           moveCardToAnotherList={moveCardToAnotherList}
         />
       ) : null}
+      <Labels labelsVisibility={labelsVisibility} />
     </main>
   );
 };

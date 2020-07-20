@@ -12,7 +12,6 @@ class Card extends Component {
     this.setState({
       selected: true,
     });
-    e.target.style.cursor = "grabbing";
     e.target.style.background = "#fff";
     e.target.style.zIndex = 999;
   };
@@ -67,6 +66,7 @@ class Card extends Component {
       e.target.style.left = `${e.clientX - 130}px`;
       e.target.style.top = `${e.clientY - 27.5}px`;
       e.target.style.position = "fixed";
+      e.target.style.cursor = "grabbing";
       e.target.style.transform = "rotate(5deg)";
       e.target.style.zIndex = 999;
 
