@@ -44,7 +44,6 @@ function ListView({
   swapAddFieldFeature,
   setListTitle,
   addNewCardFeature,
-  deleteCardFeature,
   deleteCardFeatureByMove,
 }) {
   return (
@@ -68,7 +67,6 @@ function ListView({
           wholeList={wholeList}
           key={task}
           task={task}
-          deleteCardFeature={deleteCardFeature}
           id={id}
           addNewCard={addNewCardFeature}
           deleteCardFeatureByMove={deleteCardFeatureByMove}

@@ -39,7 +39,7 @@ class Card extends Component {
         if (wholeList[0].tasks.includes(e.target.textContent))
           return this.mouseLeaveFeature(e);
         addNewCard(wholeList[0].id, e.target.textContent);
-        deleteCardFeatureByMove(e, id);
+        deleteCardFeatureByMove(e.target.textContent, id);
       } else if (
         e.pageX > 285 * i - scrollHeighFromMain &&
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
@@ -48,7 +48,7 @@ class Card extends Component {
         if (wholeList[i].tasks.includes(e.target.textContent))
           return this.mouseLeaveFeature(e);
         addNewCard(wholeList[i].id, e.target.textContent);
-        deleteCardFeatureByMove(e, id);
+        deleteCardFeatureByMove(e.target.textContent, id);
       }
     }
 

@@ -93,14 +93,6 @@ class List extends Component {
     }
   };
 
-  deleteCardFeature = (e) => {
-    this.props.isDragAndDropTrue(false);
-    this.props.deleteCard(e, this.props.id);
-    this.setState({
-      textAreaValue: "",
-    });
-  };
-
   deleteCardFeatureByMove = (targetName, id) => {
     this.props.deleteCard(targetName, id);
     this.setState({
@@ -259,7 +251,6 @@ class List extends Component {
           swapAddFieldFeature={this.swapAddFieldFeature}
           setListTitle={this.setListTitle}
           addNewCardFeature={this.addNewCardFeature}
-          deleteCardFeature={this.deleteCardFeature}
           deleteCardFeatureByMove={this.deleteCardFeatureByMove}
         />
       </div>
