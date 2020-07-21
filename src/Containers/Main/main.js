@@ -183,10 +183,10 @@ const Main = () => {
     ]);
   };
 
-  const taskDetailsFunction = (e, inputTitle, id) => {
+  const taskDetailsFunction = (taskName, inputTitle, id) => {
     setIdUpdatedList(id);
     setTaskTitleList(inputTitle);
-    setTaskName(e.target.textContent);
+    setTaskName(taskName);
     setVisibilityTaskDetails(true);
   };
 
@@ -253,6 +253,7 @@ const Main = () => {
 
     setVisibilityTaskDetails(false);
     setChangeListInDetails(false);
+    taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id);
   };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {

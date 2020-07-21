@@ -124,7 +124,9 @@ class Card extends Component {
       <div
         key={task}
         className="card"
-        onDoubleClick={(e) => taskDetailsFunction(e, inputTitle, id)}
+        onDoubleClick={(e) =>
+          taskDetailsFunction(e.target.textContent, inputTitle, id)
+        }
         onMouseDown={(e) => this.mouseDownFeature(e)}
         onMouseUp={(e) => this.mouseUpFeature(e)}
         onMouseMove={(e) => this.mouseMoveFeature(e)}
