@@ -101,17 +101,11 @@ const Main = () => {
     numberOfTaskFunction(numberOfTask + 1);
   };
 
-  const deleteCard = (e, listId) => {
+  const deleteCard = (title, listId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
 
-    const taskValue = `${
-      e.target.classList[0] === "card"
-        ? e.target.textContent
-        : e.target.parentNode.textContent
-    }`;
-
     const taskIndex = correctList[0].tasks.findIndex(
-      (element) => element === taskValue
+      (element) => element === title
     );
 
     correctList[0].tasks.splice(taskIndex, 1);
@@ -235,7 +229,7 @@ const Main = () => {
   };
 
   const moveCardToAnotherList = (
-    e,
+    taskTitle,
     currentList,
     taskTitleToMove,
     clickedListId
@@ -252,8 +246,10 @@ const Main = () => {
     addToList[0].tasks.push(taskTitleToMove);
 
     //DeleteFromCurrentList
-    const taskToRemoveId = deleteFromList[0].tasks.indexOf(taskTitleToMove);
-    deleteFromList[0].tasks.splice(taskToRemoveId, 1);
+    // const taskToRemoveId = deleteFromList[0].tasks.indexOf(taskTitleToMove);
+    // deleteFromList[0].tasks.splice(taskToRemoveId, 1);
+
+    deleteCard(taskTitle, deleteFromList[0].id);
 
     setVisibilityTaskDetails(false);
     setChangeListInDetails(false);

@@ -68,6 +68,7 @@ const OptionCover = ({
         />
         <OptionCoverListView
           deleteCard={deleteCard}
+          taskTitle={taskTitle}
           listId={optionCoverData[0].id}
           handleLabelsVisibility={handleLabelsVisibility}
         />

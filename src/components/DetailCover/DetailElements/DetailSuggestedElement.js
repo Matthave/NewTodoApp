@@ -102,7 +102,12 @@ function DetailSuggestedElement({
             <StyledSuggestList
               className="suggested"
               onClick={(e) =>
-                moveCardToAnotherList(e, taskTitleList, taskTitle, list.id)
+                moveCardToAnotherList(
+                  taskTitle,
+                  taskTitleList,
+                  taskTitle,
+                  list.id
+                )
               }
               key={list.id}
             >

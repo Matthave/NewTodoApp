@@ -53,6 +53,7 @@ function DetailCoverNav({
   labelsVisibility,
   deleteCard,
   idUpdatedList,
+  taskTitle,
 }) {
   return (
     <StyledDetailNav>
@@ -92,7 +93,7 @@ function DetailCoverNav({
           <StyledIcon className="fas fa-exclamation-circle" />
           Priority
         </StyledDetailList>
-        <StyledDetailList onClick={(e) => deleteCard(e, idUpdatedList)}>
+        <StyledDetailList onClick={(e) => deleteCard(taskTitle, idUpdatedList)}>
           <StyledIcon className="fas fa-archive" />
           Archive
         </StyledDetailList>

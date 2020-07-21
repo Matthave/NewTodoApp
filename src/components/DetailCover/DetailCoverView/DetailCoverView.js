@@ -66,6 +66,7 @@ function DetailCoverView({
           handleLabelsVisibility={handleLabelsVisibility}
           deleteCard={deleteCard}
           idUpdatedList={idUpdatedList}
+          taskTitle={taskTitle}
         />
         {labelsVisibility ? (
           <Labels
