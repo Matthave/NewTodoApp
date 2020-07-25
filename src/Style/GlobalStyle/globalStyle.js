@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
   left:0;
   display:flex;
   justify-content:space-between;
+  flex-wrap:wrap;
   width: 100%;
   max-width:260px;
   word-break: break-all;
@@ -49,6 +50,20 @@ const GlobalStyle = createGlobalStyle`
   &:hover > *{
   color:#777;
   }
+  }
+
+  .card_wrapLabel{
+    display:flex;
+    flex-wrap:wrap;
+    width:100%;
+  }
+
+  .labelElement{
+    width: 15%;
+    height:8px;
+    border-radius:5px;
+    margin-bottom:4px;
+    margin-right:4px
   }
 
   .lists{

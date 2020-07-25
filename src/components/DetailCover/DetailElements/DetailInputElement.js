@@ -16,7 +16,13 @@ const StyledTaskName = styled.input`
   }
 `;
 
-function Detail_Input({ taskTitle, taskTitleFeature, updateCard }) {
+function Detail_Input({
+  taskTitle,
+  taskTitleFeature,
+  updateCard,
+  idUpdatedList,
+  taskId,
+}) {
   return (
     <>
       <StyledTaskName
@@ -26,7 +32,7 @@ function Detail_Input({ taskTitle, taskTitleFeature, updateCard }) {
       />
       <span
         className="fas fa-times close"
-        onClick={(e) => updateCard(e, taskTitle)}
+        onClick={(e) => updateCard(e, taskTitle, idUpdatedList, taskId)}
       />
     </>
   );

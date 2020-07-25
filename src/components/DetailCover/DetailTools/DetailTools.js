@@ -19,7 +19,7 @@ function DetailTools({
   handleLabelsVisibility,
   deleteCard,
   idUpdatedList,
-  taskTitle,
+  taskId,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -29,7 +29,7 @@ function DetailTools({
         labelsVisibility={labelsVisibility}
         deleteCard={deleteCard}
         idUpdatedList={idUpdatedList}
-        taskTitle={taskTitle}
+        taskId={taskId}
       />
     </StyledDetailToolsWrap>
   );

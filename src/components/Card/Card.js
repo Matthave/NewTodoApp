@@ -4,7 +4,6 @@ class Card extends Component {
   state = {
     selected: false,
     scrollHeight: 0,
-    touchesMovePageX: 0,
   };
 
   mouseDownFeature = (e) => {
@@ -12,7 +11,6 @@ class Card extends Component {
     this.setState({
       selected: true,
     });
-    e.target.style.background = "#fff";
     e.target.style.zIndex = 999;
   };
 
@@ -27,28 +25,29 @@ class Card extends Component {
     const {
       scrollPosition,
       wholeList,
-      addNewCard,
+      addNewCardFeature,
       deleteCardFeatureByMove,
-      id,
+      listId,
     } = this.props;
 
     const scrollHeighFromMain = Math.floor(scrollPosition);
+    const taskId = e.target.getAttribute("id");
 
-    for (let i = 1; i < 10; i++) {
-      if (e.pageX < 285 - scrollHeighFromMain) {
-        if (wholeList[0].tasks.includes(e.target.textContent))
-          return this.mouseLeaveFeature(e);
-        addNewCard(wholeList[0].id, e.target.textContent);
-        deleteCardFeatureByMove(e.target.textContent, id);
-      } else if (
+    if (e.pageX < 285 - scrollHeighFromMain) {
+      if (wholeList[0].id === listId) return this.mouseLeaveFeature(e); //When put card in this same place
+      deleteCardFeatureByMove(listId, taskId);
+      addNewCardFeature(wholeList[0].id, e.target.textContent, taskId);
+    }
+
+    for (let i = 1; i <= 10; i++) {
+      if (
         e.pageX > 285 * i - scrollHeighFromMain &&
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
         wholeList.length >= i + 1
       ) {
-        if (wholeList[i].tasks.includes(e.target.textContent))
-          return this.mouseLeaveFeature(e);
-        addNewCard(wholeList[i].id, e.target.textContent);
-        deleteCardFeatureByMove(e.target.textContent, id);
+        if (wholeList[i].id === listId) return this.mouseLeaveFeature(e);
+        deleteCardFeatureByMove(listId, taskId);
+        addNewCardFeature(wholeList[i].id, e.target.textContent, taskId);
       }
     }
 
@@ -115,27 +114,29 @@ class Card extends Component {
     const {
       task,
       inputTitle,
-      id,
+      listId,
       taskDetailsFunction,
       visibilityOptionFunction,
     } = this.props;
 
     return (
       <div
-        key={task}
+        id={task.id}
         className="card"
         onDoubleClick={(e) =>
-          taskDetailsFunction(e.target.textContent, inputTitle, id)
+          taskDetailsFunction(e.target.textContent, inputTitle, listId, task.id)
         }
         onMouseDown={(e) => this.mouseDownFeature(e)}
         onMouseUp={(e) => this.mouseUpFeature(e)}
         onMouseMove={(e) => this.mouseMoveFeature(e)}
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
       >
-        {task}
+        {task.taskName}
         <span
           className="fas fa-highlighter"
-          onClick={(e) => visibilityOptionFunction(e, true, task, id)}
+          onClick={(e) =>
+            visibilityOptionFunction(e, true, task, listId, task.id)
+          }
         />
       </div>
     );

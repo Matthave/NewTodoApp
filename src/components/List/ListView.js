@@ -65,10 +65,10 @@ function ListView({
       {tasks.map((task) => (
         <Card
           wholeList={wholeList}
-          key={task}
+          key={task.id}
           task={task}
-          id={id}
-          addNewCard={addNewCardFeature}
+          listId={id}
+          addNewCardFeature={addNewCardFeature}
           deleteCardFeatureByMove={deleteCardFeatureByMove}
           scrollPosition={scrollPosition}
           isDragAndDropTrue={isDragAndDropTrue}

@@ -15,6 +15,7 @@ const Main = () => {
   const [visibilityTaskDetails, setVisibilityTaskDetails] = useState(false);
   const [taskTitleList, setTaskTitleList] = useState();
   const [taskName, setTaskName] = useState("");
+  const [taskId, setTaskId] = useState("");
   const [idUpdatedList, setIdUpdatedList] = useState();
   const [visibilityChangeListInDetails, setChangeListInDetails] = useState(
     false
@@ -25,6 +26,7 @@ const Main = () => {
     setLabelsVisibilityDetailsComp,
   ] = useState(false);
 
+  const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -85,27 +87,52 @@ const Main = () => {
     const copyWholeList = [...wholeList];
     const filterWholeList = copyWholeList.filter((list) => list.id !== listId);
 
-    filterWholeList.sort(function (a, b) {
-      return a.id - b.id;
-    });
-
     setWholeList(filterWholeList);
   };
 
-  const addNewCard = (listId, newTask) => {
+  const addNewCard = (listId, newTask, taskId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
-
-    if (correctList[0].tasks.includes(newTask)) return;
-    if (newTask.length < 2) return;
-    correctList[0].tasks.push(newTask);
+    if (newTask.length === 0) return;
+    const theBiggestId = Math.max(...listOfAllTasksId);
+    //"Add card" by move already existing card
+    if (taskId) {
+      correctList[0].tasks.push({
+        id: taskId,
+        taskName: newTask,
+        currentList: listId,
+        comment: "",
+        badges: "",
+        priority: false,
+        date: "",
+        cover: "",
+      });
+    } else {
+      //Add new card by button 'Add Card'
+      correctList[0].tasks.push({
+        id: `${listOfAllTasksId.length === 0 ? 0 : theBiggestId + 1}`,
+        taskName: newTask,
+        currentList: listId,
+        comment: "",
+        badges: "",
+        priority: false,
+        date: "",
+        cover: "",
+      });
+      if (listOfAllTasksId.length === 0) {
+        setListOfAllTasksId([0]);
+      } else {
+        setListOfAllTasksId([...listOfAllTasksId, theBiggestId + 1]);
+      }
+    }
     numberOfTaskFunction(numberOfTask + 1);
   };
 
-  const deleteCard = (title, listId) => {
+  const deleteCard = (listId, taskId) => {
+    //Delete Card ( every way )
     const correctList = wholeList.filter((list) => list.id === listId);
 
     const taskIndex = correctList[0].tasks.findIndex(
-      (element) => element === title
+      (element) => element.id === taskId
     );
 
     correctList[0].tasks.splice(taskIndex, 1);
@@ -168,60 +195,77 @@ const Main = () => {
     }
   };
 
-  const visibilityOptionFunction = (e, swap, inputTitle, listId) => {
-    setVisibilityOptionCover(swap);
+  const visibilityOptionFunction = (e, toggle, taskName, listId, cardId) => {
+    //Dates sending from Card to OptionFunction Comp (by clicked Edit Icon)
+    setVisibilityOptionCover(toggle);
     setIdUpdatedList(listId);
-    setTaskName(inputTitle);
+    setTaskName(taskName);
     setOptionCoverData([
       {
-        id: listId,
+        listId: listId,
         top: e.target.parentNode.offsetTop,
         left: e.target.parentNode.offsetLeft,
-        taskTitle: inputTitle,
+        taskTitle: taskName,
+        clickedCard: e.target.parentNode,
+        clickedCardWrapLabel: e.target.parentNode.children[0],
+        clickedCardId: cardId,
         wholeList: wholeList,
       },
     ]);
   };
 
-  const taskDetailsFunction = (taskName, inputTitle, id) => {
-    setIdUpdatedList(id);
-    setTaskTitleList(inputTitle);
-    setTaskName(taskName);
+  const taskDetailsFunction = (
+    //Dates sending from Card to DetailsComponenet (by doubleClick Card)
+    nameUpdatedTask,
+    nameUpdatedList,
+    listId,
+    cardId
+  ) => {
+    setIdUpdatedList(listId);
+    setTaskTitleList(nameUpdatedList);
+    setTaskName(nameUpdatedTask);
+    setTaskId(cardId);
     setVisibilityTaskDetails(true);
   };
 
-  const updateCard = (e, updatedTitle) => {
+  const updateCard = (e, updatedTitle, listId, taskId) => {
+    // For changing taskName by detailCover component
     if (
       e.target.className.includes("cover") ||
-      e.target.className.includes("close") ||
       e.target.className.includes("cover_saveBtn")
     ) {
-      const correctList = wholeList.filter((list) => list.id === idUpdatedList);
-
-      if (correctList[0].tasks.includes(updatedTitle)) {
-        return setVisibilityTaskDetails(false);
-      }
-
-      if (updatedTitle.length < 2) return setVisibilityTaskDetails(false);
-      if (correctList[0]) {
-        const index = correctList[0].tasks.indexOf(taskName);
-        correctList[0].tasks[index] = updatedTitle;
-        setVisibilityTaskDetails(false);
-        setVisibilityOptionCover(false);
-      }
+      const correctList = wholeList.filter((list) => list.id === listId);
+      if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
+      const index = correctList[0].tasks.findIndex((ele) => ele.id === taskId);
+      correctList[0].tasks[index].taskName = updatedTitle;
+      setVisibilityTaskDetails(false);
+      setVisibilityOptionCover(false);
+      setLabelsVisibility(false);
     }
 
-    if (!e.target.className.includes("input")) {
-      const correctList = wholeList.filter((list) => list.id === idUpdatedList);
-      if (correctList[0].tasks.includes(updatedTitle)) return;
-      if (updatedTitle.length < 2) return;
+    // For changing taskName by detailCover component without closing this componentView
+    if (
+      !e.target.className.includes("input") &&
+      !e.target.className.includes("suggested") &&
+      !e.target.className.includes("close") &&
+      !e.target.className.includes("delete")
+    ) {
+      const correctList = wholeList.filter((list) => list.id === listId);
+      if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
       if (correctList[0]) {
-        const index = correctList[0].tasks.indexOf(taskName);
-        correctList[0].tasks[index] = updatedTitle;
+        const index = correctList[0].tasks.findIndex(
+          (ele) => ele.id === taskId
+        );
+        correctList[0].tasks[index].taskName = updatedTitle;
         setTaskName(updatedTitle);
       }
     }
-    setLabelsVisibility(false);
+
+    if (e.target.className.includes("close")) {
+      setVisibilityTaskDetails(false);
+      setVisibilityOptionCover(false);
+      setLabelsVisibility(false);
+    }
   };
 
   const changeListInDetails = () => {
@@ -231,7 +275,7 @@ const Main = () => {
   const moveCardToAnotherList = (
     taskTitle,
     currentList,
-    taskTitleToMove,
+    taskId,
     clickedListId
   ) => {
     //FindListWhereDelete
@@ -241,19 +285,13 @@ const Main = () => {
 
     //AddToAnotherList
     const addToList = wholeList.filter((list) => list.id === clickedListId);
-    if (addToList[0].tasks.includes(taskTitleToMove)) return;
-
-    addToList[0].tasks.push(taskTitleToMove);
-
-    //DeleteFromCurrentList
-    // const taskToRemoveId = deleteFromList[0].tasks.indexOf(taskTitleToMove);
-    // deleteFromList[0].tasks.splice(taskToRemoveId, 1);
-
-    deleteCard(taskTitle, deleteFromList[0].id);
+    deleteCard(deleteFromList[0].id, taskId);
+    addNewCard(addToList[0].id, taskTitle, taskId);
 
     setVisibilityTaskDetails(false);
     setChangeListInDetails(false);
-    taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id);
+
+    taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id, taskId);
   };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
@@ -274,6 +312,7 @@ const Main = () => {
     });
   };
 
+  //LABLES FEATURES
   const handleLabelsVisibility = (toggle) => {
     setLabelsVisibility(toggle);
   };
@@ -319,6 +358,7 @@ const Main = () => {
       {visibilityTaskDetails ? (
         <DetailCover
           taskName={taskName}
+          taskId={taskId}
           taskTitleList={taskTitleList}
           updateCard={updateCard}
           deleteCard={deleteCard}

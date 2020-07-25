@@ -21,6 +21,7 @@ const StyledLabelWrapEle = styled.div`
 `;
 
 const StyledLabelElement = styled.div`
+  position: relative;
   width: 80%;
   height: 35px;
   border-radius: 5px;
@@ -101,6 +102,16 @@ const StyledX = styled.span`
   cursor: pointer;
 `;
 
+const StyledIconCheck = styled.div`
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 17.5px;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: #fff;
+`;
+
 function LabelsChooseColors({
   detailCover,
   handleLabelsVisibility,
@@ -122,7 +133,9 @@ function LabelsChooseColors({
           <StyledLabelElement
             style={{ backgroundColor: `${color}` }}
             className="label"
-          />{" "}
+          >
+            <StyledIconCheck className="fas fa-check" id={`${color}Check`} />
+          </StyledLabelElement>{" "}
           <StyledIcon
             className="fas fa-pen label"
             onClick={() => nameLabelVisibility(true)}

@@ -3,6 +3,7 @@ import DetailCoverView from "../../components/DetailCover/DetailCoverView/Detail
 
 const DetailCover = ({
   taskName,
+  taskId,
   taskTitleList,
   updateCard,
   deleteCard,
@@ -20,20 +21,23 @@ const DetailCover = ({
     setTaskTitle(e.target.value);
   };
   return (
-    <DetailCoverView
-      updateCard={updateCard}
-      taskTitle={taskTitle}
-      taskTitleFeature={taskTitleFeature}
-      changeListInDetails={changeListInDetails}
-      taskTitleList={taskTitleList}
-      visibilityChangeListInDetails={visibilityChangeListInDetails}
-      wholeList={wholeList}
-      moveCardToAnotherList={moveCardToAnotherList}
-      labelsVisibility={labelsVisibility}
-      handleLabelsVisibility={handleLabelsVisibility}
-      deleteCard={deleteCard}
-      idUpdatedList={idUpdatedList}
-    />
+    <>
+      <DetailCoverView
+        updateCard={updateCard}
+        taskTitle={taskTitle}
+        taskTitleFeature={taskTitleFeature}
+        changeListInDetails={changeListInDetails}
+        taskTitleList={taskTitleList}
+        visibilityChangeListInDetails={visibilityChangeListInDetails}
+        wholeList={wholeList}
+        moveCardToAnotherList={moveCardToAnotherList}
+        labelsVisibility={labelsVisibility}
+        handleLabelsVisibility={handleLabelsVisibility}
+        deleteCard={deleteCard}
+        idUpdatedList={idUpdatedList}
+        taskId={taskId}
+      />
+    </>
   );
 };
 

@@ -75,26 +75,26 @@ class List extends Component {
     });
   };
 
-  addNewCardFeature = (id, textAreaValue) => {
-    this.props.addNewCard(id, textAreaValue);
+  addNewCardFeature = (listId, textAreaValue, taskId) => {
+    this.props.addNewCard(listId, textAreaValue, taskId);
     this.setState({
       showAddField: false,
       textAreaValue: "",
     });
   };
 
-  addNewCardFeatureByKey = (e, id, textAreaValue) => {
+  addNewCardFeatureByKey = (e, listId, textAreaValue, taskId) => {
     if (e.which === 13 && this.state.showAddField) {
       e.preventDefault();
-      this.props.addNewCard(id, textAreaValue);
+      this.props.addNewCard(listId, textAreaValue, taskId);
       this.setState({
         textAreaValue: "",
       });
     }
   };
 
-  deleteCardFeatureByMove = (targetName, id) => {
-    this.props.deleteCard(targetName, id);
+  deleteCardFeatureByMove = (listId, taskId) => {
+    this.props.deleteCard(listId, taskId);
     this.setState({
       textAreaValue: "",
     });
@@ -171,10 +171,12 @@ class List extends Component {
       (list) => list.id === this.props.id
     );
 
+    if (e.pageX < 285 - scrollHeighFromMain) {
+      this.props.moveListToAnotherPlace(draggedListIndex, 0);
+    }
+
     for (let i = 1; i < 10; i++) {
-      if (e.pageX < 285 - scrollHeighFromMain) {
-        this.props.moveListToAnotherPlace(draggedListIndex, 0);
-      } else if (
+      if (
         e.pageX > 285 * i - scrollHeighFromMain &&
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
         wholeList.length >= i + 1

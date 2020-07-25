@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import LabelsView from "../../components/Labels/LabelsView";
 
-function Labels({ handleLabelsVisibility, detailCover }) {
+function Labels({
+  handleLabelsVisibility,
+  detailCover,
+  addLabelColor,
+  optionCoverData,
+}) {
   const [labelVisibility, setLabelVisibility] = useState(false);
 
   const nameLabelVisibility = (toggle) => {
@@ -14,6 +19,8 @@ function Labels({ handleLabelsVisibility, detailCover }) {
       detailCover={detailCover}
       nameLabelVisibility={nameLabelVisibility}
       labelVisibility={labelVisibility}
+      addLabelColor={addLabelColor}
+      optionCoverData={optionCoverData}
     />
   );
 }

@@ -71,6 +71,7 @@ function DetailSuggestedElement({
   visibilityChangeListInDetails,
   wholeList,
   moveCardToAnotherList,
+  taskId,
 }) {
   return (
     <StyledLightText className="suggested">
@@ -102,12 +103,7 @@ function DetailSuggestedElement({
             <StyledSuggestList
               className="suggested"
               onClick={(e) =>
-                moveCardToAnotherList(
-                  taskTitle,
-                  taskTitleList,
-                  taskTitle,
-                  list.id
-                )
+                moveCardToAnotherList(taskTitle, taskTitleList, taskId, list.id)
               }
               key={list.id}
             >

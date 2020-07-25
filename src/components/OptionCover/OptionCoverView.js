@@ -69,17 +69,28 @@ const OptionCover = ({
         <OptionCoverListView
           deleteCard={deleteCard}
           taskTitle={taskTitle}
-          listId={optionCoverData[0].id}
+          listId={optionCoverData[0].listId}
           handleLabelsVisibility={handleLabelsVisibility}
+          optionCoverData={optionCoverData}
         />
         <StyledSaveButton
           className="cover_saveBtn"
-          onClick={(e) => updateCard(e, taskTitle)}
+          onClick={(e) =>
+            updateCard(
+              e,
+              taskTitle,
+              optionCoverData[0].listId,
+              optionCoverData[0].clickedCardId
+            )
+          }
         >
           Save
         </StyledSaveButton>
         {labelsVisibility ? (
-          <Labels handleLabelsVisibility={handleLabelsVisibility} />
+          <Labels
+            handleLabelsVisibility={handleLabelsVisibility}
+            optionCoverData={optionCoverData}
+          />
         ) : null}
       </StyledOptionBox>
     </StyledCover>

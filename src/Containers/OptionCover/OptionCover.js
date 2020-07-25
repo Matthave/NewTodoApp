@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import OptionCoverView from "../../components/OptionCover/OptionCoverView";
 
 function OptionCover({
-  optionCoverWhichList,
   optionCoverData,
   updateCard,
   deleteCard,
@@ -23,7 +22,7 @@ function OptionCover({
 
     //ListIndex, when list is moving to another place
     const listIndex = taskData[0].wholeList.findIndex(
-      (element) => element.id === taskData[0].id
+      (element) => element.id === taskData[0].listId
     );
 
     const positionY =
@@ -35,7 +34,9 @@ function OptionCover({
     coverBox.style.left = `${positionX}px`;
   };
 
-  const [taskTitle, setTaskTitle] = useState(optionCoverData[0].taskTitle);
+  const [taskTitle, setTaskTitle] = useState(
+    optionCoverData[0].taskTitle.taskName
+  );
 
   const taskTitleFeature = (e) => {
     setTaskTitle(e.target.value);
@@ -44,7 +45,6 @@ function OptionCover({
   return (
     <>
       <OptionCoverView
-        optionCoverWhichList={optionCoverWhichList}
         optionCoverData={optionCoverData}
         taskTitleFeature={taskTitleFeature}
         taskTitle={taskTitle}

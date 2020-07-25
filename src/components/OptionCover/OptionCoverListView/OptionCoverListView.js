@@ -17,7 +17,7 @@ const StyledList = styled.li`
   padding: 7px 10px;
   font-size: 14px;
   color: white;
-  transition: 0.15s linear;
+  transition: 0.1s linear;
   cursor: pointer;
 
   &:hover {
@@ -36,6 +36,8 @@ function OptionCoverListView({
   listId,
   handleLabelsVisibility,
   taskTitle,
+  addPriorityForCards,
+  optionCoverData,
 }) {
   return (
     <StyledListBlock className="cover_listBlock">
@@ -56,7 +58,20 @@ function OptionCoverListView({
           <StyledIcon className="far fa-clock" />
           Date Change
         </StyledList>
-        <StyledList onClick={(e) => deleteCard(taskTitle, listId)}>
+        <StyledList
+          onClick={() =>
+            addPriorityForCards(
+              optionCoverData[0].clickedCard,
+              optionCoverData[0].clickedCardId
+            )
+          }
+        >
+          <StyledIcon className="fas fa-exclamation-circle" />
+          Priority
+        </StyledList>
+        <StyledList
+          onClick={(e) => deleteCard(listId, optionCoverData[0].clickedCardId)}
+        >
           <StyledIcon className="fas fa-archive" />
           Archive
         </StyledList>

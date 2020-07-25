@@ -40,18 +40,24 @@ function DetailCoverView({
   moveCardToAnotherList,
   labelsVisibility,
   handleLabelsVisibility,
+  taskId,
 }) {
   return (
-    <StyledCover className="cover" onClick={(e) => updateCard(e, taskTitle)}>
+    <StyledCover
+      className="cover"
+      onClick={(e) => updateCard(e, taskTitle, idUpdatedList, taskId)}
+    >
       <StyledDetail
         className="detail"
-        onClick={(e) => updateCard(e, taskTitle)}
+        onClick={(e) => updateCard(e, taskTitle, idUpdatedList, taskId)}
       >
         <span className="fas fa-credit-card"></span>
         <DetailInputElement
           taskTitle={taskTitle}
           taskTitleFeature={taskTitleFeature}
           updateCard={updateCard}
+          idUpdatedList={idUpdatedList}
+          taskId={taskId}
         />
         <DetailSuggestedElement
           changeListInDetails={changeListInDetails}
@@ -60,13 +66,14 @@ function DetailCoverView({
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
+          taskId={taskId}
         />
         <DetailTools
           labelsVisibility={labelsVisibility}
           handleLabelsVisibility={handleLabelsVisibility}
           deleteCard={deleteCard}
           idUpdatedList={idUpdatedList}
-          taskTitle={taskTitle}
+          taskId={taskId}
         />
         {labelsVisibility ? (
           <Labels
