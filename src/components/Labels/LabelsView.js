@@ -21,6 +21,9 @@ function LabelsView({
   detailCover,
   nameLabelVisibility,
   labelVisibility,
+  toggleLabelColorToCard,
+  taskId,
+  generateCheckIcon,
 }) {
   return (
     <>
@@ -36,6 +39,9 @@ function LabelsView({
           handleLabelsVisibility={handleLabelsVisibility}
           labelColors={labelColors}
           nameLabelVisibility={nameLabelVisibility}
+          toggleLabelColorToCard={toggleLabelColorToCard}
+          taskId={taskId}
+          generateCheckIcon={generateCheckIcon}
         />
       )}
     </>

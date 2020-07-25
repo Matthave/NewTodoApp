@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledLabels = styled.div`
@@ -117,7 +117,14 @@ function LabelsChooseColors({
   handleLabelsVisibility,
   labelColors,
   nameLabelVisibility,
+  toggleLabelColorToCard,
+  taskId,
+  generateCheckIcon,
 }) {
+  useEffect(() => {
+    generateCheckIcon();
+  });
+
   return (
     <StyledLabels className="label" detailCover={detailCover}>
       <StyledLabelTitle className="label">
@@ -131,6 +138,7 @@ function LabelsChooseColors({
       {labelColors.map((color) => (
         <StyledLabelWrapEle key={color} className="label">
           <StyledLabelElement
+            onClick={() => toggleLabelColorToCard(color, taskId)}
             style={{ backgroundColor: `${color}` }}
             className="label"
           >

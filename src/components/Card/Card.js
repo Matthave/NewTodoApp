@@ -33,6 +33,11 @@ class Card extends Component {
     const scrollHeighFromMain = Math.floor(scrollPosition);
     const taskId = e.target.getAttribute("id");
 
+    const wrapLabels = document.querySelectorAll(".card_wrapLabel");
+    wrapLabels.forEach((ele) => {
+      ele.style.width = "100%";
+    });
+
     if (e.pageX < 285 - scrollHeighFromMain) {
       if (wholeList[0].id === listId) return this.mouseLeaveFeature(e); //When put card in this same place
       deleteCardFeatureByMove(listId, taskId);
@@ -68,6 +73,11 @@ class Card extends Component {
       e.target.style.cursor = "grabbing";
       e.target.style.transform = "rotate(5deg)";
       e.target.style.zIndex = 999;
+
+      const wrapLabels = document.querySelectorAll(".card_wrapLabel");
+      wrapLabels.forEach((ele) => {
+        ele.style.width = "25%";
+      });
 
       const allBlankSpan = document.querySelectorAll(".blank");
       allBlankSpan.forEach((all) => {
@@ -131,6 +141,18 @@ class Card extends Component {
         onMouseMove={(e) => this.mouseMoveFeature(e)}
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
       >
+        <div className="card_wrapLabel">
+          {task.badges.map((ele) => (
+            <div
+              key={ele.color}
+              id={ele.labelId}
+              className="labelElement"
+              style={{ backgroundColor: ele.color }}
+            >
+              {ele.name}
+            </div>
+          ))}
+        </div>
         {task.taskName}
         <span
           className="fas fa-highlighter"

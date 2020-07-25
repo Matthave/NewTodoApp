@@ -27,6 +27,7 @@ const Main = () => {
   ] = useState(false);
 
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
+  const [listOfAllBadges, setListOfAllBadges] = useState([]);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -93,7 +94,10 @@ const Main = () => {
   const addNewCard = (listId, newTask, taskId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
     if (newTask.length === 0) return;
+
+    const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
     const theBiggestId = Math.max(...listOfAllTasksId);
+
     //"Add card" by move already existing card
     if (taskId) {
       correctList[0].tasks.push({
@@ -101,7 +105,7 @@ const Main = () => {
         taskName: newTask,
         currentList: listId,
         comment: "",
-        badges: "",
+        badges: matchedBadges,
         priority: false,
         date: "",
         cover: "",
@@ -113,7 +117,7 @@ const Main = () => {
         taskName: newTask,
         currentList: listId,
         comment: "",
-        badges: "",
+        badges: [],
         priority: false,
         date: "",
         cover: "",
@@ -127,13 +131,30 @@ const Main = () => {
     numberOfTaskFunction(numberOfTask + 1);
   };
 
-  const deleteCard = (listId, taskId) => {
-    //Delete Card ( every way )
+  const deleteCard = (listId, taskId, byButton) => {
+    //Delete Card from list( by every way )
     const correctList = wholeList.filter((list) => list.id === listId);
 
     const taskIndex = correctList[0].tasks.findIndex(
       (element) => element.id === taskId
     );
+
+    if (byButton === "byButton") {
+      //Delete Card Badges from array if matched exist
+      const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
+      if (matchedBadges.length !== 0) {
+        matchedBadges.forEach((element) => {
+          const indexOfBadgedToDelete = listOfAllBadges.findIndex(
+            (ele) => ele.id === taskId && ele.color === element.color
+          );
+          listOfAllBadges.splice(indexOfBadgedToDelete, 1);
+        });
+      }
+
+      //Delete Card Id from array
+      const matchedIdList = listOfAllTasksId.findIndex((ele) => ele == taskId);
+      listOfAllTasksId.splice(matchedIdList, 1);
+    }
 
     correctList[0].tasks.splice(taskIndex, 1);
     numberOfTaskFunction(numberOfTask - 1);
@@ -321,6 +342,55 @@ const Main = () => {
     setLabelsVisibilityDetailsComp(toggle);
   };
 
+  const toggleLabelColorToCard = (color, taskId) => {
+    const currentTask = document.getElementById(taskId);
+
+    const alreadyExistedBadges = listOfAllBadges.filter(
+      (ele) => ele.id === taskId
+    );
+
+    const matchedBages = [];
+    alreadyExistedBadges.forEach((ele) => {
+      if (ele.color === color) {
+        matchedBages.push(color);
+      }
+    });
+
+    if (matchedBages.length === 0) {
+      //Add only if this color and Id don't exist already
+      setListOfAllBadges([
+        ...listOfAllBadges,
+        {
+          id: taskId,
+          color: color,
+          name: "",
+          labelId: `${color}${taskId}`,
+        },
+      ]);
+      const newLabel = document.createElement("div");
+      newLabel.classList.add("labelElement");
+      newLabel.setAttribute("id", `${color}${taskId}`);
+      newLabel.style.backgroundColor = `${color}`;
+      currentTask.children[0].appendChild(newLabel);
+
+      //CheckIcon Visible
+      const checkIcon = document.getElementById(`${color}Check`);
+      checkIcon.style.display = "block";
+    } else {
+      const indexToDelete = listOfAllBadges.findIndex(
+        (ele) => ele.id === taskId && ele.color === color
+      );
+
+      //Delete from list of badges when exist and from DOM
+      listOfAllBadges.splice(indexToDelete, 1);
+      const matchedColor = document.getElementById(`${color}${taskId}`);
+      matchedColor.remove();
+
+      const checkIcon = document.getElementById(`${color}Check`);
+      checkIcon.style.display = "none";
+    }
+  };
+
   return (
     <main>
       <Navigations
@@ -353,6 +423,8 @@ const Main = () => {
           deleteCard={deleteCard}
           handleLabelsVisibility={handleLabelsVisibility}
           labelsVisibility={labelsVisibility}
+          toggleLabelColorToCard={toggleLabelColorToCard}
+          listOfAllBadges={listOfAllBadges}
         />
       ) : null}
       {visibilityTaskDetails ? (

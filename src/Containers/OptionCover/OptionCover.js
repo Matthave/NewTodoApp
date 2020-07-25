@@ -7,6 +7,8 @@ function OptionCover({
   deleteCard,
   handleLabelsVisibility,
   labelsVisibility,
+  toggleLabelColorToCard,
+  listOfAllBadges,
 }) {
   useEffect(() => {
     setOptionCoverPostion(optionCoverData);
@@ -52,6 +54,8 @@ function OptionCover({
         deleteCard={deleteCard}
         handleLabelsVisibility={handleLabelsVisibility}
         labelsVisibility={labelsVisibility}
+        toggleLabelColorToCard={toggleLabelColorToCard}
+        listOfAllBadges={listOfAllBadges}
       />
     </>
   );

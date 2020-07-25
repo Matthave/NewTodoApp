@@ -95,7 +95,7 @@ function DetailCoverNav({
         </StyledDetailList>
         <StyledDetailList
           className="delete"
-          onClick={(e) => deleteCard(idUpdatedList, taskId)}
+          onClick={(e) => deleteCard(idUpdatedList, taskId, "byButton")}
         >
           <StyledIcon className="fas fa-archive" />
           Archive

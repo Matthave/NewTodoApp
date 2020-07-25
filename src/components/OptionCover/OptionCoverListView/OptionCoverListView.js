@@ -70,7 +70,9 @@ function OptionCoverListView({
           Priority
         </StyledList>
         <StyledList
-          onClick={(e) => deleteCard(listId, optionCoverData[0].clickedCardId)}
+          onClick={(e) =>
+            deleteCard(listId, optionCoverData[0].clickedCardId, "byButton")
+          }
         >
           <StyledIcon className="fas fa-archive" />
           Archive

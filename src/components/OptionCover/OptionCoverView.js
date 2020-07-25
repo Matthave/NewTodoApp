@@ -57,6 +57,8 @@ const OptionCover = ({
   deleteCard,
   handleLabelsVisibility,
   labelsVisibility,
+  toggleLabelColorToCard,
+  listOfAllBadges,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -90,6 +92,9 @@ const OptionCover = ({
           <Labels
             handleLabelsVisibility={handleLabelsVisibility}
             optionCoverData={optionCoverData}
+            toggleLabelColorToCard={toggleLabelColorToCard}
+            taskId={optionCoverData[0].clickedCardId}
+            listOfAllBadges={listOfAllBadges}
           />
         ) : null}
       </StyledOptionBox>
