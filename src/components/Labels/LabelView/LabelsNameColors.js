@@ -86,7 +86,11 @@ const StyledX = styled.span`
   cursor: pointer;
 `;
 
-function LabelsNameColors({ nameLabelVisibility, labelColors, detailCover }) {
+function LabelsNameColors({
+  nameLabelVisibility,
+  filteredColors,
+  detailCover,
+}) {
   return (
     <StyledNameLabels className="label" detailCover={detailCover}>
       <StyledLabelTitle className="label">
@@ -100,10 +104,10 @@ function LabelsNameColors({ nameLabelVisibility, labelColors, detailCover }) {
       <StyledLabelInput className="label" marginTop />
       <StyledName>Colors</StyledName>
       <StyledWrapColors>
-        {labelColors.map((color) => (
+        {filteredColors.map((color) => (
           <StyledColorSquar
-            style={{ backgroundColor: `${color}` }}
-            key={color}
+            style={{ backgroundColor: `${color.color}` }}
+            key={color.color}
           />
         ))}
       </StyledWrapColors>

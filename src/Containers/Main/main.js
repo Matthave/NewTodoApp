@@ -384,7 +384,10 @@ const Main = () => {
       const matchedColorInWrap = document.getElementById(
         `${color}${taskId}OptionCover`
       );
-      matchedColorInWrap.remove();
+      if (matchedColorInWrap) {
+        matchedColorInWrap.remove();
+      }
+
       //CheckIcon Visible
       const checkIcon = document.getElementById(`${color}Check`);
       checkIcon.style.display = "none";

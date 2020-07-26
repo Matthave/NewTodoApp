@@ -115,11 +115,13 @@ const StyledIconCheck = styled.div`
 function LabelsChooseColors({
   detailCover,
   handleLabelsVisibility,
-  labelColors,
+  filteredColors,
   nameLabelVisibility,
   toggleLabelColorToCard,
   taskId,
   generateCheckIcon,
+  searchLabelColor,
+  searchInputLabel,
 }) {
   useEffect(() => {
     generateCheckIcon();
@@ -134,15 +136,23 @@ function LabelsChooseColors({
           onClick={() => handleLabelsVisibility(false)}
         />
       </StyledLabelTitle>
-      <StyledLabelInput placeholder="Search Labels..." className="label" />
-      {labelColors.map((color) => (
-        <StyledLabelWrapEle key={color} className="label">
+      <StyledLabelInput
+        placeholder="Search Labels..."
+        className="label"
+        onChange={(e) => searchLabelColor(e)}
+        value={searchInputLabel}
+      />
+      {filteredColors.map((color) => (
+        <StyledLabelWrapEle key={color.color} className="label">
           <StyledLabelElement
-            onClick={() => toggleLabelColorToCard(color, taskId)}
-            style={{ backgroundColor: `${color}` }}
+            onClick={() => toggleLabelColorToCard(color.color, taskId)}
+            style={{ backgroundColor: `${color.color}` }}
             className="label"
           >
-            <StyledIconCheck className="fas fa-check" id={`${color}Check`} />
+            <StyledIconCheck
+              className="fas fa-check"
+              id={`${color.color}Check`}
+            />
           </StyledLabelElement>{" "}
           <StyledIcon
             className="fas fa-pen label"
