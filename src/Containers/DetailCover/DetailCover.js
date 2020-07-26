@@ -14,6 +14,8 @@ const DetailCover = ({
   moveCardToAnotherList,
   labelsVisibility,
   handleLabelsVisibility,
+  toggleLabelColorToCard,
+  listOfAllBadges,
 }) => {
   const [taskTitle, setTaskTitle] = useState(taskName);
 
@@ -36,6 +38,8 @@ const DetailCover = ({
         deleteCard={deleteCard}
         idUpdatedList={idUpdatedList}
         taskId={taskId}
+        toggleLabelColorToCard={toggleLabelColorToCard}
+        listOfAllBadges={listOfAllBadges}
       />
     </>
   );

@@ -41,6 +41,8 @@ function DetailCoverView({
   labelsVisibility,
   handleLabelsVisibility,
   taskId,
+  toggleLabelColorToCard,
+  listOfAllBadges,
 }) {
   return (
     <StyledCover
@@ -79,6 +81,9 @@ function DetailCoverView({
           <Labels
             detailCover={true}
             handleLabelsVisibility={handleLabelsVisibility}
+            toggleLabelColorToCard={toggleLabelColorToCard}
+            listOfAllBadges={listOfAllBadges}
+            taskId={taskId}
           />
         ) : null}
       </StyledDetail>

@@ -343,8 +343,6 @@ const Main = () => {
   };
 
   const toggleLabelColorToCard = (color, taskId) => {
-    const currentTask = document.getElementById(taskId);
-
     const alreadyExistedBadges = listOfAllBadges.filter(
       (ele) => ele.id === taskId
     );
@@ -367,11 +365,8 @@ const Main = () => {
           labelId: `${color}${taskId}`,
         },
       ]);
-      const newLabel = document.createElement("div");
-      newLabel.classList.add("labelElement");
-      newLabel.setAttribute("id", `${color}${taskId}`);
-      newLabel.style.backgroundColor = `${color}`;
-      currentTask.children[0].appendChild(newLabel);
+
+      createLabelsElement(color, taskId);
 
       //CheckIcon Visible
       const checkIcon = document.getElementById(`${color}Check`);
@@ -386,8 +381,32 @@ const Main = () => {
       const matchedColor = document.getElementById(`${color}${taskId}`);
       matchedColor.remove();
 
+      const matchedColorInWrap = document.getElementById(
+        `${color}${taskId}OptionCover`
+      );
+      matchedColorInWrap.remove();
+      //CheckIcon Visible
       const checkIcon = document.getElementById(`${color}Check`);
       checkIcon.style.display = "none";
+    }
+  };
+
+  const createLabelsElement = (color, taskId) => {
+    const currentTask = document.getElementById(taskId);
+    const currentWrap = document.querySelector(".coverOption_wrapLabel");
+
+    const newLabel = document.createElement("div");
+    newLabel.classList.add("labelElement");
+    newLabel.setAttribute("id", `${color}${taskId}`);
+    newLabel.style.backgroundColor = `${color}`;
+    currentTask.children[0].appendChild(newLabel);
+    //New Label For wrapElement
+    if (currentWrap) {
+      const newLabelForWrap = document.createElement("div");
+      newLabelForWrap.classList.add("labelElement");
+      newLabelForWrap.setAttribute("id", `${color}${taskId}OptionCover`);
+      newLabelForWrap.style.backgroundColor = `${color}`;
+      currentWrap.appendChild(newLabelForWrap);
     }
   };
 
@@ -441,6 +460,8 @@ const Main = () => {
           moveCardToAnotherList={moveCardToAnotherList}
           handleLabelsVisibility={handleLabelsVisibilityDetailsComp}
           labelsVisibility={labelsVisibilityDetailsComp}
+          toggleLabelColorToCard={toggleLabelColorToCard}
+          listOfAllBadges={listOfAllBadges}
         />
       ) : null}
     </main>

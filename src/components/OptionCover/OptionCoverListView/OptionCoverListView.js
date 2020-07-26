@@ -35,7 +35,6 @@ function OptionCoverListView({
   deleteCard,
   listId,
   handleLabelsVisibility,
-  taskTitle,
   addPriorityForCards,
   optionCoverData,
 }) {

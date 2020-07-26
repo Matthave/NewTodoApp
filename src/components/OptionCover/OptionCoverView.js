@@ -28,18 +28,17 @@ const StyledTextArea = styled.textarea`
   height: 100px;
   width: 260px;
   padding: 7.5px;
-  margin-right: 10px;
+  padding-top: 0px;
   border-radius: 5px;
   resize: none;
 `;
 
 const StyledSaveButton = styled.button`
-  position: fixed;
-  top: 108px;
   width: 75px;
   height: 32.5px;
   background-color: #5aac44;
   border-radius: 4px;
+  margin-top: 6px;
   color: white;
   cursor: pointer;
   transition: 0.15s linear;
@@ -47,6 +46,25 @@ const StyledSaveButton = styled.button`
   &:hover {
     background-color: #6abc54;
   }
+`;
+
+const StyledWrapLabels = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 260px;
+  min-height: 10px;
+  padding: 5px 5px 0px 5px;
+  border-radius: 5px;
+  background-color: #fff;
+`;
+
+const StyledWrapTextAndLabels = styled.div`
+  width: 260px;
+  height: 110px;
+  align-self: flex-start;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #fff;
 `;
 
 const OptionCover = ({
@@ -63,11 +81,38 @@ const OptionCover = ({
   return (
     <StyledCover className="coverOption">
       <StyledOptionBox className="cover_box">
-        <StyledTextArea
-          className="cover_textArea"
-          onChange={(e) => taskTitleFeature(e)}
-          value={taskTitle}
-        />
+        <StyledWrapTextAndLabels>
+          <StyledWrapLabels className="coverOption_wrapLabel">
+            {optionCoverData[0].taskTitle.badges.map((ele) => (
+              <div
+                key={ele.color}
+                id={`${ele.labelId}OptionCover`}
+                className="labelElement"
+                style={{ backgroundColor: ele.color }}
+              >
+                {ele.name}
+              </div>
+            ))}
+          </StyledWrapLabels>
+          <StyledTextArea
+            className="cover_textArea"
+            onChange={(e) => taskTitleFeature(e)}
+            value={taskTitle}
+          />
+          <StyledSaveButton
+            className="cover_saveBtn"
+            onClick={(e) =>
+              updateCard(
+                e,
+                taskTitle,
+                optionCoverData[0].listId,
+                optionCoverData[0].clickedCardId
+              )
+            }
+          >
+            Save
+          </StyledSaveButton>
+        </StyledWrapTextAndLabels>
         <OptionCoverListView
           deleteCard={deleteCard}
           taskTitle={taskTitle}
@@ -75,19 +120,7 @@ const OptionCover = ({
           handleLabelsVisibility={handleLabelsVisibility}
           optionCoverData={optionCoverData}
         />
-        <StyledSaveButton
-          className="cover_saveBtn"
-          onClick={(e) =>
-            updateCard(
-              e,
-              taskTitle,
-              optionCoverData[0].listId,
-              optionCoverData[0].clickedCardId
-            )
-          }
-        >
-          Save
-        </StyledSaveButton>
+
         {labelsVisibility ? (
           <Labels
             handleLabelsVisibility={handleLabelsVisibility}
