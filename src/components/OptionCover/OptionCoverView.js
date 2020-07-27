@@ -77,13 +77,14 @@ const OptionCover = ({
   labelsVisibility,
   toggleLabelColorToCard,
   listOfAllBadges,
+  matchedColorsToThisCard,
 }) => {
   return (
     <StyledCover className="coverOption">
       <StyledOptionBox className="cover_box">
         <StyledWrapTextAndLabels>
           <StyledWrapLabels className="coverOption_wrapLabel">
-            {optionCoverData[0].taskTitle.badges.map((ele) => (
+            {matchedColorsToThisCard.map((ele) => (
               <div
                 key={ele.color}
                 id={`${ele.labelId}OptionCover`}

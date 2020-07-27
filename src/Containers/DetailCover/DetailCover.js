@@ -1,48 +1,69 @@
-import React, { useState } from "react";
+import React from "react";
 import DetailCoverView from "../../components/DetailCover/DetailCoverView/DetailCoverView";
 
-const DetailCover = ({
-  taskName,
-  taskId,
-  taskTitleList,
-  updateCard,
-  deleteCard,
-  idUpdatedList,
-  changeListInDetails,
-  visibilityChangeListInDetails,
-  wholeList,
-  moveCardToAnotherList,
-  labelsVisibility,
-  handleLabelsVisibility,
-  toggleLabelColorToCard,
-  listOfAllBadges,
-}) => {
-  const [taskTitle, setTaskTitle] = useState(taskName);
-
-  const taskTitleFeature = (e) => {
-    setTaskTitle(e.target.value);
+class DetailCover extends React.Component {
+  state = {
+    taskTitle: "",
   };
-  return (
-    <>
-      <DetailCoverView
-        updateCard={updateCard}
-        taskTitle={taskTitle}
-        taskTitleFeature={taskTitleFeature}
-        changeListInDetails={changeListInDetails}
-        taskTitleList={taskTitleList}
-        visibilityChangeListInDetails={visibilityChangeListInDetails}
-        wholeList={wholeList}
-        moveCardToAnotherList={moveCardToAnotherList}
-        labelsVisibility={labelsVisibility}
-        handleLabelsVisibility={handleLabelsVisibility}
-        deleteCard={deleteCard}
-        idUpdatedList={idUpdatedList}
-        taskId={taskId}
-        toggleLabelColorToCard={toggleLabelColorToCard}
-        listOfAllBadges={listOfAllBadges}
-      />
-    </>
-  );
-};
+
+  componentDidMount() {
+    this.setState({
+      taskTitle: this.props.taskName,
+    });
+  }
+
+  taskTitleFeature = (e) => {
+    this.setState({
+      taskTitle: e.target.value,
+    });
+  };
+
+  render() {
+    const {
+      taskId,
+      taskTitleList,
+      updateCard,
+      deleteCard,
+      idUpdatedList,
+      changeListInDetails,
+      visibilityChangeListInDetails,
+      wholeList,
+      moveCardToAnotherList,
+      labelsVisibility,
+      handleLabelsVisibility,
+      toggleLabelColorToCard,
+      listOfAllBadges,
+    } = this.props;
+
+    const copyOfallBadges = [...listOfAllBadges];
+    const matchedColorsToThisCard = copyOfallBadges.filter(
+      (ele) => ele.id === taskId
+    );
+
+    const { taskTitle } = this.state;
+    return (
+      <>
+        <DetailCoverView
+          updateCard={updateCard}
+          taskTitle={taskTitle}
+          taskTitleFeature={this.taskTitleFeature}
+          changeListInDetails={changeListInDetails}
+          taskTitleList={taskTitleList}
+          visibilityChangeListInDetails={visibilityChangeListInDetails}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
+          labelsVisibility={labelsVisibility}
+          handleLabelsVisibility={handleLabelsVisibility}
+          deleteCard={deleteCard}
+          idUpdatedList={idUpdatedList}
+          taskId={taskId}
+          toggleLabelColorToCard={toggleLabelColorToCard}
+          listOfAllBadges={listOfAllBadges}
+          matchedColorsToThisCard={matchedColorsToThisCard}
+        />
+      </>
+    );
+  }
+}
 
 export default DetailCover;

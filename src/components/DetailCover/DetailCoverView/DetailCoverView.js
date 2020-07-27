@@ -43,6 +43,7 @@ function DetailCoverView({
   taskId,
   toggleLabelColorToCard,
   listOfAllBadges,
+  matchedColorsToThisCard,
 }) {
   return (
     <StyledCover
@@ -76,6 +77,7 @@ function DetailCoverView({
           deleteCard={deleteCard}
           idUpdatedList={idUpdatedList}
           taskId={taskId}
+          matchedColorsToThisCard={matchedColorsToThisCard}
         />
         {labelsVisibility ? (
           <Labels

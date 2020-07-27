@@ -41,11 +41,28 @@ const StyledIcon = styled.span`
   color: #42516e;
 `;
 
-function DetailCoverMarks() {
+const StyledLabelsWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+function DetailCoverMarks({ matchedColorsToThisCard }) {
   return (
     <StyledDetailMarks>
       <div>
         <h2>Lables</h2>
+        <StyledLabelsWrap className="detailCover_labelsWrap">
+          {matchedColorsToThisCard.map((ele) => (
+            <div
+              key={ele.color}
+              id={`${ele.labelId}DetailCover`}
+              className="labelElement_DetailCover"
+              style={{ backgroundColor: ele.color }}
+            >
+              {ele.name}
+            </div>
+          ))}
+        </StyledLabelsWrap>
       </div>
       <StyledDetailDescription>
         <StyledTitle>

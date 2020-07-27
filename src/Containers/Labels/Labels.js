@@ -33,7 +33,9 @@ class Labels extends Component {
         const currentCheckIcon = document.getElementById(
           `${element.color}Check`
         );
-        currentCheckIcon.style.display = "block";
+        if (currentCheckIcon) {
+          currentCheckIcon.style.display = "block";
+        }
       });
     }
   };

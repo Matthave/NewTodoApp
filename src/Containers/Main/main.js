@@ -25,6 +25,7 @@ const Main = () => {
     labelsVisibilityDetailsComp,
     setLabelsVisibilityDetailsComp,
   ] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
@@ -356,21 +357,19 @@ const Main = () => {
 
     if (matchedBages.length === 0) {
       //Add only if this color and Id don't exist already
-      setListOfAllBadges([
-        ...listOfAllBadges,
-        {
-          id: taskId,
-          color: color,
-          name: "",
-          labelId: `${color}${taskId}`,
-        },
-      ]);
+      listOfAllBadges.push({
+        id: taskId,
+        color: color,
+        name: "",
+        labelId: `${color}${taskId}`,
+      });
 
       createLabelsElement(color, taskId);
 
       //CheckIcon Visible
       const checkIcon = document.getElementById(`${color}Check`);
       checkIcon.style.display = "block";
+      setToggle(!toggle);
     } else {
       const indexToDelete = listOfAllBadges.findIndex(
         (ele) => ele.id === taskId && ele.color === color
@@ -381,36 +380,21 @@ const Main = () => {
       const matchedColor = document.getElementById(`${color}${taskId}`);
       matchedColor.remove();
 
-      const matchedColorInWrap = document.getElementById(
-        `${color}${taskId}OptionCover`
-      );
-      if (matchedColorInWrap) {
-        matchedColorInWrap.remove();
-      }
-
       //CheckIcon Visible
       const checkIcon = document.getElementById(`${color}Check`);
       checkIcon.style.display = "none";
+      setToggle(!toggle);
     }
   };
 
   const createLabelsElement = (color, taskId) => {
     const currentTask = document.getElementById(taskId);
-    const currentWrap = document.querySelector(".coverOption_wrapLabel");
 
     const newLabel = document.createElement("div");
     newLabel.classList.add("labelElement");
     newLabel.setAttribute("id", `${color}${taskId}`);
     newLabel.style.backgroundColor = `${color}`;
     currentTask.children[0].appendChild(newLabel);
-    //New Label For wrapElement
-    if (currentWrap) {
-      const newLabelForWrap = document.createElement("div");
-      newLabelForWrap.classList.add("labelElement");
-      newLabelForWrap.setAttribute("id", `${color}${taskId}OptionCover`);
-      newLabelForWrap.style.backgroundColor = `${color}`;
-      currentWrap.appendChild(newLabelForWrap);
-    }
   };
 
   return (

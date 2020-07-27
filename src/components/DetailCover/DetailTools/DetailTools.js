@@ -20,10 +20,11 @@ function DetailTools({
   deleteCard,
   idUpdatedList,
   taskId,
+  matchedColorsToThisCard,
 }) {
   return (
     <StyledDetailToolsWrap>
-      <DetailCoverMarks />
+      <DetailCoverMarks matchedColorsToThisCard={matchedColorsToThisCard} />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}
         labelsVisibility={labelsVisibility}

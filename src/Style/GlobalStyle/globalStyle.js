@@ -66,6 +66,20 @@ const GlobalStyle = createGlobalStyle`
     margin-right:4px
   }
 
+  .labelElement_DetailCover{
+    min-width:40px;
+    width:auto;
+    height:32px;
+    border-radius:3px;
+    margin: 3px 3px 3px 0px;
+    cursor:pointer;
+    transition: 0.1s linear;
+
+    &:hover{
+      opacity: 0.85;
+    }
+  }
+
   .lists{
   top:0;
   left:0;
