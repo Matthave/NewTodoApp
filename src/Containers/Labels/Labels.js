@@ -77,42 +77,52 @@ class Labels extends Component {
 
   saveNameLabel = () => {
     //Zmieniamy wartość name w badges ( renderuje sie nazwa w optionCover i detailCover lables)
-    if (this.state.currentMatchedColors.length === 0) return; // Return If color isn't choosed
-    const matchedBadges = this.props.listOfAllBadges.filter(
-      (ele) => ele.color === this.state.currentMatchedColors
+    const {
+      listOfAllBadges,
+      listOfAllTasksId,
+      labelColors,
+      setLabelColors,
+      handleLabelsVisibility,
+    } = this.props;
+
+    const { currentMatchedColors, nameLabelInputValue } = this.state;
+
+    if (currentMatchedColors.length === 0) return; // Return If color isn't choosed
+    const matchedBadges = listOfAllBadges.filter(
+      (ele) => ele.color === currentMatchedColors
     );
 
     matchedBadges.forEach((ele) => {
-      ele.name = this.state.nameLabelInputValue;
+      ele.name = nameLabelInputValue;
     });
 
     //Od razu pojawia się nazwa labeli w srodku labeli w CARD
-    this.props.listOfAllTasksId.forEach((ele) => {
+    listOfAllTasksId.forEach((ele) => {
       const matchedLabelInCard = document.getElementById(
-        `${this.state.currentMatchedColors}${ele}`
+        `${currentMatchedColors}${ele}`
       );
 
       if (matchedLabelInCard) {
-        matchedLabelInCard.textContent = this.state.nameLabelInputValue;
+        matchedLabelInCard.textContent = nameLabelInputValue;
       }
     });
 
     // zmieniamy odgórne labelColors by wszedzie wyswietlalo sie od razu i tak samo przy tworzeniu nowych
-    const index = this.props.labelColors.findIndex(
-      (ele) => ele.color === this.state.currentMatchedColors
+    const index = labelColors.findIndex(
+      (ele) => ele.color === currentMatchedColors
     );
 
-    const copyOfLabelColor = [...this.props.labelColors];
+    const copyOfLabelColor = [...labelColors];
     copyOfLabelColor.splice(index, 1, {
-      color: this.props.labelColors[index].color,
-      colorName: this.props.labelColors[index].colorName,
-      value: this.state.nameLabelInputValue,
+      color: labelColors[index].color,
+      colorName: labelColors[index].colorName,
+      value: nameLabelInputValue,
     });
 
     //Update
-    this.props.setLabelColors(copyOfLabelColor);
+    setLabelColors(copyOfLabelColor);
     this.nameLabelVisibility(false);
-    this.props.handleLabelsVisibility(false);
+    handleLabelsVisibility(false);
   };
 
   render() {

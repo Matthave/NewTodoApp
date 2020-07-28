@@ -33,6 +33,9 @@ class DetailCover extends React.Component {
       handleLabelsVisibility,
       toggleLabelColorToCard,
       listOfAllBadges,
+      labelColors,
+      setLabelColors,
+      listOfAllTasksId,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -60,6 +63,9 @@ class DetailCover extends React.Component {
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           matchedColorsToThisCard={matchedColorsToThisCard}
+          labelColors={labelColors}
+          setLabelColors={setLabelColors}
+          listOfAllTasksId={listOfAllTasksId}
         />
       </>
     );

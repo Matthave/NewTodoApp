@@ -474,6 +474,9 @@ const Main = () => {
           labelsVisibility={labelsVisibilityDetailsComp}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
+          labelColors={labelColors}
+          setLabelColors={setLabelColors}
+          listOfAllTasksId={listOfAllTasksId}
         />
       ) : null}
     </main>

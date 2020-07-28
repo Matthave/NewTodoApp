@@ -44,6 +44,9 @@ function DetailCoverView({
   toggleLabelColorToCard,
   listOfAllBadges,
   matchedColorsToThisCard,
+  labelColors,
+  setLabelColors,
+  listOfAllTasksId,
 }) {
   return (
     <StyledCover
@@ -86,6 +89,9 @@ function DetailCoverView({
             toggleLabelColorToCard={toggleLabelColorToCard}
             listOfAllBadges={listOfAllBadges}
             taskId={taskId}
+            listOfAllTasksId={listOfAllTasksId}
+            labelColors={labelColors}
+            setLabelColors={setLabelColors}
           />
         ) : null}
       </StyledDetail>
