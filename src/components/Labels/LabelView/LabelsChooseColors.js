@@ -112,6 +112,15 @@ const StyledIconCheck = styled.div`
   color: #fff;
 `;
 
+const StyledNameSox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+`;
 function LabelsChooseColors({
   detailCover,
   handleLabelsVisibility,
@@ -148,7 +157,9 @@ function LabelsChooseColors({
             onClick={() => toggleLabelColorToCard(color.color, taskId)}
             style={{ backgroundColor: `${color.color}` }}
             className="label"
+            id={color.color}
           >
+            <StyledNameSox>{color.value}</StyledNameSox>
             <StyledIconCheck
               className="fas fa-check"
               id={`${color.color}Check`}
@@ -156,7 +167,7 @@ function LabelsChooseColors({
           </StyledLabelElement>{" "}
           <StyledIcon
             className="fas fa-pen label"
-            onClick={() => nameLabelVisibility(true)}
+            onClick={() => nameLabelVisibility(true, color.color)}
           />
         </StyledLabelWrapEle>
       ))}

@@ -54,6 +54,20 @@ const Main = () => {
     },
   ]);
 
+  const [labelColors, setLabelColors] = useState([
+    { color: "#61BD4F", colorName: "green", value: "", id: 0 },
+    { color: "#F2D600", colorName: "yellow", value: "", id: 1 },
+    { color: "#FF9F1A", colorName: "orange", value: "", id: 2 },
+    { color: "#EB5A46", colorName: "red", value: "", id: 3 },
+    { color: "#C377E0", colorName: "purple", value: "", id: 4 },
+    { color: "#0079BF", colorName: "blue", id: 5 },
+    { color: "#00C2E0", colorName: "light blue ocean", value: "", id: 6 },
+    { color: "#51E898", colorName: "light green", value: "", id: 7 },
+    { color: "#FF78CB", colorName: "pink", value: "", id: 8 },
+    { color: "#344563", colorName: "dark blue", value: "", id: 9 },
+    { color: "#B3BAC5", colorName: "grey", value: "", id: 10 },
+  ]);
+
   const hideTheme = (e) => {
     const searchingClass = e.target.className;
     if (
@@ -357,14 +371,18 @@ const Main = () => {
 
     if (matchedBages.length === 0) {
       //Add only if this color and Id don't exist already
+      const nameBadge = labelColors.filter((ele) => ele.color === color);
+      // const dataForClasses = color.slice(1, -1);
+
       listOfAllBadges.push({
         id: taskId,
         color: color,
-        name: "",
+        name: nameBadge[0].value,
         labelId: `${color}${taskId}`,
+        // dataClass: dataForClasses,
       });
 
-      createLabelsElement(color, taskId);
+      createLabelsElement(color, taskId, nameBadge[0].value);
 
       //CheckIcon Visible
       const checkIcon = document.getElementById(`${color}Check`);
@@ -387,13 +405,14 @@ const Main = () => {
     }
   };
 
-  const createLabelsElement = (color, taskId) => {
+  const createLabelsElement = (color, taskId, nameLabel) => {
     const currentTask = document.getElementById(taskId);
 
     const newLabel = document.createElement("div");
-    newLabel.classList.add("labelElement");
+    newLabel.classList.add(`labelElement`);
     newLabel.setAttribute("id", `${color}${taskId}`);
     newLabel.style.backgroundColor = `${color}`;
+    newLabel.textContent = nameLabel;
     currentTask.children[0].appendChild(newLabel);
   };
 
@@ -431,6 +450,9 @@ const Main = () => {
           labelsVisibility={labelsVisibility}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
+          listOfAllTasksId={listOfAllTasksId}
+          labelColors={labelColors}
+          setLabelColors={setLabelColors}
         />
       ) : null}
       {visibilityTaskDetails ? (

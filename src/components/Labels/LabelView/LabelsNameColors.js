@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledBack = styled.span`
@@ -86,10 +86,30 @@ const StyledX = styled.span`
   cursor: pointer;
 `;
 
+const StyledButton = styled.button`
+  width: 75px;
+  height: 32.5px;
+  background-color: #5aac44;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.15s linear;
+
+  &:hover {
+    background-color: #6abc54;
+  }
+`;
+
 function LabelsNameColors({
   nameLabelVisibility,
   filteredColors,
   detailCover,
+  nameLabelInput,
+  nameLabelInputValue,
+  choosedSquar,
+  saveNameLabel,
 }) {
   return (
     <StyledNameLabels className="label" detailCover={detailCover}>
@@ -101,16 +121,25 @@ function LabelsNameColors({
         />
       </StyledLabelTitle>
       <StyledName>Name</StyledName>
-      <StyledLabelInput className="label" marginTop />
+      <StyledLabelInput
+        className="label"
+        marginTop
+        onChange={(e) => nameLabelInput(e)}
+        value={nameLabelInputValue}
+      />
       <StyledName>Colors</StyledName>
       <StyledWrapColors>
         {filteredColors.map((color) => (
           <StyledColorSquar
             style={{ backgroundColor: `${color.color}` }}
+            className="label_colorSquar"
             key={color.color}
+            id={color.color}
+            onClick={(e) => choosedSquar(e, color.color)}
           />
         ))}
       </StyledWrapColors>
+      <StyledButton onClick={() => saveNameLabel()}>SAVE</StyledButton>
     </StyledNameLabels>
   );
 }

@@ -56,8 +56,8 @@ function DetailCoverMarks({ matchedColorsToThisCard }) {
             <div
               key={ele.color}
               id={`${ele.labelId}DetailCover`}
-              className="labelElement_DetailCover"
-              style={{ backgroundColor: ele.color }}
+              className={`labelElement_DetailCover`}
+              style={{ backgroundColor: ele.color, margin: "0px 5px 0px 0px" }}
             >
               {ele.name}
             </div>

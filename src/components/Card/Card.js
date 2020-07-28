@@ -4,7 +4,14 @@ class Card extends Component {
   state = {
     selected: false,
     scrollHeight: 0,
+    taskk: "",
   };
+
+  componentDidMount() {
+    this.setState({
+      taskk: this.props.task.taskName,
+    });
+  }
 
   mouseDownFeature = (e) => {
     if (e.target.classList[0] !== "card") return;
@@ -32,14 +39,21 @@ class Card extends Component {
 
     const scrollHeighFromMain = Math.floor(scrollPosition);
     const taskId = e.target.getAttribute("id");
+    const draggedCard = document.getElementById(taskId);
 
-    const wrapLabels = document.querySelectorAll(".card_wrapLabel");
-    wrapLabels.forEach((ele) => {
-      ele.style.width = "100%";
-    });
+    const draggedCardChildren = draggedCard.children;
+    const draggenCardLabelsChildren = [...draggedCardChildren[0].children];
+
+    if (draggedCard.children[0].children.length !== 0) {
+      draggedCard.children[0].style.width = "100%";
+      draggedCard.children[0].style.fontSize = "initial";
+    }
 
     if (e.pageX < 285 - scrollHeighFromMain) {
       if (wholeList[0].id === listId) return this.mouseLeaveFeature(e); //When put card in this same place
+      draggenCardLabelsChildren.forEach((ele) => {
+        ele.textContent = "";
+      });
       deleteCardFeatureByMove(listId, taskId);
       addNewCardFeature(wholeList[0].id, e.target.textContent, taskId);
     }
@@ -50,7 +64,10 @@ class Card extends Component {
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
         wholeList.length >= i + 1
       ) {
-        if (wholeList[i].id === listId) return this.mouseLeaveFeature(e);
+        if (wholeList[i].id === listId) return this.mouseLeaveFeature(e); //When put card in this same place
+        draggenCardLabelsChildren.forEach((ele) => {
+          ele.textContent = "";
+        });
         deleteCardFeatureByMove(listId, taskId);
         addNewCardFeature(wholeList[i].id, e.target.textContent, taskId);
       }
@@ -74,10 +91,13 @@ class Card extends Component {
       e.target.style.transform = "rotate(5deg)";
       e.target.style.zIndex = 999;
 
-      const wrapLabels = document.querySelectorAll(".card_wrapLabel");
-      wrapLabels.forEach((ele) => {
-        ele.style.width = "25%";
-      });
+      const taskId = e.target.getAttribute("id");
+      const draggedCard = document.getElementById(taskId);
+
+      if (draggedCard.children[0].children.length !== 0) {
+        draggedCard.children[0].style.width = "25%";
+        draggedCard.children[0].style.fontSize = "0px";
+      }
 
       const allBlankSpan = document.querySelectorAll(".blank");
       allBlankSpan.forEach((all) => {
@@ -109,6 +129,11 @@ class Card extends Component {
   };
 
   mouseLeaveFeature = (e) => {
+    const cardWrapLabel = document.querySelectorAll(".card_wrapLabel");
+    cardWrapLabel.forEach((ele) => {
+      ele.style.width = "100%";
+    });
+
     e.target.style.cursor = "pointer";
     e.target.style.position = "static";
     e.target.style.transform = "rotate(0deg)";
@@ -134,7 +159,7 @@ class Card extends Component {
         id={task.id}
         className="card"
         onDoubleClick={(e) =>
-          taskDetailsFunction(e.target.textContent, inputTitle, listId, task.id)
+          taskDetailsFunction(task.taskName, inputTitle, listId, task.id)
         }
         onMouseDown={(e) => this.mouseDownFeature(e)}
         onMouseUp={(e) => this.mouseUpFeature(e)}

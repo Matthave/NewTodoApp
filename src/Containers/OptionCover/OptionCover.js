@@ -48,6 +48,9 @@ class OptionCover extends Component {
       labelsVisibility,
       toggleLabelColorToCard,
       listOfAllBadges,
+      listOfAllTasksId,
+      labelColors,
+      setLabelColors,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -71,6 +74,9 @@ class OptionCover extends Component {
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           matchedColorsToThisCard={matchedColorsToThisCard}
+          listOfAllTasksId={listOfAllTasksId}
+          labelColors={labelColors}
+          setLabelColors={setLabelColors}
         />
       </>
     );

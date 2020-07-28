@@ -13,6 +13,10 @@ function LabelsView({
   searchLabelColor,
   searchInputLabel,
   filteredColors,
+  nameLabelInput,
+  nameLabelInputValue,
+  choosedSquar,
+  saveNameLabel,
 }) {
   return (
     <>
@@ -21,6 +25,10 @@ function LabelsView({
           nameLabelVisibility={nameLabelVisibility}
           filteredColors={filteredColors}
           detailCover={detailCover}
+          nameLabelInput={nameLabelInput}
+          nameLabelInputValue={nameLabelInputValue}
+          choosedSquar={choosedSquar}
+          saveNameLabel={saveNameLabel}
         />
       ) : (
         <LabelsChooseColors

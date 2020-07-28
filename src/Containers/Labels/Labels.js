@@ -3,21 +3,10 @@ import LabelsView from "../../components/Labels/LabelsView";
 
 class Labels extends Component {
   state = {
-    labelColors: [
-      { color: "#61BD4F", colorName: "green" },
-      { color: "#F2D600", colorName: "yellow" },
-      { color: "#FF9F1A", colorName: "orange" },
-      { color: "#EB5A46", colorName: "red" },
-      { color: "#C377E0", colorName: "purple" },
-      { color: "#0079BF", colorName: "blue" },
-      { color: "#00C2E0", colorName: "light blue ocean" },
-      { color: "#51E898", colorName: "light green" },
-      { color: "#FF78CB", colorName: "pink" },
-      { color: "#344563", colorName: "dark blue" },
-      { color: "#B3BAC5", colorName: "grey" },
-    ],
     labelVisibility: false,
     searchInputLabel: "",
+    nameLabelInputValue: "",
+    currentMatchedColors: "",
   };
 
   nameLabelVisibility = (toggle) => {
@@ -46,6 +35,64 @@ class Labels extends Component {
     });
   };
 
+  nameLabelInput = (e) => {
+    this.setState({
+      nameLabelInputValue: e.target.value.substr(0, 17),
+    });
+  };
+
+  choosedSquar = (e, colorId) => {
+    const allSquars = document.querySelectorAll(".label_colorSquar");
+    allSquars.forEach((ele) => {
+      ele.style.border = "none";
+    });
+    e.target.style.border = "1px solid black";
+
+    this.setState({
+      currentMatchedColors: colorId,
+    });
+  };
+
+  saveNameLabel = () => {
+    //Zmieniamy wartość name w badges ( renderuje sie nazwa w optionCover i detailCover lables)
+    if (this.state.currentMatchedColors.length === 0) return; // Return If color isn't choosed
+    const matchedBadges = this.props.listOfAllBadges.filter(
+      (ele) => ele.color === this.state.currentMatchedColors
+    );
+
+    matchedBadges.forEach((ele) => {
+      ele.name = this.state.nameLabelInputValue;
+    });
+
+    //Od razu pojawia się nazwa labeli w srodku labeli w CARD
+    this.props.listOfAllTasksId.forEach((ele) => {
+      const matchedLabelInCard = document.getElementById(
+        `${this.state.currentMatchedColors}${ele}`
+      );
+
+      if (matchedLabelInCard) {
+        matchedLabelInCard.textContent = this.state.nameLabelInputValue;
+      }
+    });
+
+    // zmieniamy odgórne labelColors by wszedzie wyswietlalo sie od razu i tak samo przy tworzeniu nowych
+    const index = this.props.labelColors.findIndex(
+      (ele) => ele.color === this.state.currentMatchedColors
+    );
+
+    const copyOfLabelColor = [...this.props.labelColors];
+    copyOfLabelColor.splice(index, 1, {
+      color: this.props.labelColors[index].color,
+      colorName: this.props.labelColors[index].colorName,
+      value: this.state.nameLabelInputValue,
+    });
+
+    //Update
+    this.props.setLabelColors(copyOfLabelColor);
+    this.nameLabelVisibility(false);
+    this.props.handleLabelsVisibility(false);
+  };
+
   render() {
     const {
       handleLabelsVisibility,
@@ -54,9 +101,14 @@ class Labels extends Component {
       optionCoverData,
       toggleLabelColorToCard,
       taskId,
+      labelColors,
     } = this.props;
 
-    const { labelColors, searchInputLabel, labelVisibility } = this.state;
+    const {
+      searchInputLabel,
+      labelVisibility,
+      nameLabelInputValue,
+    } = this.state;
 
     const copyOfColorsArray = [...labelColors];
     const filteredColors = copyOfColorsArray.filter((ele) =>
@@ -76,6 +128,10 @@ class Labels extends Component {
         searchLabelColor={this.searchLabelColor}
         searchInputLabel={searchInputLabel}
         filteredColors={filteredColors}
+        nameLabelInput={this.nameLabelInput}
+        nameLabelInputValue={nameLabelInputValue}
+        choosedSquar={this.choosedSquar}
+        saveNameLabel={this.saveNameLabel}
       />
     );
   }

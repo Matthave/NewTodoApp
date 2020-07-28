@@ -52,18 +52,26 @@ const GlobalStyle = createGlobalStyle`
   }
   }
 
+  .card_cardWrapContent{
+    display:flex;
+    justify-content:space-around
+  }
+
   .card_wrapLabel{
     display:flex;
     flex-wrap:wrap;
     width:100%;
+    transition:0.1s linear;
   }
 
   .labelElement{
-    width: 15%;
-    height:8px;
+    min-width: 15%;
+    min-height:8px;
     border-radius:5px;
     margin-bottom:4px;
-    margin-right:4px
+    margin-right:4px;
+    padding: 3px;
+    color:white;
   }
 
   .labelElement_DetailCover{
@@ -74,6 +82,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 3px 3px 3px 0px;
     cursor:pointer;
     transition: 0.1s linear;
+    padding: 8px 5px;
+    color:white;
+    font-size:14px;
+    font-weight:600;
 
     &:hover{
       opacity: 0.85;

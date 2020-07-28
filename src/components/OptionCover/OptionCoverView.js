@@ -78,6 +78,9 @@ const OptionCover = ({
   toggleLabelColorToCard,
   listOfAllBadges,
   matchedColorsToThisCard,
+  listOfAllTasksId,
+  labelColors,
+  setLabelColors,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -88,7 +91,7 @@ const OptionCover = ({
               <div
                 key={ele.color}
                 id={`${ele.labelId}OptionCover`}
-                className="labelElement"
+                className={`labelElement`}
                 style={{ backgroundColor: ele.color }}
               >
                 {ele.name}
@@ -129,6 +132,9 @@ const OptionCover = ({
             toggleLabelColorToCard={toggleLabelColorToCard}
             taskId={optionCoverData[0].clickedCardId}
             listOfAllBadges={listOfAllBadges}
+            listOfAllTasksId={listOfAllTasksId}
+            labelColors={labelColors}
+            setLabelColors={setLabelColors}
           />
         ) : null}
       </StyledOptionBox>
