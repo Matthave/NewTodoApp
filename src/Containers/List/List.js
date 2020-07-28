@@ -221,6 +221,8 @@ class List extends Component {
       visibilityOptionFunction,
       taskDetailsFunction,
       clearAllBlankSpan,
+      hideFontSizeLabel,
+      setHideFontSizeLabel,
     } = this.props;
     const {
       showAddField,
@@ -254,6 +256,8 @@ class List extends Component {
           setListTitle={this.setListTitle}
           addNewCardFeature={this.addNewCardFeature}
           deleteCardFeatureByMove={this.deleteCardFeatureByMove}
+          hideFontSizeLabel={hideFontSizeLabel}
+          setHideFontSizeLabel={setHideFontSizeLabel}
         />
       </div>
     );

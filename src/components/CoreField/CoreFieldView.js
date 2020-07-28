@@ -99,6 +99,8 @@ function CoreFieldView({
   addNewListByKey,
   elementHoverEnter,
   elementHoverLeave,
+  hideFontSizeLabel,
+  setHideFontSizeLabel,
 }) {
   return (
     <StyledMain
@@ -126,6 +128,8 @@ function CoreFieldView({
             updateListTitle={updateListTitle}
             moveListToAnotherPlace={moveListToAnotherPlace}
             clearAllBlankSpan={clearAllBlankSpan}
+            hideFontSizeLabel={hideFontSizeLabel}
+            setHideFontSizeLabel={setHideFontSizeLabel}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>

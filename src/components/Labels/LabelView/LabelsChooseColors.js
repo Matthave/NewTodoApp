@@ -167,7 +167,7 @@ function LabelsChooseColors({
           </StyledLabelElement>{" "}
           <StyledIcon
             className="fas fa-pen label"
-            onClick={() => nameLabelVisibility(true, color.color)}
+            onClick={(e) => nameLabelVisibility(e, true, color.color, "edit")}
           />
         </StyledLabelWrapEle>
       ))}

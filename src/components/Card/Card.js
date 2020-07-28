@@ -46,7 +46,7 @@ class Card extends Component {
 
     if (draggedCard.children[0].children.length !== 0) {
       draggedCard.children[0].style.width = "100%";
-      draggedCard.children[0].style.fontSize = "initial";
+      draggedCard.children[0].style.fontSize = "12px";
     }
 
     if (e.pageX < 285 - scrollHeighFromMain) {
@@ -145,6 +145,10 @@ class Card extends Component {
     });
   };
 
+  labelFontSizeToggle = (hideFontSizeLabel) => {
+    this.props.setHideFontSizeLabel(!hideFontSizeLabel);
+  };
+
   render() {
     const {
       task,
@@ -152,6 +156,7 @@ class Card extends Component {
       listId,
       taskDetailsFunction,
       visibilityOptionFunction,
+      hideFontSizeLabel,
     } = this.props;
 
     return (
@@ -166,7 +171,11 @@ class Card extends Component {
         onMouseMove={(e) => this.mouseMoveFeature(e)}
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
       >
-        <div className="card_wrapLabel">
+        <div
+          className="card_wrapLabel"
+          onClick={() => this.labelFontSizeToggle(hideFontSizeLabel)}
+          style={{ fontSize: hideFontSizeLabel ? 0 : "12px" }}
+        >
           {task.badges.map((ele) => (
             <div
               key={ele.color}

@@ -45,6 +45,8 @@ function ListView({
   setListTitle,
   addNewCardFeature,
   deleteCardFeatureByMove,
+  hideFontSizeLabel,
+  setHideFontSizeLabel,
 }) {
   return (
     <div
@@ -76,6 +78,8 @@ function ListView({
           taskDetailsFunction={taskDetailsFunction}
           inputTitle={inputTitle}
           clearAllBlankSpan={clearAllBlankSpan}
+          hideFontSizeLabel={hideFontSizeLabel}
+          setHideFontSizeLabel={setHideFontSizeLabel}
         />
       ))}
       <div className="blank" />

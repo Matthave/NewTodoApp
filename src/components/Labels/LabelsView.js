@@ -17,6 +17,7 @@ function LabelsView({
   nameLabelInputValue,
   choosedSquar,
   saveNameLabel,
+  currentSquarEdit,
 }) {
   return (
     <>
@@ -29,6 +30,7 @@ function LabelsView({
           nameLabelInputValue={nameLabelInputValue}
           choosedSquar={choosedSquar}
           saveNameLabel={saveNameLabel}
+          currentSquarEdit={currentSquarEdit}
         />
       ) : (
         <LabelsChooseColors

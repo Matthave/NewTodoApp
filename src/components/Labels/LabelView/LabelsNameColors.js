@@ -110,14 +110,19 @@ function LabelsNameColors({
   nameLabelInputValue,
   choosedSquar,
   saveNameLabel,
+  currentSquarEdit,
 }) {
   return (
     <StyledNameLabels className="label" detailCover={detailCover}>
       <StyledLabelTitle className="label">
-        Change Label <StyledX className="fas fa-times" />
+        Change Label{" "}
+        <StyledX
+          className="fas fa-times"
+          onClick={(e) => nameLabelVisibility(e, false, null)}
+        />
         <StyledBack
           className="fas fa-angle-left label"
-          onClick={() => nameLabelVisibility(false)}
+          onClick={(e) => nameLabelVisibility(e, false, null, "back")}
         />
       </StyledLabelTitle>
       <StyledName>Name</StyledName>
@@ -131,7 +136,11 @@ function LabelsNameColors({
       <StyledWrapColors>
         {filteredColors.map((color) => (
           <StyledColorSquar
-            style={{ backgroundColor: `${color.color}` }}
+            style={{
+              backgroundColor: `${color.color}`,
+              border:
+                currentSquarEdit === color.color ? "1.5px solid black" : null,
+            }}
             className="label_colorSquar"
             key={color.color}
             id={color.color}

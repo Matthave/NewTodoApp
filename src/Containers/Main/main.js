@@ -29,6 +29,7 @@ const Main = () => {
 
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
+  const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -439,6 +440,8 @@ const Main = () => {
         updateListTitle={updateListTitle}
         moveListToAnotherPlace={moveListToAnotherPlace}
         clearAllBlankSpan={clearAllBlankSpan}
+        hideFontSizeLabel={hideFontSizeLabel}
+        setHideFontSizeLabel={setHideFontSizeLabel}
       />
       {visibilityOptionsCover ? (
         <OptionCover

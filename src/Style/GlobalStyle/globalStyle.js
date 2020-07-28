@@ -62,6 +62,10 @@ const GlobalStyle = createGlobalStyle`
     flex-wrap:wrap;
     width:100%;
     transition:0.1s linear;
+
+    &:hover{
+      opacity:0.6;
+    }
   }
 
   .labelElement{

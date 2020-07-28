@@ -7,10 +7,32 @@ class Labels extends Component {
     searchInputLabel: "",
     nameLabelInputValue: "",
     currentMatchedColors: "",
+    currentSquarEdit: "",
   };
 
-  nameLabelVisibility = (toggle) => {
-    this.setState({ labelVisibility: toggle });
+  nameLabelVisibility = (e, toggle, colorId, from) => {
+    if (from === "back") {
+      this.setState({
+        labelVisibility: toggle,
+      });
+      return;
+    }
+    if (colorId === null) {
+      this.setState({
+        labelVisibility: toggle,
+      });
+      this.props.handleLabelsVisibility(false);
+      return;
+    }
+    if (from === "edit") {
+      const isAnyTextAlready = e.target.parentNode.textContent;
+      this.setState({
+        labelVisibility: toggle,
+        currentSquarEdit: colorId,
+        currentMatchedColors: colorId,
+        nameLabelInputValue: isAnyTextAlready,
+      });
+    }
   };
 
   generateCheckIcon = () => {
@@ -46,7 +68,7 @@ class Labels extends Component {
     allSquars.forEach((ele) => {
       ele.style.border = "none";
     });
-    e.target.style.border = "1px solid black";
+    e.target.style.border = "1.5px solid black";
 
     this.setState({
       currentMatchedColors: colorId,
@@ -108,6 +130,7 @@ class Labels extends Component {
       searchInputLabel,
       labelVisibility,
       nameLabelInputValue,
+      currentSquarEdit,
     } = this.state;
 
     const copyOfColorsArray = [...labelColors];
@@ -132,6 +155,7 @@ class Labels extends Component {
         nameLabelInputValue={nameLabelInputValue}
         choosedSquar={this.choosedSquar}
         saveNameLabel={this.saveNameLabel}
+        currentSquarEdit={currentSquarEdit}
       />
     );
   }
