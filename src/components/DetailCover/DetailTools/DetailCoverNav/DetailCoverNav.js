@@ -64,7 +64,7 @@ function DetailCoverNav({
           className="label"
         >
           <StyledIcon className="fas fa-tag label" />
-          Edit lables
+          Edit labels
         </StyledDetailList>
         <StyledDetailList>
           <StyledIcon className="fas fa-list-alt" />

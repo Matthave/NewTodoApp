@@ -24,7 +24,11 @@ function DetailTools({
 }) {
   return (
     <StyledDetailToolsWrap>
-      <DetailCoverMarks matchedColorsToThisCard={matchedColorsToThisCard} />
+      <DetailCoverMarks
+        matchedColorsToThisCard={matchedColorsToThisCard}
+        handleLabelsVisibility={handleLabelsVisibility}
+        labelsVisibility={labelsVisibility}
+      />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}
         labelsVisibility={labelsVisibility}

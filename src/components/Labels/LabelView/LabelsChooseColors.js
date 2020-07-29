@@ -8,7 +8,7 @@ const StyledLabels = styled.div`
   top: ${(props) => (props.detailCover ? "96px" : "0")};
   left: ${(props) => (props.detailCover ? "390px" : "0")};
   width: 310px;
-  height: 605px;
+  height: 555px;
   transform: translate(270px);
   background-color: #fff;
   border-radius: 4px;
@@ -75,22 +75,22 @@ const StyledLabelInput = styled.input`
   }
 `;
 
-const StyledBtn = styled.div`
-  width: 95%;
-  background-color: #f5f6f8;
-  text-align: center;
-  padding: 8px 5px;
-  margin: 0 auto;
-  margin-top: 15px;
-  font-size: 13px;
-  color: #42516e;
-  box-shadow: 0px 0px 1px 1.5px #ebecef;
-  cursor: pointer;
+// const StyledBtn = styled.div`
+//   width: 95%;
+//   background-color: #f5f6f8;
+//   text-align: center;
+//   padding: 8px 5px;
+//   margin: 0 auto;
+//   margin-top: 15px;
+//   font-size: 13px;
+//   color: #42516e;
+//   box-shadow: 0px 0px 1px 1.5px #ebecef;
+//   cursor: pointer;
 
-  &:hover {
-    background-color: #e5e6e8;
-  }
-`;
+//   &:hover {
+//     background-color: #e5e6e8;
+//   }
+// `;
 
 const StyledX = styled.span`
   position: fixed;
@@ -171,7 +171,7 @@ function LabelsChooseColors({
           />
         </StyledLabelWrapEle>
       ))}
-      <StyledBtn className="label">Create Label</StyledBtn>
+      {/* <StyledBtn className="label">Create Label</StyledBtn> */}
     </StyledLabels>
   );
 }

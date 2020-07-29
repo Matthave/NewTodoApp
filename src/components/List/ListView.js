@@ -88,6 +88,7 @@ function ListView({
         onChange={(e) => setTextAreaValue(e)}
         onClick={() => swapAddFieldFeature("textArea")}
         showStyle={showAddField}
+        placeholder="Add title for this card..."
       />
       <ListButtons
         showAddField={showAddField}

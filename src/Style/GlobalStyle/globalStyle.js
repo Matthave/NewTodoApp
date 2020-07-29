@@ -69,6 +69,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .labelElement{
+    align-self:center;
     min-width: 15%;
     min-height:8px;
     border-radius:5px;
@@ -76,6 +77,7 @@ const GlobalStyle = createGlobalStyle`
     margin-right:4px;
     padding: 3px;
     color:white;
+    transition: 0.1s linear;
   }
 
   .labelElement_DetailCover{
@@ -100,6 +102,7 @@ const GlobalStyle = createGlobalStyle`
   top:0;
   left:0;
   width: 275px;
+  max-height: 80vh;
   margin-right: 10px;
   align-self: flex-start;
   background-color: #ebecf0;
@@ -107,6 +110,24 @@ const GlobalStyle = createGlobalStyle`
   padding: 10px 7.5px;
   margin-bottom: 15px;
   cursor: pointer;
+  overflow-y:scroll;
+
+  &::-webkit-scrollbar{
+    width:1px;
+}
+
+&::-webkit-scrollbar-track{
+    background:rgba(0,0,0,0);
+}
+
+&::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,0);
+  border-radius: 10px;
+  height:10px;
+}
+&::-webkit-scrollbar-thumb:hover{
+  background:rgba(0,0,0,0);
+}
   }
   
   .singleListWrap{

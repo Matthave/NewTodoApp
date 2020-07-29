@@ -15,6 +15,8 @@ const StyledDetailDescription = styled.div`
 const StyledTitle = styled.h2`
   width: 100%;
   color: #42516e;
+  margin-bottom: ${(props) => (props.marginBottom ? "10px" : "none")};
+  margin-top: ${(props) => (props.marginTop ? "10px" : "none")};
 `;
 
 const StyledTextArea = styled.textarea`
@@ -46,23 +48,45 @@ const StyledLabelsWrap = styled.div`
   flex-wrap: wrap;
 `;
 
-function DetailCoverMarks({ matchedColorsToThisCard }) {
+const StyledPlaceholder = styled.h3`
+  text-align: center;
+  color: #172b4d;
+  font-size: 14px;
+  font-weight: 400;
+`;
+
+function DetailCoverMarks({
+  matchedColorsToThisCard,
+  handleLabelsVisibility,
+  labelsVisibility,
+}) {
   return (
     <StyledDetailMarks>
       <div>
-        <h2>Lables</h2>
-        <StyledLabelsWrap className="detailCover_labelsWrap">
-          {matchedColorsToThisCard.map((ele) => (
-            <div
-              key={ele.color}
-              id={`${ele.labelId}DetailCover`}
-              className={`labelElement_DetailCover`}
-              style={{ backgroundColor: ele.color, margin: "0px 5px 5px 0px" }}
-            >
-              {ele.name}
-            </div>
-          ))}
-        </StyledLabelsWrap>
+        <StyledTitle marginBottom marginTop>
+          <StyledIcon className="fas fa-tag" />
+          Labels
+        </StyledTitle>
+        {matchedColorsToThisCard.length === 0 ? (
+          <StyledPlaceholder>This card have no labels yet</StyledPlaceholder>
+        ) : (
+          <StyledLabelsWrap className="detailCover_labelsWrap">
+            {matchedColorsToThisCard.map((ele) => (
+              <div
+                key={ele.color}
+                id={`${ele.labelId}DetailCover`}
+                className={`labelElement_DetailCover`}
+                style={{
+                  backgroundColor: ele.color,
+                  margin: "0px 5px 5px 0px",
+                }}
+                onClick={() => handleLabelsVisibility(!labelsVisibility)}
+              >
+                {ele.name}
+              </div>
+            ))}
+          </StyledLabelsWrap>
+        )}
       </div>
       <StyledDetailDescription>
         <StyledTitle>
