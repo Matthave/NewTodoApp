@@ -58,12 +58,7 @@ function OptionCoverListView({
           Date Change
         </StyledList>
         <StyledList
-          onClick={() =>
-            addPriorityForCards(
-              optionCoverData[0].clickedCard,
-              optionCoverData[0].clickedCardId
-            )
-          }
+          onClick={() => addPriorityForCards(optionCoverData[0].clickedCardId)}
         >
           <StyledIcon className="fas fa-exclamation-circle" />
           Priority

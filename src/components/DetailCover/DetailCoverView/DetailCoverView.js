@@ -47,6 +47,7 @@ function DetailCoverView({
   labelColors,
   setLabelColors,
   listOfAllTasksId,
+  addPriorityForCards,
 }) {
   return (
     <StyledCover
@@ -81,6 +82,7 @@ function DetailCoverView({
           idUpdatedList={idUpdatedList}
           taskId={taskId}
           matchedColorsToThisCard={matchedColorsToThisCard}
+          addPriorityForCards={addPriorityForCards}
         />
         {labelsVisibility ? (
           <Labels

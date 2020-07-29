@@ -81,6 +81,7 @@ const OptionCover = ({
   listOfAllTasksId,
   labelColors,
   setLabelColors,
+  addPriorityForCards,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -131,6 +132,7 @@ const OptionCover = ({
           listId={optionCoverData[0].listId}
           handleLabelsVisibility={handleLabelsVisibility}
           optionCoverData={optionCoverData}
+          addPriorityForCards={addPriorityForCards}
         />
 
         {labelsVisibility ? (

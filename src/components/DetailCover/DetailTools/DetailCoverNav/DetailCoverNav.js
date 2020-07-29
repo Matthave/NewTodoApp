@@ -54,6 +54,7 @@ function DetailCoverNav({
   deleteCard,
   idUpdatedList,
   taskId,
+  addPriorityForCards,
 }) {
   return (
     <StyledDetailNav>
@@ -89,7 +90,7 @@ function DetailCoverNav({
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledDetailList>
-        <StyledDetailList>
+        <StyledDetailList onClick={() => addPriorityForCards(taskId)}>
           <StyledIcon className="fas fa-exclamation-circle" />
           Priority
         </StyledDetailList>

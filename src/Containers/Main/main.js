@@ -29,6 +29,7 @@ const Main = () => {
 
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
+  const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
@@ -103,6 +104,10 @@ const Main = () => {
   const listOption = (listId) => {
     const copyWholeList = [...wholeList];
     const filterWholeList = copyWholeList.filter((list) => list.id !== listId);
+    const deletedList = copyWholeList.filter((list) => list.id === listId);
+    deletedList[0].tasks.forEach((ele) => {
+      deleteCard(listId, ele.id, "byButton");
+    });
 
     setWholeList(filterWholeList);
   };
@@ -112,6 +117,9 @@ const Main = () => {
     if (newTask.length === 0) return;
 
     const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
+    const matchedPriority = listOfAllPriorityTasks.filter(
+      (ele) => ele === taskId
+    );
     const theBiggestId = Math.max(...listOfAllTasksId);
 
     //"Add card" by move already existing card
@@ -122,7 +130,7 @@ const Main = () => {
         currentList: listId,
         comment: "",
         badges: matchedBadges,
-        priority: false,
+        priority: `${matchedPriority.length === 0 ? null : "priority"}`,
         date: "",
         cover: "",
       });
@@ -156,8 +164,13 @@ const Main = () => {
     );
 
     if (byButton === "byButton") {
+      console.log(listId, taskId, byButton);
       //Delete Card Badges from array if matched exist
       const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
+      const matchedPriorityIndex = listOfAllPriorityTasks.findIndex(
+        (ele) => ele === taskId
+      );
+      listOfAllPriorityTasks.splice(matchedPriorityIndex, 1);
       if (matchedBadges.length !== 0) {
         matchedBadges.forEach((element) => {
           const indexOfBadgedToDelete = listOfAllBadges.findIndex(
@@ -419,6 +432,21 @@ const Main = () => {
     currentTask.children[0].appendChild(newLabel);
   };
 
+  const addPriorityForCards = (cardId) => {
+    if (!listOfAllPriorityTasks.includes(cardId)) {
+      setListOfPriority([...listOfAllPriorityTasks, cardId]);
+      const clickedCardDOM = document.getElementById(cardId);
+      clickedCardDOM.style.border = "1px solid red";
+    } else if (listOfAllPriorityTasks.includes(cardId)) {
+      const indexToDelete = listOfAllPriorityTasks.findIndex(
+        (ele) => ele === cardId
+      );
+      listOfAllPriorityTasks.splice(indexToDelete, 1);
+      const clickedCardDOM = document.getElementById(cardId);
+      clickedCardDOM.style.border = null;
+    }
+  };
+
   return (
     <main>
       <Navigations
@@ -458,6 +486,7 @@ const Main = () => {
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
+          addPriorityForCards={addPriorityForCards}
         />
       ) : null}
       {visibilityTaskDetails ? (
@@ -479,6 +508,7 @@ const Main = () => {
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
+          addPriorityForCards={addPriorityForCards}
         />
       ) : null}
     </main>

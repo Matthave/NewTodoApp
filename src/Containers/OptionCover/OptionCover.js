@@ -51,6 +51,7 @@ class OptionCover extends Component {
       listOfAllTasksId,
       labelColors,
       setLabelColors,
+      addPriorityForCards,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -77,6 +78,7 @@ class OptionCover extends Component {
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
+          addPriorityForCards={addPriorityForCards}
         />
       </>
     );

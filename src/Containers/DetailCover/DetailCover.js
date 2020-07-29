@@ -36,6 +36,7 @@ class DetailCover extends React.Component {
       labelColors,
       setLabelColors,
       listOfAllTasksId,
+      addPriorityForCards,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -66,6 +67,7 @@ class DetailCover extends React.Component {
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
+          addPriorityForCards={addPriorityForCards}
         />
       </>
     );

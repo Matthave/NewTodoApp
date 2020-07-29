@@ -21,6 +21,7 @@ function DetailTools({
   idUpdatedList,
   taskId,
   matchedColorsToThisCard,
+  addPriorityForCards,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -35,6 +36,7 @@ function DetailTools({
         deleteCard={deleteCard}
         idUpdatedList={idUpdatedList}
         taskId={taskId}
+        addPriorityForCards={addPriorityForCards}
       />
     </StyledDetailToolsWrap>
   );

@@ -170,6 +170,9 @@ class Card extends Component {
         onMouseUp={(e) => this.mouseUpFeature(e)}
         onMouseMove={(e) => this.mouseMoveFeature(e)}
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
+        style={{
+          border: task.priority === "priority" ? "1px solid red" : null,
+        }}
       >
         <div
           className="card_wrapLabel"
