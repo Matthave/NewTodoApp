@@ -75,7 +75,7 @@ class Labels extends Component {
     });
   };
 
-  saveNameLabel = () => {
+  saveNameLabel = (e) => {
     //Zmieniamy wartość name w badges ( renderuje sie nazwa w optionCover i detailCover lables)
     const {
       listOfAllBadges,
@@ -85,44 +85,46 @@ class Labels extends Component {
       handleLabelsVisibility,
     } = this.props;
 
-    const { currentMatchedColors, nameLabelInputValue } = this.state;
+    if (e.target.className.includes("label_saveBtn") || e.which === 13) {
+      const { currentMatchedColors, nameLabelInputValue } = this.state;
 
-    if (currentMatchedColors.length === 0) return; // Return If color isn't choosed
-    const matchedBadges = listOfAllBadges.filter(
-      (ele) => ele.color === currentMatchedColors
-    );
-
-    matchedBadges.forEach((ele) => {
-      ele.name = nameLabelInputValue;
-    });
-
-    //Od razu pojawia się nazwa labeli w srodku labeli w CARD
-    listOfAllTasksId.forEach((ele) => {
-      const matchedLabelInCard = document.getElementById(
-        `${currentMatchedColors}${ele}`
+      if (currentMatchedColors.length === 0) return; // Return If color isn't choosed
+      const matchedBadges = listOfAllBadges.filter(
+        (ele) => ele.color === currentMatchedColors
       );
 
-      if (matchedLabelInCard) {
-        matchedLabelInCard.textContent = nameLabelInputValue;
-      }
-    });
+      matchedBadges.forEach((ele) => {
+        ele.name = nameLabelInputValue;
+      });
 
-    // zmieniamy odgórne labelColors by wszedzie wyswietlalo sie od razu i tak samo przy tworzeniu nowych
-    const index = labelColors.findIndex(
-      (ele) => ele.color === currentMatchedColors
-    );
+      //Od razu pojawia się nazwa labeli w srodku labeli w CARD
+      listOfAllTasksId.forEach((ele) => {
+        const matchedLabelInCard = document.getElementById(
+          `${currentMatchedColors}${ele}`
+        );
 
-    const copyOfLabelColor = [...labelColors];
-    copyOfLabelColor.splice(index, 1, {
-      color: labelColors[index].color,
-      colorName: labelColors[index].colorName,
-      value: nameLabelInputValue,
-    });
+        if (matchedLabelInCard) {
+          matchedLabelInCard.textContent = nameLabelInputValue;
+        }
+      });
 
-    //Update
-    setLabelColors(copyOfLabelColor);
-    this.nameLabelVisibility(false);
-    handleLabelsVisibility(false);
+      // zmieniamy odgórne labelColors by wszedzie wyswietlalo sie od razu i tak samo przy tworzeniu nowych
+      const index = labelColors.findIndex(
+        (ele) => ele.color === currentMatchedColors
+      );
+
+      const copyOfLabelColor = [...labelColors];
+      copyOfLabelColor.splice(index, 1, {
+        color: labelColors[index].color,
+        colorName: labelColors[index].colorName,
+        value: nameLabelInputValue,
+      });
+
+      //Update
+      setLabelColors(copyOfLabelColor);
+      this.nameLabelVisibility(false);
+      handleLabelsVisibility(false);
+    }
   };
 
   render() {

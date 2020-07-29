@@ -113,7 +113,11 @@ function LabelsNameColors({
   currentSquarEdit,
 }) {
   return (
-    <StyledNameLabels className="label" detailCover={detailCover}>
+    <StyledNameLabels
+      className="label"
+      detailCover={detailCover}
+      onKeyPress={(e) => saveNameLabel(e)}
+    >
       <StyledLabelTitle className="label">
         Change Label{" "}
         <StyledX
@@ -148,7 +152,9 @@ function LabelsNameColors({
           />
         ))}
       </StyledWrapColors>
-      <StyledButton onClick={() => saveNameLabel()}>SAVE</StyledButton>
+      <StyledButton className="label_saveBtn" onClick={(e) => saveNameLabel(e)}>
+        SAVE
+      </StyledButton>
     </StyledNameLabels>
   );
 }

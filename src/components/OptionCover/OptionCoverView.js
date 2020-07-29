@@ -99,8 +99,16 @@ const OptionCover = ({
             ))}
           </StyledWrapLabels>
           <StyledTextArea
-            className="cover_textArea"
+            className="textArea_Option"
             onChange={(e) => taskTitleFeature(e)}
+            onKeyPress={(e) =>
+              updateCard(
+                e,
+                taskTitle,
+                optionCoverData[0].listId,
+                optionCoverData[0].clickedCardId
+              )
+            }
             value={taskTitle}
           />
           <StyledSaveButton

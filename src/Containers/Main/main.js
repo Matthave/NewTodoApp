@@ -91,7 +91,7 @@ const Main = () => {
       setLabelsVisibility(false);
     }
 
-    if (searchingClass.includes("cover_textArea")) {
+    if (searchingClass.includes("textArea_Option")) {
       setLabelsVisibility(false);
     }
 
@@ -266,10 +266,11 @@ const Main = () => {
   };
 
   const updateCard = (e, updatedTitle, listId, taskId) => {
-    // For changing taskName by detailCover component
+    // For changing taskName by detailCover component and optionCover
     if (
       e.target.className.includes("cover") ||
-      e.target.className.includes("cover_saveBtn")
+      e.target.className.includes("cover_saveBtn") ||
+      e.which === 13
     ) {
       const correctList = wholeList.filter((list) => list.id === listId);
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
@@ -285,7 +286,8 @@ const Main = () => {
       !e.target.className.includes("input") &&
       !e.target.className.includes("suggested") &&
       !e.target.className.includes("close") &&
-      !e.target.className.includes("delete")
+      !e.target.className.includes("delete") &&
+      !e.target.className.includes("cover_textArea")
     ) {
       const correctList = wholeList.filter((list) => list.id === listId);
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
