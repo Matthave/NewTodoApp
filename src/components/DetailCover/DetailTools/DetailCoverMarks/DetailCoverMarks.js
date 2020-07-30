@@ -61,13 +61,12 @@ const StyledButton = styled.button`
   background-color: ${(props) => (props.greyBgc ? "#EAECF0" : "#5aac44")};
   border-radius: 4px;
   margin-right: 6px;
-  margin-left: ${(props) => (props.marginLeft ? "6px" : "0")};
   color: ${(props) => (props.marginLeft ? "#42516e" : "#fff")};
   cursor: pointer;
   transition: 0.15s linear;
 
   &:hover {
-    background-color: ${(props) => (props.hoverBgc ? "#dadce0" : "#6abc54")};
+    background-color: ${(props) => (props.hoverBgc ? "#dadce0 " : "#6abc54")};
   }
 `;
 
@@ -85,6 +84,7 @@ const StyledComment = styled.h3`
   margin-right: 10px;
   word-break: break-all;
   color: #42516e;
+  cursor: pointer;
 `;
 
 function DetailCoverMarks({
@@ -137,7 +137,16 @@ function DetailCoverMarks({
             marginLeft
             hoverBgc
             style={{
-              opacity: `${listOfAllComments.length !== 0 ? "1" : "0"}`,
+              color: `${
+                listOfAllComments.length !== 0 ? "#42516e" : "rgba(0,0,0,0)"
+              }`,
+              backgroundColor: `${
+                listOfAllComments.length !== 0 ? "#EAECF0" : "rgba(0,0,0,0)"
+              }`,
+              cursor: `${
+                listOfAllComments.length !== 0 ? "pointer" : "initial"
+              }`,
+              marginLeft: `${listOfAllComments.length !== 0 ? "6px" : "50px"}`,
             }}
             onClick={(e) => editCommentToCard(toggleCommentVisibility)}
           >
@@ -146,7 +155,7 @@ function DetailCoverMarks({
         </StyledTitle>
         {listOfAllComments.length !== 0 ? null : (
           <StyledTextArea
-            placeholder="Add more detail comment..."
+            placeholder="Click to add more detailed comment..."
             className="input textArea"
             onClick={() => toggleCommentFeature(true)}
             onChange={(e) => commentChange(e)}
@@ -166,7 +175,12 @@ function DetailCoverMarks({
           </StyledCommentOptionWrap>
         ) : null}
         {listOfAllComments.map((ele) => (
-          <StyledComment key={ele.id}>{ele.comment}</StyledComment>
+          <StyledComment
+            key={ele.id}
+            onClick={(e) => editCommentToCard(toggleCommentVisibility)}
+          >
+            {ele.comment}
+          </StyledComment>
         ))}
       </StyledDetailDescription>
     </StyledDetailMarks>

@@ -20,6 +20,7 @@ const Main = () => {
   const [visibilityChangeListInDetails, setChangeListInDetails] = useState(
     false
   );
+  const [toggleDetailMove, setToggleDetailMove] = useState(false);
   const [labelsVisibility, setLabelsVisibility] = useState(false);
   const [
     labelsVisibilityDetailsComp,
@@ -84,6 +85,7 @@ const Main = () => {
 
     if (!searchingClass.includes("suggested")) {
       setChangeListInDetails(false);
+      setToggleDetailMove(false);
     }
 
     if (
@@ -329,8 +331,12 @@ const Main = () => {
     }
   };
 
-  const changeListInDetails = () => {
-    setChangeListInDetails(!visibilityChangeListInDetails);
+  const changeListInDetails = (byElement) => {
+    if (byElement === "byListName") {
+      setChangeListInDetails(!visibilityChangeListInDetails);
+    } else if (byElement === "byNavMove") {
+      setToggleDetailMove(!toggleDetailMove);
+    }
   };
 
   const moveCardToAnotherList = (
@@ -351,6 +357,7 @@ const Main = () => {
 
     setVisibilityTaskDetails(false);
     setChangeListInDetails(false);
+    setToggleDetailMove(false);
 
     taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id, taskId);
   };
@@ -526,6 +533,7 @@ const Main = () => {
           toggleCommentVisibility={toggleCommentVisibility}
           listOfAllComments={listOfAllComments}
           setListOfAllComments={setListOfAllComments}
+          toggleDetailMove={toggleDetailMove}
         />
       ) : null}
     </main>

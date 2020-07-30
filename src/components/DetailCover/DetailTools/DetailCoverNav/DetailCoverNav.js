@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import DetailSuggestedBox from "../../DetailElements/DetalSuggestedElement/DetailSuggestedBox";
 import { device } from "../../../../Style/MediaQuery/mq";
 
 const StyledDetailNav = styled.nav`
@@ -55,6 +56,12 @@ function DetailCoverNav({
   idUpdatedList,
   taskId,
   addPriorityForCards,
+  changeListInDetails,
+  toggleDetailMove,
+  taskTitle,
+  wholeList,
+  moveCardToAnotherList,
+  taskTitleList,
 }) {
   return (
     <StyledDetailNav>
@@ -82,7 +89,10 @@ function DetailCoverNav({
       </StyledDetailUl>
       <StyledDetailUl>
         <StyledDetailList first> ACTIONS</StyledDetailList>
-        <StyledDetailList>
+        <StyledDetailList
+          onClick={() => changeListInDetails("byNavMove")}
+          className="suggested"
+        >
           <StyledIcon className="fas fa-long-arrow-alt-right" />
           Move
         </StyledDetailList>
@@ -102,6 +112,17 @@ function DetailCoverNav({
           Archive
         </StyledDetailList>
       </StyledDetailUl>
+      {toggleDetailMove ? (
+        <DetailSuggestedBox
+          taskTitle={taskTitle}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
+          taskId={taskId}
+          changeListInDetails={changeListInDetails}
+          taskTitleList={taskTitleList}
+          byElement="byNavMove"
+        />
+      ) : null}
     </StyledDetailNav>
   );
 }

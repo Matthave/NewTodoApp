@@ -140,7 +140,8 @@ const GlobalStyle = createGlobalStyle`
   .fa-highlighter{
     color:#777;
     align-self:center;
-    margin-left:2px;
+    margin:2px;
+    margin-bottom:0px;
     @media ${device.laptop} {
       color:#fff;
 

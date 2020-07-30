@@ -29,6 +29,12 @@ function DetailTools({
   addCommentToCard,
   listOfAllComments,
   editCommentToCard,
+  changeListInDetails,
+  toggleDetailMove,
+  taskTitle,
+  wholeList,
+  moveCardToAnotherList,
+  taskTitleList,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -52,6 +58,12 @@ function DetailTools({
         idUpdatedList={idUpdatedList}
         taskId={taskId}
         addPriorityForCards={addPriorityForCards}
+        changeListInDetails={changeListInDetails}
+        toggleDetailMove={toggleDetailMove}
+        taskTitle={taskTitle}
+        wholeList={wholeList}
+        moveCardToAnotherList={moveCardToAnotherList}
+        taskTitleList={taskTitleList}
       />
     </StyledDetailToolsWrap>
   );

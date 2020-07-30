@@ -1,6 +1,6 @@
 import React from "react";
 import DetailInputElement from "../DetailElements/DetailInputElement";
-import DetailSuggestedElement from "../DetailElements/DetailSuggestedElement";
+import DetailSuggestedElement from "../DetailElements/DetalSuggestedElement/DetailSuggestedElement";
 import DetailTools from "../DetailTools/DetailTools";
 import Labels from "../../../Containers/Labels/Labels";
 import styled from "styled-components";
@@ -55,6 +55,7 @@ function DetailCoverView({
   addCommentToCard,
   listOfAllComments,
   editCommentToCard,
+  toggleDetailMove,
 }) {
   return (
     <StyledCover
@@ -97,6 +98,12 @@ function DetailCoverView({
           addCommentToCard={addCommentToCard}
           listOfAllComments={listOfAllComments}
           editCommentToCard={editCommentToCard}
+          changeListInDetails={changeListInDetails}
+          toggleDetailMove={toggleDetailMove}
+          taskTitle={taskTitle}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
+          taskTitleList={taskTitleList}
         />
         {labelsVisibility ? (
           <Labels
