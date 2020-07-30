@@ -4,6 +4,7 @@ import DetailCoverView from "../../components/DetailCover/DetailCoverView/Detail
 class DetailCover extends React.Component {
   state = {
     taskTitle: "",
+    commentValue: "",
   };
 
   componentDidMount() {
@@ -16,6 +17,34 @@ class DetailCover extends React.Component {
     this.setState({
       taskTitle: e.target.value,
     });
+  };
+
+  commentChange = (e) => {
+    this.setState({ commentValue: e.target.value }); //Set input comment
+  };
+
+  addCommentToCard = (e, taskId, comment) => {
+    //Add comment by click and by Enter button, add comment to commentList and TextArea is disparing, Comment is generate
+    // by list of matched comment in DetailCoverMarks Component
+    if (e.target.className.includes("commentBtn") || e.which === 13) {
+      this.props.setListOfAllComments([
+        ...this.props.listOfAllComments,
+        {
+          id: taskId,
+          comment: comment,
+        },
+      ]);
+      this.props.toggleCommentFeature(false);
+    }
+  };
+
+  editCommentToCard = (e, taskId) => {
+    //Function that run when we want edit our comment - EditBtn is disapiring, textArea is appearing
+    this.props.toggleCommentFeature(true);
+    const commentIndexToDelete = this.props.listOfAllComments.findIndex(
+      (ele) => ele.id === taskId
+    );
+    this.props.listOfAllComments.splice(commentIndexToDelete, 1);
   };
 
   render() {
@@ -37,6 +66,9 @@ class DetailCover extends React.Component {
       setLabelColors,
       listOfAllTasksId,
       addPriorityForCards,
+      toggleCommentVisibility,
+      toggleCommentFeature,
+      listOfAllComments,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -44,7 +76,11 @@ class DetailCover extends React.Component {
       (ele) => ele.id === taskId
     );
 
-    const { taskTitle } = this.state;
+    const copyOfAllComment = [...listOfAllComments];
+    const matchedComments = copyOfAllComment.filter((ele) => ele.id === taskId);
+
+    const { taskTitle, commentValue } = this.state;
+
     return (
       <>
         <DetailCoverView
@@ -68,6 +104,13 @@ class DetailCover extends React.Component {
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
           addPriorityForCards={addPriorityForCards}
+          toggleCommentFeature={toggleCommentFeature}
+          toggleCommentVisibility={toggleCommentVisibility}
+          commentChange={this.commentChange}
+          commentValue={commentValue}
+          addCommentToCard={this.addCommentToCard}
+          listOfAllComments={matchedComments}
+          editCommentToCard={this.editCommentToCard}
         />
       </>
     );

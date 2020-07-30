@@ -22,6 +22,13 @@ function DetailTools({
   taskId,
   matchedColorsToThisCard,
   addPriorityForCards,
+  toggleCommentFeature,
+  toggleCommentVisibility,
+  commentChange,
+  commentValue,
+  addCommentToCard,
+  listOfAllComments,
+  editCommentToCard,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -29,6 +36,14 @@ function DetailTools({
         matchedColorsToThisCard={matchedColorsToThisCard}
         handleLabelsVisibility={handleLabelsVisibility}
         labelsVisibility={labelsVisibility}
+        toggleCommentFeature={toggleCommentFeature}
+        toggleCommentVisibility={toggleCommentVisibility}
+        commentChange={commentChange}
+        commentValue={commentValue}
+        addCommentToCard={addCommentToCard}
+        taskId={taskId}
+        listOfAllComments={listOfAllComments}
+        editCommentToCard={editCommentToCard}
       />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}

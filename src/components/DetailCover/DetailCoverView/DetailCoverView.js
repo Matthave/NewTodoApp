@@ -48,6 +48,13 @@ function DetailCoverView({
   setLabelColors,
   listOfAllTasksId,
   addPriorityForCards,
+  toggleCommentFeature,
+  toggleCommentVisibility,
+  commentChange,
+  commentValue,
+  addCommentToCard,
+  listOfAllComments,
+  editCommentToCard,
 }) {
   return (
     <StyledCover
@@ -83,6 +90,13 @@ function DetailCoverView({
           taskId={taskId}
           matchedColorsToThisCard={matchedColorsToThisCard}
           addPriorityForCards={addPriorityForCards}
+          toggleCommentFeature={toggleCommentFeature}
+          toggleCommentVisibility={toggleCommentVisibility}
+          commentChange={commentChange}
+          commentValue={commentValue}
+          addCommentToCard={addCommentToCard}
+          listOfAllComments={listOfAllComments}
+          editCommentToCard={editCommentToCard}
         />
         {labelsVisibility ? (
           <Labels

@@ -30,7 +30,9 @@ const Main = () => {
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
   const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
+  const [listOfAllComments, setListOfAllComments] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
+  const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -99,6 +101,9 @@ const Main = () => {
     if (!searchingClass.includes("label")) {
       setLabelsVisibilityDetailsComp(false);
     }
+    if (!searchingClass.includes("textArea")) {
+      setToggleCommentVisibility(false);
+    }
   };
 
   const listOption = (listId) => {
@@ -120,6 +125,7 @@ const Main = () => {
     const matchedPriority = listOfAllPriorityTasks.filter(
       (ele) => ele === taskId
     );
+    const matchedComment = listOfAllComments.filter((ele) => ele.id === taskId);
     const theBiggestId = Math.max(...listOfAllTasksId);
 
     //"Add card" by move already existing card
@@ -128,7 +134,7 @@ const Main = () => {
         id: taskId,
         taskName: newTask,
         currentList: listId,
-        comment: "",
+        comment: matchedComment,
         badges: matchedBadges,
         priority: `${matchedPriority.length === 0 ? null : "priority"}`,
         date: "",
@@ -164,13 +170,16 @@ const Main = () => {
     );
 
     if (byButton === "byButton") {
-      console.log(listId, taskId, byButton);
       //Delete Card Badges from array if matched exist
       const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
       const matchedPriorityIndex = listOfAllPriorityTasks.findIndex(
         (ele) => ele === taskId
       );
+      const matchedCommentIndex = listOfAllComments.findIndex(
+        (ele) => ele.id === taskId
+      );
       listOfAllPriorityTasks.splice(matchedPriorityIndex, 1);
+      listOfAllComments.splice(matchedCommentIndex, 1);
       if (matchedBadges.length !== 0) {
         matchedBadges.forEach((element) => {
           const indexOfBadgedToDelete = listOfAllBadges.findIndex(
@@ -447,6 +456,10 @@ const Main = () => {
     }
   };
 
+  const toggleCommentFeature = (toggle) => {
+    setToggleCommentVisibility(toggle);
+  };
+
   return (
     <main>
       <Navigations
@@ -509,6 +522,10 @@ const Main = () => {
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
           addPriorityForCards={addPriorityForCards}
+          toggleCommentFeature={toggleCommentFeature}
+          toggleCommentVisibility={toggleCommentVisibility}
+          listOfAllComments={listOfAllComments}
+          setListOfAllComments={setListOfAllComments}
         />
       ) : null}
     </main>
