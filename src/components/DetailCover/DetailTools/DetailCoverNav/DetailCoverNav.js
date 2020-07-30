@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import DetailSuggestedBox from "../../DetailElements/DetalSuggestedElement/DetailSuggestedBox";
+import MoveToAnotherListBox from "../../../MoveToAnotherList/MoveToAnotherListBox";
 import { device } from "../../../../Style/MediaQuery/mq";
 
 const StyledDetailNav = styled.nav`
@@ -113,7 +113,7 @@ function DetailCoverNav({
         </StyledDetailList>
       </StyledDetailUl>
       {toggleDetailMove ? (
-        <DetailSuggestedBox
+        <MoveToAnotherListBox
           taskTitle={taskTitle}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}

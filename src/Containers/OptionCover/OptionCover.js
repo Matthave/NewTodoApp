@@ -52,6 +52,10 @@ class OptionCover extends Component {
       labelColors,
       setLabelColors,
       addPriorityForCards,
+      toggleDetailMove,
+      changeListInDetails,
+      wholeList,
+      moveCardToAnotherList,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -79,6 +83,10 @@ class OptionCover extends Component {
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           addPriorityForCards={addPriorityForCards}
+          toggleDetailMove={toggleDetailMove}
+          changeListInDetails={changeListInDetails}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
         />
       </>
     );

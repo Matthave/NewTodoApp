@@ -37,6 +37,7 @@ function OptionCoverListView({
   handleLabelsVisibility,
   addPriorityForCards,
   optionCoverData,
+  changeListInDetails,
 }) {
   return (
     <StyledListBlock className="cover_listBlock">
@@ -45,7 +46,10 @@ function OptionCoverListView({
           <StyledIcon className="fas fa-tag" />
           Edit labels
         </StyledList>
-        <StyledList>
+        <StyledList
+          className="suggested"
+          onClick={() => changeListInDetails("byNavMove")}
+        >
           <StyledIcon className="fas fa-long-arrow-alt-right" />
           Move
         </StyledList>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import OptionCoverListView from "./OptionCoverListView/OptionCoverListView";
+import MoveToAnotherListBox from "../MoveToAnotherList/MoveToAnotherListBox";
 import Labels from "../../Containers/Labels/Labels";
 
 const StyledCover = styled.div`
@@ -82,6 +83,10 @@ const OptionCover = ({
   labelColors,
   setLabelColors,
   addPriorityForCards,
+  toggleDetailMove,
+  changeListInDetails,
+  wholeList,
+  moveCardToAnotherList,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -133,6 +138,7 @@ const OptionCover = ({
           handleLabelsVisibility={handleLabelsVisibility}
           optionCoverData={optionCoverData}
           addPriorityForCards={addPriorityForCards}
+          changeListInDetails={changeListInDetails}
         />
 
         {labelsVisibility ? (
@@ -145,6 +151,18 @@ const OptionCover = ({
             listOfAllTasksId={listOfAllTasksId}
             labelColors={labelColors}
             setLabelColors={setLabelColors}
+          />
+        ) : null}
+        {toggleDetailMove ? (
+          <MoveToAnotherListBox
+            taskTitle={taskTitle}
+            wholeList={wholeList}
+            moveCardToAnotherList={moveCardToAnotherList}
+            taskId={optionCoverData[0].clickedCardId}
+            changeListInDetails={changeListInDetails}
+            taskTitleList={optionCoverData[0].currentListName}
+            byElement={"byOptionMove"}
+            optionCover={true}
           />
         ) : null}
       </StyledOptionBox>

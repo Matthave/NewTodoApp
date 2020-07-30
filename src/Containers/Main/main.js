@@ -130,12 +130,15 @@ const Main = () => {
     const matchedComment = listOfAllComments.filter((ele) => ele.id === taskId);
     const theBiggestId = Math.max(...listOfAllTasksId);
 
+    const matchedList = wholeList.filter((ele) => ele.id === listId);
+
     //"Add card" by move already existing card
     if (taskId) {
       correctList[0].tasks.push({
         id: taskId,
         taskName: newTask,
         currentList: listId,
+        currentListName: matchedList[0].title,
         comment: matchedComment,
         badges: matchedBadges,
         priority: `${matchedPriority.length === 0 ? null : "priority"}`,
@@ -148,6 +151,7 @@ const Main = () => {
         id: `${listOfAllTasksId.length === 0 ? 0 : theBiggestId + 1}`,
         taskName: newTask,
         currentList: listId,
+        currentListName: matchedList[0].title,
         comment: "",
         badges: [],
         priority: false,
@@ -256,7 +260,14 @@ const Main = () => {
     }
   };
 
-  const visibilityOptionFunction = (e, toggle, taskName, listId, cardId) => {
+  const visibilityOptionFunction = (
+    e,
+    toggle,
+    taskName,
+    listId,
+    currentListName,
+    cardId
+  ) => {
     //Dates sending from Card to OptionFunction Comp (by clicked Edit Icon)
     setVisibilityOptionCover(toggle);
     setIdUpdatedList(listId);
@@ -264,6 +275,7 @@ const Main = () => {
     setOptionCoverData([
       {
         listId: listId,
+        currentListName: currentListName,
         top: e.target.parentNode.offsetTop,
         left: e.target.parentNode.offsetLeft,
         taskTitle: taskName,
@@ -334,7 +346,7 @@ const Main = () => {
   const changeListInDetails = (byElement) => {
     if (byElement === "byListName") {
       setChangeListInDetails(!visibilityChangeListInDetails);
-    } else if (byElement === "byNavMove") {
+    } else if (byElement === "byNavMove" || byElement === "byOptionMove") {
       setToggleDetailMove(!toggleDetailMove);
     }
   };
@@ -343,7 +355,8 @@ const Main = () => {
     taskTitle,
     currentList,
     taskId,
-    clickedListId
+    clickedListId,
+    byOptionCover
   ) => {
     //FindListWhereDelete
     const deleteFromList = wholeList.filter(
@@ -352,14 +365,17 @@ const Main = () => {
 
     //AddToAnotherList
     const addToList = wholeList.filter((list) => list.id === clickedListId);
+    if (addToList[0].id === deleteFromList[0].id) return;
     deleteCard(deleteFromList[0].id, taskId);
     addNewCard(addToList[0].id, taskTitle, taskId);
 
-    setVisibilityTaskDetails(false);
     setChangeListInDetails(false);
     setToggleDetailMove(false);
 
     taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id, taskId);
+    if (byOptionCover) {
+      setVisibilityTaskDetails(false);
+    }
   };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
@@ -507,6 +523,10 @@ const Main = () => {
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           addPriorityForCards={addPriorityForCards}
+          toggleDetailMove={toggleDetailMove}
+          changeListInDetails={changeListInDetails}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
         />
       ) : null}
       {visibilityTaskDetails ? (

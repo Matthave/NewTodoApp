@@ -6,10 +6,11 @@ const StyledChangeListDetails = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   position: fixed;
+  right: ${(props) => (props.rightPosition ? "-120px" : "null")};
+  top: ${(props) => (props.topPosition ? "60px" : "null")};
   width: 300px;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0px 0px 4px 0.5px #ccc;
   margin-top: 10px;
   padding: 10px;
 `;
@@ -54,7 +55,7 @@ const StyledSuggestList = styled.div`
   }
 `;
 
-function DetailSuggestedBox({
+function MoveToAnotherListBox({
   taskTitle,
   wholeList,
   moveCardToAnotherList,
@@ -62,9 +63,14 @@ function DetailSuggestedBox({
   changeListInDetails,
   taskTitleList,
   byElement,
+  optionCover,
 }) {
   return (
-    <StyledChangeListDetails className="replaceCard suggested">
+    <StyledChangeListDetails
+      className="replaceCard suggested"
+      rightPosition={optionCover}
+      topPosition={optionCover}
+    >
       <StyledReplaceTitle border alignCenter biggerMargin className="suggested">
         Replace Card
         <span
@@ -76,8 +82,14 @@ function DetailSuggestedBox({
       {wholeList.map((list) => (
         <StyledSuggestList
           className="suggested"
-          onClick={(e) =>
-            moveCardToAnotherList(taskTitle, taskTitleList, taskId, list.id)
+          onClick={() =>
+            moveCardToAnotherList(
+              taskTitle,
+              taskTitleList,
+              taskId,
+              list.id,
+              optionCover
+            )
           }
           key={list.id}
         >
@@ -88,4 +100,4 @@ function DetailSuggestedBox({
   );
 }
 
-export default DetailSuggestedBox;
+export default MoveToAnotherListBox;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import DetailSuggestedBox from "./DetailSuggestedBox";
+import MoveToAnotherListBox from "../../../MoveToAnotherList/MoveToAnotherListBox";
 
 const StyledLightText = styled.h3`
   margin-top: 7.5px;
@@ -32,7 +32,7 @@ function DetailSuggestedElement({
         {taskTitleList}
       </StyledStrongText>
       {visibilityChangeListInDetails ? (
-        <DetailSuggestedBox
+        <MoveToAnotherListBox
           taskTitle={taskTitle}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
