@@ -55,7 +55,10 @@ function OptionCoverListView({
           <StyledIcon className="fas fa-long-arrow-alt-right" />
           Move
         </StyledList>
-        <StyledList>
+        <StyledList
+          className="suggested"
+          onClick={() => changeListInDetails("byNavCopy")}
+        >
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledList>

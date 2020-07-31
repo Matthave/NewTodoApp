@@ -88,6 +88,7 @@ const OptionCover = ({
   wholeList,
   moveCardToAnotherList,
   matchedPriority,
+  copyVisibility,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -165,6 +166,8 @@ const OptionCover = ({
             taskTitleList={optionCoverData[0].currentListName}
             byElement={"byOptionMove"}
             optionCover={true}
+            copyVisibility={copyVisibility}
+            matchedColorsToThisCard={matchedColorsToThisCard}
           />
         ) : null}
       </StyledOptionBox>

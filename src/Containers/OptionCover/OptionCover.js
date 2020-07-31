@@ -57,6 +57,7 @@ class OptionCover extends Component {
       wholeList,
       moveCardToAnotherList,
       listOfAllPriorityTasks,
+      copyVisibility,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -94,6 +95,7 @@ class OptionCover extends Component {
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           matchedPriority={matchedPriority}
+          copyVisibility={copyVisibility}
         />
       </>
     );

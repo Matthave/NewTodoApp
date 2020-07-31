@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CopyCard from "../../Containers/CopyCard/CopyCard";
 
 const StyledChangeListDetails = styled.div`
   display: flex;
@@ -55,6 +56,12 @@ const StyledSuggestList = styled.div`
   }
 `;
 
+const StyledIcon = styled.span`
+  margin-right: 6px;
+  font-size: ${(props) => (props.biggerFont ? "15.5px" : "13px")};
+  transition: 0.1s linear;
+`;
+
 function MoveToAnotherListBox({
   taskTitle,
   wholeList,
@@ -64,6 +71,8 @@ function MoveToAnotherListBox({
   taskTitleList,
   byElement,
   optionCover,
+  copyVisibility,
+  matchedColorsToThisCard,
 }) {
   return (
     <StyledChangeListDetails
@@ -78,24 +87,43 @@ function MoveToAnotherListBox({
           onClick={() => changeListInDetails(byElement)}
         ></span>
       </StyledReplaceTitle>
-      <StyledReplaceTitle className="suggested">Suggested</StyledReplaceTitle>
-      {wholeList.map((list) => (
-        <StyledSuggestList
-          className="suggested"
-          onClick={() =>
-            moveCardToAnotherList(
-              taskTitle,
-              taskTitleList,
-              taskId,
-              list.id,
-              optionCover
-            )
-          }
-          key={list.id}
-        >
-          {list.title}
-        </StyledSuggestList>
-      ))}
+      {copyVisibility ? (
+        <CopyCard
+          matchedColorsToThisCard={matchedColorsToThisCard}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
+          taskTitle={taskTitle}
+          taskTitleList={taskTitleList}
+          optionCover={optionCover}
+          taskId={taskId}
+        />
+      ) : (
+        <>
+          {" "}
+          <StyledReplaceTitle className="suggested">
+            <StyledIcon className="fas fa-map-marker" />
+            Suggested
+          </StyledReplaceTitle>
+          {wholeList.map((list) => (
+            <StyledSuggestList
+              className="suggested"
+              onClick={() =>
+                moveCardToAnotherList(
+                  taskTitle,
+                  taskTitleList,
+                  taskId,
+                  list.id,
+                  optionCover
+                )
+              }
+              key={list.id}
+            >
+              <StyledIcon biggerFont className="fas fa-long-arrow-alt-left" />
+              {list.title}
+            </StyledSuggestList>
+          ))}
+        </>
+      )}
     </StyledChangeListDetails>
   );
 }

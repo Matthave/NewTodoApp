@@ -34,6 +34,7 @@ const Main = () => {
   const [listOfAllComments, setListOfAllComments] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
+  const [copyVisibility, setCopyVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -86,6 +87,7 @@ const Main = () => {
     if (!searchingClass.includes("suggested")) {
       setChangeListInDetails(false);
       setToggleDetailMove(false);
+      setCopyVisibility(false);
     }
 
     if (
@@ -346,8 +348,15 @@ const Main = () => {
   const changeListInDetails = (byElement) => {
     if (byElement === "byListName") {
       setChangeListInDetails(!visibilityChangeListInDetails);
-    } else if (byElement === "byNavMove" || byElement === "byOptionMove") {
+    } else if (
+      byElement === "byNavMove" ||
+      byElement === "byOptionMove" ||
+      byElement === "byNavCopy"
+    ) {
       setToggleDetailMove(!toggleDetailMove);
+      if (byElement === "byNavCopy") {
+        setCopyVisibility(true);
+      }
     }
   };
 
@@ -356,7 +365,9 @@ const Main = () => {
     currentList,
     taskId,
     clickedListId,
-    byOptionCover
+    byOptionCover,
+    copy,
+    canCopyLabels
   ) => {
     //FindListWhereDelete
     const deleteFromList = wholeList.filter(
@@ -366,9 +377,22 @@ const Main = () => {
     //AddToAnotherList
     const addToList = wholeList.filter((list) => list.id === clickedListId);
     if (addToList[0].id === deleteFromList[0].id) return;
-    deleteCard(deleteFromList[0].id, taskId);
-    addNewCard(addToList[0].id, taskTitle, taskId);
-
+    if (!copy) {
+      deleteCard(deleteFromList[0].id, taskId);
+      addNewCard(addToList[0].id, taskTitle, taskId);
+    } else {
+      if (taskTitle.length === 0) return;
+      const theBiggestId = Math.max(...listOfAllTasksId);
+      const unicalIdForCopy = `${theBiggestId + 1}`;
+      listOfAllTasksId.push(unicalIdForCopy);
+      copyCard(
+        addToList[0].id,
+        taskTitle,
+        unicalIdForCopy,
+        taskId,
+        canCopyLabels
+      );
+    }
     setChangeListInDetails(false);
     setToggleDetailMove(false);
 
@@ -376,6 +400,37 @@ const Main = () => {
     if (byOptionCover) {
       setVisibilityTaskDetails(false);
     }
+  };
+
+  const copyCard = (
+    listId,
+    taskTitle,
+    copyId,
+    preventCardId,
+    canCopyLabels
+  ) => {
+    const lablesToCopy = listOfAllBadges.filter(
+      (ele) => ele.id === preventCardId
+    );
+    const commentToCopy = listOfAllComments.filter(
+      (ele) => ele.id === preventCardId
+    );
+
+    if (lablesToCopy.length !== 0 && canCopyLabels) {
+      lablesToCopy.forEach((ele) => {
+        listOfAllBadges.push({
+          id: copyId,
+          color: ele.color,
+          labelId: `${ele.color}${copyId}`,
+          name: ele.name,
+        });
+      });
+    }
+
+    if (commentToCopy.length !== 0) {
+      listOfAllComments.push({ id: copyId, comment: commentToCopy[0].comment });
+    }
+    addNewCard(listId, taskTitle, copyId);
   };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
@@ -427,7 +482,6 @@ const Main = () => {
         color: color,
         name: nameBadge[0].value,
         labelId: `${color}${taskId}`,
-        // dataClass: dataForClasses,
       });
 
       createLabelsElement(color, taskId, nameBadge[0].value);
@@ -537,6 +591,7 @@ const Main = () => {
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
+          copyVisibility={copyVisibility}
         />
       ) : null}
       {visibilityTaskDetails ? (
