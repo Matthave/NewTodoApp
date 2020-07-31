@@ -87,6 +87,7 @@ const OptionCover = ({
   changeListInDetails,
   wholeList,
   moveCardToAnotherList,
+  matchedPriority,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -139,6 +140,7 @@ const OptionCover = ({
           optionCoverData={optionCoverData}
           addPriorityForCards={addPriorityForCards}
           changeListInDetails={changeListInDetails}
+          matchedPriority={matchedPriority}
         />
 
         {labelsVisibility ? (

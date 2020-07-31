@@ -171,7 +171,7 @@ class Card extends Component {
         onMouseMove={(e) => this.mouseMoveFeature(e)}
         onMouseLeave={(e) => this.mouseLeaveFeature(e)}
         style={{
-          border: task.priority === "priority" ? "1px solid red" : null,
+          border: task.priority === "priority" ? "1px solid #db4a36" : null,
         }}
       >
         <div

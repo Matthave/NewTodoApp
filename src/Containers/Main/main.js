@@ -464,11 +464,13 @@ const Main = () => {
     currentTask.children[0].appendChild(newLabel);
   };
 
-  const addPriorityForCards = (cardId) => {
+  const addPriorityForCards = (e, cardId, byElement) => {
     if (!listOfAllPriorityTasks.includes(cardId)) {
       setListOfPriority([...listOfAllPriorityTasks, cardId]);
       const clickedCardDOM = document.getElementById(cardId);
-      clickedCardDOM.style.border = "1px solid red";
+      clickedCardDOM.style.border = "1px solid #db4a36";
+      e.target.style.color = "#db4a36";
+      e.target.children[0].style.color = "#db4a36";
     } else if (listOfAllPriorityTasks.includes(cardId)) {
       const indexToDelete = listOfAllPriorityTasks.findIndex(
         (ele) => ele === cardId
@@ -476,6 +478,13 @@ const Main = () => {
       listOfAllPriorityTasks.splice(indexToDelete, 1);
       const clickedCardDOM = document.getElementById(cardId);
       clickedCardDOM.style.border = null;
+      if (byElement === "detailCover") {
+        e.target.style.color = "#42516e";
+        e.target.children[0].style.color = "#42516e";
+      } else {
+        e.target.style.color = "#fff";
+        e.target.children[0].style.color = "#fff";
+      }
     }
   };
 
@@ -527,6 +536,7 @@ const Main = () => {
           changeListInDetails={changeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
         />
       ) : null}
       {visibilityTaskDetails ? (
@@ -554,6 +564,7 @@ const Main = () => {
           listOfAllComments={listOfAllComments}
           setListOfAllComments={setListOfAllComments}
           toggleDetailMove={toggleDetailMove}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
         />
       ) : null}
     </main>

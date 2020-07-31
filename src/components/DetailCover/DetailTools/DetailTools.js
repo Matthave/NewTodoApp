@@ -35,6 +35,7 @@ function DetailTools({
   wholeList,
   moveCardToAnotherList,
   taskTitleList,
+  matchedPriority,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -64,6 +65,7 @@ function DetailTools({
         wholeList={wholeList}
         moveCardToAnotherList={moveCardToAnotherList}
         taskTitleList={taskTitleList}
+        matchedPriority={matchedPriority}
       />
     </StyledDetailToolsWrap>
   );

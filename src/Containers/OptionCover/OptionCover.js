@@ -56,6 +56,7 @@ class OptionCover extends Component {
       changeListInDetails,
       wholeList,
       moveCardToAnotherList,
+      listOfAllPriorityTasks,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -64,6 +65,11 @@ class OptionCover extends Component {
 
     const matchedColorsToThisCard = copyOfallBadges.filter(
       (ele) => ele.id === optionCoverData[0].clickedCardId
+    );
+
+    const copyOfAllPriority = [...listOfAllPriorityTasks];
+    const matchedPriority = copyOfAllPriority.filter(
+      (ele) => ele === optionCoverData[0].clickedCardId
     );
 
     return (
@@ -87,6 +93,7 @@ class OptionCover extends Component {
           changeListInDetails={changeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
+          matchedPriority={matchedPriority}
         />
       </>
     );

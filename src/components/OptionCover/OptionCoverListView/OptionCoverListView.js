@@ -29,6 +29,7 @@ const StyledList = styled.li`
 const StyledIcon = styled.span`
   margin-right: 6px;
   font-size: 13px;
+  transition: 0.1s linear;
 `;
 
 function OptionCoverListView({
@@ -38,6 +39,7 @@ function OptionCoverListView({
   addPriorityForCards,
   optionCoverData,
   changeListInDetails,
+  matchedPriority,
 }) {
   return (
     <StyledListBlock className="cover_listBlock">
@@ -62,9 +64,23 @@ function OptionCoverListView({
           Date Change
         </StyledList>
         <StyledList
-          onClick={() => addPriorityForCards(optionCoverData[0].clickedCardId)}
+          onClick={(e) =>
+            addPriorityForCards(
+              e,
+              optionCoverData[0].clickedCardId,
+              "optionCover"
+            )
+          }
+          style={{
+            color: `${matchedPriority.length !== 0 ? "#db4a36" : "#FFF"}`,
+          }}
         >
-          <StyledIcon className="fas fa-exclamation-circle" />
+          <StyledIcon
+            className="fas fa-exclamation-circle"
+            style={{
+              color: `${matchedPriority.length !== 0 ? "#db4a36" : "#FFF"}`,
+            }}
+          />
           Priority
         </StyledList>
         <StyledList

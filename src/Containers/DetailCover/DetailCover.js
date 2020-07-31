@@ -70,6 +70,7 @@ class DetailCover extends React.Component {
       toggleCommentFeature,
       listOfAllComments,
       toggleDetailMove,
+      listOfAllPriorityTasks,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -79,6 +80,9 @@ class DetailCover extends React.Component {
 
     const copyOfAllComment = [...listOfAllComments];
     const matchedComments = copyOfAllComment.filter((ele) => ele.id === taskId);
+
+    const copyOfAllPriority = [...listOfAllPriorityTasks];
+    const matchedPriority = copyOfAllPriority.filter((ele) => ele === taskId);
 
     const { taskTitle, commentValue } = this.state;
 
@@ -113,6 +117,7 @@ class DetailCover extends React.Component {
           listOfAllComments={matchedComments}
           editCommentToCard={this.editCommentToCard}
           toggleDetailMove={toggleDetailMove}
+          matchedPriority={matchedPriority}
         />
       </>
     );

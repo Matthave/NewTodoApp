@@ -62,6 +62,7 @@ function DetailCoverNav({
   wholeList,
   moveCardToAnotherList,
   taskTitleList,
+  matchedPriority,
 }) {
   return (
     <StyledDetailNav>
@@ -100,8 +101,18 @@ function DetailCoverNav({
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledDetailList>
-        <StyledDetailList onClick={() => addPriorityForCards(taskId)}>
-          <StyledIcon className="fas fa-exclamation-circle" />
+        <StyledDetailList
+          onClick={(e) => addPriorityForCards(e, taskId, "detailCover")}
+          style={{
+            color: `${matchedPriority.length !== 0 ? "#db4a36" : "#42516e"}`,
+          }}
+        >
+          <StyledIcon
+            className="fas fa-exclamation-circle"
+            style={{
+              color: `${matchedPriority.length !== 0 ? "#db4a36" : "#42516e"}`,
+            }}
+          />
           Priority
         </StyledDetailList>
         <StyledDetailList
