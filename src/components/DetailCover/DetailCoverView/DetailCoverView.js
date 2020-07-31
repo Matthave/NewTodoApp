@@ -57,6 +57,7 @@ function DetailCoverView({
   editCommentToCard,
   toggleDetailMove,
   matchedPriority,
+  copyVisibility,
 }) {
   return (
     <StyledCover
@@ -106,6 +107,7 @@ function DetailCoverView({
           moveCardToAnotherList={moveCardToAnotherList}
           taskTitleList={taskTitleList}
           matchedPriority={matchedPriority}
+          copyVisibility={copyVisibility}
         />
         {labelsVisibility ? (
           <Labels

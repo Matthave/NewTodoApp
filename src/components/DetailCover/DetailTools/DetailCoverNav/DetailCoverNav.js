@@ -63,6 +63,8 @@ function DetailCoverNav({
   moveCardToAnotherList,
   taskTitleList,
   matchedPriority,
+  copyVisibility,
+  matchedColorsToThisCard,
 }) {
   return (
     <StyledDetailNav>
@@ -94,11 +96,14 @@ function DetailCoverNav({
           onClick={() => changeListInDetails("byNavMove")}
           className="suggested"
         >
-          <StyledIcon className="fas fa-long-arrow-alt-right" />
+          <StyledIcon className="fas fa-long-arrow-alt-right suggested" />
           Move
         </StyledDetailList>
-        <StyledDetailList>
-          <StyledIcon className="far fa-clipboard" />
+        <StyledDetailList
+          onClick={() => changeListInDetails("byNavCopy")}
+          className="suggested"
+        >
+          <StyledIcon className="far fa-clipboard suggested" />
           Copy
         </StyledDetailList>
         <StyledDetailList
@@ -132,6 +137,8 @@ function DetailCoverNav({
           changeListInDetails={changeListInDetails}
           taskTitleList={taskTitleList}
           byElement="byNavMove"
+          copyVisibility={copyVisibility}
+          matchedColorsToThisCard={matchedColorsToThisCard}
         />
       ) : null}
     </StyledDetailNav>

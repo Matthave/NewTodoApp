@@ -397,7 +397,7 @@ const Main = () => {
     setToggleDetailMove(false);
 
     taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id, taskId);
-    if (byOptionCover) {
+    if (byOptionCover || copy) {
       setVisibilityTaskDetails(false);
     }
   };
@@ -620,6 +620,7 @@ const Main = () => {
           setListOfAllComments={setListOfAllComments}
           toggleDetailMove={toggleDetailMove}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
+          copyVisibility={copyVisibility}
         />
       ) : null}
     </main>

@@ -36,6 +36,7 @@ function DetailTools({
   moveCardToAnotherList,
   taskTitleList,
   matchedPriority,
+  copyVisibility,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -66,6 +67,8 @@ function DetailTools({
         moveCardToAnotherList={moveCardToAnotherList}
         taskTitleList={taskTitleList}
         matchedPriority={matchedPriority}
+        copyVisibility={copyVisibility}
+        matchedColorsToThisCard={matchedColorsToThisCard}
       />
     </StyledDetailToolsWrap>
   );

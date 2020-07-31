@@ -71,6 +71,7 @@ class DetailCover extends React.Component {
       listOfAllComments,
       toggleDetailMove,
       listOfAllPriorityTasks,
+      copyVisibility,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -118,6 +119,7 @@ class DetailCover extends React.Component {
           editCommentToCard={this.editCommentToCard}
           toggleDetailMove={toggleDetailMove}
           matchedPriority={matchedPriority}
+          copyVisibility={copyVisibility}
         />
       </>
     );
