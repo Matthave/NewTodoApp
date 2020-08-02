@@ -75,23 +75,6 @@ const StyledLabelInput = styled.input`
   }
 `;
 
-// const StyledBtn = styled.div`
-//   width: 95%;
-//   background-color: #f5f6f8;
-//   text-align: center;
-//   padding: 8px 5px;
-//   margin: 0 auto;
-//   margin-top: 15px;
-//   font-size: 13px;
-//   color: #42516e;
-//   box-shadow: 0px 0px 1px 1.5px #ebecef;
-//   cursor: pointer;
-
-//   &:hover {
-//     background-color: #e5e6e8;
-//   }
-// `;
-
 const StyledX = styled.span`
   position: fixed;
   right: 16px;
@@ -171,7 +154,6 @@ function LabelsChooseColors({
           />
         </StyledLabelWrapEle>
       ))}
-      {/* <StyledBtn className="label">Create Label</StyledBtn> */}
     </StyledLabels>
   );
 }

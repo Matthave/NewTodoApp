@@ -35,6 +35,7 @@ const Main = () => {
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
   const [copyVisibility, setCopyVisibility] = useState(false);
+  const [dateVisibility, setDateVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -546,6 +547,10 @@ const Main = () => {
     setToggleCommentVisibility(toggle);
   };
 
+  const toggleDateVisibility = () => {
+    setDateVisibility(!dateVisibility);
+  };
+
   return (
     <main>
       <Navigations
@@ -592,6 +597,8 @@ const Main = () => {
           moveCardToAnotherList={moveCardToAnotherList}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           copyVisibility={copyVisibility}
+          dateVisibility={dateVisibility}
+          toggleDateVisibility={toggleDateVisibility}
         />
       ) : null}
       {visibilityTaskDetails ? (

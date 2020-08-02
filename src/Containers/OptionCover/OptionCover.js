@@ -58,6 +58,8 @@ class OptionCover extends Component {
       moveCardToAnotherList,
       listOfAllPriorityTasks,
       copyVisibility,
+      dateVisibility,
+      toggleDateVisibility,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -96,6 +98,8 @@ class OptionCover extends Component {
           moveCardToAnotherList={moveCardToAnotherList}
           matchedPriority={matchedPriority}
           copyVisibility={copyVisibility}
+          dateVisibility={dateVisibility}
+          toggleDateVisibility={toggleDateVisibility}
         />
       </>
     );

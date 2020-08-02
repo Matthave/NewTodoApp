@@ -3,6 +3,7 @@ import styled from "styled-components";
 import OptionCoverListView from "./OptionCoverListView/OptionCoverListView";
 import MoveToAnotherListBox from "../MoveToAnotherList/MoveToAnotherListBox";
 import Labels from "../../Containers/Labels/Labels";
+import DatePicker from "../../Containers/DatePicker/DatePicker";
 
 const StyledCover = styled.div`
   position: fixed;
@@ -89,6 +90,8 @@ const OptionCover = ({
   moveCardToAnotherList,
   matchedPriority,
   copyVisibility,
+  dateVisibility,
+  toggleDateVisibility,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -142,6 +145,8 @@ const OptionCover = ({
           addPriorityForCards={addPriorityForCards}
           changeListInDetails={changeListInDetails}
           matchedPriority={matchedPriority}
+          dateVisibility={dateVisibility}
+          toggleDateVisibility={toggleDateVisibility}
         />
 
         {labelsVisibility ? (
@@ -169,6 +174,9 @@ const OptionCover = ({
             copyVisibility={copyVisibility}
             matchedColorsToThisCard={matchedColorsToThisCard}
           />
+        ) : null}
+        {dateVisibility ? (
+          <DatePicker toggleDateVisibility={toggleDateVisibility} />
         ) : null}
       </StyledOptionBox>
     </StyledCover>

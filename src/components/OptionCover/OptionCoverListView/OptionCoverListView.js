@@ -40,6 +40,7 @@ function OptionCoverListView({
   optionCoverData,
   changeListInDetails,
   matchedPriority,
+  toggleDateVisibility,
 }) {
   return (
     <StyledListBlock className="cover_listBlock">
@@ -62,7 +63,7 @@ function OptionCoverListView({
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledList>
-        <StyledList>
+        <StyledList onClick={() => toggleDateVisibility()}>
           <StyledIcon className="far fa-clock" />
           Date Change
         </StyledList>
