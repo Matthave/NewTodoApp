@@ -131,6 +131,7 @@ class Labels extends Component {
     const {
       handleLabelsVisibility,
       detailCover,
+      optionCover,
       addLabelColor,
       optionCoverData,
       toggleLabelColorToCard,
@@ -168,6 +169,7 @@ class Labels extends Component {
         choosedSquar={this.choosedSquar}
         saveNameLabel={this.saveNameLabel}
         currentSquarEdit={currentSquarEdit}
+        optionCover={optionCover}
       />
     );
   }

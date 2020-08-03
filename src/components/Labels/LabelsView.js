@@ -5,6 +5,7 @@ import LabelsChooseColors from "./LabelView/LabelsChooseColors";
 function LabelsView({
   handleLabelsVisibility,
   detailCover,
+  optionCover,
   nameLabelVisibility,
   labelVisibility,
   toggleLabelColorToCard,
@@ -31,6 +32,7 @@ function LabelsView({
           choosedSquar={choosedSquar}
           saveNameLabel={saveNameLabel}
           currentSquarEdit={currentSquarEdit}
+          optionCover={optionCover}
         />
       ) : (
         <LabelsChooseColors
@@ -43,6 +45,7 @@ function LabelsView({
           generateCheckIcon={generateCheckIcon}
           searchLabelColor={searchLabelColor}
           searchInputLabel={searchInputLabel}
+          optionCover={optionCover}
         />
       )}
     </>

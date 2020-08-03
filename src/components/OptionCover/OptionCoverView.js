@@ -159,6 +159,7 @@ const OptionCover = ({
             listOfAllTasksId={listOfAllTasksId}
             labelColors={labelColors}
             setLabelColors={setLabelColors}
+            optionCover={true}
           />
         ) : null}
         {toggleDetailMove ? (
@@ -176,7 +177,10 @@ const OptionCover = ({
           />
         ) : null}
         {dateVisibility ? (
-          <DatePicker toggleDateVisibility={toggleDateVisibility} />
+          <DatePicker
+            toggleDateVisibility={toggleDateVisibility}
+            optionCover={true}
+          />
         ) : null}
       </StyledOptionBox>
     </StyledCover>

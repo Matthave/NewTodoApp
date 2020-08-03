@@ -58,6 +58,8 @@ function DetailCoverView({
   toggleDetailMove,
   matchedPriority,
   copyVisibility,
+  toggleDateVisibility,
+  dateVisibility,
 }) {
   return (
     <StyledCover
@@ -108,19 +110,14 @@ function DetailCoverView({
           taskTitleList={taskTitleList}
           matchedPriority={matchedPriority}
           copyVisibility={copyVisibility}
+          toggleDateVisibility={toggleDateVisibility}
+          dateVisibility={dateVisibility}
+          toggleLabelColorToCard={toggleLabelColorToCard}
+          listOfAllBadges={listOfAllBadges}
+          listOfAllTasksId={listOfAllTasksId}
+          labelColors={labelColors}
+          setLabelColors={setLabelColors}
         />
-        {labelsVisibility ? (
-          <Labels
-            detailCover={true}
-            handleLabelsVisibility={handleLabelsVisibility}
-            toggleLabelColorToCard={toggleLabelColorToCard}
-            listOfAllBadges={listOfAllBadges}
-            taskId={taskId}
-            listOfAllTasksId={listOfAllTasksId}
-            labelColors={labelColors}
-            setLabelColors={setLabelColors}
-          />
-        ) : null}
       </StyledDetail>
     </StyledCover>
   );

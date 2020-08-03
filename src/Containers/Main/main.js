@@ -628,6 +628,8 @@ const Main = () => {
           toggleDetailMove={toggleDetailMove}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           copyVisibility={copyVisibility}
+          toggleDateVisibility={toggleDateVisibility}
+          dateVisibility={dateVisibility}
         />
       ) : null}
     </main>

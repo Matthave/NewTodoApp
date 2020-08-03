@@ -296,7 +296,7 @@ class DatePicker extends Component {
   };
 
   render() {
-    const { toggleDateVisibility } = this.props;
+    const { toggleDateVisibility, optionCover } = this.props;
     const {
       days,
       todayDay,
@@ -319,6 +319,7 @@ class DatePicker extends Component {
         howManyDaysMonth={this.state.contentFilter}
         todayFullDate={todayFullDate}
         setThisDayFunc={this.setThisDayFunc}
+        optionCover={optionCover}
       />
     );
   }

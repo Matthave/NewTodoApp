@@ -8,11 +8,10 @@ const StyledChangeListDetails = styled.div`
   flex-wrap: wrap;
   position: fixed;
   right: ${(props) => (props.rightPosition ? "-120px" : "null")};
-  top: ${(props) => (props.topPosition ? "60px" : "null")};
+  top: ${(props) => (props.topPosition ? "0px" : "null")};
   width: 300px;
   background-color: #fff;
   border-radius: 3px;
-  margin-top: 10px;
   padding: 10px;
 `;
 

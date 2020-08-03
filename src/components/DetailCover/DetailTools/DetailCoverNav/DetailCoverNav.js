@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import Labels from "../../../../Containers/Labels/Labels";
 import MoveToAnotherListBox from "../../../MoveToAnotherList/MoveToAnotherListBox";
+import DatePicker from "../../../../Containers/DatePicker/DatePicker";
 import { device } from "../../../../Style/MediaQuery/mq";
 
 const StyledDetailNav = styled.nav`
@@ -65,6 +67,13 @@ function DetailCoverNav({
   matchedPriority,
   copyVisibility,
   matchedColorsToThisCard,
+  toggleDateVisibility,
+  dateVisibility,
+  toggleLabelColorToCard,
+  listOfAllBadges,
+  listOfAllTasksId,
+  labelColors,
+  setLabelColors,
 }) {
   return (
     <StyledDetailNav>
@@ -81,7 +90,7 @@ function DetailCoverNav({
           <StyledIcon className="fas fa-list-alt" />
           Tasks list
         </StyledDetailList>
-        <StyledDetailList>
+        <StyledDetailList onClick={() => toggleDateVisibility()}>
           <StyledIcon className="far fa-clock" />
           Term
         </StyledDetailList>
@@ -128,6 +137,18 @@ function DetailCoverNav({
           Archive
         </StyledDetailList>
       </StyledDetailUl>
+      {labelsVisibility ? (
+        <Labels
+          detailCover={true}
+          handleLabelsVisibility={handleLabelsVisibility}
+          toggleLabelColorToCard={toggleLabelColorToCard}
+          listOfAllBadges={listOfAllBadges}
+          taskId={taskId}
+          listOfAllTasksId={listOfAllTasksId}
+          labelColors={labelColors}
+          setLabelColors={setLabelColors}
+        />
+      ) : null}
       {toggleDetailMove ? (
         <MoveToAnotherListBox
           taskTitle={taskTitle}
@@ -140,6 +161,9 @@ function DetailCoverNav({
           copyVisibility={copyVisibility}
           matchedColorsToThisCard={matchedColorsToThisCard}
         />
+      ) : null}
+      {dateVisibility ? (
+        <DatePicker toggleDateVisibility={toggleDateVisibility} />
       ) : null}
     </StyledDetailNav>
   );

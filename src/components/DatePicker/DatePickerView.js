@@ -10,8 +10,8 @@ const StyledChangeListDetails = styled.div`
   position: fixed;
   width: 300px;
   height: 550px;
-  top: 0;
-  left: 270px;
+  top: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
+  right: ${(props) => (props.optionCoverPosition ? "-120px" : "null")};
   background-color: #fff;
   border-radius: 3px;
 `;
@@ -118,9 +118,10 @@ function DatePickerView({
   choosedDateFunction,
   setThisDataFunctiion,
   setThisDayFunc,
+  optionCover,
 }) {
   return (
-    <StyledChangeListDetails>
+    <StyledChangeListDetails optionCoverPosition={optionCover}>
       <StyledDateTitle>
         Change Date{" "}
         <span className="fas fa-times" onClick={() => toggleDateVisibility()} />

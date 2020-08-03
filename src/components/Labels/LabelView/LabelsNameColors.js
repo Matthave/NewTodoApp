@@ -2,10 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledBack = styled.span`
-  position: fixed;
-  left: 10px;
-  top: 16px;
-  margin-left: 10px;
   font-size: 15px;
   color: #42516e;
   cursor: pointer;
@@ -15,17 +11,20 @@ const StyledNameLabels = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  top: ${(props) => (props.detailCover ? "96px" : "0")};
-  left: ${(props) => (props.detailCover ? "390px" : "0")};
+  top: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
+  right: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
   width: 310px;
   height: 350px;
-  transform: translate(270px);
+  transform: ${(props) =>
+    props.optionCoverPosition ? "translate(130px)" : "null"};
   background-color: #fff;
   border-radius: 4px;
   padding: 5px;
 `;
 
-const StyledLabelTitle = styled.h2`
+const StyledLabelTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #42516e;
   text-align: center;
   padding-bottom: 10px;
@@ -77,10 +76,6 @@ const StyledColorSquar = styled.div`
 `;
 
 const StyledX = styled.span`
-  position: fixed;
-  right: 16px;
-  top: 16px;
-  margin-left: 10px;
   font-size: 15px;
   color: #42516e;
   cursor: pointer;
@@ -102,10 +97,13 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledTitle = styled.h4``;
+
 function LabelsNameColors({
   nameLabelVisibility,
   filteredColors,
   detailCover,
+  optionCover,
   nameLabelInput,
   nameLabelInputValue,
   choosedSquar,
@@ -116,17 +114,18 @@ function LabelsNameColors({
     <StyledNameLabels
       className="label"
       detailCover={detailCover}
+      optionCoverPosition={optionCover}
       onKeyPress={(e) => saveNameLabel(e)}
     >
       <StyledLabelTitle className="label">
-        Change Label{" "}
-        <StyledX
-          className="fas fa-times"
-          onClick={(e) => nameLabelVisibility(e, false, null)}
-        />
         <StyledBack
           className="fas fa-angle-left label"
           onClick={(e) => nameLabelVisibility(e, false, null, "back")}
+        />
+        <StyledTitle>Change Label</StyledTitle>
+        <StyledX
+          className="fas fa-times"
+          onClick={(e) => nameLabelVisibility(e, false, null)}
         />
       </StyledLabelTitle>
       <StyledName>Name</StyledName>

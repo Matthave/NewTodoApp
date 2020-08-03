@@ -37,6 +37,13 @@ function DetailTools({
   taskTitleList,
   matchedPriority,
   copyVisibility,
+  toggleDateVisibility,
+  dateVisibility,
+  toggleLabelColorToCard,
+  listOfAllBadges,
+  listOfAllTasksId,
+  labelColors,
+  setLabelColors,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -69,6 +76,13 @@ function DetailTools({
         matchedPriority={matchedPriority}
         copyVisibility={copyVisibility}
         matchedColorsToThisCard={matchedColorsToThisCard}
+        toggleDateVisibility={toggleDateVisibility}
+        dateVisibility={dateVisibility}
+        toggleLabelColorToCard={toggleLabelColorToCard}
+        listOfAllBadges={listOfAllBadges}
+        listOfAllTasksId={listOfAllTasksId}
+        labelColors={labelColors}
+        setLabelColors={setLabelColors}
       />
     </StyledDetailToolsWrap>
   );

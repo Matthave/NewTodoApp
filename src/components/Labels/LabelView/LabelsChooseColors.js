@@ -5,11 +5,12 @@ const StyledLabels = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  top: ${(props) => (props.detailCover ? "96px" : "0")};
-  left: ${(props) => (props.detailCover ? "390px" : "0")};
+  top: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
+  right: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
   width: 310px;
   height: 555px;
-  transform: translate(270px);
+  transform: ${(props) =>
+    props.optionCoverPosition ? "translate(130px)" : "null"};
   background-color: #fff;
   border-radius: 4px;
   padding: 5px;
@@ -51,7 +52,9 @@ const StyledIcon = styled.span`
   }
 `;
 
-const StyledLabelTitle = styled.h2`
+const StyledLabelTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #42516e;
   text-align: center;
   padding-bottom: 10px;
@@ -76,14 +79,18 @@ const StyledLabelInput = styled.input`
 `;
 
 const StyledX = styled.span`
-  position: fixed;
-  right: 16px;
-  top: 16px;
   margin-left: 10px;
   font-size: 15px;
   color: #42516e;
   cursor: pointer;
 `;
+
+const StyledBack = styled.span`
+  font-size: 15px;
+  opacity: 0;
+`;
+
+const StyledTitle = styled.h4``;
 
 const StyledIconCheck = styled.div`
   display: none;
@@ -106,6 +113,7 @@ const StyledNameSox = styled.div`
 `;
 function LabelsChooseColors({
   detailCover,
+  optionCover,
   handleLabelsVisibility,
   filteredColors,
   nameLabelVisibility,
@@ -120,9 +128,14 @@ function LabelsChooseColors({
   });
 
   return (
-    <StyledLabels className="label" detailCover={detailCover}>
+    <StyledLabels
+      className="label"
+      optionCoverPosition={optionCover}
+      detailCover={detailCover}
+    >
       <StyledLabelTitle className="label">
-        Labels{" "}
+        <StyledBack className="fas fa-angle-left label" />
+        <StyledTitle>Labels</StyledTitle>
         <StyledX
           className="fas fa-times"
           onClick={() => handleLabelsVisibility(false)}

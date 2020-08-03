@@ -64,7 +64,7 @@ function OptionCoverListView({
           Copy
         </StyledList>
         <StyledList onClick={() => toggleDateVisibility()}>
-          <StyledIcon className="far fa-clock" />
+          <StyledIcon className="far fa-clock suggested" />
           Date Change
         </StyledList>
         <StyledList

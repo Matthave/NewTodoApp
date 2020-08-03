@@ -72,6 +72,8 @@ class DetailCover extends React.Component {
       toggleDetailMove,
       listOfAllPriorityTasks,
       copyVisibility,
+      toggleDateVisibility,
+      dateVisibility,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -120,6 +122,8 @@ class DetailCover extends React.Component {
           toggleDetailMove={toggleDetailMove}
           matchedPriority={matchedPriority}
           copyVisibility={copyVisibility}
+          toggleDateVisibility={toggleDateVisibility}
+          dateVisibility={dateVisibility}
         />
       </>
     );
