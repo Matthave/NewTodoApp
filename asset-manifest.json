@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/NewTodoApp/static/js/main.ee7a8b53.chunk.js",
-    "main.js.map": "/NewTodoApp/static/js/main.ee7a8b53.chunk.js.map",
+    "main.js": "/NewTodoApp/static/js/main.b62e157a.chunk.js",
+    "main.js.map": "/NewTodoApp/static/js/main.b62e157a.chunk.js.map",
     "runtime-main.js": "/NewTodoApp/static/js/runtime-main.db59cd49.js",
     "runtime-main.js.map": "/NewTodoApp/static/js/runtime-main.db59cd49.js.map",
     "static/js/2.e27fa430.chunk.js": "/NewTodoApp/static/js/2.e27fa430.chunk.js",
     "static/js/2.e27fa430.chunk.js.map": "/NewTodoApp/static/js/2.e27fa430.chunk.js.map",
     "index.html": "/NewTodoApp/index.html",
-    "precache-manifest.61198d339f288c1f25f246ce8ff151a7.js": "/NewTodoApp/precache-manifest.61198d339f288c1f25f246ce8ff151a7.js",
+    "precache-manifest.a2b9a33ce3796de063afe69067d67424.js": "/NewTodoApp/precache-manifest.a2b9a33ce3796de063afe69067d67424.js",
     "service-worker.js": "/NewTodoApp/service-worker.js",
     "static/js/2.e27fa430.chunk.js.LICENSE.txt": "/NewTodoApp/static/js/2.e27fa430.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.db59cd49.js",
     "static/js/2.e27fa430.chunk.js",
-    "static/js/main.ee7a8b53.chunk.js"
+    "static/js/main.b62e157a.chunk.js"
   ]
 }
