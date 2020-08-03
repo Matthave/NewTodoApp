@@ -27,7 +27,7 @@ const StyledOptionBox = styled.div`
 `;
 
 const StyledTextArea = styled.textarea`
-  height: 100px;
+  height: 80px;
   width: 260px;
   padding: 7.5px;
   padding-top: 0px;
@@ -62,11 +62,35 @@ const StyledWrapLabels = styled.div`
 
 const StyledWrapTextAndLabels = styled.div`
   width: 260px;
-  height: 110px;
+  height: 120px;
   align-self: flex-start;
   border-radius: 5px;
   margin-right: 10px;
   background-color: #fff;
+`;
+
+const StyledIcon = styled.span`
+  margin-right: 6px;
+  font-size: 13px;
+  transition: 0.1s linear;
+`;
+
+const StyledDate = styled.span`
+  text-align: center;
+  padding: 5px 7.5px;
+  background-color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  border-radius: 5px;
+`;
+
+const StyledWrapTerms = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 260px;
+  min-height: 30px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #777;
 `;
 
 const OptionCover = ({
@@ -92,6 +116,8 @@ const OptionCover = ({
   copyVisibility,
   dateVisibility,
   toggleDateVisibility,
+  toggleTermToCard,
+  matchedTerms,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -122,6 +148,14 @@ const OptionCover = ({
             }
             value={taskTitle}
           />
+          <StyledWrapTerms>
+            {matchedTerms.map((ele) => (
+              <StyledDate>
+                <StyledIcon className="far fa-clock" />
+                {ele.term}
+              </StyledDate>
+            ))}
+          </StyledWrapTerms>
           <StyledSaveButton
             className="cover_saveBtn"
             onClick={(e) =>
@@ -179,6 +213,8 @@ const OptionCover = ({
         {dateVisibility ? (
           <DatePicker
             toggleDateVisibility={toggleDateVisibility}
+            taskId={optionCoverData[0].clickedCardId}
+            toggleTermToCard={toggleTermToCard}
             optionCover={true}
           />
         ) : null}

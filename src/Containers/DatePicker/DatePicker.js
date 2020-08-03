@@ -289,7 +289,7 @@ class DatePicker extends Component {
     //Send choosed date to main function and currentCard object, after validation by patter RegEx
     const pattern = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
     if (pattern.test(this.state.todayFullDate)) {
-      alert("YOPE");
+      this.props.toggleTermToCard(this.props.taskId, this.state.todayFullDate);
     } else {
       alert("NOPE");
     }

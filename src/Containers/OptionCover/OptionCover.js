@@ -60,6 +60,8 @@ class OptionCover extends Component {
       copyVisibility,
       dateVisibility,
       toggleDateVisibility,
+      toggleTermToCard,
+      listOfAllTerms,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -73,6 +75,11 @@ class OptionCover extends Component {
     const copyOfAllPriority = [...listOfAllPriorityTasks];
     const matchedPriority = copyOfAllPriority.filter(
       (ele) => ele === optionCoverData[0].clickedCardId
+    );
+
+    const copyOfAllTerms = [...listOfAllTerms];
+    const matchedTerms = copyOfAllTerms.filter(
+      (ele) => ele.id === optionCoverData[0].clickedCardId
     );
 
     return (
@@ -100,6 +107,8 @@ class OptionCover extends Component {
           copyVisibility={copyVisibility}
           dateVisibility={dateVisibility}
           toggleDateVisibility={toggleDateVisibility}
+          toggleTermToCard={toggleTermToCard}
+          matchedTerms={matchedTerms}
         />
       </>
     );

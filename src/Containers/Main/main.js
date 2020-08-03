@@ -32,6 +32,7 @@ const Main = () => {
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
   const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
   const [listOfAllComments, setListOfAllComments] = useState([]);
+  const [listOfAllTerms, setListOfallTerms] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
   const [copyVisibility, setCopyVisibility] = useState(false);
@@ -551,6 +552,18 @@ const Main = () => {
     setDateVisibility(!dateVisibility);
   };
 
+  const toggleTermToCard = (taskId, date) => {
+    const termExistAlready = listOfAllTerms.filter((ele) => ele.id === taskId);
+    if (termExistAlready.length !== 0) {
+      const existingTermIndex = listOfAllTerms.findIndex(
+        (ele) => ele.id === taskId
+      );
+      listOfAllTerms.splice(existingTermIndex, 1);
+    }
+    setListOfallTerms([...listOfAllTerms, { id: taskId, term: date }]);
+    setDateVisibility(!dateVisibility);
+  };
+
   return (
     <main>
       <Navigations
@@ -599,6 +612,8 @@ const Main = () => {
           copyVisibility={copyVisibility}
           dateVisibility={dateVisibility}
           toggleDateVisibility={toggleDateVisibility}
+          toggleTermToCard={toggleTermToCard}
+          listOfAllTerms={listOfAllTerms}
         />
       ) : null}
       {visibilityTaskDetails ? (
