@@ -88,8 +88,8 @@ class Card extends Component {
     const draggedCard = document.getElementById(taskId);
 
     const draggedCardChildren = draggedCard.children;
-    const draggenCardLabelsChildren = [...draggedCardChildren[0].children]; //Wear thing that is need to properly dragging without doubling card content
-    const draggedCardTermChildren = [...draggedCard.children[2].children]; //Wear thing that is need to properly dragging without doubling card content
+    const draggenCardLabelsChildren = [...draggedCardChildren[0].children]; //Weard thing that is need to properly dragging without doubling card content
+    const draggedCardTermChildren = [...draggedCard.children[2].children]; //Weard thing that is need to properly dragging without doubling card content
 
     if (e.pageX < 285 - scrollHeighFromMain) {
       if (wholeList[0].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place
@@ -270,18 +270,3 @@ class Card extends Component {
 }
 
 export default Card;
-
-/* mouseDOWN listener jest nadany w JSX, po kliknięciu w card nadają się kolejne dwa listenery UP i MOVE  
-nie maja one podanego argumentu event, ani nie sa nawet () wywołane.
-
-wszystkie e.tareget zmienilem na wyszukany w srodku listenerów current CARD.
-Mimo to samo 'e', istnieje i mozna się nim wspomagać
-
-Myk z ele.textContext w children card jest zastosowany tez na TERM
-
-caly czas jest jakis kurwa wyciek danych
-
-
-
-
-*/

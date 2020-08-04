@@ -84,7 +84,6 @@ const StyledDate = styled.span`
   background-color: rgba(255, 255, 255, 0.85);
   border-bottom-left-radius: 5px;
   font-size: 14px;
-  border-radius
 `;
 
 const StyledWrapTerms = styled.div`
