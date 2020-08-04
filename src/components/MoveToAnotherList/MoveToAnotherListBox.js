@@ -118,7 +118,7 @@ function MoveToAnotherListBox({
               key={list.id}
             >
               <StyledIcon biggerFont className="fas fa-long-arrow-alt-left" />
-              {list.title}
+              {list.title.length !== 0 ? list.title : "No Name List"}
             </StyledSuggestList>
           ))}
         </>

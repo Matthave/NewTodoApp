@@ -29,7 +29,7 @@ function DetailSuggestedElement({
         onClick={() => changeListInDetails("byListName")}
         className="suggested"
       >
-        {taskTitleList}
+        {taskTitleList.length !== 0 ? taskTitleList : "No Name List"}
       </StyledStrongText>
       {visibilityChangeListInDetails ? (
         <MoveToAnotherListBox

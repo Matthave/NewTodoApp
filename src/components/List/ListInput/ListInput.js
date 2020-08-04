@@ -14,6 +14,11 @@ const StyledInput = styled.input`
     background-color: white;
     box-shadow: 0px 0px 1px 1.5px #0079bf;
   }
+
+  &::placeholder {
+    font-weight: 400;
+    color: #779;
+  }
 `;
 
 const StyledInputCover = styled.div`
@@ -43,6 +48,7 @@ function ListInput({ selectedList, id, inputTitle, listOption, setListTitle }) {
           value={inputTitle}
           onChange={(e) => setListTitle(e, id)}
           className="input"
+          placeholder="Add any title..."
         />
       )}
       <span className="fas fa-ellipsis-h" onClick={() => listOption(id)} />
