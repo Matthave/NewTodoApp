@@ -9,7 +9,7 @@ const StyledChangeListDetails = styled.div`
   flex-wrap: wrap;
   position: fixed;
   width: 300px;
-  height: 550px;
+  height: 580px;
   top: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
   right: ${(props) => (props.optionCoverPosition ? "-120px" : "null")};
   background-color: #fff;
@@ -92,7 +92,7 @@ const StyledInput = styled.input`
 const StyledButton = styled.button`
   width: 75px;
   height: 32.5px;
-  background-color: #5aac44;
+  background-color: ${(props) => (props.redButton ? "#CF513D" : "#5aac44")};
   border-radius: 4px;
   margin: 10px auto;
   color: white;
@@ -101,7 +101,7 @@ const StyledButton = styled.button`
   align-self: center;
 
   &:hover {
-    background-color: #6abc54;
+    opacity: 0.85;
   }
 `;
 
@@ -110,12 +110,14 @@ function DatePickerView({
   todayDay,
   todayYear,
   todayMonthName,
+  time,
   days,
   toggleMonths,
   emptyFields,
   howManyDaysMonth,
   todayFullDate,
   choosedDateFunction,
+  choosedTimeFunction,
   setThisDataFunctiion,
   setThisDayFunc,
   optionCover,
@@ -153,7 +155,12 @@ function DatePickerView({
         value={todayFullDate}
         onChange={(e) => choosedDateFunction(e)}
       />
+
+      <StyledInput value={time} onChange={(e) => choosedTimeFunction(e)} />
       <StyledButton onClick={() => setThisDataFunctiion()}>SAVE</StyledButton>
+      <StyledButton onClick={() => setThisDataFunctiion()} redButton>
+        DELETE
+      </StyledButton>
     </StyledChangeListDetails>
   );
 }

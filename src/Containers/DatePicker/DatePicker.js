@@ -3,6 +3,7 @@ import DatePickerView from "../../components/DatePicker/DatePickerView";
 
 class DatePicker extends Component {
   state = {
+    time: "",
     todayFullDate: "",
     todayWeekDay: "",
     todayDay: "",
@@ -51,15 +52,23 @@ class DatePicker extends Component {
         : date.getMonth() + 1
     }.${date.getFullYear()}`;
 
+    //Set INITIAL time ( current time ) in input
+    const hours = `${
+      date.getHours() <= 9 ? "0" + date.getHours() : date.getHours()
+    }`;
+    const minutes = `${
+      date.getMinutes() <= 9 ? "0" + date.getMinutes() : date.getMinutes()
+    }`;
+
     //Call generate
     this.generateOtherMonth(
       firstOfMonth,
       this.state.months[date.getMonth()],
       date.getFullYear()
     );
-
     //INITIAL data for date
     this.setState({
+      time: `${hours}:${minutes}`,
       todayDay: date.getDate(),
       todayMonthName: this.state.months[date.getMonth()],
       todayMonth: date.getMonth() + 1,
@@ -253,9 +262,16 @@ class DatePicker extends Component {
   };
 
   choosedDateFunction = (e) => {
-    //Input onChange function
+    //Input onChange function for date
     this.setState({
       todayFullDate: e.target.value,
+    });
+  };
+
+  choosedTimeFunction = (e) => {
+    //Input onChange function for time
+    this.setState({
+      time: e.target.value,
     });
   };
 
@@ -287,9 +303,17 @@ class DatePicker extends Component {
 
   setThisDataFunctiion = () => {
     //Send choosed date to main function and currentCard object, after validation by patter RegEx
-    const pattern = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
-    if (pattern.test(this.state.todayFullDate)) {
-      this.props.toggleTermToCard(this.props.taskId, this.state.todayFullDate);
+    const patternDate = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+    const patternTime = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
+    if (
+      patternDate.test(this.state.todayFullDate) &&
+      patternTime.test(this.state.time)
+    ) {
+      this.props.toggleTermToCard(
+        this.props.taskId,
+        this.state.todayFullDate,
+        this.state.time
+      );
     } else {
       alert("NOPE");
     }
@@ -298,6 +322,7 @@ class DatePicker extends Component {
   render() {
     const { toggleDateVisibility, optionCover } = this.props;
     const {
+      time,
       days,
       todayDay,
       todayYear,
@@ -308,12 +333,14 @@ class DatePicker extends Component {
     return (
       <DatePickerView
         toggleDateVisibility={toggleDateVisibility}
+        time={time}
         days={days}
         todayDay={todayDay}
         todayYear={todayYear}
         todayMonthName={todayMonthName}
         toggleMonths={this.toggleMonths}
         choosedDateFunction={this.choosedDateFunction}
+        choosedTimeFunction={this.choosedTimeFunction}
         setThisDataFunctiion={this.setThisDataFunctiion}
         emptyFields={this.state.emptyFilter}
         howManyDaysMonth={this.state.contentFilter}

@@ -22,17 +22,20 @@ const StyledOptionBox = styled.div`
   width: 450px;
   display: flex;
   flex-wrap: wrap;
-  border-radius: 5px;
   z-index: 999;
 `;
 
 const StyledTextArea = styled.textarea`
-  height: 80px;
   width: 260px;
-  padding: 7.5px;
-  padding-top: 0px;
-  border-radius: 5px;
+  min-height: 70px;
+  padding: 0px 7.5px;
+  font-size: 14px;
+  color: #172b4d;
   resize: none;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 const StyledSaveButton = styled.button`
@@ -56,17 +59,17 @@ const StyledWrapLabels = styled.div`
   width: 260px;
   min-height: 10px;
   padding: 5px 5px 0px 5px;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   background-color: #fff;
 `;
 
 const StyledWrapTextAndLabels = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 260px;
-  height: 120px;
   align-self: flex-start;
-  border-radius: 5px;
   margin-right: 10px;
-  background-color: #fff;
 `;
 
 const StyledIcon = styled.span`
@@ -79,8 +82,9 @@ const StyledDate = styled.span`
   text-align: center;
   padding: 5px 7.5px;
   background-color: rgba(255, 255, 255, 0.85);
+  border-bottom-left-radius: 5px;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius
 `;
 
 const StyledWrapTerms = styled.div`
@@ -88,7 +92,8 @@ const StyledWrapTerms = styled.div`
   flex-wrap: wrap;
   width: 260px;
   min-height: 30px;
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   background-color: #fff;
   color: #777;
 `;
@@ -150,7 +155,7 @@ const OptionCover = ({
           />
           <StyledWrapTerms>
             {matchedTerms.map((ele) => (
-              <StyledDate>
+              <StyledDate key={ele.id}>
                 <StyledIcon className="far fa-clock" />
                 {ele.term}
               </StyledDate>

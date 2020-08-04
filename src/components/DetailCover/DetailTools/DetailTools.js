@@ -44,6 +44,7 @@ function DetailTools({
   listOfAllTasksId,
   labelColors,
   setLabelColors,
+  matchedTerms,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -59,6 +60,8 @@ function DetailTools({
         taskId={taskId}
         listOfAllComments={listOfAllComments}
         editCommentToCard={editCommentToCard}
+        matchedTerms={matchedTerms}
+        toggleDateVisibility={toggleDateVisibility}
       />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}

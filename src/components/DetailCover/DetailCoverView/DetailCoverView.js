@@ -2,7 +2,6 @@ import React from "react";
 import DetailInputElement from "../DetailElements/DetailInputElement";
 import DetailSuggestedElement from "../DetailElements/DetalSuggestedElement/DetailSuggestedElement";
 import DetailTools from "../DetailTools/DetailTools";
-import Labels from "../../../Containers/Labels/Labels";
 import styled from "styled-components";
 
 const StyledCover = styled.div`
@@ -60,6 +59,7 @@ function DetailCoverView({
   copyVisibility,
   toggleDateVisibility,
   dateVisibility,
+  matchedTerms,
 }) {
   return (
     <StyledCover
@@ -117,6 +117,7 @@ function DetailCoverView({
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
+          matchedTerms={matchedTerms}
         />
       </StyledDetail>
     </StyledCover>

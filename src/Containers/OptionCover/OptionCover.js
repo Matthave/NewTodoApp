@@ -26,8 +26,7 @@ class OptionCover extends Component {
       (element) => element.id === taskData[0].listId
     );
 
-    const positionY =
-      mainOffsetTop + taskData[0].top - 8 + coverBoxHeight / 1.6;
+    const positionY = mainOffsetTop + taskData[0].top + coverBoxHeight / 1.65;
     const positionX = 285 * listIndex + 18.5 - scrollPosition;
 
     //Top and Left BOX Position Calculate

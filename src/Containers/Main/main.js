@@ -135,6 +135,7 @@ const Main = () => {
     const theBiggestId = Math.max(...listOfAllTasksId);
 
     const matchedList = wholeList.filter((ele) => ele.id === listId);
+    const matchedDate = listOfAllTerms.filter((ele) => ele.id === taskId);
 
     //"Add card" by move already existing card
     if (taskId) {
@@ -146,7 +147,7 @@ const Main = () => {
         comment: matchedComment,
         badges: matchedBadges,
         priority: `${matchedPriority.length === 0 ? null : "priority"}`,
-        date: "",
+        date: matchedDate,
         cover: "",
       });
     } else {
@@ -159,7 +160,7 @@ const Main = () => {
         comment: "",
         badges: [],
         priority: false,
-        date: "",
+        date: [],
         cover: "",
       });
       if (listOfAllTasksId.length === 0) {
@@ -280,7 +281,7 @@ const Main = () => {
       {
         listId: listId,
         currentListName: currentListName,
-        top: e.target.parentNode.offsetTop,
+        top: e.target.parentNode.parentNode.offsetTop,
         left: e.target.parentNode.offsetLeft,
         taskTitle: taskName,
         clickedCard: e.target.parentNode,
@@ -418,6 +419,8 @@ const Main = () => {
       (ele) => ele.id === preventCardId
     );
 
+    const dateToCopy = listOfAllTerms.filter((ele) => ele.id === preventCardId);
+
     if (lablesToCopy.length !== 0 && canCopyLabels) {
       lablesToCopy.forEach((ele) => {
         listOfAllBadges.push({
@@ -432,6 +435,16 @@ const Main = () => {
     if (commentToCopy.length !== 0) {
       listOfAllComments.push({ id: copyId, comment: commentToCopy[0].comment });
     }
+
+    if (dateToCopy.length !== 0) {
+      listOfAllTerms.push({
+        id: copyId,
+        term: dateToCopy[0].term,
+        time: dateToCopy[0].time,
+        status: dateToCopy[0].status,
+      });
+    }
+
     addNewCard(listId, taskTitle, copyId);
   };
 
@@ -552,15 +565,26 @@ const Main = () => {
     setDateVisibility(!dateVisibility);
   };
 
-  const toggleTermToCard = (taskId, date) => {
+  const toggleTermToCard = (taskId, date, time) => {
     const termExistAlready = listOfAllTerms.filter((ele) => ele.id === taskId);
     if (termExistAlready.length !== 0) {
       const existingTermIndex = listOfAllTerms.findIndex(
         (ele) => ele.id === taskId
       );
+      const currentCard = document.getElementById(`${taskId}term`);
+      currentCard.innerHTML = "";
       listOfAllTerms.splice(existingTermIndex, 1);
     }
-    setListOfallTerms([...listOfAllTerms, { id: taskId, term: date }]);
+    const currentCard = document.getElementById(`${taskId}term`);
+    const termSpan = document.createElement("span");
+    termSpan.classList.add("termSpan");
+    termSpan.textContent = `${date}`;
+    currentCard.appendChild(termSpan);
+
+    setListOfallTerms([
+      ...listOfAllTerms,
+      { id: taskId, term: date, time: time, status: "" },
+    ]);
     setDateVisibility(!dateVisibility);
   };
 
@@ -645,6 +669,7 @@ const Main = () => {
           copyVisibility={copyVisibility}
           toggleDateVisibility={toggleDateVisibility}
           dateVisibility={dateVisibility}
+          listOfAllTerms={listOfAllTerms}
         />
       ) : null}
     </main>

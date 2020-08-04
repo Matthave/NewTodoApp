@@ -1,10 +1,46 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const StyledContentWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  padding: 2px;
+`;
+
+const StyledContent = styled.h3`
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: #172b4d;
+`;
+
+const StyledEdit = styled.span`
+  margin: 0 5px;
+  align-self: center;
+  pointer-events: initial;
+`;
+
+const StyledIcon = styled.span`
+  margin-right: 5px;
+  font-size: 12.5px;
+`;
+
+const StyledTermInCard = styled.span`
+  color: #888;
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  margin-left: 3px;
+`;
 
 class Card extends Component {
   state = {
     selected: false,
     scrollHeight: 0,
     taskk: "",
+    offsetX: "",
+    offsetY: "",
   };
 
   componentDidMount() {
@@ -13,21 +49,31 @@ class Card extends Component {
     });
   }
 
+  componentWillUnmount() {
+    document.removeEventListener("mousemove", this.mouseMoveFeature, true);
+    document.removeEventListener("mouseup", this.mouseUpFeature, true);
+  }
+
   mouseDownFeature = (e) => {
     if (e.target.classList[0] !== "card") return;
     this.setState({
       selected: true,
+      offsetX: e.nativeEvent.offsetX,
+      offsetY: e.nativeEvent.offsetY,
     });
+
     e.target.style.zIndex = 999;
+    document.addEventListener("mousemove", this.mouseMoveFeature, true);
+    document.addEventListener("mouseup", this.mouseUpFeature, true);
   };
 
   mouseUpFeature = (e) => {
+    const card = document.getElementById(this.props.task.id);
     if (e.target.classList[0] !== "card") return;
-
-    e.target.style.cursor = "pointer";
-    e.target.style.position = "static";
-    e.target.style.transform = "rotate(0deg)";
-    e.target.style.zIndex = 0;
+    card.style.cursor = "pointer";
+    card.style.position = "static";
+    card.style.transform = "rotate(0deg)";
+    card.style.zIndex = 0;
 
     const {
       scrollPosition,
@@ -38,24 +84,23 @@ class Card extends Component {
     } = this.props;
 
     const scrollHeighFromMain = Math.floor(scrollPosition);
-    const taskId = e.target.getAttribute("id");
+    const taskId = card.getAttribute("id");
     const draggedCard = document.getElementById(taskId);
 
     const draggedCardChildren = draggedCard.children;
-    const draggenCardLabelsChildren = [...draggedCardChildren[0].children];
-
-    if (draggedCard.children[0].children.length !== 0) {
-      draggedCard.children[0].style.width = "100%";
-      draggedCard.children[0].style.fontSize = "12px";
-    }
+    const draggenCardLabelsChildren = [...draggedCardChildren[0].children]; //Wear thing that is need to properly dragging without doubling card content
+    const draggedCardTermChildren = [...draggedCard.children[2].children]; //Wear thing that is need to properly dragging without doubling card content
 
     if (e.pageX < 285 - scrollHeighFromMain) {
-      if (wholeList[0].id === listId) return this.mouseLeaveFeature(e); //When put card in this same place
+      if (wholeList[0].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place
       draggenCardLabelsChildren.forEach((ele) => {
         ele.textContent = "";
       });
+      draggedCardTermChildren.forEach((ele) => {
+        ele.textContent = "";
+      });
       deleteCardFeatureByMove(listId, taskId);
-      addNewCardFeature(wholeList[0].id, e.target.textContent, taskId);
+      addNewCardFeature(wholeList[0].id, card.textContent, taskId);
     }
 
     for (let i = 1; i <= 10; i++) {
@@ -64,17 +109,23 @@ class Card extends Component {
         e.pageX < 285 * i + 285 - scrollHeighFromMain &&
         wholeList.length >= i + 1
       ) {
-        if (wholeList[i].id === listId) return this.mouseLeaveFeature(e); //When put card in this same place
+        if (wholeList[i].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place
         draggenCardLabelsChildren.forEach((ele) => {
           ele.textContent = "";
         });
+        draggedCardTermChildren.forEach((ele) => {
+          ele.textContent = "";
+        });
         deleteCardFeatureByMove(listId, taskId);
-        addNewCardFeature(wholeList[i].id, e.target.textContent, taskId);
+        addNewCardFeature(wholeList[i].id, card.textContent, taskId);
       }
     }
 
     this.props.isDragAndDropTrue(false);
     this.props.clearAllBlankSpan();
+
+    document.removeEventListener("mousemove", this.mouseMoveFeature, true);
+    document.removeEventListener("mouseup", this.mouseUpFeature, true);
 
     this.setState({
       selected: false,
@@ -83,21 +134,16 @@ class Card extends Component {
 
   mouseMoveFeature = (e) => {
     const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
-    if (this.state.selected && e.target.classList[0] === "card") {
-      e.target.style.left = `${e.clientX - 130}px`;
-      e.target.style.top = `${e.clientY - 27.5}px`;
-      e.target.style.position = "fixed";
-      e.target.style.cursor = "grabbing";
-      e.target.style.transform = "rotate(5deg)";
-      e.target.style.zIndex = 999;
+    const card = document.getElementById(this.props.task.id);
 
-      const taskId = e.target.getAttribute("id");
-      const draggedCard = document.getElementById(taskId);
+    if (this.state.selected) {
+      card.style.left = `${e.pageX - card.getBoundingClientRect().width / 2}px`;
+      card.style.top = `${e.pageY - card.getBoundingClientRect().height / 2}px`;
 
-      if (draggedCard.children[0].children.length !== 0) {
-        draggedCard.children[0].style.width = "25%";
-        draggedCard.children[0].style.fontSize = "0px";
-      }
+      card.style.position = "fixed";
+      card.style.cursor = "grabbing";
+      card.style.transform = "rotate(5deg)";
+      card.style.zIndex = 999;
 
       const allBlankSpan = document.querySelectorAll(".blank");
       allBlankSpan.forEach((all) => {
@@ -128,18 +174,18 @@ class Card extends Component {
     this.props.isDragAndDropTrue(true);
   };
 
-  mouseLeaveFeature = (e) => {
-    const cardWrapLabel = document.querySelectorAll(".card_wrapLabel");
-    cardWrapLabel.forEach((ele) => {
-      ele.style.width = "100%";
-    });
-
-    e.target.style.cursor = "pointer";
-    e.target.style.position = "static";
-    e.target.style.transform = "rotate(0deg)";
-    e.target.style.zIndex = 0;
+  mouseLeaveFeature = (card) => {
+    const target = card;
+    target.style.cursor = "pointer";
+    target.style.position = "static";
+    target.style.transform = "rotate(0deg)";
+    target.style.zIndex = 0;
     this.props.clearAllBlankSpan();
     this.props.isDragAndDropTrue(false);
+
+    document.removeEventListener("mousemove", this.mouseMoveFeature, true);
+    document.removeEventListener("mouseup", this.mouseUpFeature, true);
+
     this.setState({
       selected: false,
     });
@@ -167,9 +213,6 @@ class Card extends Component {
           taskDetailsFunction(task.taskName, inputTitle, listId, task.id)
         }
         onMouseDown={(e) => this.mouseDownFeature(e)}
-        onMouseUp={(e) => this.mouseUpFeature(e)}
-        onMouseMove={(e) => this.mouseMoveFeature(e)}
-        onMouseLeave={(e) => this.mouseLeaveFeature(e)}
         style={{
           border: task.priority === "priority" ? "1px solid #db4a36" : null,
         }}
@@ -177,36 +220,68 @@ class Card extends Component {
         <div
           className="card_wrapLabel"
           onClick={() => this.labelFontSizeToggle(hideFontSizeLabel)}
-          style={{ fontSize: hideFontSizeLabel ? 0 : "12px" }}
+          style={{
+            fontSize: hideFontSizeLabel ? 0 : "12px",
+            pointerEvents: "none",
+          }}
         >
           {task.badges.map((ele) => (
             <div
               key={ele.color}
               id={ele.labelId}
               className="labelElement"
-              style={{ backgroundColor: ele.color }}
+              style={{ backgroundColor: ele.color, pointerEvents: "none" }}
             >
               {ele.name}
             </div>
           ))}
         </div>
-        {task.taskName}
-        <span
-          className="fas fa-highlighter"
-          onClick={(e) =>
-            visibilityOptionFunction(
-              e,
-              true,
-              task,
-              listId,
-              task.currentListName,
-              task.id
-            )
-          }
-        />
+        <StyledContentWrap>
+          <StyledContent>{task.taskName}</StyledContent>
+          <StyledEdit
+            className="fas fa-highlighter"
+            onClick={(e) =>
+              visibilityOptionFunction(
+                e,
+                true,
+                task,
+                listId,
+                task.currentListName,
+                task.id
+              )
+            }
+          />
+        </StyledContentWrap>
+
+        <div
+          style={{ width: "100%", pointerEvents: "none" }}
+          id={`${task.id}term`}
+        >
+          {task.date.map((ele) => (
+            <StyledTermInCard key={ele.id}>
+              <StyledIcon className="far fa-clock" />
+              {ele.term}
+            </StyledTermInCard>
+          ))}
+        </div>
       </div>
     );
   }
 }
 
 export default Card;
+
+/* mouseDOWN listener jest nadany w JSX, po kliknięciu w card nadają się kolejne dwa listenery UP i MOVE  
+nie maja one podanego argumentu event, ani nie sa nawet () wywołane.
+
+wszystkie e.tareget zmienilem na wyszukany w srodku listenerów current CARD.
+Mimo to samo 'e', istnieje i mozna się nim wspomagać
+
+Myk z ele.textContext w children card jest zastosowany tez na TERM
+
+caly czas jest jakis kurwa wyciek danych
+
+
+
+
+*/

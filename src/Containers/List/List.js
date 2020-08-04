@@ -230,6 +230,7 @@ class List extends Component {
       inputTitle,
       selectedList,
     } = this.state;
+
     return (
       <div className="singleListWrap">
         <div className="frontBlankList"></div>

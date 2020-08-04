@@ -47,9 +47,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: #F4F5F7;
   }
 
-  &:hover > *{
-  color:#777;
-  }
+      &:hover .fa-highlighter {
+     color:#777; 
+    }
   }
 
   .card_cardWrapContent{
@@ -142,6 +142,7 @@ const GlobalStyle = createGlobalStyle`
     align-self:center;
     margin:2px;
     margin-bottom:0px;
+    color:#000;
     @media ${device.laptop} {
       color:#fff;
 
@@ -178,6 +179,13 @@ const GlobalStyle = createGlobalStyle`
      font-size: 20px;
      color:#42526E;
      cursor: pointer;
+   }
+
+   .termSpan{
+    color: #888;
+    font-size: 12.5px;
+    letter-spacing: 0.5px;
+    margin-left:3px;
    }
 
 ::-webkit-scrollbar{

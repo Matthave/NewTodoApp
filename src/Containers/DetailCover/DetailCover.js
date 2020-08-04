@@ -74,6 +74,7 @@ class DetailCover extends React.Component {
       copyVisibility,
       toggleDateVisibility,
       dateVisibility,
+      listOfAllTerms,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -86,6 +87,9 @@ class DetailCover extends React.Component {
 
     const copyOfAllPriority = [...listOfAllPriorityTasks];
     const matchedPriority = copyOfAllPriority.filter((ele) => ele === taskId);
+
+    const copyOfAllTerms = [...listOfAllTerms];
+    const matchedTerms = copyOfAllTerms.filter((ele) => ele.id === taskId);
 
     const { taskTitle, commentValue } = this.state;
 
@@ -124,6 +128,7 @@ class DetailCover extends React.Component {
           copyVisibility={copyVisibility}
           toggleDateVisibility={toggleDateVisibility}
           dateVisibility={dateVisibility}
+          matchedTerms={matchedTerms}
         />
       </>
     );

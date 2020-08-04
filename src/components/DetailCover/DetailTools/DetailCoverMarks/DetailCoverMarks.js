@@ -9,14 +9,13 @@ const StyledDetailDescription = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 25px;
 `;
 
 const StyledTitle = styled.h2`
   width: 100%;
   color: #42516e;
-  margin-bottom: 10px;
-  margin-top: ${(props) => (props.marginTop ? "10px" : "none")};
+  margin-bottom: 20px;
+  margin-top: 20px;
 `;
 
 const StyledTextArea = styled.textarea`
@@ -38,9 +37,11 @@ const StyledTextArea = styled.textarea`
 
 const StyledIcon = styled.span`
   margin-right: 6px;
+  margin-left: ${(props) => (props.marginLeft ? "6" : "none")};
   font-size: ${(props) => (props.biggerSize ? "23px" : "17px")};
   color: #42516e;
-  cursor: ${(props) => (props.pointer ? "pointer" : "none")};
+  cursor: ${(props) => (props.pointer ? "pointer" : "initial")};
+  vertical-align: middle;
 `;
 
 const StyledLabelsWrap = styled.div`
@@ -87,6 +88,25 @@ const StyledComment = styled.h3`
   cursor: pointer;
 `;
 
+const StyledTermWrap = styled.div`
+  display: flex;
+`;
+
+const StyledTerm = styled.h3`
+  background-color: #eaecf0;
+  border-radius: 4px;
+  padding: 7.5px 10px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #42516e;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #dadce0;
+  }
+`;
+
 function DetailCoverMarks({
   matchedColorsToThisCard,
   handleLabelsVisibility,
@@ -99,6 +119,8 @@ function DetailCoverMarks({
   taskId,
   listOfAllComments,
   editCommentToCard,
+  matchedTerms,
+  toggleDateVisibility,
 }) {
   return (
     <StyledDetailMarks>
@@ -128,6 +150,29 @@ function DetailCoverMarks({
           </StyledLabelsWrap>
         )}
       </div>
+      <StyledTitle marginTop>
+        <StyledIcon className="far fa-clock" />
+        Terms
+      </StyledTitle>
+      {matchedTerms.length === 0 ? (
+        <StyledPlaceholder>This card has no deadline yet</StyledPlaceholder>
+      ) : (
+        <>
+          {matchedTerms.map((ele) => (
+            <StyledTermWrap key={ele.term}>
+              <StyledTerm onClick={() => toggleDateVisibility()}>
+                {ele.term} at {ele.time}{" "}
+                <StyledIcon
+                  className="fas fa-chevron-down"
+                  pointer
+                  marginLeft
+                />
+              </StyledTerm>
+            </StyledTermWrap>
+          ))}
+        </>
+      )}
+
       <StyledDetailDescription>
         <StyledTitle>
           <StyledIcon className="fas fa-stream" />
