@@ -53,9 +53,6 @@ function ListView({
       className="lists"
       id={`list${id}`}
       onMouseDown={(e) => mouseDownFeature(e)}
-      onMouseMove={(e) => mouseMoveFeature(e)}
-      onMouseUp={(e) => mouseUpFeature(e)}
-      onMouseLeave={(e) => mouseLeaveFeature(e)}
     >
       <ListInput
         selectedList={selectedList}

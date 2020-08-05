@@ -31,6 +31,8 @@ class List extends Component {
     document.removeEventListener("keypress", (e) =>
       this.addNewCardFeatureByKey(e, this.props.id, this.state.textAreaValue)
     );
+    document.removeEventListener("mousemove", this.mouseMoveFeature, true);
+    document.removeEventListener("mouseup", this.mouseUpFeature, true);
   }
 
   hideAll = (e) => {
@@ -108,15 +110,19 @@ class List extends Component {
     e.target.style.zIndex = 999;
     e.target.style.cursor = "grabbing";
     e.target.style.boxShadow = "0px 0px 20px 0.5px rgba(0,0,0,0.1";
+
+    document.addEventListener("mousemove", this.mouseMoveFeature, true);
+    document.addEventListener("mouseup", this.mouseUpFeature, true);
   };
 
   mouseMoveFeature = (e) => {
+    const list = document.getElementById(`list${this.props.id}`);
     const scrollHeighFromMain = Math.floor(this.props.scrollPosition);
-    if (this.state.selectedList && e.target.classList[0] === "lists") {
-      e.target.style.left = `${e.clientX - 135}px`;
-      e.target.style.top = `${e.clientY - 45}px`;
-      e.target.style.position = "fixed";
-      e.target.style.transform = "rotate(5deg)";
+    if (this.state.selectedList && list.classList[0] === "lists") {
+      list.style.left = `${e.clientX - 135}px`;
+      list.style.top = `${e.clientY - 45}px`;
+      list.style.position = "fixed";
+      list.style.transform = "rotate(5deg)";
 
       const allBlankSpan = document.querySelectorAll(".frontBlankList");
       allBlankSpan.forEach((all) => {
@@ -152,12 +158,13 @@ class List extends Component {
   };
 
   mouseUpFeature = (e) => {
-    if (e.target.classList[0] !== "lists") return;
-    e.target.style.position = "static";
-    e.target.style.cursor = "pointer";
-    e.target.style.zIndex = null;
-    e.target.style.boxShadow = null;
-    e.target.style.transform = null;
+    const list = document.getElementById(`list${this.props.id}`);
+    if (list.classList[0] !== "lists") return;
+    list.style.position = "static";
+    list.style.cursor = "pointer";
+    list.style.zIndex = null;
+    list.style.boxShadow = null;
+    list.style.transform = null;
 
     const { scrollPosition, wholeList } = this.props;
     const scrollHeighFromMain = Math.floor(scrollPosition);
@@ -184,27 +191,8 @@ class List extends Component {
         this.props.moveListToAnotherPlace(draggedListIndex, i);
       }
     }
-
-    this.setState({
-      selectedList: false,
-    });
-  };
-
-  mouseLeaveFeature = () => {
-    const list = document.querySelectorAll(".lists");
-    list.forEach((all) => {
-      all.style.position = "static";
-      all.style.cursor = "pointer";
-      all.style.boxShadow = null;
-      all.style.transform = null;
-      all.style.zIndex = null;
-    });
-
-    const allBlankSpan = document.querySelectorAll(".frontBlankList");
-    allBlankSpan.forEach((all) => {
-      all.style.display = "none";
-    });
-
+    document.removeEventListener("mousemove", this.mouseMoveFeature, true);
+    document.removeEventListener("mouseup", this.mouseUpFeature, true);
     this.setState({
       selectedList: false,
     });
@@ -249,9 +237,6 @@ class List extends Component {
           showAddField={showAddField}
           textAreaValue={textAreaValue}
           mouseDownFeature={this.mouseDownFeature}
-          mouseMoveFeature={this.mouseMoveFeature}
-          mouseUpFeature={this.mouseUpFeature}
-          mouseLeaveFeature={this.mouseLeaveFeature}
           setTextAreaValue={this.setTextAreaValue}
           swapAddFieldFeature={this.swapAddFieldFeature}
           setListTitle={this.setListTitle}

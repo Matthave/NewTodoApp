@@ -173,13 +173,6 @@ const Main = () => {
   };
 
   const deleteCard = (listId, taskId, byButton) => {
-    //Delete Card from list( by every way )
-    const correctList = wholeList.filter((list) => list.id === listId);
-
-    const taskIndex = correctList[0].tasks.findIndex(
-      (element) => element.id === taskId
-    );
-
     if (byButton === "byButton") {
       //Delete Card Badges from array if matched exist
       const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
@@ -189,8 +182,12 @@ const Main = () => {
       const matchedCommentIndex = listOfAllComments.findIndex(
         (ele) => ele.id === taskId
       );
+      const matchedTermIndex = listOfAllTerms.findIndex(
+        (ele) => ele === taskId
+      );
       listOfAllPriorityTasks.splice(matchedPriorityIndex, 1);
       listOfAllComments.splice(matchedCommentIndex, 1);
+      listOfAllTerms.splice(matchedTermIndex, 1);
       if (matchedBadges.length !== 0) {
         matchedBadges.forEach((element) => {
           const indexOfBadgedToDelete = listOfAllBadges.findIndex(
@@ -199,13 +196,20 @@ const Main = () => {
           listOfAllBadges.splice(indexOfBadgedToDelete, 1);
         });
       }
-
       //Delete Card Id from array
-      const matchedIdList = listOfAllTasksId.findIndex((ele) => ele == taskId);
+      const matchedIdList = listOfAllTasksId.findIndex(
+        (ele) => ele === taskId * 1
+      );
       listOfAllTasksId.splice(matchedIdList, 1);
     }
 
+    //Delete Card from list( by every way )
+    const correctList = wholeList.filter((list) => list.id === listId);
+    const taskIndex = correctList[0].tasks.findIndex(
+      (element) => element.id === taskId
+    );
     correctList[0].tasks.splice(taskIndex, 1);
+
     numberOfTaskFunction(numberOfTask - 1);
     setVisibilityOptionCover(false);
     setVisibilityTaskDetails(false);
