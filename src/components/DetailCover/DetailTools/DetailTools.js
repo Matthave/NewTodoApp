@@ -45,6 +45,7 @@ function DetailTools({
   labelColors,
   setLabelColors,
   matchedTerms,
+  toggleTermToCard,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -86,6 +87,7 @@ function DetailTools({
         listOfAllTasksId={listOfAllTasksId}
         labelColors={labelColors}
         setLabelColors={setLabelColors}
+        toggleTermToCard={toggleTermToCard}
       />
     </StyledDetailToolsWrap>
   );

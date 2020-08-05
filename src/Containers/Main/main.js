@@ -110,6 +110,9 @@ const Main = () => {
     if (!searchingClass.includes("textArea")) {
       setToggleCommentVisibility(false);
     }
+    if (!searchingClass.includes("calendar")) {
+      setDateVisibility(false);
+    }
   };
 
   const listOption = (listId) => {
@@ -569,27 +572,42 @@ const Main = () => {
     setDateVisibility(!dateVisibility);
   };
 
-  const toggleTermToCard = (taskId, date, time) => {
-    const termExistAlready = listOfAllTerms.filter((ele) => ele.id === taskId);
-    if (termExistAlready.length !== 0) {
-      const existingTermIndex = listOfAllTerms.findIndex(
+  const toggleTermToCard = (taskId, date, time, buttonType) => {
+    if (buttonType === "save") {
+      const termExistAlready = listOfAllTerms.filter(
         (ele) => ele.id === taskId
       );
+      if (termExistAlready.length !== 0) {
+        const existingTermIndex = listOfAllTerms.findIndex(
+          (ele) => ele.id === taskId
+        );
+        const currentCard = document.getElementById(`${taskId}term`);
+        currentCard.innerHTML = "";
+        listOfAllTerms.splice(existingTermIndex, 1);
+      }
       const currentCard = document.getElementById(`${taskId}term`);
-      currentCard.innerHTML = "";
-      listOfAllTerms.splice(existingTermIndex, 1);
-    }
-    const currentCard = document.getElementById(`${taskId}term`);
-    const termSpan = document.createElement("span");
-    termSpan.classList.add("termSpan");
-    termSpan.textContent = `${date}`;
-    currentCard.appendChild(termSpan);
+      const termSpan = document.createElement("span");
+      termSpan.classList.add("termSpan");
+      termSpan.textContent = `${date}`;
+      currentCard.appendChild(termSpan);
 
-    setListOfallTerms([
-      ...listOfAllTerms,
-      { id: taskId, term: date, time: time, status: "" },
-    ]);
-    setDateVisibility(!dateVisibility);
+      setListOfallTerms([
+        ...listOfAllTerms,
+        { id: taskId, term: date, time: time, status: "" },
+      ]);
+      setDateVisibility(!dateVisibility);
+    } else {
+      //When btnDelete clicked, delete from list and form card DOM
+      const termToDeleteIndex = listOfAllTerms.findIndex(
+        (ele) => ele.id === taskId
+      );
+      listOfAllTerms.splice(termToDeleteIndex, 1);
+      const currentCardTerm = document.getElementById(`${taskId}term`);
+      currentCardTerm.innerHTML = "";
+      if (termToDeleteIndex !== -1) {
+        setDateVisibility(!dateVisibility);
+      }
+    }
   };
 
   return (
@@ -672,6 +690,7 @@ const Main = () => {
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           copyVisibility={copyVisibility}
           toggleDateVisibility={toggleDateVisibility}
+          toggleTermToCard={toggleTermToCard}
           dateVisibility={dateVisibility}
           listOfAllTerms={listOfAllTerms}
         />

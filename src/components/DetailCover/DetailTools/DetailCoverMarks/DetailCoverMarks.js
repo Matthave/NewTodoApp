@@ -159,11 +159,14 @@ function DetailCoverMarks({
       ) : (
         <>
           {matchedTerms.map((ele) => (
-            <StyledTermWrap key={ele.term}>
-              <StyledTerm onClick={() => toggleDateVisibility()}>
+            <StyledTermWrap key={ele.term} className="calendar">
+              <StyledTerm
+                onClick={() => toggleDateVisibility()}
+                className="calendar"
+              >
                 {ele.term} at {ele.time}{" "}
                 <StyledIcon
-                  className="fas fa-chevron-down"
+                  className="fas fa-chevron-down calendar"
                   pointer
                   marginLeft
                 />

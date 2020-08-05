@@ -109,7 +109,7 @@ class List extends Component {
     });
     e.target.style.zIndex = 999;
     e.target.style.cursor = "grabbing";
-    e.target.style.boxShadow = "0px 0px 20px 0.5px rgba(0,0,0,0.1";
+    e.target.style.boxShadow = "0px 10px 20px 0.6px rgba(0,0,0,0.25)";
 
     document.addEventListener("mousemove", this.mouseMoveFeature, true);
     document.addEventListener("mouseup", this.mouseUpFeature, true);

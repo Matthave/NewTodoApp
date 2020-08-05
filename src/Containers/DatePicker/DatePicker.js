@@ -301,7 +301,7 @@ class DatePicker extends Component {
     });
   };
 
-  setThisDataFunctiion = () => {
+  setThisDataFunctiion = (buttonType) => {
     //Send choosed date to main function and currentCard object, after validation by patter RegEx
     const patternDate = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
     const patternTime = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
@@ -312,7 +312,8 @@ class DatePicker extends Component {
       this.props.toggleTermToCard(
         this.props.taskId,
         this.state.todayFullDate,
-        this.state.time
+        this.state.time,
+        buttonType
       );
     } else {
       alert("NOPE");

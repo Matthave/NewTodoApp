@@ -38,12 +38,14 @@ function Calendar({
   setThisDayFunc,
 }) {
   return (
-    <StyledCalendar>
+    <StyledCalendar className="calendar">
       {days.map((ele) => (
-        <StyledCalendarDays key={ele}>{ele}</StyledCalendarDays>
+        <StyledCalendarDays key={ele} className="calendar">
+          {ele}
+        </StyledCalendarDays>
       ))}
       {emptyFields.map((ele) => (
-        <StyledCalendarDays ele={ele.id} />
+        <StyledCalendarDays ele={ele.id} className="calendar" />
       ))}
       {howManyDaysMonth.map((ele) => (
         <>
@@ -54,7 +56,7 @@ function Calendar({
             cur
             darkerColor
             onClick={(e) => setThisDayFunc(e, ele.id)}
-            className="calendarDays"
+            className="calendarDays calendar"
             style={{
               backgroundColor: `${ele.id === todayDay ? "#42516e" : "#fff"}`,
               color: `${ele.id === todayDay ? "#fff" : "#42516e"}`,

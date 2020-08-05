@@ -63,8 +63,8 @@ function OptionCoverListView({
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledList>
-        <StyledList onClick={() => toggleDateVisibility()}>
-          <StyledIcon className="far fa-clock suggested" />
+        <StyledList onClick={() => toggleDateVisibility()} className="calendar">
+          <StyledIcon className="far fa-clock calendaer" />
           Date Change
         </StyledList>
         <StyledList

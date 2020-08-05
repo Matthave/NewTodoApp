@@ -74,6 +74,7 @@ function DetailCoverNav({
   listOfAllTasksId,
   labelColors,
   setLabelColors,
+  toggleTermToCard,
 }) {
   return (
     <StyledDetailNav>
@@ -90,8 +91,11 @@ function DetailCoverNav({
           <StyledIcon className="fas fa-list-alt" />
           Tasks list
         </StyledDetailList>
-        <StyledDetailList onClick={() => toggleDateVisibility()}>
-          <StyledIcon className="far fa-clock" />
+        <StyledDetailList
+          onClick={() => toggleDateVisibility()}
+          className="calendar"
+        >
+          <StyledIcon className="far fa-clock calendar" />
           Term
         </StyledDetailList>
         <StyledDetailList>
@@ -163,7 +167,11 @@ function DetailCoverNav({
         />
       ) : null}
       {dateVisibility ? (
-        <DatePicker toggleDateVisibility={toggleDateVisibility} />
+        <DatePicker
+          toggleDateVisibility={toggleDateVisibility}
+          toggleTermToCard={toggleTermToCard}
+          taskId={taskId}
+        />
       ) : null}
     </StyledDetailNav>
   );

@@ -73,6 +73,7 @@ class Card extends Component {
     card.style.cursor = "pointer";
     card.style.position = "static";
     card.style.transform = "rotate(0deg)";
+    card.style.boxShadow = null;
     card.style.zIndex = 0;
 
     const {
@@ -143,6 +144,7 @@ class Card extends Component {
       card.style.position = "fixed";
       card.style.cursor = "grabbing";
       card.style.transform = "rotate(5deg)";
+      card.style.boxShadow = "0px 10px 20px 0.6px rgba(0,0,0,0.25)";
       card.style.zIndex = 999;
 
       const allBlankSpan = document.querySelectorAll(".blank");

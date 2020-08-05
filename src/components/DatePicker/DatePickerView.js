@@ -123,24 +123,29 @@ function DatePickerView({
   optionCover,
 }) {
   return (
-    <StyledChangeListDetails optionCoverPosition={optionCover}>
-      <StyledDateTitle>
+    <StyledChangeListDetails
+      optionCoverPosition={optionCover}
+      className="calendar"
+    >
+      <StyledDateTitle className="calendar">
         Change Date{" "}
         <span className="fas fa-times" onClick={() => toggleDateVisibility()} />
       </StyledDateTitle>
-      <StyledDateWrap>
+      <StyledDateWrap className="calendar">
         <StyledIcon
-          className="fas fa-caret-left"
+          className="fas fa-caret-left calendar"
           onClick={() => toggleMonths("Minus")}
         />
-        <StyledColumnDate>
-          <StyledText>{todayMonthName}</StyledText>
-          <StyledText biggerFontSize>{todayDay}</StyledText>
-          <StyledText>{todayYear}</StyledText>
+        <StyledColumnDate className="calendar">
+          <StyledText className="calendar">{todayMonthName}</StyledText>
+          <StyledText biggerFontSize className="calendar">
+            {todayDay}
+          </StyledText>
+          <StyledText className="calendar">{todayYear}</StyledText>
         </StyledColumnDate>
 
         <StyledIcon
-          className="fas fa-caret-right"
+          className="fas fa-caret-right calendar"
           onClick={() => toggleMonths("Add")}
         />
       </StyledDateWrap>
@@ -150,15 +155,30 @@ function DatePickerView({
         emptyFields={emptyFields}
         howManyDaysMonth={howManyDaysMonth}
         setThisDayFunc={setThisDayFunc}
+        className="calendar"
       />
       <StyledInput
         value={todayFullDate}
         onChange={(e) => choosedDateFunction(e)}
+        className="calendar"
       />
 
-      <StyledInput value={time} onChange={(e) => choosedTimeFunction(e)} />
-      <StyledButton onClick={() => setThisDataFunctiion()}>SAVE</StyledButton>
-      <StyledButton onClick={() => setThisDataFunctiion()} redButton>
+      <StyledInput
+        value={time}
+        onChange={(e) => choosedTimeFunction(e)}
+        className="calendar"
+      />
+      <StyledButton
+        onClick={() => setThisDataFunctiion("save")}
+        className="calendar"
+      >
+        SAVE
+      </StyledButton>
+      <StyledButton
+        onClick={() => setThisDataFunctiion("delete")}
+        redButton
+        className="calendar"
+      >
         DELETE
       </StyledButton>
     </StyledChangeListDetails>

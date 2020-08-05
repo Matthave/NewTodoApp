@@ -24,9 +24,6 @@ const StyledTextArea = styled.textarea`
 
 function ListView({
   mouseDownFeature,
-  mouseMoveFeature,
-  mouseUpFeature,
-  mouseLeaveFeature,
   selectedList,
   listOption,
   wholeList,
