@@ -51,6 +51,7 @@ function ListView({
   return (
     <div
       className="lists"
+      id={`list${id}`}
       onMouseDown={(e) => mouseDownFeature(e)}
       onMouseMove={(e) => mouseMoveFeature(e)}
       onMouseUp={(e) => mouseUpFeature(e)}

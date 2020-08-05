@@ -21,12 +21,19 @@ class OptionCover extends Component {
       document.querySelector(".main").scrollLeft
     );
 
+    const currentList = document.getElementById(`list${taskData[0].listId}`);
+    const currentListScrollNow = currentList.scrollTop;
+
     //ListIndex, when list is moving to another place
     const listIndex = taskData[0].wholeList.findIndex(
       (element) => element.id === taskData[0].listId
     );
 
-    const positionY = mainOffsetTop + taskData[0].top + coverBoxHeight / 1.65;
+    const positionY =
+      mainOffsetTop +
+      taskData[0].top -
+      currentListScrollNow +
+      coverBoxHeight / 1.65;
     const positionX = 285 * listIndex + 18.5 - scrollPosition;
 
     //Top and Left BOX Position Calculate
