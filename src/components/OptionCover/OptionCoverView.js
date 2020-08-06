@@ -156,7 +156,7 @@ const OptionCover = ({
             {matchedTerms.map((ele) => (
               <StyledDate key={ele.id}>
                 <StyledIcon className="far fa-clock" />
-                {ele.term}
+                {`${ele.day} ${ele.monthName} ${ele.status}`}
               </StyledDate>
             ))}
           </StyledWrapTerms>

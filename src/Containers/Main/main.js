@@ -447,6 +447,10 @@ const Main = () => {
       listOfAllTerms.push({
         id: copyId,
         term: dateToCopy[0].term,
+        day: dateToCopy[0].day,
+        month: dateToCopy[0].month,
+        year: dateToCopy[0].year,
+        monthName: dateToCopy[0].monthName,
         time: dateToCopy[0].time,
         status: dateToCopy[0].status,
       });
@@ -572,7 +576,17 @@ const Main = () => {
     setDateVisibility(!dateVisibility);
   };
 
-  const toggleTermToCard = (taskId, date, time, buttonType) => {
+  const toggleTermToCard = (
+    taskId,
+    date,
+    day,
+    month,
+    year,
+    monthName,
+    time,
+    status,
+    buttonType
+  ) => {
     if (buttonType === "save") {
       const termExistAlready = listOfAllTerms.filter(
         (ele) => ele.id === taskId
@@ -588,12 +602,21 @@ const Main = () => {
       const currentCard = document.getElementById(`${taskId}term`);
       const termSpan = document.createElement("span");
       termSpan.classList.add("termSpan");
-      termSpan.textContent = `${date}`;
+      termSpan.textContent = `${day} ${monthName} ${status}`;
       currentCard.appendChild(termSpan);
 
       setListOfallTerms([
         ...listOfAllTerms,
-        { id: taskId, term: date, time: time, status: "" },
+        {
+          id: taskId,
+          term: date,
+          day,
+          month,
+          year,
+          monthName,
+          time,
+          status,
+        },
       ]);
       setDateVisibility(!dateVisibility);
     } else {

@@ -305,16 +305,94 @@ class DatePicker extends Component {
     //Send choosed date to main function and currentCard object, after validation by patter RegEx
     const patternDate = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
     const patternTime = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
+    const {
+      todayFullDate,
+      todayDay: toD,
+      todayMonth: toM,
+      todayYear: toY,
+      todayMonthName,
+      time,
+    } = this.state;
+
     if (
       patternDate.test(this.state.todayFullDate) &&
       patternTime.test(this.state.time)
     ) {
-      this.props.toggleTermToCard(
-        this.props.taskId,
-        this.state.todayFullDate,
-        this.state.time,
-        buttonType
-      );
+      const currDate = new Date();
+      const currD = currDate.getDate();
+      const currM = currDate.getMonth() + 1;
+      const currY = currDate.getFullYear();
+      const shorcutMonth = todayMonthName.slice(0, 3);
+
+      if (
+        (toD === currD + 3 && currM === toM && currY === toY) ||
+        (toD === currD + 2 && currM === toM && currY === toY)
+      ) {
+        return this.props.toggleTermToCard(
+          this.props.taskId,
+          todayFullDate,
+          toD,
+          toM,
+          toY,
+          shorcutMonth,
+          time,
+          "Soon",
+          buttonType
+        );
+      }
+      if (toD === currD + 1 && currM === toM && currY === toY) {
+        return this.props.toggleTermToCard(
+          this.props.taskId,
+          todayFullDate,
+          "Tomorrow",
+          toM,
+          toY,
+          shorcutMonth,
+          time,
+          "Soon",
+          buttonType
+        );
+      } else if (toD === currD && currM === toM && currY === toY) {
+        return this.props.toggleTermToCard(
+          this.props.taskId,
+          todayFullDate,
+          "Today",
+          toM,
+          toY,
+          shorcutMonth,
+          time,
+          "Soon",
+          buttonType
+        );
+      } else if (
+        (currD <= toD && currM <= toM && currY <= toY) ||
+        (currD > toD && currM < toM && currY <= toY) ||
+        currY < toY
+      ) {
+        return this.props.toggleTermToCard(
+          this.props.taskId,
+          todayFullDate,
+          toD,
+          toM,
+          toY,
+          shorcutMonth,
+          time,
+          "",
+          buttonType
+        );
+      } else {
+        return this.props.toggleTermToCard(
+          this.props.taskId,
+          todayFullDate,
+          toD,
+          toM,
+          toY,
+          shorcutMonth,
+          time,
+          "Overdue",
+          buttonType
+        );
+      }
     } else {
       alert("NOPE");
     }

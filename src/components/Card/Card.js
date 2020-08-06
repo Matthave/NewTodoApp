@@ -41,6 +41,7 @@ class Card extends Component {
     taskk: "",
     offsetX: "",
     offsetY: "",
+    cardH: "",
   };
 
   componentDidMount() {
@@ -56,10 +57,13 @@ class Card extends Component {
 
   mouseDownFeature = (e) => {
     if (e.target.classList[0] !== "card") return;
+    const card = document.getElementById(this.props.task.id);
+    const cardH = card.clientHeight;
     this.setState({
       selected: true,
       offsetX: e.nativeEvent.offsetX,
       offsetY: e.nativeEvent.offsetY,
+      cardH: cardH,
     });
 
     e.target.style.zIndex = 999;
@@ -157,7 +161,7 @@ class Card extends Component {
       for (let i = 1; i < 10; i++) {
         if (e.pageX < 285 - scrollHeighFromMain) {
           allBlankSpan[0].style.width = "100%";
-          allBlankSpan[0].style.height = "35px";
+          allBlankSpan[0].style.height = `${this.state.cardH}px`;
           allBlankSpan[0].style.backgroundColor = "#dddfe5";
           allBlankSpan[0].style.borderRadius = "5px";
         } else if (
@@ -166,7 +170,7 @@ class Card extends Component {
           this.props.wholeList.length >= i + 1
         ) {
           allBlankSpan[i].style.width = "100%";
-          allBlankSpan[i].style.height = "35px";
+          allBlankSpan[i].style.height = `${this.state.cardH}px`;
           allBlankSpan[i].style.backgroundColor = "#dddfe5";
           allBlankSpan[i].style.borderRadius = "5px";
         }
@@ -262,7 +266,7 @@ class Card extends Component {
           {task.date.map((ele) => (
             <StyledTermInCard key={ele.id}>
               <StyledIcon className="far fa-clock" />
-              {ele.term}
+              {`${ele.day} ${ele.monthName} ${ele.status}`}
             </StyledTermInCard>
           ))}
         </div>

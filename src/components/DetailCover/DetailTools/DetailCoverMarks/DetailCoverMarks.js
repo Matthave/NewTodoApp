@@ -164,7 +164,8 @@ function DetailCoverMarks({
                 onClick={() => toggleDateVisibility()}
                 className="calendar"
               >
-                {ele.term} at {ele.time}{" "}
+                {`${ele.day} ${ele.monthName} ${ele.year}`} at{" "}
+                {`${ele.time} ${ele.status} `}
                 <StyledIcon
                   className="fas fa-chevron-down calendar"
                   pointer
