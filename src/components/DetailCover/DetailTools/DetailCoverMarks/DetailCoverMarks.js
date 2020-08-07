@@ -107,6 +107,13 @@ const StyledTerm = styled.h3`
   }
 `;
 
+const StyledStatus = styled.span`
+  padding: 2.5px 5px;
+  margin: 0 3px;
+  border-radius: 3px;
+  color: #fff;
+`;
+
 function DetailCoverMarks({
   matchedColorsToThisCard,
   handleLabelsVisibility,
@@ -165,7 +172,10 @@ function DetailCoverMarks({
                 className="calendar"
               >
                 {`${ele.day} ${ele.monthName} ${ele.year}`} at{" "}
-                {`${ele.time} ${ele.status} `}
+                {`${ele.hour}:${ele.minutes}`}
+                <StyledStatus
+                  style={{ backgroundColor: ele.statusColor }}
+                >{`${ele.status}`}</StyledStatus>
                 <StyledIcon
                   className="fas fa-chevron-down calendar"
                   pointer

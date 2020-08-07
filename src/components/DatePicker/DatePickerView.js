@@ -9,7 +9,7 @@ const StyledChangeListDetails = styled.div`
   flex-wrap: wrap;
   position: fixed;
   width: 300px;
-  height: 580px;
+  height: 590px;
   top: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
   right: ${(props) => (props.optionCoverPosition ? "-120px" : "null")};
   background-color: #fff;
@@ -105,17 +105,54 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledWrapDateInputs = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+`;
+
+const StyledDateInput = styled.input`
+  width: 25%;
+  background-color: #fafbfc;
+  box-shadow: 0px 0px 1px 1.5px #ccc;
+  text-align: center;
+  border-radius: 3px;
+  padding: 5px 2.5px;
+  margin: 5px;
+  transition: 0.1s linear;
+  &:focus {
+    background-color: #fff;
+    box-shadow: 0px 0px 1px 1.5px #0079bf !important;
+  }
+`;
+
+const StyledTitle = styled.h3`
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+`;
+
+const StyledWarnSpan = styled.span`
+  width: 100%;
+  text-align: center;
+  margin: 2.5px 0;
+  color: #fff;
+`;
+
 function DatePickerView({
   toggleDateVisibility,
   todayDay,
+  todayMonth,
   todayYear,
   todayMonthName,
-  time,
+  hour,
+  minutes,
   days,
   toggleMonths,
   emptyFields,
   howManyDaysMonth,
-  todayFullDate,
   choosedDateFunction,
   choosedTimeFunction,
   setThisDataFunctiion,
@@ -157,17 +194,50 @@ function DatePickerView({
         setThisDayFunc={setThisDayFunc}
         className="calendar"
       />
-      <StyledInput
-        value={todayFullDate}
-        onChange={(e) => choosedDateFunction(e)}
-        className="calendar"
-      />
+      <StyledWrapDateInputs className="calendar">
+        <StyledTitle className="calendar">Date</StyledTitle>
+        <StyledDateInput
+          value={todayDay}
+          onChange={(e) => choosedDateFunction(e)}
+          name="todayDay"
+          className="calendar dayInput"
+        />
+        <StyledDateInput
+          value={todayMonth}
+          onChange={(e) => choosedDateFunction(e)}
+          name="todayMonth"
+          className="calendar monthInput"
+        />
+        <StyledDateInput
+          value={todayYear}
+          onChange={(e) => choosedDateFunction(e)}
+          name="todayYear"
+          className="calendar yearInput"
+        />
+        <StyledWarnSpan className="calendar warnSpanDate">
+          e.g 21.9.2020
+        </StyledWarnSpan>
+      </StyledWrapDateInputs>
 
-      <StyledInput
-        value={time}
-        onChange={(e) => choosedTimeFunction(e)}
-        className="calendar"
-      />
+      <StyledWrapDateInputs className="calendar">
+        <StyledTitle className="calendar">Time</StyledTitle>
+        <StyledDateInput
+          value={hour}
+          onChange={(e) => choosedTimeFunction(e)}
+          className="calendar hourInput"
+          name="hour"
+        />
+        <StyledDateInput
+          value={minutes}
+          onChange={(e) => choosedTimeFunction(e)}
+          className="calendar minutesInput"
+          name="minutes"
+        />
+        <StyledWarnSpan className="calendar warnSpanTime">
+          e.g 06:45
+        </StyledWarnSpan>
+      </StyledWrapDateInputs>
+
       <StyledButton
         onClick={() => setThisDataFunctiion("save")}
         className="calendar"

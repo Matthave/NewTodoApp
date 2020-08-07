@@ -80,6 +80,7 @@ const StyledIcon = styled.span`
 
 const StyledDate = styled.span`
   text-align: center;
+  align-self: flex-start;
   padding: 5px 7.5px;
   background-color: rgba(255, 255, 255, 0.85);
   border-bottom-left-radius: 5px;
@@ -90,7 +91,7 @@ const StyledWrapTerms = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 260px;
-  min-height: 30px;
+  min-height: 25px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: #fff;
@@ -154,7 +155,14 @@ const OptionCover = ({
           />
           <StyledWrapTerms>
             {matchedTerms.map((ele) => (
-              <StyledDate key={ele.id}>
+              <StyledDate
+                key={ele.id}
+                className={ele.classN}
+                style={{
+                  backgroundColor: ele.statusColor,
+                  color: ele.fontColor,
+                }}
+              >
                 <StyledIcon className="far fa-clock" />
                 {`${ele.day} ${ele.monthName} ${ele.status}`}
               </StyledDate>

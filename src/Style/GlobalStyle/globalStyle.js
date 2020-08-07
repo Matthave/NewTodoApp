@@ -186,6 +186,8 @@ const GlobalStyle = createGlobalStyle`
     font-size: 12.5px;
     letter-spacing: 0.5px;
     margin-left:3px;
+    padding: 2.5px 5px;
+    border-radius:3px;
    }
 
 ::-webkit-scrollbar{

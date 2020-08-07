@@ -264,7 +264,11 @@ class Card extends Component {
           id={`${task.id}term`}
         >
           {task.date.map((ele) => (
-            <StyledTermInCard key={ele.id}>
+            <StyledTermInCard
+              key={ele.id}
+              className={ele.classN}
+              style={{ backgroundColor: ele.statusColor, color: ele.fontColor }}
+            >
               <StyledIcon className="far fa-clock" />
               {`${ele.day} ${ele.monthName} ${ele.status}`}
             </StyledTermInCard>

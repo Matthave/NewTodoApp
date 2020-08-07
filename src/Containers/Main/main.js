@@ -583,8 +583,11 @@ const Main = () => {
     month,
     year,
     monthName,
-    time,
+    hour,
+    minutes,
     status,
+    statusColor,
+    fontColor,
     buttonType
   ) => {
     if (buttonType === "save") {
@@ -603,19 +606,25 @@ const Main = () => {
       const termSpan = document.createElement("span");
       termSpan.classList.add("termSpan");
       termSpan.textContent = `${day} ${monthName} ${status}`;
+      termSpan.style.backgroundColor = statusColor;
+      termSpan.style.color = fontColor;
       currentCard.appendChild(termSpan);
 
       setListOfallTerms([
         ...listOfAllTerms,
         {
           id: taskId,
+          classN: "termSpan",
           term: date,
           day,
           month,
           year,
           monthName,
-          time,
+          hour,
+          minutes,
           status,
+          statusColor,
+          fontColor,
         },
       ]);
       setDateVisibility(!dateVisibility);

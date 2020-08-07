@@ -4,6 +4,8 @@ import DatePickerView from "../../components/DatePicker/DatePickerView";
 class DatePicker extends Component {
   state = {
     time: "",
+    hour: "",
+    minutes: "",
     todayFullDate: "",
     todayWeekDay: "",
     todayDay: "",
@@ -69,6 +71,8 @@ class DatePicker extends Component {
     //INITIAL data for date
     this.setState({
       time: `${hours}:${minutes}`,
+      hour: hours,
+      minutes: minutes,
       todayDay: date.getDate(),
       todayMonthName: this.state.months[date.getMonth()],
       todayMonth: date.getMonth() + 1,
@@ -264,14 +268,14 @@ class DatePicker extends Component {
   choosedDateFunction = (e) => {
     //Input onChange function for date
     this.setState({
-      todayFullDate: e.target.value,
+      [e.target.name]: e.target.value.substr(0, 4),
     });
   };
 
   choosedTimeFunction = (e) => {
     //Input onChange function for time
     this.setState({
-      time: e.target.value,
+      [e.target.name]: e.target.value.substr(0, 2),
     });
   };
 
@@ -303,26 +307,34 @@ class DatePicker extends Component {
 
   setThisDataFunctiion = (buttonType) => {
     //Send choosed date to main function and currentCard object, after validation by patter RegEx
-    const patternDate = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
-    const patternTime = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
+    const patternDay = /^([1-9]|[12][0-9]|3[01])$/;
+    const patternMonth = /^([1-9]|1[012])$/;
+    const patternYear = /^(19|20)\d\d$/;
+    const patternHour = /^([0-1][0-9]|[2][0-4])$/;
+    const patternMinutes = /^([0-5][0-9])$/;
+
     const {
       todayFullDate,
       todayDay: toD,
       todayMonth: toM,
       todayYear: toY,
-      todayMonthName,
-      time,
+      hour,
+      minutes,
     } = this.state;
-
     if (
-      patternDate.test(this.state.todayFullDate) &&
-      patternTime.test(this.state.time)
+      patternDay.test(toD) &&
+      patternMonth.test(toM) &&
+      patternYear.test(toY) &&
+      patternHour.test(hour) &&
+      patternMinutes.test(minutes)
     ) {
       const currDate = new Date();
       const currD = currDate.getDate();
       const currM = currDate.getMonth() + 1;
       const currY = currDate.getFullYear();
-      const shorcutMonth = todayMonthName.slice(0, 3);
+      const currH = currDate.getHours();
+      const currMin = currDate.getMinutes();
+      const shorcutMonth = this.state.months[toM - 1];
 
       if (
         (toD === currD + 3 && currM === toM && currY === toY) ||
@@ -335,8 +347,11 @@ class DatePicker extends Component {
           toM,
           toY,
           shorcutMonth,
-          time,
+          hour,
+          minutes,
           "Soon",
+          "#E6C60D",
+          "#fff",
           buttonType
         );
       }
@@ -348,11 +363,20 @@ class DatePicker extends Component {
           toM,
           toY,
           shorcutMonth,
-          time,
+          hour,
+          minutes,
           "Soon",
+          "#E6C60D",
+          "#fff",
           buttonType
         );
-      } else if (toD === currD && currM === toM && currY === toY) {
+      } else if (
+        toD === currD &&
+        currM === toM &&
+        currY === toY &&
+        currH <= hour &&
+        currMin <= minutes
+      ) {
         return this.props.toggleTermToCard(
           this.props.taskId,
           todayFullDate,
@@ -360,12 +384,19 @@ class DatePicker extends Component {
           toM,
           toY,
           shorcutMonth,
-          time,
+          hour,
+          minutes,
           "Soon",
+          "#E6C60D",
+          "#fff",
           buttonType
         );
       } else if (
-        (currD <= toD && currM <= toM && currY <= toY) ||
+        (currD <= toD &&
+          currM <= toM &&
+          currY <= toY &&
+          currH <= hour &&
+          currMin <= minutes) ||
         (currD > toD && currM < toM && currY <= toY) ||
         currY < toY
       ) {
@@ -376,8 +407,11 @@ class DatePicker extends Component {
           toM,
           toY,
           shorcutMonth,
-          time,
+          hour,
+          minutes,
           "",
+          "",
+          "#888",
           buttonType
         );
       } else {
@@ -388,34 +422,98 @@ class DatePicker extends Component {
           toM,
           toY,
           shorcutMonth,
-          time,
+          hour,
+          minutes,
           "Overdue",
+          "#EB5A46",
+          "#fff",
           buttonType
         );
       }
     } else {
-      alert("NOPE");
+      if (!patternDay.test(toD)) {
+        document.querySelector(".dayInput").style.boxShadow =
+          "0px 0px 1px 1.5px #f55";
+      } else {
+        document.querySelector(".dayInput").style.boxShadow =
+          "0px 0px 1px 1.5px #ccc";
+      }
+
+      if (!patternMonth.test(toM)) {
+        document.querySelector(".monthInput").style.boxShadow =
+          "0px 0px 1px 1.5px #f55";
+      } else {
+        document.querySelector(".monthInput").style.boxShadow =
+          "0px 0px 1px 1.5px #ccc";
+      }
+
+      if (!patternYear.test(toY)) {
+        document.querySelector(".yearInput").style.boxShadow =
+          "0px 0px 1px 1.5px #f55";
+      } else {
+        document.querySelector(".yearInput").style.boxShadow =
+          "0px 0px 1px 1.5px #ccc";
+      }
+
+      if (!patternHour.test(hour)) {
+        document.querySelector(".hourInput").style.boxShadow =
+          "0px 0px 1px 1.5px #f55";
+      } else {
+        document.querySelector(".hourInput").style.boxShadow =
+          "0px 0px 1px 1.5px #ccc";
+      }
+
+      if (!patternMinutes.test(minutes)) {
+        document.querySelector(".minutesInput").style.boxShadow =
+          "0px 0px 1px 1.5px #f55";
+      } else {
+        document.querySelector(".minutesInput").style.boxShadow =
+          "0px 0px 1px 1.5px #ccc";
+      }
+
+      if (
+        !patternDay.test(toD) ||
+        !patternMonth.test(toM) ||
+        !patternYear.test(toY)
+      ) {
+        document.querySelector(".warnSpanDate").style.color = "#f55";
+      } else if (
+        patternDay.test(toD) &&
+        patternMonth.test(toM) &&
+        patternYear.test(toY)
+      ) {
+        document.querySelector(".warnSpanDate").style.color = "#fff";
+      }
+
+      if (!patternHour.test(hour) || !patternMinutes.test(minutes)) {
+        document.querySelector(".warnSpanTime").style.color = "#f55";
+      } else if (patternHour.test(hour) && patternMinutes.test(minutes)) {
+        document.querySelector(".warnSpanTime").style.color = "#fff";
+      }
     }
   };
 
   render() {
     const { toggleDateVisibility, optionCover } = this.props;
     const {
-      time,
+      hour,
+      minutes,
       days,
       todayDay,
+      todayMonth,
       todayYear,
       todayMonthName,
-      todayFullDate,
     } = this.state;
 
     return (
       <DatePickerView
         toggleDateVisibility={toggleDateVisibility}
-        time={time}
+        hour={hour}
+        minutes={minutes}
         days={days}
         todayDay={todayDay}
         todayYear={todayYear}
+        todayMonth={todayMonth}
         todayMonthName={todayMonthName}
         toggleMonths={this.toggleMonths}
         choosedDateFunction={this.choosedDateFunction}
@@ -423,7 +521,6 @@ class DatePicker extends Component {
         setThisDataFunctiion={this.setThisDataFunctiion}
         emptyFields={this.state.emptyFilter}
         howManyDaysMonth={this.state.contentFilter}
-        todayFullDate={todayFullDate}
         setThisDayFunc={this.setThisDayFunc}
         optionCover={optionCover}
       />
