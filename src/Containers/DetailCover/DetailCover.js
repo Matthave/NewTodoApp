@@ -76,6 +76,7 @@ class DetailCover extends React.Component {
       dateVisibility,
       listOfAllTerms,
       toggleTermToCard,
+      termDoneCheckbox,
     } = this.props;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -131,6 +132,7 @@ class DetailCover extends React.Component {
           dateVisibility={dateVisibility}
           matchedTerms={matchedTerms}
           toggleTermToCard={toggleTermToCard}
+          termDoneCheckbox={termDoneCheckbox}
         />
       </>
     );

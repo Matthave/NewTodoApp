@@ -61,6 +61,7 @@ function DetailCoverView({
   dateVisibility,
   matchedTerms,
   toggleTermToCard,
+  termDoneCheckbox,
 }) {
   return (
     <StyledCover
@@ -120,6 +121,7 @@ function DetailCoverView({
           setLabelColors={setLabelColors}
           matchedTerms={matchedTerms}
           toggleTermToCard={toggleTermToCard}
+          termDoneCheckbox={termDoneCheckbox}
         />
       </StyledDetail>
     </StyledCover>

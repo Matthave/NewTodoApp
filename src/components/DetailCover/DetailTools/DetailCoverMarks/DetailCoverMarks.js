@@ -90,6 +90,7 @@ const StyledComment = styled.h3`
 
 const StyledTermWrap = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const StyledTerm = styled.h3`
@@ -114,6 +115,25 @@ const StyledStatus = styled.span`
   color: #fff;
 `;
 
+const StyledCheckedBox = styled.span`
+  position: relative;
+  width: 17px;
+  height: 17px;
+  border-radius: 2px;
+  margin-right: 7px;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s linear;
+`;
+
+const StyledCheckIcon = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+`;
+
 function DetailCoverMarks({
   matchedColorsToThisCard,
   handleLabelsVisibility,
@@ -128,6 +148,7 @@ function DetailCoverMarks({
   editCommentToCard,
   matchedTerms,
   toggleDateVisibility,
+  termDoneCheckbox,
 }) {
   return (
     <StyledDetailMarks>
@@ -167,6 +188,21 @@ function DetailCoverMarks({
         <>
           {matchedTerms.map((ele) => (
             <StyledTermWrap key={ele.term} className="calendar">
+              <StyledCheckedBox
+                onClick={() => termDoneCheckbox(taskId)}
+                style={{
+                  backgroundColor: `${
+                    ele.status === "Done" ? "#0079BF" : "white"
+                  }`,
+                  border: `${
+                    ele.status === "Done"
+                      ? "2px solid #0079BF"
+                      : "2px solid #aaa"
+                  }`,
+                }}
+              >
+                <StyledCheckIcon className="fas fa-check suggested" />
+              </StyledCheckedBox>
               <StyledTerm
                 onClick={() => toggleDateVisibility()}
                 className="calendar"
@@ -174,6 +210,7 @@ function DetailCoverMarks({
                 {`${ele.day} ${ele.monthName} ${ele.year}`} at{" "}
                 {`${ele.hour}:${ele.minutes}`}
                 <StyledStatus
+                  className="calendar"
                   style={{ backgroundColor: ele.statusColor }}
                 >{`${ele.status}`}</StyledStatus>
                 <StyledIcon

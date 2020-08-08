@@ -447,12 +447,17 @@ const Main = () => {
       listOfAllTerms.push({
         id: copyId,
         term: dateToCopy[0].term,
+        classN: "termSpan",
         day: dateToCopy[0].day,
         month: dateToCopy[0].month,
         year: dateToCopy[0].year,
         monthName: dateToCopy[0].monthName,
-        time: dateToCopy[0].time,
+        hour: dateToCopy[0].hour,
+        minutes: dateToCopy[0].minutes,
         status: dateToCopy[0].status,
+        statusColor: dateToCopy[0].statusColor,
+        fontColor: dateToCopy[0].fontColor,
+        beforeDoneState: dateToCopy[0].beforeDoneState,
       });
     }
 
@@ -625,6 +630,7 @@ const Main = () => {
           status,
           statusColor,
           fontColor,
+          beforeDoneState: { beforeColor: "", beforeStatus: "" },
         },
       ]);
       setDateVisibility(!dateVisibility);
@@ -640,6 +646,27 @@ const Main = () => {
         setDateVisibility(!dateVisibility);
       }
     }
+  };
+
+  const termDoneCheckbox = (taskId) => {
+    const matchedTerm = listOfAllTerms.filter((ele) => ele.id === taskId);
+    const currentCardTerm = document.getElementById(`${taskId}term`)
+      .children[0];
+
+    if (matchedTerm[0].status !== "Done") {
+      matchedTerm[0].beforeDoneState.beforeStatus = matchedTerm[0].status;
+      matchedTerm[0].beforeDoneState.beforeColor = matchedTerm[0].statusColor;
+      matchedTerm[0].status = "Done";
+      matchedTerm[0].statusColor = "#5AAC44";
+      currentCardTerm.style.backgroundColor = "#5AAC44";
+    } else {
+      matchedTerm[0].status = matchedTerm[0].beforeDoneState.beforeStatus;
+      matchedTerm[0].statusColor = matchedTerm[0].beforeDoneState.beforeColor;
+      matchedTerm[0].beforeDoneState.beforeStatus = "";
+      matchedTerm[0].beforeDoneState.beforeColor = "";
+      currentCardTerm.style.backgroundColor = matchedTerm[0].statusColor;
+    }
+    setDateVisibility(!dateVisibility);
   };
 
   return (
@@ -725,6 +752,7 @@ const Main = () => {
           toggleTermToCard={toggleTermToCard}
           dateVisibility={dateVisibility}
           listOfAllTerms={listOfAllTerms}
+          termDoneCheckbox={termDoneCheckbox}
         />
       ) : null}
     </main>

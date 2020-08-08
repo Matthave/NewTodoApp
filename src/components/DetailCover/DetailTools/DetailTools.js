@@ -46,6 +46,7 @@ function DetailTools({
   setLabelColors,
   matchedTerms,
   toggleTermToCard,
+  termDoneCheckbox,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -63,6 +64,7 @@ function DetailTools({
         editCommentToCard={editCommentToCard}
         matchedTerms={matchedTerms}
         toggleDateVisibility={toggleDateVisibility}
+        termDoneCheckbox={termDoneCheckbox}
       />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}
