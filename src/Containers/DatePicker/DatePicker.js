@@ -410,8 +410,8 @@ class DatePicker extends Component {
           hour,
           minutes,
           "",
-          "",
           "#888",
+          "#fff",
           buttonType
         );
       } else {

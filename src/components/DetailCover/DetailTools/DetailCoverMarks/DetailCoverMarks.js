@@ -211,7 +211,10 @@ function DetailCoverMarks({
                 {`${ele.hour}:${ele.minutes}`}
                 <StyledStatus
                   className="calendar"
-                  style={{ backgroundColor: ele.statusColor }}
+                  style={{
+                    backgroundColor: ele.statusColor,
+                    opacity: `${ele.statusColor === "#888" ? 0 : 1}`,
+                  }}
                 >{`${ele.status}`}</StyledStatus>
                 <StyledIcon
                   className="fas fa-chevron-down calendar"
