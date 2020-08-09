@@ -1,4 +1,5 @@
 import React from "react";
+import TasksListInDetailCover from "../../../../Containers/TasksList/TasksListInDetailCover/TasksListInDetailCover";
 import styled from "styled-components";
 
 const StyledDetailMarks = styled.div`
@@ -149,6 +150,8 @@ function DetailCoverMarks({
   matchedTerms,
   toggleDateVisibility,
   termDoneCheckbox,
+  matchedListTasks,
+  listOfAllTasksList,
 }) {
   return (
     <StyledDetailMarks>
@@ -226,7 +229,27 @@ function DetailCoverMarks({
           ))}
         </>
       )}
-
+      <StyledTitle marginTop>
+        <StyledIcon className="fas fa-check-double" />
+        Tasks List
+      </StyledTitle>
+      {matchedListTasks.length === 0 ? (
+        <StyledPlaceholder>This card has no tasks list yet</StyledPlaceholder>
+      ) : (
+        matchedListTasks.map((ele) => (
+          <TasksListInDetailCover
+            key={ele.listName}
+            listOfAllTasksList={listOfAllTasksList}
+            listName={ele.listName}
+            progressbar={ele.progressbar}
+            subTasksList={ele.subTasksList}
+            taskId={taskId}
+            activeSubtasks={ele.activeSubtasks}
+            unActiveSubtasks={ele.unActiveSubtasks}
+            totalOfSubTasks={ele.totalOfSubTasks}
+          />
+        ))
+      )}
       <StyledDetailDescription>
         <StyledTitle>
           <StyledIcon className="fas fa-stream" />

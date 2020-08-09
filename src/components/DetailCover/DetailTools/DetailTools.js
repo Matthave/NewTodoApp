@@ -47,6 +47,11 @@ function DetailTools({
   matchedTerms,
   toggleTermToCard,
   termDoneCheckbox,
+  setTasksListVisibility,
+  tasksListVisibility,
+  setListOfTasksList,
+  listOfAllTasksList,
+  matchedListTasks,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -65,6 +70,8 @@ function DetailTools({
         matchedTerms={matchedTerms}
         toggleDateVisibility={toggleDateVisibility}
         termDoneCheckbox={termDoneCheckbox}
+        listOfAllTasksList={listOfAllTasksList}
+        matchedListTasks={matchedListTasks}
       />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}
@@ -90,6 +97,10 @@ function DetailTools({
         labelColors={labelColors}
         setLabelColors={setLabelColors}
         toggleTermToCard={toggleTermToCard}
+        setTasksListVisibility={setTasksListVisibility}
+        tasksListVisibility={tasksListVisibility}
+        setListOfTasksList={setListOfTasksList}
+        listOfAllTasksList={listOfAllTasksList}
       />
     </StyledDetailToolsWrap>
   );

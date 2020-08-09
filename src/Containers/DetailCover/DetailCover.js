@@ -77,7 +77,13 @@ class DetailCover extends React.Component {
       listOfAllTerms,
       toggleTermToCard,
       termDoneCheckbox,
+      tasksListVisibility,
+      setTasksListVisibility,
+      setListOfTasksList,
+      listOfAllTasksList,
     } = this.props;
+
+    const { taskTitle, commentValue } = this.state;
 
     const copyOfallBadges = [...listOfAllBadges];
     const matchedColorsToThisCard = copyOfallBadges.filter(
@@ -93,7 +99,10 @@ class DetailCover extends React.Component {
     const copyOfAllTerms = [...listOfAllTerms];
     const matchedTerms = copyOfAllTerms.filter((ele) => ele.id === taskId);
 
-    const { taskTitle, commentValue } = this.state;
+    const copyOfAllListTasks = [...listOfAllTasksList];
+    const matchedListTasks = copyOfAllListTasks.filter(
+      (ele) => ele.id === taskId
+    );
 
     return (
       <>
@@ -133,6 +142,11 @@ class DetailCover extends React.Component {
           matchedTerms={matchedTerms}
           toggleTermToCard={toggleTermToCard}
           termDoneCheckbox={termDoneCheckbox}
+          setTasksListVisibility={setTasksListVisibility}
+          tasksListVisibility={tasksListVisibility}
+          setListOfTasksList={setListOfTasksList}
+          listOfAllTasksList={listOfAllTasksList}
+          matchedListTasks={matchedListTasks}
         />
       </>
     );

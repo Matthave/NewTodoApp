@@ -62,6 +62,11 @@ function DetailCoverView({
   matchedTerms,
   toggleTermToCard,
   termDoneCheckbox,
+  setTasksListVisibility,
+  tasksListVisibility,
+  setListOfTasksList,
+  listOfAllTasksList,
+  matchedListTasks,
 }) {
   return (
     <StyledCover
@@ -122,6 +127,11 @@ function DetailCoverView({
           matchedTerms={matchedTerms}
           toggleTermToCard={toggleTermToCard}
           termDoneCheckbox={termDoneCheckbox}
+          setTasksListVisibility={setTasksListVisibility}
+          tasksListVisibility={tasksListVisibility}
+          setListOfTasksList={setListOfTasksList}
+          listOfAllTasksList={listOfAllTasksList}
+          matchedListTasks={matchedListTasks}
         />
       </StyledDetail>
     </StyledCover>

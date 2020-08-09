@@ -33,10 +33,12 @@ const Main = () => {
   const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
   const [listOfAllComments, setListOfAllComments] = useState([]);
   const [listOfAllTerms, setListOfallTerms] = useState([]);
+  const [listOfAllTasksList, setListOfTasksList] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
   const [copyVisibility, setCopyVisibility] = useState(false);
   const [dateVisibility, setDateVisibility] = useState(false);
+  const [tasksListVisibility, setTasksListVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -112,6 +114,9 @@ const Main = () => {
     }
     if (!searchingClass.includes("calendar")) {
       setDateVisibility(false);
+    }
+    if (!searchingClass.includes("tasksList")) {
+      setTasksListVisibility(false);
     }
   };
 
@@ -669,6 +674,10 @@ const Main = () => {
     setDateVisibility(!dateVisibility);
   };
 
+  const toggleTasksListVisibility = (toggle) => {
+    setTasksListVisibility(toggle);
+  };
+
   return (
     <main>
       <Navigations
@@ -753,6 +762,10 @@ const Main = () => {
           dateVisibility={dateVisibility}
           listOfAllTerms={listOfAllTerms}
           termDoneCheckbox={termDoneCheckbox}
+          setTasksListVisibility={toggleTasksListVisibility}
+          tasksListVisibility={tasksListVisibility}
+          setListOfTasksList={setListOfTasksList}
+          listOfAllTasksList={listOfAllTasksList}
         />
       ) : null}
     </main>

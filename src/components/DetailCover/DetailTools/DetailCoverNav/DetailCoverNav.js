@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Labels from "../../../../Containers/Labels/Labels";
 import MoveToAnotherListBox from "../../../MoveToAnotherList/MoveToAnotherListBox";
 import DatePicker from "../../../../Containers/DatePicker/DatePicker";
+import TasksList from "../../../../Containers/TasksList/TasksList";
 import { device } from "../../../../Style/MediaQuery/mq";
 
 const StyledDetailNav = styled.nav`
@@ -75,6 +76,10 @@ function DetailCoverNav({
   labelColors,
   setLabelColors,
   toggleTermToCard,
+  setTasksListVisibility,
+  tasksListVisibility,
+  setListOfTasksList,
+  listOfAllTasksList,
 }) {
   return (
     <StyledDetailNav>
@@ -87,8 +92,11 @@ function DetailCoverNav({
           <StyledIcon className="fas fa-tag label" />
           Edit labels
         </StyledDetailList>
-        <StyledDetailList>
-          <StyledIcon className="fas fa-list-alt" />
+        <StyledDetailList
+          onClick={() => setTasksListVisibility(!tasksListVisibility)}
+          className="tasksList"
+        >
+          <StyledIcon className="fas fa-list-alt tasksList" />
           Tasks list
         </StyledDetailList>
         <StyledDetailList
@@ -170,6 +178,13 @@ function DetailCoverNav({
         <DatePicker
           toggleDateVisibility={toggleDateVisibility}
           toggleTermToCard={toggleTermToCard}
+          taskId={taskId}
+        />
+      ) : null}
+      {tasksListVisibility ? (
+        <TasksList
+          setListOfTasksList={setListOfTasksList}
+          listOfAllTasksList={listOfAllTasksList}
           taskId={taskId}
         />
       ) : null}
