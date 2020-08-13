@@ -68,6 +68,7 @@ class OptionCover extends Component {
       toggleDateVisibility,
       toggleTermToCard,
       listOfAllTerms,
+      listOfAllTasksList,
     } = this.props;
 
     const { taskTitle } = this.state;
@@ -87,6 +88,19 @@ class OptionCover extends Component {
     const matchedTerms = copyOfAllTerms.filter(
       (ele) => ele.id === optionCoverData[0].clickedCardId
     );
+
+    const copyOfAllTasksList = [...listOfAllTasksList];
+    const matchedTasksList = copyOfAllTasksList.filter(
+      (ele) => ele.id === optionCoverData[0].clickedCardId
+    );
+
+    let unActiveTasks = 0;
+    let totalTasks = 0;
+
+    matchedTasksList.forEach((ele) => {
+      totalTasks += ele.totalOfSubTasks;
+      unActiveTasks += ele.unActiveSubtasks;
+    });
 
     return (
       <>
@@ -115,6 +129,9 @@ class OptionCover extends Component {
           toggleDateVisibility={toggleDateVisibility}
           toggleTermToCard={toggleTermToCard}
           matchedTerms={matchedTerms}
+          listOfAllTasksList={listOfAllTasksList}
+          unActiveTasks={unActiveTasks}
+          totalTasks={totalTasks}
         />
       </>
     );

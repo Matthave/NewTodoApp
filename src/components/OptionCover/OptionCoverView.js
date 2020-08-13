@@ -4,6 +4,7 @@ import OptionCoverListView from "./OptionCoverListView/OptionCoverListView";
 import MoveToAnotherListBox from "../MoveToAnotherList/MoveToAnotherListBox";
 import Labels from "../../Containers/Labels/Labels";
 import DatePicker from "../../Containers/DatePicker/DatePicker";
+import TaskPreviewCard from "../TasksList/TasksPreviewInCard/TaskPreviewInCard";
 
 const StyledCover = styled.div`
   position: fixed;
@@ -123,6 +124,8 @@ const OptionCover = ({
   toggleDateVisibility,
   toggleTermToCard,
   matchedTerms,
+  unActiveTasks,
+  totalTasks,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -167,6 +170,10 @@ const OptionCover = ({
                 {`${ele.day} ${ele.monthName} ${ele.status}`}
               </StyledDate>
             ))}
+            <TaskPreviewCard
+              unActiveTasks={unActiveTasks}
+              totalTasks={totalTasks}
+            />
           </StyledWrapTerms>
           <StyledSaveButton
             className="cover_saveBtn"

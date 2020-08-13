@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TasksPreviewCard from "../TasksList/TasksPreviewInCard/TaskPreviewInCard";
 import styled from "styled-components";
 
 const StyledContentWrap = styled.div`
@@ -33,13 +34,6 @@ const StyledTermInCard = styled.span`
   font-size: 12.5px;
   letter-spacing: 0.5px;
   margin-left: 3px;
-`;
-
-const StyledSubTasksCounter = styled.h4`
-  border-radius: 4px;
-  padding: 2.5px 5px;
-  margin: 5px 0 0px 3px;
-  font-size: 12px;
 `;
 
 class Card extends Component {
@@ -303,19 +297,11 @@ class Card extends Component {
           ))}
         </div>
         <div>
-          {totalTasks !== 0 ? (
-            <StyledSubTasksCounter
-              style={{
-                backgroundColor: `${
-                  unActiveTasks === totalTasks ? "#61BD4F" : "initial"
-                }`,
-                color: `${unActiveTasks === totalTasks ? "#fff" : "#999"}`,
-              }}
-            >
-              <StyledIcon className="fas fa-check-double" />
-              {unActiveTasks}/{totalTasks}
-            </StyledSubTasksCounter>
-          ) : null}
+          <TasksPreviewCard
+            unActiveTasks={unActiveTasks}
+            totalTasks={totalTasks}
+            card={true}
+          />
         </div>
       </div>
     );

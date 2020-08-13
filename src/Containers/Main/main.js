@@ -729,6 +729,7 @@ const Main = () => {
           toggleDateVisibility={toggleDateVisibility}
           toggleTermToCard={toggleTermToCard}
           listOfAllTerms={listOfAllTerms}
+          listOfAllTasksList={listOfAllTasksList}
         />
       ) : null}
       {visibilityTaskDetails ? (
