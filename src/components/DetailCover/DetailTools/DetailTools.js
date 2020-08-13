@@ -18,6 +18,7 @@ function DetailTools({
   labelsVisibility,
   handleLabelsVisibility,
   deleteCard,
+  addNewCard,
   idUpdatedList,
   taskId,
   matchedColorsToThisCard,
@@ -72,6 +73,10 @@ function DetailTools({
         termDoneCheckbox={termDoneCheckbox}
         listOfAllTasksList={listOfAllTasksList}
         matchedListTasks={matchedListTasks}
+        tasksListVisibility={tasksListVisibility}
+        setTasksListVisibility={setTasksListVisibility}
+        addNewCard={addNewCard}
+        idUpdatedList={idUpdatedList}
       />
       <DetailCoverNav
         handleLabelsVisibility={handleLabelsVisibility}

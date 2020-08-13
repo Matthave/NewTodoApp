@@ -4,6 +4,16 @@ import styled from "styled-components";
 
 const StyledDetailMarks = styled.div`
   flex-grow: 1;
+  max-height: calc(100vh - 200px);
+  overflow-y: scroll;
+  margin-right: 5px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
 `;
 
 const StyledDetailDescription = styled.div`
@@ -152,6 +162,10 @@ function DetailCoverMarks({
   termDoneCheckbox,
   matchedListTasks,
   listOfAllTasksList,
+  tasksListVisibility,
+  setTasksListVisibility,
+  addNewCard,
+  idUpdatedList,
 }) {
   return (
     <StyledDetailMarks>
@@ -241,12 +255,14 @@ function DetailCoverMarks({
             key={ele.listName}
             listOfAllTasksList={listOfAllTasksList}
             listName={ele.listName}
-            progressbar={ele.progressbar}
             subTasksList={ele.subTasksList}
             taskId={taskId}
-            activeSubtasks={ele.activeSubtasks}
             unActiveSubtasks={ele.unActiveSubtasks}
             totalOfSubTasks={ele.totalOfSubTasks}
+            tasksListVisibility={tasksListVisibility}
+            setTasksListVisibility={setTasksListVisibility}
+            addNewCard={addNewCard}
+            idUpdatedList={idUpdatedList}
           />
         ))
       )}

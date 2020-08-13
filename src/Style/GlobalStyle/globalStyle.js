@@ -155,7 +155,6 @@ const GlobalStyle = createGlobalStyle`
   .fa-ellipsis-h{
    padding: 9px ;
    margin-left:2px;
-   margin-bottom: 5px;
    font-size: 13px;
    color: #777;
    cursor: pointer;

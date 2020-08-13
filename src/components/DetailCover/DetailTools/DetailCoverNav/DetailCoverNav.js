@@ -21,7 +21,7 @@ const StyledDetailUl = styled.ul`
   justify-content: center;
   @media ${device.laptop} {
     flex-direction: column;
-    width: 100%;
+    width: 200px;
   }
 `;
 

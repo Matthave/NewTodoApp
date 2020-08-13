@@ -736,6 +736,7 @@ const Main = () => {
           taskId={taskId}
           taskTitleList={taskTitleList}
           updateCard={updateCard}
+          addNewCard={addNewCard}
           deleteCard={deleteCard}
           idUpdatedList={idUpdatedList}
           changeListInDetails={changeListInDetails}

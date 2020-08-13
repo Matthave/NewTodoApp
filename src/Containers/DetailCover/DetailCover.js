@@ -53,6 +53,7 @@ class DetailCover extends React.Component {
       taskTitleList,
       updateCard,
       deleteCard,
+      addNewCard,
       idUpdatedList,
       changeListInDetails,
       visibilityChangeListInDetails,
@@ -108,6 +109,7 @@ class DetailCover extends React.Component {
       <>
         <DetailCoverView
           updateCard={updateCard}
+          addNewCard={addNewCard}
           taskTitle={taskTitle}
           taskTitleFeature={this.taskTitleFeature}
           changeListInDetails={changeListInDetails}

@@ -29,6 +29,7 @@ const StyledDetail = styled.div`
 function DetailCoverView({
   updateCard,
   deleteCard,
+  addNewCard,
   idUpdatedList,
   taskTitle,
   taskTitleFeature,
@@ -98,6 +99,7 @@ function DetailCoverView({
           labelsVisibility={labelsVisibility}
           handleLabelsVisibility={handleLabelsVisibility}
           deleteCard={deleteCard}
+          addNewCard={addNewCard}
           idUpdatedList={idUpdatedList}
           taskId={taskId}
           matchedColorsToThisCard={matchedColorsToThisCard}

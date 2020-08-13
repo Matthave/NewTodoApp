@@ -1,15 +1,18 @@
 import React from "react";
+import SubtasksOption from "../../../Containers/TasksList/SubtasksOption/SubtasksOption";
 import styled from "styled-components";
 
 const StyledWrap = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   width: 100%;
   margin-bottom: 15px;
+  padding: 0 2.5px;
 `;
 
 const StyledListTitle = styled.h3`
-  width: 100%;
+  flex-grow: 1;
+  align-self: center;
   font-size: 14px;
   margin-bottom: 10px;
   color: #42516e;
@@ -25,17 +28,34 @@ const StyledTasksList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-height: 160px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
 `;
 
-const StyledAddTask = styled.button`
+const StyledGreyButton = styled.button`
   width: 150px;
-  padding: 10px;
-  margin-top: 15px;
+  height: 32.5px;
+  padding: 5px;
+  margin-top: ${(props) => (props.marginTop0 ? "0px" : "15px")};
+  margin-bottom: 10px;
   background-color: #eaecf0;
+  border-radius: 4px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #dadce0;
+  }
 `;
 
 const StyledPerecntage = styled.h3`
+  width: 35px;
   color: #42516e;
 `;
 
@@ -44,14 +64,13 @@ const StyledBarContainer = styled.span`
   width: 100%;
   height: 10px;
   background-color: #ddd;
-  border: 1px solid #888;
+  border: 0.5px solid #bbb;
   border-radius: 5px;
   margin: 0 10px;
 `;
 
-const StyledBardInner = styled.span`
+const StyledBarInner = styled.span`
   position: absolute;
-  background-color: #5aac44;
   border-radius: 5px;
   transition: 0.2s linear;
   height: 100%;
@@ -63,7 +82,7 @@ const StyledInput = styled.input`
   box-shadow: 0px 0px 1px 1.5px #ccc;
   border-radius: 3px;
   padding: 7.5px 5px;
-  margin: 15px 0 10px;
+  margin: 15px 0px 10px;
 
   &:focus {
     background-color: #fff;
@@ -86,6 +105,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledSubTaskWrap = styled.div`
+  position: relative;
   display: flex;
   width: 95%;
   padding: 7.5px;
@@ -98,6 +118,7 @@ const StyledSubTaskWrap = styled.div`
 
 const StyledCheckedBox = styled.span`
   position: relative;
+  align-self: center;
   width: 17px;
   height: 17px;
   border-radius: 2px;
@@ -117,15 +138,28 @@ const StyledCheckIcon = styled.span`
 `;
 
 const StyledSubTaskName = styled.h3`
+  width: 250px;
+  word-break: break-all;
   flex-grow: 1;
   align-self: center;
   font-size: 13px;
 `;
 
+const StyledWarnningSpan = styled.span`
+  width: 100%;
+  opacity: 0;
+  color: red;
+  font-size: 10px;
+  margin-top: 10px;
+`;
+
+const StyledEllipsis = styled.span`
+  align-self: center;
+`;
+
 function TasksListInDetailCoverView({
-  listOfAllTasksList,
   listName,
-  progressbar,
+  taskId,
   subTasksList,
   subTaskToggle,
   subTaskToggleVisi,
@@ -133,22 +167,47 @@ function TasksListInDetailCoverView({
   subTaskInputValue,
   addSubTaskFunc,
   makeThisTaskDone,
-  activeSubtasks,
   unActiveSubtasks,
   totalOfSubTasks,
+  deleteTasksList,
+  subTaskOptionsVisiToggle,
+  subTaskOptionsVisi,
+  addNewCard,
+  idUpdatedList,
+  listOfAllTasksList,
+  subTaskNameOptionClicked,
 }) {
   return (
     <StyledWrap>
       <StyledListTitle>{listName}</StyledListTitle>
+      <StyledGreyButton
+        marginTop0
+        onClick={() => deleteTasksList(listName, taskId)}
+      >
+        Delete
+      </StyledGreyButton>
       <StyledBarWrap>
         <StyledPerecntage>
           {totalOfSubTasks === 0
             ? "0%"
-            : `${Math.floor((unActiveSubtasks / totalOfSubTasks) * 100)}%`}
+            : `${Math.floor(
+                (unActiveSubtasks /
+                  `${totalOfSubTasks === 0 ? 1 : totalOfSubTasks}`) *
+                  100
+              )}%`}
         </StyledPerecntage>
         <StyledBarContainer>
-          <StyledBardInner
-            style={{ width: `${(unActiveSubtasks / totalOfSubTasks) * 100}%` }}
+          <StyledBarInner
+            style={{
+              width: `${
+                (unActiveSubtasks /
+                  `${totalOfSubTasks === 0 ? 1 : totalOfSubTasks}`) *
+                100
+              }%`,
+              backgroundColor: `${
+                unActiveSubtasks === totalOfSubTasks ? "#5aac44" : "#5ba4cf"
+              }`,
+            }}
           />
         </StyledBarContainer>
       </StyledBarWrap>
@@ -173,8 +232,23 @@ function TasksListInDetailCoverView({
             >
               {ele.name}
             </StyledSubTaskName>
+            <StyledEllipsis
+              className="fas fa-ellipsis-h"
+              onClick={() => subTaskOptionsVisiToggle(ele.name)}
+            />
           </StyledSubTaskWrap>
         ))}
+        {subTaskOptionsVisi ? (
+          <SubtasksOption
+            subTaskNameOptionClicked={subTaskNameOptionClicked}
+            subTaskOptionsVisiToggle={subTaskOptionsVisiToggle}
+            listOfAllTasksList={listOfAllTasksList}
+            listName={listName}
+            taskId={taskId}
+            addNewCard={addNewCard}
+            idUpdatedList={idUpdatedList}
+          />
+        ) : null}
       </StyledTasksList>
       {subTaskToggleVisi ? (
         <>
@@ -185,11 +259,14 @@ function TasksListInDetailCoverView({
           <StyledButton onClick={() => addSubTaskFunc()}>
             Add SubTask
           </StyledButton>
+          <StyledWarnningSpan className="subTaskWarnSpan">
+            You can't add the same or blank subTasks
+          </StyledWarnningSpan>
         </>
       ) : (
-        <StyledAddTask onClick={() => subTaskToggle()}>
+        <StyledGreyButton onClick={() => subTaskToggle()}>
           Add Element
-        </StyledAddTask>
+        </StyledGreyButton>
       )}
     </StyledWrap>
   );

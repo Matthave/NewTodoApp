@@ -19,13 +19,13 @@ class TasksList extends Component {
         ele.id === this.props.taskId &&
         ele.listName === this.state.tasksListTitle
     );
-    if (taskAlreadyExist.length !== 0) return;
+    if (taskAlreadyExist.length !== 0 || this.state.tasksListTitle === "")
+      return;
     this.props.setListOfTasksList([
       ...this.props.listOfAllTasksList,
       {
         id: this.props.taskId,
         listName: this.state.tasksListTitle,
-        progressBar: "",
         subTasksList: [],
         activeSubtasks: 0,
         unActiveSubtasks: 0,
