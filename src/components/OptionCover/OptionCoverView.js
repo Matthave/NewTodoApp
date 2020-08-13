@@ -14,10 +14,31 @@ const StyledCover = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.65);
   z-index: 0;
+  overflow-x: scroll;
+  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &::-webkit-scrollbar {
+    height: 20px;
+    position: relative;
+    z-index: 999;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 1);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(45, 45, 45, 1);
+    border-radius: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(55, 55, 55, 1);
+  }
 `;
 
 const StyledOptionBox = styled.div`
-  position: fixed;
+  position: relative;
   transform: translate(0, -50%);
   height: 400px;
   width: 450px;
