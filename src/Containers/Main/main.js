@@ -182,7 +182,7 @@ const Main = () => {
 
   const deleteCard = (listId, taskId, byButton) => {
     if (byButton === "byButton") {
-      //Delete Card Badges from array if matched exist
+      //Delete Card Badges from array if matched exist also other matched lists
       const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
       const matchedPriorityIndex = listOfAllPriorityTasks.findIndex(
         (ele) => ele === taskId
@@ -193,6 +193,10 @@ const Main = () => {
       const matchedTermIndex = listOfAllTerms.findIndex(
         (ele) => ele === taskId
       );
+      const matchedTasksList = listOfAllTasksList.filter(
+        (ele) => ele.id === taskId
+      );
+
       listOfAllPriorityTasks.splice(matchedPriorityIndex, 1);
       listOfAllComments.splice(matchedCommentIndex, 1);
       listOfAllTerms.splice(matchedTermIndex, 1);
@@ -204,6 +208,16 @@ const Main = () => {
           listOfAllBadges.splice(indexOfBadgedToDelete, 1);
         });
       }
+
+      if (matchedTasksList.length !== 0) {
+        matchedTasksList.forEach((element) => {
+          const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
+            (ele) => ele.id === element.id && ele.listName === element.listName
+          );
+          listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
+        });
+      }
+
       //Delete Card Id from array
       const matchedIdList = listOfAllTasksId.findIndex(
         (ele) => ele === taskId * 1
