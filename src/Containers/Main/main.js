@@ -703,6 +703,7 @@ const Main = () => {
         clearAllBlankSpan={clearAllBlankSpan}
         hideFontSizeLabel={hideFontSizeLabel}
         setHideFontSizeLabel={setHideFontSizeLabel}
+        listOfAllTasksList={listOfAllTasksList}
       />
       {visibilityOptionsCover ? (
         <OptionCover

@@ -211,6 +211,7 @@ class List extends Component {
       clearAllBlankSpan,
       hideFontSizeLabel,
       setHideFontSizeLabel,
+      listOfAllTasksList,
     } = this.props;
     const {
       showAddField,
@@ -244,6 +245,7 @@ class List extends Component {
           deleteCardFeatureByMove={this.deleteCardFeatureByMove}
           hideFontSizeLabel={hideFontSizeLabel}
           setHideFontSizeLabel={setHideFontSizeLabel}
+          listOfAllTasksList={listOfAllTasksList}
         />
       </div>
     );

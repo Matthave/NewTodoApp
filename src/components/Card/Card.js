@@ -25,6 +25,7 @@ const StyledEdit = styled.span`
 const StyledIcon = styled.span`
   margin-right: 5px;
   font-size: 12.5px;
+  vertical-align: middle;
 `;
 
 const StyledTermInCard = styled.span`
@@ -32,6 +33,13 @@ const StyledTermInCard = styled.span`
   font-size: 12.5px;
   letter-spacing: 0.5px;
   margin-left: 3px;
+`;
+
+const StyledSubTasksCounter = styled.h4`
+  border-radius: 4px;
+  padding: 2.5px 5px;
+  margin: 5px 0 0px 3px;
+  font-size: 12px;
 `;
 
 class Card extends Component {
@@ -93,15 +101,19 @@ class Card extends Component {
     const draggedCard = document.getElementById(taskId);
 
     const draggedCardChildren = draggedCard.children;
-    const draggenCardLabelsChildren = [...draggedCardChildren[0].children]; //Weard thing that is need to properly dragging without doubling card content
-    const draggedCardTermChildren = [...draggedCard.children[2].children]; //Weard thing that is need to properly dragging without doubling card content
+    const draggenCardLabelsChildren = [...draggedCardChildren[0].children]; //Weard thing that is need to properly dragging without doubling card content?
+    const draggedCardTermChildren = [...draggedCard.children[2].children]; //Weard thing that is need to properly dragging without doubling card content?
+    const draggedCardTasksList = [...draggedCard.children[3].children]; //Weard thing that is need to properly dragging without doubling card content?
 
     if (e.pageX < 285 - scrollHeighFromMain) {
-      if (wholeList[0].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place
+      if (wholeList[0].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place call it
       draggenCardLabelsChildren.forEach((ele) => {
         ele.textContent = "";
       });
       draggedCardTermChildren.forEach((ele) => {
+        ele.textContent = "";
+      });
+      draggedCardTasksList.forEach((ele) => {
         ele.textContent = "";
       });
       deleteCardFeatureByMove(listId, taskId);
@@ -119,6 +131,9 @@ class Card extends Component {
           ele.textContent = "";
         });
         draggedCardTermChildren.forEach((ele) => {
+          ele.textContent = "";
+        });
+        draggedCardTasksList.forEach((ele) => {
           ele.textContent = "";
         });
         deleteCardFeatureByMove(listId, taskId);
@@ -209,7 +224,20 @@ class Card extends Component {
       taskDetailsFunction,
       visibilityOptionFunction,
       hideFontSizeLabel,
+      listOfAllTasksList,
     } = this.props;
+
+    const matchedTasksList = listOfAllTasksList.filter(
+      (ele) => ele.id === task.id
+    );
+
+    let unActiveTasks = 0;
+    let totalTasks = 0;
+
+    matchedTasksList.forEach((ele) => {
+      totalTasks += ele.totalOfSubTasks;
+      unActiveTasks += ele.unActiveSubtasks;
+    });
 
     return (
       <div
@@ -273,6 +301,21 @@ class Card extends Component {
               {`${ele.day} ${ele.monthName} ${ele.status}`}
             </StyledTermInCard>
           ))}
+        </div>
+        <div>
+          {totalTasks !== 0 ? (
+            <StyledSubTasksCounter
+              style={{
+                backgroundColor: `${
+                  unActiveTasks === totalTasks ? "#61BD4F" : "initial"
+                }`,
+                color: `${unActiveTasks === totalTasks ? "#fff" : "#999"}`,
+              }}
+            >
+              <StyledIcon className="fas fa-check-double" />
+              {unActiveTasks}/{totalTasks}
+            </StyledSubTasksCounter>
+          ) : null}
         </div>
       </div>
     );

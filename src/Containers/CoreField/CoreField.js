@@ -16,6 +16,7 @@ const MainField = ({
   clearAllBlankSpan,
   hideFontSizeLabel,
   setHideFontSizeLabel,
+  listOfAllTasksList,
 }) => {
   const [showList, showListHandle] = useState(false);
   const [scrollPosition, updatedScrollPosition] = useState(0);
@@ -93,6 +94,7 @@ const MainField = ({
       elementHoverLeave={elementHoverLeave}
       hideFontSizeLabel={hideFontSizeLabel}
       setHideFontSizeLabel={setHideFontSizeLabel}
+      listOfAllTasksList={listOfAllTasksList}
     />
   );
 };

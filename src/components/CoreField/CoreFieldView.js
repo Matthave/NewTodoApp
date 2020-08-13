@@ -101,6 +101,7 @@ function CoreFieldView({
   elementHoverLeave,
   hideFontSizeLabel,
   setHideFontSizeLabel,
+  listOfAllTasksList,
 }) {
   return (
     <StyledMain
@@ -130,6 +131,7 @@ function CoreFieldView({
             clearAllBlankSpan={clearAllBlankSpan}
             hideFontSizeLabel={hideFontSizeLabel}
             setHideFontSizeLabel={setHideFontSizeLabel}
+            listOfAllTasksList={listOfAllTasksList}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>
