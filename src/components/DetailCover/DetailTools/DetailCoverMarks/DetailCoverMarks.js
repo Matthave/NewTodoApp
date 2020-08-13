@@ -4,16 +4,6 @@ import styled from "styled-components";
 
 const StyledDetailMarks = styled.div`
   flex-grow: 1;
-  max-height: calc(100vh - 200px);
-  overflow-y: scroll;
-  margin-right: 5px;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0);
-  }
 `;
 
 const StyledDetailDescription = styled.div`

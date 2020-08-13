@@ -5,25 +5,33 @@ import DetailTools from "../DetailTools/DetailTools";
 import styled from "styled-components";
 
 const StyledCover = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  overflow-y: scroll;
+  background-attachment: fixed;
   background-color: rgba(0, 0, 0, 0.6);
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 `;
 
 const StyledDetail = styled.div`
-  position: fixed;
+  position: relative;
   top: 41px;
   left: 50%;
   bottom: 17.5px;
   transform: translate(-50%, 0%);
   width: 100%;
   max-width: 775px;
+  min-height: calc(100vh - 40px - 17.5px);
   padding: 15px;
   border-radius: 3px;
   background-color: #f4f5f7;
+  margin-bottom: 25px;
 `;
 
 function DetailCoverView({

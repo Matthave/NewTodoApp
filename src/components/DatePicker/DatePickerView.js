@@ -14,6 +14,7 @@ const StyledChangeListDetails = styled.div`
   right: ${(props) => (props.optionCoverPosition ? "-120px" : "null")};
   background-color: #fff;
   border-radius: 3px;
+  margin-bottom: 17.5px;
 `;
 
 const StyledDateTitle = styled.h3`

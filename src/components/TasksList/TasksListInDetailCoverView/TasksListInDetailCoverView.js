@@ -28,7 +28,7 @@ const StyledTasksList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 160px;
+  /* max-height: 160px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -36,7 +36,7 @@ const StyledTasksList = styled.div`
   }
   &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0);
-  }
+  } */
 `;
 
 const StyledGreyButton = styled.button`
