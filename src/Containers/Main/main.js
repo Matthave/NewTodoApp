@@ -120,17 +120,6 @@ const Main = () => {
     }
   };
 
-  const listOption = (listId) => {
-    const copyWholeList = [...wholeList];
-    const filterWholeList = copyWholeList.filter((list) => list.id !== listId);
-    const deletedList = copyWholeList.filter((list) => list.id === listId);
-    deletedList[0].tasks.forEach((ele) => {
-      deleteCard(listId, ele.id, "byButton");
-    });
-
-    setWholeList(filterWholeList);
-  };
-
   const addNewCard = (listId, newTask, taskId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
     if (newTask.length === 0) return;
@@ -704,7 +693,6 @@ const Main = () => {
       <CoreField
         wholeList={wholeList}
         setWholeList={setWholeList}
-        listOption={listOption}
         addNewCard={addNewCard}
         deleteCard={deleteCard}
         addNewList={addNewList}
@@ -718,6 +706,7 @@ const Main = () => {
         hideFontSizeLabel={hideFontSizeLabel}
         setHideFontSizeLabel={setHideFontSizeLabel}
         listOfAllTasksList={listOfAllTasksList}
+        setWholeList={setWholeList}
       />
       {visibilityOptionsCover ? (
         <OptionCover

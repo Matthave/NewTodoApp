@@ -7,6 +7,9 @@ class List extends Component {
     showAddField: false,
     textAreaValue: "",
     selectedList: false,
+    listVisi: false,
+    moveListVisibility: false,
+    possibleMoveListVisi: false,
   };
 
   componentDidMount() {
@@ -46,9 +49,18 @@ class List extends Component {
     ) {
       this.setState({
         showAddField: false,
+        listVisi: false,
+        moveListVisibility: false,
       });
       this.props.showListHandle(false);
       this.props.setListInput("");
+    }
+
+    if (!searchingClass.includes("listOptions")) {
+      this.setState({
+        listVisi: false,
+        moveListVisibility: false,
+      });
     }
   };
 
@@ -198,12 +210,70 @@ class List extends Component {
     });
   };
 
+  listOptionToggle = (e) => {
+    //Toggle for general listOptions visibility
+    this.setState({
+      listVisi: !this.state.listVisi,
+    });
+  };
+
+  deleteList = (listId) => {
+    const copyWholeList = [...this.props.wholeList];
+    const filterWholeList = copyWholeList.filter((list) => list.id !== listId); //Delete current list by id
+    const deletedList = copyWholeList.filter((list) => list.id === listId);
+    const everyCardId = []; //All card id container
+    deletedList[0].tasks.forEach((ele) => {
+      everyCardId.push(ele.id); // Add card id to container
+    });
+    everyCardId.forEach((ele) => {
+      //Use deleteCard function to every card which id is in container
+      this.props.deleteCard(listId, ele, "byButton");
+    });
+    this.props.setWholeList(filterWholeList);
+  };
+
+  addNewCardFromList = () => [
+    //Just redirect to addCard textArea
+    this.setState({
+      listVisi: false,
+      showAddField: true,
+    }),
+  ];
+
+  moveListVisibilityFunc = () => {
+    //Toggle for moveList visibility component
+    this.setState({
+      listVisi: false,
+      moveListVisibility: !this.state.moveListVisibility,
+    });
+  };
+
+  togglePossibleMoveForList = () => {
+    //Toggle for POSSIBLE postition to move
+    this.setState({
+      possibleMoveListVisi: !this.state.possibleMoveListVisi,
+    });
+  };
+
+  deleteCardsFromListFunc = (listId) => {
+    const copyWholeList = [...this.props.wholeList];
+    const currentList = copyWholeList.filter((list) => list.id === listId); //Finding currentList
+    const everyCardId = []; //All card id container
+    currentList[0].tasks.forEach((ele) => {
+      everyCardId.push(ele.id);
+    }); // Add card id to container
+    everyCardId.forEach((ele) => {
+      //Use deleteCard function to every card which id is in container
+      this.props.deleteCard(listId, ele, "byButton");
+    });
+  };
+
   render() {
     const {
-      listOption,
       id,
       tasks,
       wholeList,
+      setWholeList,
       scrollPosition,
       isDragAndDropTrue,
       visibilityOptionFunction,
@@ -218,6 +288,9 @@ class List extends Component {
       textAreaValue,
       inputTitle,
       selectedList,
+      listVisi,
+      moveListVisibility,
+      possibleMoveListVisi,
     } = this.state;
 
     return (
@@ -225,8 +298,9 @@ class List extends Component {
         <div className="frontBlankList"></div>
         <ListView
           selectedList={selectedList}
-          listOption={listOption}
+          listOptionToggle={this.listOptionToggle}
           wholeList={wholeList}
+          setWholeList={setWholeList}
           id={id}
           tasks={tasks}
           scrollPosition={scrollPosition}
@@ -246,6 +320,15 @@ class List extends Component {
           hideFontSizeLabel={hideFontSizeLabel}
           setHideFontSizeLabel={setHideFontSizeLabel}
           listOfAllTasksList={listOfAllTasksList}
+          listVisi={listVisi}
+          deleteList={this.deleteList}
+          addNewCardFromList={this.addNewCardFromList}
+          moveList={this.moveList}
+          moveListVisibilityFunc={this.moveListVisibilityFunc}
+          moveListVisibility={moveListVisibility}
+          possibleMoveListVisi={possibleMoveListVisi}
+          togglePossibleMoveForList={this.togglePossibleMoveForList}
+          deleteCardsFromListFunc={this.deleteCardsFromListFunc}
         />
       </div>
     );

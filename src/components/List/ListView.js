@@ -2,6 +2,8 @@ import React from "react";
 import Card from "../../components/Card/Card";
 import ListButtons from "./ListButtons/ListButtons";
 import ListInput from "./ListInput/ListInput";
+import ListOptions from "./ListOptions/ListOptions";
+import ListMove from "../../Containers/List/ListMove";
 import styled from "styled-components";
 
 const StyledTextArea = styled.textarea`
@@ -25,8 +27,9 @@ const StyledTextArea = styled.textarea`
 function ListView({
   mouseDownFeature,
   selectedList,
-  listOption,
+  listOptionToggle,
   wholeList,
+  setWholeList,
   id,
   tasks,
   scrollPosition,
@@ -45,6 +48,14 @@ function ListView({
   hideFontSizeLabel,
   setHideFontSizeLabel,
   listOfAllTasksList,
+  listVisi,
+  deleteList,
+  addNewCardFromList,
+  moveListVisibilityFunc,
+  moveListVisibility,
+  possibleMoveListVisi,
+  togglePossibleMoveForList,
+  deleteCardsFromListFunc,
 }) {
   return (
     <div
@@ -56,8 +67,9 @@ function ListView({
         selectedList={selectedList}
         id={id}
         inputTitle={inputTitle}
-        listOption={listOption}
+        listOptionToggle={listOptionToggle}
         setListTitle={setListTitle}
+        listVisi={listVisi}
       />
 
       {tasks.map((task) => (
@@ -94,6 +106,25 @@ function ListView({
         addNewCardFeature={addNewCardFeature}
         swapAddFieldFeature={swapAddFieldFeature}
       />
+      {listVisi ? (
+        <ListOptions
+          deleteList={deleteList}
+          listId={id}
+          addNewCardFromList={addNewCardFromList}
+          moveListVisibilityFunc={moveListVisibilityFunc}
+          deleteCardsFromListFunc={deleteCardsFromListFunc}
+        />
+      ) : null}
+      {moveListVisibility ? (
+        <ListMove
+          togglePossibleMoveForList={togglePossibleMoveForList}
+          possibleMoveListVisi={possibleMoveListVisi}
+          moveListVisibilityFunc={moveListVisibilityFunc}
+          wholeList={wholeList}
+          listId={id}
+          setWholeList={setWholeList}
+        />
+      ) : null}
     </div>
   );
 }

@@ -29,6 +29,7 @@ const StyledIcon = styled.span`
   margin-right: 6px;
   font-size: 13px;
   color: #42516e;
+  pointer-events: none;
 `;
 
 const StyledDetailList = styled.li`
@@ -134,7 +135,7 @@ function DetailCoverNav({
           }}
         >
           <StyledIcon
-            className="fas fa-exclamation-circle"
+            className="fas fa-exclamation-circle suggested"
             style={{
               color: `${matchedPriority.length !== 0 ? "#db4a36" : "#42516e"}`,
             }}
@@ -145,7 +146,7 @@ function DetailCoverNav({
           className="delete"
           onClick={(e) => deleteCard(idUpdatedList, taskId, "byButton")}
         >
-          <StyledIcon className="fas fa-archive" />
+          <StyledIcon className="fas fa-archive suggested" />
           Archive
         </StyledDetailList>
       </StyledDetailUl>

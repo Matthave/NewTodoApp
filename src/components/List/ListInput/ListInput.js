@@ -33,7 +33,13 @@ const StyledInputCover = styled.div`
   margin-bottom: 25px;
 `;
 
-function ListInput({ selectedList, id, inputTitle, listOption, setListTitle }) {
+function ListInput({
+  selectedList,
+  id,
+  inputTitle,
+  listOptionToggle,
+  setListTitle,
+}) {
   return (
     <>
       {selectedList ? (
@@ -51,7 +57,11 @@ function ListInput({ selectedList, id, inputTitle, listOption, setListTitle }) {
           placeholder="Add any title..."
         />
       )}
-      <span className="fas fa-ellipsis-h" onClick={() => listOption(id)} />
+      <span
+        className="fas fa-ellipsis-h listOptions"
+        id={`${id}ellips`}
+        onClick={(e) => listOptionToggle(e)}
+      />
     </>
   );
 }
