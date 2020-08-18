@@ -48,7 +48,7 @@ function ListView({
   hideFontSizeLabel,
   setHideFontSizeLabel,
   listOfAllTasksList,
-  listVisi,
+  listVisiOptions,
   deleteList,
   addNewCardFromList,
   moveListVisibilityFunc,
@@ -69,7 +69,6 @@ function ListView({
         inputTitle={inputTitle}
         listOptionToggle={listOptionToggle}
         setListTitle={setListTitle}
-        listVisi={listVisi}
       />
 
       {tasks.map((task) => (
@@ -106,7 +105,7 @@ function ListView({
         addNewCardFeature={addNewCardFeature}
         swapAddFieldFeature={swapAddFieldFeature}
       />
-      {listVisi ? (
+      {listVisiOptions ? (
         <ListOptions
           deleteList={deleteList}
           listId={id}

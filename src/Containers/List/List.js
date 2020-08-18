@@ -7,7 +7,7 @@ class List extends Component {
     showAddField: false,
     textAreaValue: "",
     selectedList: false,
-    listVisi: false,
+    listVisiOptions: false,
     moveListVisibility: false,
     possibleMoveListVisi: false,
   };
@@ -49,7 +49,7 @@ class List extends Component {
     ) {
       this.setState({
         showAddField: false,
-        listVisi: false,
+        listVisiOptions: false,
         moveListVisibility: false,
       });
       this.props.showListHandle(false);
@@ -58,7 +58,7 @@ class List extends Component {
 
     if (!searchingClass.includes("listOptions")) {
       this.setState({
-        listVisi: false,
+        listVisiOptions: false,
         moveListVisibility: false,
       });
     }
@@ -213,7 +213,7 @@ class List extends Component {
   listOptionToggle = (e) => {
     //Toggle for general listOptions visibility
     this.setState({
-      listVisi: !this.state.listVisi,
+      listVisiOptions: !this.state.listVisiOptions,
     });
   };
 
@@ -235,7 +235,7 @@ class List extends Component {
   addNewCardFromList = () => [
     //Just redirect to addCard textArea
     this.setState({
-      listVisi: false,
+      listVisiOptions: false,
       showAddField: true,
     }),
   ];
@@ -243,7 +243,7 @@ class List extends Component {
   moveListVisibilityFunc = () => {
     //Toggle for moveList visibility component
     this.setState({
-      listVisi: false,
+      listVisiOptions: false,
       moveListVisibility: !this.state.moveListVisibility,
     });
   };
@@ -288,7 +288,7 @@ class List extends Component {
       textAreaValue,
       inputTitle,
       selectedList,
-      listVisi,
+      listVisiOptions,
       moveListVisibility,
       possibleMoveListVisi,
     } = this.state;
@@ -320,7 +320,7 @@ class List extends Component {
           hideFontSizeLabel={hideFontSizeLabel}
           setHideFontSizeLabel={setHideFontSizeLabel}
           listOfAllTasksList={listOfAllTasksList}
-          listVisi={listVisi}
+          listVisiOptions={listVisiOptions}
           deleteList={this.deleteList}
           addNewCardFromList={this.addNewCardFromList}
           moveList={this.moveList}
