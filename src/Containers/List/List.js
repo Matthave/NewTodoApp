@@ -10,6 +10,7 @@ class List extends Component {
     listVisiOptions: false,
     moveListVisibility: false,
     possibleMoveListVisi: false,
+    deleteCardsVisibilityState: false,
   };
 
   componentDidMount() {
@@ -266,6 +267,16 @@ class List extends Component {
       //Use deleteCard function to every card which id is in container
       this.props.deleteCard(listId, ele, "byButton");
     });
+    this.setState({
+      deleteCardsVisibilityState: !this.state.deleteCardsVisibilityState,
+    });
+  };
+
+  deleteCardsVisibility = () => {
+    this.setState({
+      listVisiOptions: false,
+      deleteCardsVisibilityState: !this.state.deleteCardsVisibilityState,
+    });
   };
 
   render() {
@@ -291,6 +302,7 @@ class List extends Component {
       listVisiOptions,
       moveListVisibility,
       possibleMoveListVisi,
+      deleteCardsVisibilityState,
     } = this.state;
 
     return (
@@ -329,6 +341,8 @@ class List extends Component {
           possibleMoveListVisi={possibleMoveListVisi}
           togglePossibleMoveForList={this.togglePossibleMoveForList}
           deleteCardsFromListFunc={this.deleteCardsFromListFunc}
+          deleteCardsVisibility={this.deleteCardsVisibility}
+          deleteCardsVisibilityState={deleteCardsVisibilityState}
         />
       </div>
     );

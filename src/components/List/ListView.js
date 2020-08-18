@@ -3,7 +3,8 @@ import Card from "../../components/Card/Card";
 import ListButtons from "./ListButtons/ListButtons";
 import ListInput from "./ListInput/ListInput";
 import ListOptions from "./ListOptions/ListOptions";
-import ListMove from "../../Containers/List/ListMove";
+import ListMoveWindow from "../../Containers/List/ListMove";
+import ListDeleteCardsWindow from "../../Containers/List/ListDeleteCardsWindow";
 import styled from "styled-components";
 
 const StyledTextArea = styled.textarea`
@@ -56,6 +57,8 @@ function ListView({
   possibleMoveListVisi,
   togglePossibleMoveForList,
   deleteCardsFromListFunc,
+  deleteCardsVisibility,
+  deleteCardsVisibilityState,
 }) {
   return (
     <div
@@ -111,17 +114,23 @@ function ListView({
           listId={id}
           addNewCardFromList={addNewCardFromList}
           moveListVisibilityFunc={moveListVisibilityFunc}
-          deleteCardsFromListFunc={deleteCardsFromListFunc}
+          deleteCardsVisibility={deleteCardsVisibility}
         />
       ) : null}
       {moveListVisibility ? (
-        <ListMove
+        <ListMoveWindow
           togglePossibleMoveForList={togglePossibleMoveForList}
           possibleMoveListVisi={possibleMoveListVisi}
           moveListVisibilityFunc={moveListVisibilityFunc}
           wholeList={wholeList}
           listId={id}
           setWholeList={setWholeList}
+        />
+      ) : null}
+      {deleteCardsVisibilityState ? (
+        <ListDeleteCardsWindow
+          deleteCardsFromListFunc={deleteCardsFromListFunc}
+          listId={id}
         />
       ) : null}
     </div>
