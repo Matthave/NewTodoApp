@@ -10,6 +10,7 @@ class List extends Component {
     listVisiOptions: false,
     moveListVisibility: false,
     possibleMoveListVisi: false,
+    moveCardsVisibilityState: false,
     deleteCardsVisibilityState: false,
   };
 
@@ -61,6 +62,8 @@ class List extends Component {
       this.setState({
         listVisiOptions: false,
         moveListVisibility: false,
+        deleteCardsVisibilityState: false,
+        moveCardsVisibilityState: false,
       });
     }
   };
@@ -215,6 +218,11 @@ class List extends Component {
     //Toggle for general listOptions visibility
     this.setState({
       listVisiOptions: !this.state.listVisiOptions,
+      moveListVisibility: false,
+      possibleMoveListVisi: false,
+      deleteCardsVisibilityState: false,
+      moveCardsVisibilityState: false,
+      showAddField: false,
     });
   };
 
@@ -279,6 +287,13 @@ class List extends Component {
     });
   };
 
+  moveCardsVisibility = () => {
+    this.setState({
+      listVisiOptions: false,
+      moveCardsVisibilityState: !this.state.moveCardsVisibilityState,
+    });
+  };
+
   render() {
     const {
       id,
@@ -293,6 +308,7 @@ class List extends Component {
       hideFontSizeLabel,
       setHideFontSizeLabel,
       listOfAllTasksList,
+      moveCardToAnotherList,
     } = this.props;
     const {
       showAddField,
@@ -303,6 +319,7 @@ class List extends Component {
       moveListVisibility,
       possibleMoveListVisi,
       deleteCardsVisibilityState,
+      moveCardsVisibilityState,
     } = this.state;
 
     return (
@@ -315,6 +332,7 @@ class List extends Component {
           setWholeList={setWholeList}
           id={id}
           tasks={tasks}
+          moveCardToAnotherList={moveCardToAnotherList}
           scrollPosition={scrollPosition}
           isDragAndDropTrue={isDragAndDropTrue}
           visibilityOptionFunction={visibilityOptionFunction}
@@ -343,6 +361,8 @@ class List extends Component {
           deleteCardsFromListFunc={this.deleteCardsFromListFunc}
           deleteCardsVisibility={this.deleteCardsVisibility}
           deleteCardsVisibilityState={deleteCardsVisibilityState}
+          moveCardsVisibility={this.moveCardsVisibility}
+          moveCardsVisibilityState={moveCardsVisibilityState}
         />
       </div>
     );

@@ -706,7 +706,7 @@ const Main = () => {
         hideFontSizeLabel={hideFontSizeLabel}
         setHideFontSizeLabel={setHideFontSizeLabel}
         listOfAllTasksList={listOfAllTasksList}
-        setWholeList={setWholeList}
+        moveCardToAnotherList={moveCardToAnotherList}
       />
       {visibilityOptionsCover ? (
         <OptionCover

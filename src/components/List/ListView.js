@@ -5,6 +5,7 @@ import ListInput from "./ListInput/ListInput";
 import ListOptions from "./ListOptions/ListOptions";
 import ListMoveWindow from "../../Containers/List/ListMove";
 import ListDeleteCardsWindow from "../../Containers/List/ListDeleteCardsWindow";
+import ListMoveCardsWindow from "../../Containers/List/ListMoveCardsWindow";
 import styled from "styled-components";
 
 const StyledTextArea = styled.textarea`
@@ -33,6 +34,7 @@ function ListView({
   setWholeList,
   id,
   tasks,
+  moveCardToAnotherList,
   scrollPosition,
   isDragAndDropTrue,
   visibilityOptionFunction,
@@ -59,6 +61,8 @@ function ListView({
   deleteCardsFromListFunc,
   deleteCardsVisibility,
   deleteCardsVisibilityState,
+  moveCardsVisibility,
+  moveCardsVisibilityState,
 }) {
   return (
     <div
@@ -115,6 +119,7 @@ function ListView({
           addNewCardFromList={addNewCardFromList}
           moveListVisibilityFunc={moveListVisibilityFunc}
           deleteCardsVisibility={deleteCardsVisibility}
+          moveCardsVisibility={moveCardsVisibility}
         />
       ) : null}
       {moveListVisibility ? (
@@ -131,6 +136,15 @@ function ListView({
         <ListDeleteCardsWindow
           deleteCardsFromListFunc={deleteCardsFromListFunc}
           listId={id}
+        />
+      ) : null}
+      {moveCardsVisibilityState ? (
+        <ListMoveCardsWindow
+          wholeList={wholeList}
+          listId={id}
+          deleteCardsFromListFunc={deleteCardsFromListFunc}
+          addNewCardFeature={addNewCardFeature}
+          moveCardToAnotherList={moveCardToAnotherList}
         />
       ) : null}
     </div>

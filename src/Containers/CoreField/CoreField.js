@@ -7,6 +7,7 @@ const MainField = ({
   addNewCard,
   deleteCard,
   addNewList,
+  moveCardToAnotherList,
   updateListTitle,
   elementHoverEnter,
   elementHoverLeave,
@@ -97,6 +98,7 @@ const MainField = ({
       setHideFontSizeLabel={setHideFontSizeLabel}
       listOfAllTasksList={listOfAllTasksList}
       setWholeList={setWholeList}
+      moveCardToAnotherList={moveCardToAnotherList}
     />
   );
 };

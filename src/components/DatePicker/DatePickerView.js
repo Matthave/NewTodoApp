@@ -76,20 +76,6 @@ const StyledColumnDate = styled.div`
   justify-content: center;
 `;
 
-const StyledInput = styled.input`
-  width: 40%;
-  background-color: #fafbfc;
-  box-shadow: 0px 0px 1px 1.5px #ccc;
-  border-radius: 3px;
-  padding: 7.5px 5px;
-  margin: 10px auto;
-
-  &:focus {
-    background-color: #fff;
-    box-shadow: 0px 0px 1px 1.5px #0079bf;
-  }
-`;
-
 const StyledButton = styled.button`
   width: 75px;
   height: 32.5px;

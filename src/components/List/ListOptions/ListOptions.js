@@ -62,7 +62,7 @@ function ListOptions({
   addNewCardFromList,
   moveListVisibilityFunc,
   deleteCardsVisibility,
-  moveCardsFromListFunc,
+  moveCardsVisibility,
 }) {
   return (
     <StyledOptionList className="listOptions">
@@ -82,10 +82,16 @@ function ListOptions({
       </StyledUl>
 
       <StyledUl className="listOptions">
-        <StyledList onClick={() => moveCardsFromListFunc(listId)}>
+        <StyledList
+          onClick={() => moveCardsVisibility(listId)}
+          className="listOptions"
+        >
           Move every card in this list...
         </StyledList>
-        <StyledList onClick={() => deleteCardsVisibility(listId)}>
+        <StyledList
+          onClick={() => deleteCardsVisibility(listId)}
+          className="listOptions"
+        >
           Archive every card in this list...
         </StyledList>
       </StyledUl>
