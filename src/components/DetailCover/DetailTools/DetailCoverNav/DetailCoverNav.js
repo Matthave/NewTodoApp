@@ -168,6 +168,7 @@ function DetailCoverNav({
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           taskId={taskId}
+          currentListId={idUpdatedList}
           changeListInDetails={changeListInDetails}
           taskTitleList={taskTitleList}
           byElement="byNavMove"

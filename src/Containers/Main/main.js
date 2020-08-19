@@ -48,19 +48,16 @@ const Main = () => {
       id: 0,
       title: "To Do",
       tasks: [],
-      activeList: false,
     },
     {
       id: 1,
       title: "In Progress",
       tasks: [],
-      activeList: false,
     },
     {
       id: 2,
       title: "Finished",
       tasks: [],
-      activeList: false,
     },
   ]);
 
@@ -244,17 +241,29 @@ const Main = () => {
   };
 
   const copyNewList = (tasksToCopy, listId, listNewName) => {
+    const tasksToCopyArr = [...tasksToCopy];
+    //Copy pure List, without tasks
     let biggerThanLast = [];
     wholeList.forEach((list) => biggerThanLast.push(list.id));
     const theBiggest = Math.max(...biggerThanLast);
-    setWholeList([
-      ...wholeList,
-      {
-        title: listNewName,
-        id: `${wholeList.length === 0 ? 0 : theBiggest + 1}`,
-        tasks: [],
-      },
-    ]);
+    const newId = Number(`${wholeList.length === 0 ? 0 : theBiggest + 1}`);
+    wholeList.push({
+      title: listNewName,
+      id: newId,
+      tasks: [],
+    });
+
+    //Add preview tasks to newList (tasks have wrong id now)
+    tasksToCopyArr.forEach((ele) => {
+      addNewCard(newId, ele.taskName, ele.id);
+    });
+
+    //Change tasks id to correct
+    const theBiggestId = Math.max(...listOfAllTasksId);
+    wholeList[newId].tasks.forEach((ele, index) => {
+      ele.id = String(theBiggestId + (index + 1));
+      listOfAllTasksId.push(theBiggestId + (index + 1));
+    });
   };
 
   const updateListTitle = (newTitle, listId) => {
@@ -391,7 +400,7 @@ const Main = () => {
 
   const moveCardToAnotherList = (
     taskTitle,
-    currentList,
+    currentListId,
     taskId,
     clickedListId,
     byOptionCover,
@@ -400,7 +409,7 @@ const Main = () => {
   ) => {
     //FindListWhereDelete
     const deleteFromList = wholeList.filter(
-      (list) => list.title === currentList
+      (list) => list.id === currentListId
     );
 
     //AddToAnotherList

@@ -73,6 +73,7 @@ function MoveToAnotherListBox({
   optionCover,
   copyVisibility,
   matchedColorsToThisCard,
+  currentListId,
 }) {
   return (
     <StyledChangeListDetails
@@ -110,7 +111,7 @@ function MoveToAnotherListBox({
               onClick={() =>
                 moveCardToAnotherList(
                   taskTitle,
-                  taskTitleList,
+                  currentListId,
                   taskId,
                   list.id,
                   optionCover

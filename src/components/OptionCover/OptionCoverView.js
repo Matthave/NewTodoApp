@@ -242,6 +242,7 @@ const OptionCover = ({
             wholeList={wholeList}
             moveCardToAnotherList={moveCardToAnotherList}
             taskId={optionCoverData[0].clickedCardId}
+            currentListId={optionCoverData[0].listId}
             changeListInDetails={changeListInDetails}
             taskTitleList={optionCoverData[0].currentListName}
             byElement={"byOptionMove"}

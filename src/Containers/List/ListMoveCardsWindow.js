@@ -16,7 +16,7 @@ class ListMoveCardsWindow extends Component {
     tasksToMove.forEach((ele) => {
       moveCardToAnotherList(
         ele.taskName,
-        moveFromList[0].title,
+        moveFromList[0].id,
         ele.id,
         moveToListId,
         true
