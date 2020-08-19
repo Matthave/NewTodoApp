@@ -7,6 +7,7 @@ const MainField = ({
   addNewCard,
   deleteCard,
   addNewList,
+  copyNewList,
   moveCardToAnotherList,
   updateListTitle,
   elementHoverEnter,
@@ -36,9 +37,15 @@ const MainField = ({
 
   const addNewListByKey = (e) => {
     if (e.which === 13 && showList) {
-      addNewList(listInputValue, showListHandle, setListInput);
+      addNewList(listInputValue);
       showListHandle(true);
     }
+  };
+
+  const addNewListByButton = () => {
+    addNewList(listInputValue);
+    showListHandle(false);
+    setListInput("");
   };
 
   const scroll = (e) => {
@@ -91,6 +98,7 @@ const MainField = ({
       listInputHandle={listInputHandle}
       listInputValue={listInputValue}
       addNewList={addNewList}
+      addNewListByButton={addNewListByButton}
       addNewListByKey={addNewListByKey}
       elementHoverEnter={elementHoverEnter}
       elementHoverLeave={elementHoverLeave}
@@ -99,6 +107,7 @@ const MainField = ({
       listOfAllTasksList={listOfAllTasksList}
       setWholeList={setWholeList}
       moveCardToAnotherList={moveCardToAnotherList}
+      copyNewList={copyNewList}
     />
   );
 };

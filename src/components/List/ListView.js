@@ -6,6 +6,7 @@ import ListOptions from "./ListOptions/ListOptions";
 import ListMoveWindow from "../../Containers/List/ListMove";
 import ListDeleteCardsWindow from "../../Containers/List/ListDeleteCardsWindow";
 import ListMoveCardsWindow from "../../Containers/List/ListMoveCardsWindow";
+import ListCopyWindow from "../../Containers/List/ListCopyWindow";
 import styled from "styled-components";
 
 const StyledTextArea = styled.textarea`
@@ -63,6 +64,10 @@ function ListView({
   deleteCardsVisibilityState,
   moveCardsVisibility,
   moveCardsVisibilityState,
+  copyListVisibility,
+  copyListVisibilityState,
+  addNewList,
+  copyNewList,
 }) {
   return (
     <div
@@ -120,6 +125,7 @@ function ListView({
           moveListVisibilityFunc={moveListVisibilityFunc}
           deleteCardsVisibility={deleteCardsVisibility}
           moveCardsVisibility={moveCardsVisibility}
+          copyListVisibility={copyListVisibility}
         />
       ) : null}
       {moveListVisibility ? (
@@ -145,6 +151,15 @@ function ListView({
           listId={id}
           addNewCardFeature={addNewCardFeature}
           moveCardToAnotherList={moveCardToAnotherList}
+        />
+      ) : null}
+      {copyListVisibilityState ? (
+        <ListCopyWindow
+          addNewList={addNewList}
+          wholeList={wholeList}
+          listId={id}
+          copyNewList={copyNewList}
+          copyListVisibility={copyListVisibility}
         />
       ) : null}
     </div>

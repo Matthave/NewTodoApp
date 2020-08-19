@@ -97,6 +97,8 @@ function CoreFieldView({
   listInputValue,
   addNewList,
   addNewListByKey,
+  addNewListByButton,
+  copyNewList,
   elementHoverEnter,
   elementHoverLeave,
   hideFontSizeLabel,
@@ -136,6 +138,8 @@ function CoreFieldView({
             listOfAllTasksList={listOfAllTasksList}
             setWholeList={setWholeList}
             moveCardToAnotherList={moveCardToAnotherList}
+            addNewList={addNewList}
+            copyNewList={copyNewList}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>
@@ -151,11 +155,7 @@ function CoreFieldView({
             onMouseLeave={(e) => elementHoverLeave(e)}
           />
           {showList ? (
-            <StyledButton
-              onClick={() =>
-                addNewList(listInputValue, showListHandle, setListInput)
-              }
-            >
+            <StyledButton onClick={() => addNewListByButton(listInputValue)}>
               Add List
             </StyledButton>
           ) : null}

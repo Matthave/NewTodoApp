@@ -63,6 +63,7 @@ function ListOptions({
   moveListVisibilityFunc,
   deleteCardsVisibility,
   moveCardsVisibility,
+  copyListVisibility,
 }) {
   return (
     <StyledOptionList className="listOptions">
@@ -72,7 +73,12 @@ function ListOptions({
         <StyledList onClick={() => addNewCardFromList()}>
           Add card...
         </StyledList>
-        <StyledList>Copy list...</StyledList>
+        <StyledList
+          onClick={() => copyListVisibility()}
+          className="listOptions"
+        >
+          Copy list...
+        </StyledList>
         <StyledList
           onClick={() => moveListVisibilityFunc()}
           className="listOptions"

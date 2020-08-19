@@ -226,9 +226,7 @@ const Main = () => {
     setVisibilityTaskDetails(false);
   };
 
-  const addNewList = (listInputValue, showListHandle, setListInput) => {
-    showListHandle(false);
-    setListInput("");
+  const addNewList = (listInputValue) => {
     if (listInputValue === "") return;
     if (listInputValue.length < 2) return;
 
@@ -241,7 +239,20 @@ const Main = () => {
         title: listInputValue,
         id: `${wholeList.length === 0 ? 0 : theBiggest + 1}`,
         tasks: [],
-        activeInput: false,
+      },
+    ]);
+  };
+
+  const copyNewList = (tasksToCopy, listId, listNewName) => {
+    let biggerThanLast = [];
+    wholeList.forEach((list) => biggerThanLast.push(list.id));
+    const theBiggest = Math.max(...biggerThanLast);
+    setWholeList([
+      ...wholeList,
+      {
+        title: listNewName,
+        id: `${wholeList.length === 0 ? 0 : theBiggest + 1}`,
+        tasks: [],
       },
     ]);
   };
@@ -707,6 +718,7 @@ const Main = () => {
         setHideFontSizeLabel={setHideFontSizeLabel}
         listOfAllTasksList={listOfAllTasksList}
         moveCardToAnotherList={moveCardToAnotherList}
+        copyNewList={copyNewList}
       />
       {visibilityOptionsCover ? (
         <OptionCover

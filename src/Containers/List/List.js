@@ -10,6 +10,7 @@ class List extends Component {
     listVisiOptions: false,
     moveListVisibility: false,
     possibleMoveListVisi: false,
+    copyListVisibilityState: false,
     moveCardsVisibilityState: false,
     deleteCardsVisibilityState: false,
   };
@@ -64,6 +65,7 @@ class List extends Component {
         moveListVisibility: false,
         deleteCardsVisibilityState: false,
         moveCardsVisibilityState: false,
+        copyListVisibilityState: false,
       });
     }
   };
@@ -222,6 +224,7 @@ class List extends Component {
       possibleMoveListVisi: false,
       deleteCardsVisibilityState: false,
       moveCardsVisibilityState: false,
+      copyListVisibilityState: false,
       showAddField: false,
     });
   };
@@ -265,6 +268,7 @@ class List extends Component {
   };
 
   deleteCardsVisibility = () => {
+    //Visibility toggle deleteCardsWindow
     this.setState({
       listVisiOptions: false,
       deleteCardsVisibilityState: !this.state.deleteCardsVisibilityState,
@@ -272,9 +276,17 @@ class List extends Component {
   };
 
   moveCardsVisibility = () => {
+    //Visibility toggle moveCardsWindow
     this.setState({
       listVisiOptions: false,
       moveCardsVisibilityState: !this.state.moveCardsVisibilityState,
+    });
+  };
+
+  copyListVisibility = () => {
+    this.setState({
+      listVisiOptions: false,
+      copyListVisibilityState: !this.state.copyListVisibilityState,
     });
   };
 
@@ -294,6 +306,8 @@ class List extends Component {
       setHideFontSizeLabel,
       listOfAllTasksList,
       moveCardToAnotherList,
+      addNewList,
+      copyNewList,
     } = this.props;
     const {
       showAddField,
@@ -305,6 +319,7 @@ class List extends Component {
       possibleMoveListVisi,
       deleteCardsVisibilityState,
       moveCardsVisibilityState,
+      copyListVisibilityState,
     } = this.state;
 
     return (
@@ -348,6 +363,10 @@ class List extends Component {
           deleteCardsVisibilityState={deleteCardsVisibilityState}
           moveCardsVisibility={this.moveCardsVisibility}
           moveCardsVisibilityState={moveCardsVisibilityState}
+          copyListVisibility={this.copyListVisibility}
+          copyListVisibilityState={copyListVisibilityState}
+          addNewList={addNewList}
+          copyNewList={copyNewList}
         />
       </div>
     );
