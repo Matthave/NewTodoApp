@@ -32,6 +32,7 @@ function ListView({
   listOptionToggle,
   wholeList,
   setWholeList,
+  deleteCard,
   id,
   tasks,
   moveCardToAnotherList,
@@ -58,7 +59,6 @@ function ListView({
   moveListVisibility,
   possibleMoveListVisi,
   togglePossibleMoveForList,
-  deleteCardsFromListFunc,
   deleteCardsVisibility,
   deleteCardsVisibilityState,
   moveCardsVisibility,
@@ -134,15 +134,15 @@ function ListView({
       ) : null}
       {deleteCardsVisibilityState ? (
         <ListDeleteCardsWindow
-          deleteCardsFromListFunc={deleteCardsFromListFunc}
           listId={id}
+          wholeList={wholeList}
+          deleteCard={deleteCard}
         />
       ) : null}
       {moveCardsVisibilityState ? (
         <ListMoveCardsWindow
           wholeList={wholeList}
           listId={id}
-          deleteCardsFromListFunc={deleteCardsFromListFunc}
           addNewCardFeature={addNewCardFeature}
           moveCardToAnotherList={moveCardToAnotherList}
         />

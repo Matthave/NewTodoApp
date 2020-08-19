@@ -264,22 +264,6 @@ class List extends Component {
     });
   };
 
-  deleteCardsFromListFunc = (listId) => {
-    const copyWholeList = [...this.props.wholeList];
-    const currentList = copyWholeList.filter((list) => list.id === listId); //Finding currentList
-    const everyCardId = []; //All card id container
-    currentList[0].tasks.forEach((ele) => {
-      everyCardId.push(ele.id);
-    }); // Add card id to container
-    everyCardId.forEach((ele) => {
-      //Use deleteCard function to every card which id is in container
-      this.props.deleteCard(listId, ele, "byButton");
-    });
-    this.setState({
-      deleteCardsVisibilityState: !this.state.deleteCardsVisibilityState,
-    });
-  };
-
   deleteCardsVisibility = () => {
     this.setState({
       listVisiOptions: false,
@@ -299,6 +283,7 @@ class List extends Component {
       id,
       tasks,
       wholeList,
+      deleteCard,
       setWholeList,
       scrollPosition,
       isDragAndDropTrue,
@@ -329,6 +314,7 @@ class List extends Component {
           selectedList={selectedList}
           listOptionToggle={this.listOptionToggle}
           wholeList={wholeList}
+          deleteCard={deleteCard}
           setWholeList={setWholeList}
           id={id}
           tasks={tasks}
@@ -358,7 +344,6 @@ class List extends Component {
           moveListVisibility={moveListVisibility}
           possibleMoveListVisi={possibleMoveListVisi}
           togglePossibleMoveForList={this.togglePossibleMoveForList}
-          deleteCardsFromListFunc={this.deleteCardsFromListFunc}
           deleteCardsVisibility={this.deleteCardsVisibility}
           deleteCardsVisibilityState={deleteCardsVisibilityState}
           moveCardsVisibility={this.moveCardsVisibility}
