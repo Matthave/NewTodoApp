@@ -128,7 +128,7 @@ const OptionCover = ({
   updateCard,
   deleteCard,
   handleLabelsVisibility,
-  labelsVisibility,
+  labelVisi,
   toggleLabelColorToCard,
   listOfAllBadges,
   matchedColorsToThisCard,
@@ -136,17 +136,18 @@ const OptionCover = ({
   labelColors,
   setLabelColors,
   addPriorityForCards,
-  toggleDetailMove,
+  moveToAnotherListVisi,
   wholeList,
   moveCardToAnotherList,
   matchedPriority,
-  copyVisibility,
-  dateVisibility,
-  toggleDateVisibility,
+  copyCardVisi,
+  datePickerVisi,
   toggleTermToCard,
   matchedTerms,
   unActiveTasks,
   totalTasks,
+  toggleCurrentListVisiFunc,
+  closeAllListsWindowsFunc,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -166,6 +167,7 @@ const OptionCover = ({
           </StyledWrapLabels>
           <StyledTextArea
             className="textArea_Option"
+            onClick={() => closeAllListsWindowsFunc()}
             onChange={(e) => taskTitleFeature(e)}
             onKeyPress={(e) =>
               updateCard(
@@ -218,13 +220,12 @@ const OptionCover = ({
           optionCoverData={optionCoverData}
           addPriorityForCards={addPriorityForCards}
           matchedPriority={matchedPriority}
-          dateVisibility={dateVisibility}
-          toggleDateVisibility={toggleDateVisibility}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
         />
 
-        {labelsVisibility ? (
+        {labelVisi ? (
           <Labels
-            handleLabelsVisibility={handleLabelsVisibility}
+            toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
             optionCoverData={optionCoverData}
             toggleLabelColorToCard={toggleLabelColorToCard}
             taskId={optionCoverData[0].clickedCardId}
@@ -235,7 +236,7 @@ const OptionCover = ({
             optionCover={true}
           />
         ) : null}
-        {toggleDetailMove ? (
+        {moveToAnotherListVisi ? (
           <MoveToAnotherListBox
             taskTitle={taskTitle}
             wholeList={wholeList}
@@ -243,20 +244,23 @@ const OptionCover = ({
             taskId={optionCoverData[0].clickedCardId}
             currentListId={optionCoverData[0].listId}
             optionCover={true}
+            toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           />
         ) : null}
-        {copyVisibility ? (
+        {copyCardVisi ? (
           <CopyCard
             matchedColorsToThisCard={matchedColorsToThisCard}
+            toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
             wholeList={wholeList}
             taskTitle={taskTitle}
             taskId={optionCoverData[0].clickedCardId}
             currentListId={optionCoverData[0].listId}
+            optionCover={true}
           />
         ) : null}
-        {dateVisibility ? (
+        {datePickerVisi ? (
           <DatePicker
-            toggleDateVisibility={toggleDateVisibility}
+            toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
             taskId={optionCoverData[0].clickedCardId}
             toggleTermToCard={toggleTermToCard}
             optionCover={true}

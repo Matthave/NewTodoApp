@@ -35,29 +35,36 @@ const StyledIcon = styled.span`
 function OptionCoverListView({
   deleteCard,
   listId,
-  handleLabelsVisibility,
   addPriorityForCards,
   optionCoverData,
-  changeListInDetails,
   matchedPriority,
-  toggleDateVisibility,
+  toggleCurrentListVisiFunc,
 }) {
   return (
     <StyledListBlock className="cover_listBlock">
       <ul>
-        <StyledList onClick={() => handleLabelsVisibility(true)}>
+        <StyledList onClick={() => toggleCurrentListVisiFunc("labelVisi")}>
           <StyledIcon className="fas fa-tag" />
           Edit labels
         </StyledList>
-        <StyledList className="suggested">
+        <StyledList
+          className="suggested"
+          onClick={() => toggleCurrentListVisiFunc("moveToAnotherListVisi")}
+        >
           <StyledIcon className="fas fa-long-arrow-alt-right" />
           Move
         </StyledList>
-        <StyledList className="suggested">
+        <StyledList
+          className="suggested"
+          onClick={() => toggleCurrentListVisiFunc("copyCardVisi")}
+        >
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledList>
-        <StyledList onClick={() => toggleDateVisibility()} className="calendar">
+        <StyledList
+          onClick={() => toggleCurrentListVisiFunc("datePickerVisi")}
+          className="calendar"
+        >
           <StyledIcon className="far fa-clock calendaer" />
           Date Change
         </StyledList>

@@ -3,31 +3,30 @@ import LabelsView from "../../components/Labels/LabelsView";
 
 class Labels extends Component {
   state = {
-    labelVisibility: false,
+    colorNameWindowVisi: false,
     searchInputLabel: "",
     nameLabelInputValue: "",
     currentMatchedColors: "",
     currentSquarEdit: "",
   };
 
-  nameLabelVisibility = (e, toggle, colorId, from) => {
+  nameLabelVisibilityFunc = (e, toggle, colorId, from) => {
     if (from === "back") {
       this.setState({
-        labelVisibility: toggle,
+        colorNameWindowVisi: toggle,
       });
       return;
     }
     if (colorId === null) {
       this.setState({
-        labelVisibility: toggle,
+        colorNameWindowVisi: toggle,
       });
-      this.props.handleLabelsVisibility(false);
       return;
     }
     if (from === "edit") {
       const isAnyTextAlready = e.target.parentNode.textContent;
       this.setState({
-        labelVisibility: toggle,
+        colorNameWindowVisi: toggle,
         currentSquarEdit: colorId,
         currentMatchedColors: colorId,
         nameLabelInputValue: isAnyTextAlready,
@@ -82,7 +81,6 @@ class Labels extends Component {
       listOfAllTasksId,
       labelColors,
       setLabelColors,
-      handleLabelsVisibility,
     } = this.props;
 
     if (e.target.className.includes("label_saveBtn") || e.which === 13) {
@@ -122,14 +120,13 @@ class Labels extends Component {
 
       //Update
       setLabelColors(copyOfLabelColor);
-      this.nameLabelVisibility(false);
-      handleLabelsVisibility(false);
+      this.nameLabelVisibilityFunc(null, false, null, "back");
     }
   };
 
   render() {
     const {
-      handleLabelsVisibility,
+      toggleCurrentListVisiFunc,
       detailCover,
       optionCover,
       addLabelColor,
@@ -141,7 +138,7 @@ class Labels extends Component {
 
     const {
       searchInputLabel,
-      labelVisibility,
+      colorNameWindowVisi,
       nameLabelInputValue,
       currentSquarEdit,
     } = this.state;
@@ -152,10 +149,10 @@ class Labels extends Component {
     );
     return (
       <LabelsView
-        handleLabelsVisibility={handleLabelsVisibility}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
         detailCover={detailCover}
-        nameLabelVisibility={this.nameLabelVisibility}
-        labelVisibility={labelVisibility}
+        nameLabelVisibilityFunc={this.nameLabelVisibilityFunc}
+        colorNameWindowVisi={colorNameWindowVisi}
         addLabelColor={addLabelColor}
         optionCoverData={optionCoverData}
         toggleLabelColorToCard={toggleLabelColorToCard}

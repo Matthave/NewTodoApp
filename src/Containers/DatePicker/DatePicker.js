@@ -494,7 +494,7 @@ class DatePicker extends Component {
   };
 
   render() {
-    const { toggleDateVisibility, optionCover } = this.props;
+    const { toggleCurrentListVisiFunc, optionCover } = this.props;
     const {
       hour,
       minutes,
@@ -507,7 +507,7 @@ class DatePicker extends Component {
 
     return (
       <DatePickerView
-        toggleDateVisibility={toggleDateVisibility}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
         hour={hour}
         minutes={minutes}
         days={days}

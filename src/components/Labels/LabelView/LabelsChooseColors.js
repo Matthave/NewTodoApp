@@ -115,9 +115,9 @@ const StyledNameSox = styled.div`
 function LabelsChooseColors({
   detailCover,
   optionCover,
-  handleLabelsVisibility,
+  toggleCurrentListVisiFunc,
   filteredColors,
-  nameLabelVisibility,
+  nameLabelVisibilityFunc,
   toggleLabelColorToCard,
   taskId,
   generateCheckIcon,
@@ -139,7 +139,7 @@ function LabelsChooseColors({
         <StyledTitle>Labels</StyledTitle>
         <StyledX
           className="fas fa-times"
-          onClick={() => handleLabelsVisibility(false)}
+          onClick={() => toggleCurrentListVisiFunc("labelVisi")}
         />
       </StyledLabelTitle>
       <StyledLabelInput
@@ -164,7 +164,9 @@ function LabelsChooseColors({
           </StyledLabelElement>{" "}
           <StyledIcon
             className="fas fa-pen label"
-            onClick={(e) => nameLabelVisibility(e, true, color.color, "edit")}
+            onClick={(e) =>
+              nameLabelVisibilityFunc(e, true, color.color, "edit")
+            }
           />
         </StyledLabelWrapEle>
       ))}

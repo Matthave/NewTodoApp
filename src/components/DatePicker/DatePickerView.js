@@ -129,7 +129,7 @@ const StyledWarnSpan = styled.span`
 `;
 
 function DatePickerView({
-  toggleDateVisibility,
+  toggleCurrentListVisiFunc,
   todayDay,
   todayMonth,
   todayYear,
@@ -153,7 +153,10 @@ function DatePickerView({
     >
       <StyledDateTitle className="calendar">
         Change Date{" "}
-        <span className="fas fa-times" onClick={() => toggleDateVisibility()} />
+        <span
+          className="fas fa-times"
+          onClick={() => toggleCurrentListVisiFunc("datePickerVisi")}
+        />
       </StyledDateTitle>
       <StyledDateWrap className="calendar">
         <StyledIcon

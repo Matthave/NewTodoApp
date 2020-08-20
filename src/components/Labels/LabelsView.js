@@ -3,11 +3,11 @@ import LabelsNameColors from "./LabelView/LabelsNameColors";
 import LabelsChooseColors from "./LabelView/LabelsChooseColors";
 
 function LabelsView({
-  handleLabelsVisibility,
+  toggleCurrentListVisiFunc,
   detailCover,
   optionCover,
-  nameLabelVisibility,
-  labelVisibility,
+  nameLabelVisibilityFunc,
+  colorNameWindowVisi,
   toggleLabelColorToCard,
   taskId,
   generateCheckIcon,
@@ -22,9 +22,9 @@ function LabelsView({
 }) {
   return (
     <>
-      {labelVisibility ? (
+      {colorNameWindowVisi ? (
         <LabelsNameColors
-          nameLabelVisibility={nameLabelVisibility}
+          nameLabelVisibilityFunc={nameLabelVisibilityFunc}
           filteredColors={filteredColors}
           detailCover={detailCover}
           nameLabelInput={nameLabelInput}
@@ -37,9 +37,9 @@ function LabelsView({
       ) : (
         <LabelsChooseColors
           detailCover={detailCover}
-          handleLabelsVisibility={handleLabelsVisibility}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           filteredColors={filteredColors}
-          nameLabelVisibility={nameLabelVisibility}
+          nameLabelVisibilityFunc={nameLabelVisibilityFunc}
           toggleLabelColorToCard={toggleLabelColorToCard}
           taskId={taskId}
           generateCheckIcon={generateCheckIcon}

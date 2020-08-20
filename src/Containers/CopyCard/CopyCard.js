@@ -26,6 +26,8 @@ class CopyCard extends Component {
       wholeList,
       taskId,
       currentListId,
+      optionCover,
+      toggleCurrentListVisiFunc,
     } = this.props;
     const { copyTextArea, canCopyLabels } = this.state;
     return (
@@ -38,6 +40,8 @@ class CopyCard extends Component {
         wholeList={wholeList}
         taskId={taskId}
         currentListId={currentListId}
+        optionCover={optionCover}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
       />
     );
   }

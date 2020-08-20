@@ -20,8 +20,6 @@ const Main = () => {
   const [visibilityChangeListInDetails, setChangeListInDetails] = useState(
     false
   );
-  const [toggleDetailMove, setToggleDetailMove] = useState(false);
-  const [labelsVisibility, setLabelsVisibility] = useState(false);
   const [
     labelsVisibilityDetailsComp,
     setLabelsVisibilityDetailsComp,
@@ -87,7 +85,6 @@ const Main = () => {
 
     if (!searchingClass.includes("suggested")) {
       setChangeListInDetails(false);
-      setToggleDetailMove(false);
       setCopyVisibility(false);
     }
 
@@ -96,13 +93,7 @@ const Main = () => {
       searchingClass.includes("cover_box")
     ) {
       setVisibilityOptionCover(false);
-      setLabelsVisibility(false);
     }
-
-    if (searchingClass.includes("textArea_Option")) {
-      setLabelsVisibility(false);
-    }
-
     if (!searchingClass.includes("label")) {
       setLabelsVisibilityDetailsComp(false);
     }
@@ -392,7 +383,6 @@ const Main = () => {
       correctList[0].tasks[index].taskName = updatedTitle;
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
-      setLabelsVisibility(false);
     }
 
     // For changing taskName by detailCover component without closing this componentView
@@ -417,7 +407,6 @@ const Main = () => {
     if (e.target.className.includes("close")) {
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
-      setLabelsVisibility(false);
     }
   };
 
@@ -503,10 +492,6 @@ const Main = () => {
   };
 
   //LABLES FEATURES
-  const handleLabelsVisibility = (toggle) => {
-    setLabelsVisibility(toggle);
-  };
-
   const handleLabelsVisibilityDetailsComp = (toggle) => {
     setLabelsVisibilityDetailsComp(toggle);
   };
@@ -726,21 +711,15 @@ const Main = () => {
           taskName={taskName}
           updateCard={updateCard}
           deleteCard={deleteCard}
-          handleLabelsVisibility={handleLabelsVisibility}
-          labelsVisibility={labelsVisibility}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           addPriorityForCards={addPriorityForCards}
-          toggleDetailMove={toggleDetailMove}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
-          copyVisibility={copyVisibility}
-          dateVisibility={dateVisibility}
-          toggleDateVisibility={toggleDateVisibility}
           toggleTermToCard={toggleTermToCard}
           listOfAllTerms={listOfAllTerms}
           listOfAllTasksList={listOfAllTasksList}
@@ -770,7 +749,6 @@ const Main = () => {
           toggleCommentVisibility={toggleCommentVisibility}
           listOfAllComments={listOfAllComments}
           setListOfAllComments={setListOfAllComments}
-          toggleDetailMove={toggleDetailMove}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           copyVisibility={copyVisibility}
           toggleDateVisibility={toggleDateVisibility}

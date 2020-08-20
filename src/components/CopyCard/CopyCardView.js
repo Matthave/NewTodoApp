@@ -1,6 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
+const StyledCopyWrap = styled.div`
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  top: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
+  right: ${(props) => (props.optionCoverPosition ? "0px" : "null")};
+  width: 310px;
+  min-height: 400px;
+  transform: ${(props) =>
+    props.optionCoverPosition ? "translate(130px)" : "null"};
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 17.5px;
+`;
+
 const StyledReplaceTitle = styled.h3`
   width: 100%;
   position: relative;
@@ -9,9 +25,9 @@ const StyledReplaceTitle = styled.h3`
   font-size: 1.5rem;
   border-bottom: ${(props) => (props.border ? "1px solid #aaa" : "null")};
   padding-bottom: 6px;
+  margin-left: 5px;
   color: #555;
   font-weight: 400;
-  margin-bottom: ${(props) => (props.biggerMargin ? "27.5px" : "5px")};
 
   & > .fa-times {
     position: absolute;
@@ -46,6 +62,7 @@ const StyledCheckedBox = styled.span`
   border-radius: 2px;
   margin-right: 10px;
   margin-bottom: 10px;
+  margin-left: 5px;
   color: white;
   cursor: pointer;
   transition: 0.1s linear;
@@ -90,6 +107,32 @@ const StyledIcon = styled.span`
   transition: 0.1s linear;
 `;
 
+const StyledLabelTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #42516e;
+  text-align: center;
+  padding-bottom: 10px;
+  margin: 10px;
+  font-size: 15px;
+  color: #42516e;
+`;
+
+const StyledX = styled.span`
+  margin-left: 10px;
+  font-size: 15px;
+  color: #42516e;
+  cursor: pointer;
+`;
+
+const StyledBack = styled.span`
+  font-size: 15px;
+  opacity: 0;
+`;
+
+const StyledTitle = styled.h4``;
+
 function CopyCardView({
   changeCopyTextArea,
   copyTextArea,
@@ -97,11 +140,21 @@ function CopyCardView({
   toggleCanCopyLables,
   canCopyLabels,
   wholeList,
+  optionCover,
+  toggleCurrentListVisiFunc,
   taskId,
   currentListId,
 }) {
   return (
-    <>
+    <StyledCopyWrap optionCoverPosition={optionCover}>
+      <StyledLabelTitle>
+        <StyledBack className="fas fa-angle-left" />
+        <StyledTitle>Copy Card</StyledTitle>
+        <StyledX
+          className="fas fa-times"
+          onClick={() => toggleCurrentListVisiFunc("copyCardVisi")}
+        />
+      </StyledLabelTitle>
       <StyledReplaceTitle className="suggested">Title</StyledReplaceTitle>
       <StyledTextArea
         className="suggested"
@@ -132,7 +185,7 @@ function CopyCardView({
           {list.title}
         </StyledSuggestList>
       ))}
-    </>
+    </StyledCopyWrap>
   );
 }
 

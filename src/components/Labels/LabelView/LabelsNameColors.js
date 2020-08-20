@@ -101,7 +101,7 @@ const StyledButton = styled.button`
 const StyledTitle = styled.h4``;
 
 function LabelsNameColors({
-  nameLabelVisibility,
+  nameLabelVisibilityFunc,
   filteredColors,
   detailCover,
   optionCover,
@@ -121,12 +121,12 @@ function LabelsNameColors({
       <StyledLabelTitle className="label">
         <StyledBack
           className="fas fa-angle-left label"
-          onClick={(e) => nameLabelVisibility(e, false, null, "back")}
+          onClick={(e) => nameLabelVisibilityFunc(e, false, null, "back")}
         />
         <StyledTitle>Change Label</StyledTitle>
         <StyledX
           className="fas fa-times"
-          onClick={(e) => nameLabelVisibility(e, false, null)}
+          onClick={(e) => nameLabelVisibilityFunc(e, false, null)}
         />
       </StyledLabelTitle>
       <StyledName>Name</StyledName>

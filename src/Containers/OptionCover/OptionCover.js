@@ -4,6 +4,10 @@ import OptionCoverView from "../../components/OptionCover/OptionCoverView";
 class OptionCover extends Component {
   state = {
     taskTitle: "",
+    moveToAnotherListVisi: false,
+    copyCardVisi: false,
+    labelVisi: false,
+    datePickerVisi: false,
   };
 
   componentDidMount() {
@@ -45,32 +49,46 @@ class OptionCover extends Component {
     this.setState({ taskTitle: e.target.value });
   };
 
+  toggleCurrentListVisiFunc = (nameVisi) => {
+    this.setState({ [nameVisi]: !this.state[nameVisi] });
+  };
+
+  closeAllListsWindowsFunc = () => {
+    this.setState({
+      moveToAnotherListVisi: false,
+      copyCardVisi: false,
+      labelVisi: false,
+      datePickerVisi: false,
+    });
+  };
+
   render() {
     const {
       optionCoverData,
       updateCard,
       deleteCard,
-      handleLabelsVisibility,
-      labelsVisibility,
       toggleLabelColorToCard,
       listOfAllBadges,
       listOfAllTasksId,
       labelColors,
       setLabelColors,
       addPriorityForCards,
-      toggleDetailMove,
       wholeList,
       moveCardToAnotherList,
       listOfAllPriorityTasks,
-      copyVisibility,
-      dateVisibility,
       toggleDateVisibility,
       toggleTermToCard,
       listOfAllTerms,
       listOfAllTasksList,
     } = this.props;
 
-    const { taskTitle } = this.state;
+    const {
+      taskTitle,
+      moveToAnotherListVisi,
+      copyCardVisi,
+      labelVisi,
+      datePickerVisi,
+    } = this.state;
 
     const copyOfallBadges = [...listOfAllBadges];
 
@@ -109,27 +127,28 @@ class OptionCover extends Component {
           taskTitle={taskTitle}
           updateCard={updateCard}
           deleteCard={deleteCard}
-          handleLabelsVisibility={handleLabelsVisibility}
-          labelsVisibility={labelsVisibility}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           matchedColorsToThisCard={matchedColorsToThisCard}
-          listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           addPriorityForCards={addPriorityForCards}
-          toggleDetailMove={toggleDetailMove}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           matchedPriority={matchedPriority}
-          copyVisibility={copyVisibility}
-          dateVisibility={dateVisibility}
           toggleDateVisibility={toggleDateVisibility}
           toggleTermToCard={toggleTermToCard}
           matchedTerms={matchedTerms}
-          listOfAllTasksList={listOfAllTasksList}
           unActiveTasks={unActiveTasks}
           totalTasks={totalTasks}
+          listOfAllTasksId={listOfAllTasksId}
+          listOfAllTasksList={listOfAllTasksList}
+          closeAllListsWindowsFunc={this.closeAllListsWindowsFunc}
+          toggleCurrentListVisiFunc={this.toggleCurrentListVisiFunc}
+          labelVisi={labelVisi}
+          moveToAnotherListVisi={moveToAnotherListVisi}
+          datePickerVisi={datePickerVisi}
+          copyCardVisi={copyCardVisi}
         />
       </>
     );
