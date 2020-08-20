@@ -97,10 +97,8 @@ function CopyCardView({
   toggleCanCopyLables,
   canCopyLabels,
   wholeList,
-  moveCardToAnotherList,
-  taskTitleList,
-  optionCover,
   taskId,
+  currentListId,
 }) {
   return (
     <>
@@ -129,21 +127,7 @@ function CopyCardView({
         Copy to...
       </StyledReplaceTitle>
       {wholeList.map((list) => (
-        <StyledSuggestList
-          className="suggested"
-          onClick={() =>
-            moveCardToAnotherList(
-              copyTextArea,
-              taskTitleList,
-              taskId,
-              list.id,
-              optionCover,
-              "copy",
-              canCopyLabels
-            )
-          }
-          key={list.id}
-        >
+        <StyledSuggestList className="suggested" key={list.id}>
           <StyledIcon biggerFont className="fas fa-long-arrow-alt-left" />
           {list.title}
         </StyledSuggestList>

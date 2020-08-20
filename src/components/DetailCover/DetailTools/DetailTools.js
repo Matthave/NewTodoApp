@@ -30,7 +30,6 @@ function DetailTools({
   addCommentToCard,
   listOfAllComments,
   editCommentToCard,
-  changeListInDetails,
   toggleDetailMove,
   taskTitle,
   wholeList,
@@ -85,7 +84,6 @@ function DetailTools({
         idUpdatedList={idUpdatedList}
         taskId={taskId}
         addPriorityForCards={addPriorityForCards}
-        changeListInDetails={changeListInDetails}
         toggleDetailMove={toggleDetailMove}
         taskTitle={taskTitle}
         wholeList={wholeList}

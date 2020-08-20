@@ -59,7 +59,6 @@ class OptionCover extends Component {
       setLabelColors,
       addPriorityForCards,
       toggleDetailMove,
-      changeListInDetails,
       wholeList,
       moveCardToAnotherList,
       listOfAllPriorityTasks,
@@ -120,7 +119,6 @@ class OptionCover extends Component {
           setLabelColors={setLabelColors}
           addPriorityForCards={addPriorityForCards}
           toggleDetailMove={toggleDetailMove}
-          changeListInDetails={changeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           matchedPriority={matchedPriority}

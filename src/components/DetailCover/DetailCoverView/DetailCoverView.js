@@ -41,7 +41,6 @@ function DetailCoverView({
   idUpdatedList,
   taskTitle,
   taskTitleFeature,
-  changeListInDetails,
   taskTitleList,
   visibilityChangeListInDetails,
   wholeList,
@@ -95,7 +94,6 @@ function DetailCoverView({
           taskId={taskId}
         />
         <DetailSuggestedElement
-          changeListInDetails={changeListInDetails}
           taskTitleList={taskTitleList}
           taskTitle={taskTitle}
           visibilityChangeListInDetails={visibilityChangeListInDetails}
@@ -119,7 +117,6 @@ function DetailCoverView({
           addCommentToCard={addCommentToCard}
           listOfAllComments={listOfAllComments}
           editCommentToCard={editCommentToCard}
-          changeListInDetails={changeListInDetails}
           toggleDetailMove={toggleDetailMove}
           taskTitle={taskTitle}
           wholeList={wholeList}

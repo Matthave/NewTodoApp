@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import OptionCoverListView from "./OptionCoverListView/OptionCoverListView";
 import MoveToAnotherListBox from "../MoveToAnotherList/MoveToAnotherListBox";
+import CopyCard from "../../Containers/CopyCard/CopyCard";
 import Labels from "../../Containers/Labels/Labels";
 import DatePicker from "../../Containers/DatePicker/DatePicker";
 import TaskPreviewCard from "../TasksList/TasksPreviewInCard/TaskPreviewInCard";
@@ -136,7 +137,6 @@ const OptionCover = ({
   setLabelColors,
   addPriorityForCards,
   toggleDetailMove,
-  changeListInDetails,
   wholeList,
   moveCardToAnotherList,
   matchedPriority,
@@ -217,7 +217,6 @@ const OptionCover = ({
           handleLabelsVisibility={handleLabelsVisibility}
           optionCoverData={optionCoverData}
           addPriorityForCards={addPriorityForCards}
-          changeListInDetails={changeListInDetails}
           matchedPriority={matchedPriority}
           dateVisibility={dateVisibility}
           toggleDateVisibility={toggleDateVisibility}
@@ -243,12 +242,16 @@ const OptionCover = ({
             moveCardToAnotherList={moveCardToAnotherList}
             taskId={optionCoverData[0].clickedCardId}
             currentListId={optionCoverData[0].listId}
-            changeListInDetails={changeListInDetails}
-            taskTitleList={optionCoverData[0].currentListName}
-            byElement={"byOptionMove"}
             optionCover={true}
-            copyVisibility={copyVisibility}
+          />
+        ) : null}
+        {copyVisibility ? (
+          <CopyCard
             matchedColorsToThisCard={matchedColorsToThisCard}
+            wholeList={wholeList}
+            taskTitle={taskTitle}
+            taskId={optionCoverData[0].clickedCardId}
+            currentListId={optionCoverData[0].listId}
           />
         ) : null}
         {dateVisibility ? (

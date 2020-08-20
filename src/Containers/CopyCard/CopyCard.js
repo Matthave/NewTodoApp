@@ -24,10 +24,8 @@ class CopyCard extends Component {
     const {
       matchedColorsToThisCard,
       wholeList,
-      moveCardToAnotherList,
-      taskTitleList,
-      optionCover,
       taskId,
+      currentListId,
     } = this.props;
     const { copyTextArea, canCopyLabels } = this.state;
     return (
@@ -38,10 +36,8 @@ class CopyCard extends Component {
         toggleCanCopyLables={this.toggleCanCopyLables}
         canCopyLabels={canCopyLabels}
         wholeList={wholeList}
-        moveCardToAnotherList={moveCardToAnotherList}
-        taskTitleList={taskTitleList}
-        optionCover={optionCover}
         taskId={taskId}
+        currentListId={currentListId}
       />
     );
   }

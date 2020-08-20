@@ -49,17 +49,11 @@ function OptionCoverListView({
           <StyledIcon className="fas fa-tag" />
           Edit labels
         </StyledList>
-        <StyledList
-          className="suggested"
-          onClick={() => changeListInDetails("byNavMove")}
-        >
+        <StyledList className="suggested">
           <StyledIcon className="fas fa-long-arrow-alt-right" />
           Move
         </StyledList>
-        <StyledList
-          className="suggested"
-          onClick={() => changeListInDetails("byNavCopy")}
-        >
+        <StyledList className="suggested">
           <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledList>

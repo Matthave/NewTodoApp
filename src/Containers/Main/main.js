@@ -258,11 +258,49 @@ const Main = () => {
       addNewCard(newId, ele.taskName, ele.id);
     });
 
-    //Change tasks id to correct
+    //Change tasks id to correct, also other parameters
     const theBiggestId = Math.max(...listOfAllTasksId);
     wholeList[newId].tasks.forEach((ele, index) => {
-      ele.id = String(theBiggestId + (index + 1));
-      listOfAllTasksId.push(theBiggestId + (index + 1));
+      const newIdForCard = String(theBiggestId + (index + 1)); //Calculate new unique id
+      ele.id = newIdForCard;
+
+      listOfAllTasksId.push(newIdForCard); // Add id to listOfId
+
+      if (ele.badges.length !== 0) {
+        ele.badges.forEach((badge) => {
+          listOfAllBadges.push({
+            color: badge.color,
+            id: newIdForCard,
+            labelId: `${badge.color}${newIdForCard}`,
+            name: badge.name,
+          }); // Add proper badges to list of Badges, with new uniqe Id
+        });
+      }
+
+      if (ele.comment.length !== 0) {
+        listOfAllComments.push({
+          id: newIdForCard,
+          comment: ele.comment[0].comment,
+        }); // Add proper comment, with new uniqe Id
+      }
+
+      if (ele.date.length !== 0) {
+        listOfAllTerms.push({
+          id: newIdForCard,
+          classN: "termSpan",
+          term: ele.date[0].term,
+          day: ele.date[0].day,
+          month: ele.date[0].month,
+          year: ele.date[0].year,
+          monthName: ele.date[0].monthName,
+          hour: ele.date[0].hour,
+          minutes: ele.date[0].minutes,
+          status: ele.date[0].status,
+          statusColor: ele.date[0].statusColor,
+          fontColor: ele.date[0].fontColor,
+          beforeDoneState: ele.date[0].beforeDoneState,
+        });
+      } // Add proper term, with new uniqe Id
     });
   };
 
@@ -383,61 +421,15 @@ const Main = () => {
     }
   };
 
-  const changeListInDetails = (byElement) => {
-    if (byElement === "byListName") {
-      setChangeListInDetails(!visibilityChangeListInDetails);
-    } else if (
-      byElement === "byNavMove" ||
-      byElement === "byOptionMove" ||
-      byElement === "byNavCopy"
-    ) {
-      setToggleDetailMove(!toggleDetailMove);
-      if (byElement === "byNavCopy") {
-        setCopyVisibility(true);
-      }
-    }
-  };
-
   const moveCardToAnotherList = (
-    taskTitle,
-    currentListId,
     taskId,
-    clickedListId,
-    byOptionCover,
-    copy,
-    canCopyLabels
+    taskTitle,
+    listIdToMove,
+    listIdToDelte
   ) => {
-    //FindListWhereDelete
-    const deleteFromList = wholeList.filter(
-      (list) => list.id === currentListId
-    );
-
-    //AddToAnotherList
-    const addToList = wholeList.filter((list) => list.id === clickedListId);
-    if (addToList[0].id === deleteFromList[0].id) return;
-    if (!copy) {
-      deleteCard(deleteFromList[0].id, taskId);
-      addNewCard(addToList[0].id, taskTitle, taskId);
-    } else {
-      if (taskTitle.length === 0) return;
-      const theBiggestId = Math.max(...listOfAllTasksId);
-      const unicalIdForCopy = `${theBiggestId + 1}`;
-      listOfAllTasksId.push(unicalIdForCopy);
-      copyCard(
-        addToList[0].id,
-        taskTitle,
-        unicalIdForCopy,
-        taskId,
-        canCopyLabels
-      );
-    }
-    setChangeListInDetails(false);
-    setToggleDetailMove(false);
-
-    taskDetailsFunction(taskTitle, addToList[0].title, addToList[0].id, taskId);
-    if (byOptionCover || copy) {
-      setVisibilityTaskDetails(false);
-    }
+    //Add to new list, and delete from preview
+    addNewCard(listIdToMove, taskTitle, taskId);
+    deleteCard(listIdToDelte, taskId);
   };
 
   const copyCard = (
@@ -568,7 +560,6 @@ const Main = () => {
 
   const createLabelsElement = (color, taskId, nameLabel) => {
     const currentTask = document.getElementById(taskId);
-
     const newLabel = document.createElement("div");
     newLabel.classList.add(`labelElement`);
     newLabel.setAttribute("id", `${color}${taskId}`);
@@ -744,7 +735,6 @@ const Main = () => {
           setLabelColors={setLabelColors}
           addPriorityForCards={addPriorityForCards}
           toggleDetailMove={toggleDetailMove}
-          changeListInDetails={changeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
@@ -765,7 +755,6 @@ const Main = () => {
           addNewCard={addNewCard}
           deleteCard={deleteCard}
           idUpdatedList={idUpdatedList}
-          changeListInDetails={changeListInDetails}
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}

@@ -55,7 +55,6 @@ class DetailCover extends React.Component {
       deleteCard,
       addNewCard,
       idUpdatedList,
-      changeListInDetails,
       visibilityChangeListInDetails,
       wholeList,
       moveCardToAnotherList,
@@ -112,7 +111,6 @@ class DetailCover extends React.Component {
           addNewCard={addNewCard}
           taskTitle={taskTitle}
           taskTitleFeature={this.taskTitleFeature}
-          changeListInDetails={changeListInDetails}
           taskTitleList={taskTitleList}
           visibilityChangeListInDetails={visibilityChangeListInDetails}
           wholeList={wholeList}

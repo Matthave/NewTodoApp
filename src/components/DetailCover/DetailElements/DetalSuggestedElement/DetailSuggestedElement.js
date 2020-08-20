@@ -25,10 +25,7 @@ function DetailSuggestedElement({
   return (
     <StyledLightText className="suggested">
       On the list{" "}
-      <StyledStrongText
-        onClick={() => changeListInDetails("byListName")}
-        className="suggested"
-      >
+      <StyledStrongText className="suggested">
         {taskTitleList.length !== 0 ? taskTitleList : "No Name List"}
       </StyledStrongText>
       {visibilityChangeListInDetails ? (
@@ -37,7 +34,6 @@ function DetailSuggestedElement({
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           taskId={taskId}
-          changeListInDetails={changeListInDetails}
           taskTitleList={taskTitleList}
           byElement="byListName"
         />

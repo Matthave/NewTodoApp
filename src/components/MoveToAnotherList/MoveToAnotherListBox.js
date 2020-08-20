@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import CopyCard from "../../Containers/CopyCard/CopyCard";
 
 const StyledChangeListDetails = styled.div`
   display: flex;
@@ -46,8 +45,9 @@ const StyledSuggestList = styled.div`
   font-size: 1.4rem;
   background-color: #f5f6f8;
   border-radius: 3px;
-  cursor: pointer;
-  color: black;
+  cursor: ${(props) => (props.disabled ? "initial" : "pointer")};
+  color: ${(props) => (props.disabled ? "#999" : "#000")};
+  pointer-events: ${(props) => (props.disabled ? "none" : "initial")};
   transition: 0.1s linear;
   z-index: 9999;
 
@@ -67,12 +67,7 @@ function MoveToAnotherListBox({
   wholeList,
   moveCardToAnotherList,
   taskId,
-  changeListInDetails,
-  taskTitleList,
-  byElement,
   optionCover,
-  copyVisibility,
-  matchedColorsToThisCard,
   currentListId,
 }) {
   return (
@@ -83,48 +78,28 @@ function MoveToAnotherListBox({
     >
       <StyledReplaceTitle border alignCenter biggerMargin className="suggested">
         Replace Card
-        <span
-          className="fas fa-times"
-          onClick={() => changeListInDetails(byElement)}
-        ></span>
+        <span className="fas fa-times"></span>
       </StyledReplaceTitle>
-      {copyVisibility ? (
-        <CopyCard
-          matchedColorsToThisCard={matchedColorsToThisCard}
-          wholeList={wholeList}
-          moveCardToAnotherList={moveCardToAnotherList}
-          taskTitle={taskTitle}
-          taskTitleList={taskTitleList}
-          optionCover={optionCover}
-          taskId={taskId}
-        />
-      ) : (
-        <>
-          {" "}
-          <StyledReplaceTitle className="suggested">
-            <StyledIcon className="fas fa-map-marker" />
-            Suggested
-          </StyledReplaceTitle>
-          {wholeList.map((list) => (
-            <StyledSuggestList
-              className="suggested"
-              onClick={() =>
-                moveCardToAnotherList(
-                  taskTitle,
-                  currentListId,
-                  taskId,
-                  list.id,
-                  optionCover
-                )
-              }
-              key={list.id}
-            >
-              <StyledIcon biggerFont className="fas fa-long-arrow-alt-left" />
-              {list.title.length !== 0 ? list.title : "No Name List"}
-            </StyledSuggestList>
-          ))}
-        </>
-      )}
+      <>
+        <StyledReplaceTitle className="suggested">
+          <StyledIcon className="fas fa-map-marker" />
+          Suggested
+        </StyledReplaceTitle>
+        {wholeList.map((list) => (
+          <StyledSuggestList
+            className="suggested"
+            onClick={() =>
+              moveCardToAnotherList(taskId, taskTitle, list.id, currentListId)
+            }
+            key={list.id}
+            disabled={list.id === currentListId}
+          >
+            <StyledIcon biggerFont className="fas fa-long-arrow-alt-left" />
+            {list.title.length !== 0 ? list.title : "No Name List"}
+            {list.id === currentListId ? " (Actual)" : null}
+          </StyledSuggestList>
+        ))}
+      </>
     </StyledChangeListDetails>
   );
 }

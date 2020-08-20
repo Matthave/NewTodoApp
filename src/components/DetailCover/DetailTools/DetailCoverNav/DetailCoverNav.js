@@ -60,7 +60,6 @@ function DetailCoverNav({
   idUpdatedList,
   taskId,
   addPriorityForCards,
-  changeListInDetails,
   toggleDetailMove,
   taskTitle,
   wholeList,
@@ -114,17 +113,11 @@ function DetailCoverNav({
       </StyledDetailUl>
       <StyledDetailUl>
         <StyledDetailList first> ACTIONS</StyledDetailList>
-        <StyledDetailList
-          onClick={() => changeListInDetails("byNavMove")}
-          className="suggested"
-        >
+        <StyledDetailList className="suggested">
           <StyledIcon className="fas fa-long-arrow-alt-right suggested" />
           Move
         </StyledDetailList>
-        <StyledDetailList
-          onClick={() => changeListInDetails("byNavCopy")}
-          className="suggested"
-        >
+        <StyledDetailList className="suggested">
           <StyledIcon className="far fa-clipboard suggested" />
           Copy
         </StyledDetailList>
@@ -169,11 +162,7 @@ function DetailCoverNav({
           moveCardToAnotherList={moveCardToAnotherList}
           taskId={taskId}
           currentListId={idUpdatedList}
-          changeListInDetails={changeListInDetails}
-          taskTitleList={taskTitleList}
           byElement="byNavMove"
-          copyVisibility={copyVisibility}
-          matchedColorsToThisCard={matchedColorsToThisCard}
         />
       ) : null}
       {dateVisibility ? (
