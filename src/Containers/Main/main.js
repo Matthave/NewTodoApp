@@ -24,7 +24,6 @@ const Main = () => {
   const [listOfAllTerms, setListOfallTerms] = useState([]);
   const [listOfAllTasksList, setListOfTasksList] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
-  const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
   const [tasksListVisibility, setTasksListVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
@@ -76,9 +75,6 @@ const Main = () => {
       searchingClass.includes("cover_box")
     ) {
       setVisibilityOptionCover(false);
-    }
-    if (!searchingClass.includes("textArea")) {
-      setToggleCommentVisibility(false);
     }
     if (!searchingClass.includes("tasksList")) {
       setTasksListVisibility(false);
@@ -492,10 +488,6 @@ const Main = () => {
     }
   };
 
-  const toggleCommentFeature = (toggle) => {
-    setToggleCommentVisibility(toggle);
-  };
-
   const toggleTasksListVisibility = (toggle) => {
     setTasksListVisibility(toggle);
   };
@@ -563,8 +555,6 @@ const Main = () => {
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
           addPriorityForCards={addPriorityForCards}
-          toggleCommentFeature={toggleCommentFeature}
-          toggleCommentVisibility={toggleCommentVisibility}
           listOfAllComments={listOfAllComments}
           setListOfAllComments={setListOfAllComments}
           listOfAllPriorityTasks={listOfAllPriorityTasks}

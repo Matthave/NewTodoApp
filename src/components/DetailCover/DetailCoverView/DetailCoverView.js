@@ -54,8 +54,7 @@ function DetailCoverView({
   setLabelColors,
   listOfAllTasksId,
   addPriorityForCards,
-  toggleCommentFeature,
-  toggleCommentVisibility,
+  commentVisi,
   commentChange,
   commentValue,
   addCommentToCard,
@@ -112,8 +111,7 @@ function DetailCoverView({
           taskId={taskId}
           matchedColorsToThisCard={matchedColorsToThisCard}
           addPriorityForCards={addPriorityForCards}
-          toggleCommentFeature={toggleCommentFeature}
-          toggleCommentVisibility={toggleCommentVisibility}
+          commentVisi={commentVisi}
           commentChange={commentChange}
           commentValue={commentValue}
           addCommentToCard={addCommentToCard}

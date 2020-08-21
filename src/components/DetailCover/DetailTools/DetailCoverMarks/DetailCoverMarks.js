@@ -1,5 +1,6 @@
 import React from "react";
 import TasksListInDetailCover from "../../../../Containers/TasksList/TasksListInDetailCover/TasksListInDetailCover";
+import DetailCommentElement from "../../DetailElements/DetailCommentElement/DetailCommentElemnt";
 import styled from "styled-components";
 
 const StyledDetailMarks = styled.div`
@@ -17,23 +18,6 @@ const StyledTitle = styled.h2`
   color: #42516e;
   margin-bottom: 20px;
   margin-top: 20px;
-`;
-
-const StyledTextArea = styled.textarea`
-  width: 90%;
-  background-color: #eaecf0;
-  margin: 0px auto 10px auto;
-  padding: 7.5px 5px;
-  border-radius: 3px;
-  min-height: 75px;
-  resize: none;
-  cursor: pointer;
-  transition: 0.1s linear;
-
-  &:focus {
-    background-color: #fff;
-    box-shadow: 0px 0px 1px 1.5px #0079bf;
-  }
 `;
 
 const StyledIcon = styled.span`
@@ -70,23 +54,6 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${(props) => (props.hoverBgc ? "#dadce0 " : "#6abc54")};
   }
-`;
-
-const StyledCommentOptionWrap = styled.div`
-  display: flex;
-  align-items: center;
-  width: 90%;
-  margin: 0 auto;
-`;
-
-const StyledComment = styled.h3`
-  width: 300px;
-  font-size: 15px;
-  font-weight: 500;
-  margin-right: 10px;
-  word-break: break-all;
-  color: #42516e;
-  cursor: pointer;
 `;
 
 const StyledTermWrap = styled.div`
@@ -137,8 +104,7 @@ const StyledCheckIcon = styled.span`
 
 function DetailCoverMarks({
   matchedColorsToThisCard,
-  toggleCommentFeature,
-  toggleCommentVisibility,
+  commentVisi,
   commentChange,
   commentValue,
   addCommentToCard,
@@ -281,45 +247,21 @@ function DetailCoverMarks({
               }`,
               marginLeft: `${listOfAllComments.length !== 0 ? "6px" : "50px"}`,
             }}
-            onClick={(e) => editCommentToCard(toggleCommentVisibility)}
+            onClick={(e) => editCommentToCard(commentVisi)}
           >
             Edit
           </StyledButton>
         </StyledTitle>
-        {listOfAllComments.length !== 0 ? null : (
-          <StyledTextArea
-            placeholder="Click to add more detailed comment..."
-            className="input textArea detailCoverClose"
-            onClick={() => toggleCommentFeature(true)}
-            onChange={(e) => commentChange(e)}
-            onKeyPress={(e) => addCommentToCard(e, taskId, commentValue)}
-            value={commentValue}
-          />
-        )}
-        {toggleCommentVisibility ? (
-          <StyledCommentOptionWrap className="detailCoverClose">
-            <StyledButton
-              className="commentBtn detailCoverClose"
-              onClick={(e) => addCommentToCard(e, taskId, commentValue)}
-            >
-              SAVE
-            </StyledButton>
-            <StyledIcon
-              biggerSize
-              pointer
-              className="far fa-times-circle detailCoverClose"
-            />
-          </StyledCommentOptionWrap>
-        ) : null}
-        {listOfAllComments.map((ele) => (
-          <StyledComment
-            className="detailCoverClose"
-            key={ele.id}
-            onClick={(e) => editCommentToCard(toggleCommentVisibility)}
-          >
-            {ele.comment}
-          </StyledComment>
-        ))}
+        <DetailCommentElement
+          listOfAllComments={listOfAllComments}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          editCommentToCard={editCommentToCard}
+          commentChange={commentChange}
+          addCommentToCard={addCommentToCard}
+          taskId={taskId}
+          commentValue={commentValue}
+          commentVisi={commentVisi}
+        />
       </StyledDetailDescription>
     </StyledDetailMarks>
   );

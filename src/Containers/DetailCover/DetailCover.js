@@ -12,6 +12,7 @@ class DetailCover extends React.Component {
     moveToInSuggestedVisi: false,
     tasksListVisi: false,
     reloadDetalCoverCompState: false,
+    commentVisi: false,
   };
 
   componentDidMount() {
@@ -55,13 +56,15 @@ class DetailCover extends React.Component {
           comment: comment,
         },
       ]);
-      this.props.toggleCommentFeature(false);
+      this.toggleCurrentListVisiFunc("commentVisi");
     }
   };
 
   editCommentToCard = (e, taskId) => {
     //Function that run when we want edit our comment - EditBtn is disapiring, textArea is appearing
-    this.props.toggleCommentFeature(true);
+    this.setState({
+      commentVisi: true,
+    });
     const commentIndexToDelete = this.props.listOfAllComments.findIndex(
       (ele) => ele.id === taskId
     );
@@ -106,6 +109,7 @@ class DetailCover extends React.Component {
       datePickerVisi: false,
       tasksListVisi: false,
       moveToInSuggestedVisi: false,
+      commentVisi: false,
     });
   };
 
@@ -137,8 +141,6 @@ class DetailCover extends React.Component {
       setLabelColors,
       listOfAllTasksId,
       addPriorityForCards,
-      toggleCommentVisibility,
-      toggleCommentFeature,
       listOfAllComments,
       listOfAllPriorityTasks,
       listOfAllTerms,
@@ -157,6 +159,7 @@ class DetailCover extends React.Component {
       moveToInSuggestedVisi,
       datePickerVisi,
       tasksListVisi,
+      commentVisi,
     } = this.state;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -200,8 +203,7 @@ class DetailCover extends React.Component {
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
           addPriorityForCards={addPriorityForCards}
-          toggleCommentFeature={toggleCommentFeature}
-          toggleCommentVisibility={toggleCommentVisibility}
+          commentVisi={commentVisi}
           commentChange={this.commentChange}
           commentValue={commentValue}
           addCommentToCard={this.addCommentToCard}

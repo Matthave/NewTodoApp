@@ -22,8 +22,7 @@ function DetailTools({
   taskId,
   matchedColorsToThisCard,
   addPriorityForCards,
-  toggleCommentFeature,
-  toggleCommentVisibility,
+  commentVisi,
   commentChange,
   commentValue,
   addCommentToCard,
@@ -59,8 +58,7 @@ function DetailTools({
     <StyledDetailToolsWrap>
       <DetailCoverMarks
         matchedColorsToThisCard={matchedColorsToThisCard}
-        toggleCommentFeature={toggleCommentFeature}
-        toggleCommentVisibility={toggleCommentVisibility}
+        commentVisi={commentVisi}
         commentChange={commentChange}
         commentValue={commentValue}
         addCommentToCard={addCommentToCard}
