@@ -80,6 +80,7 @@ class OptionCover extends Component {
       toggleTermToCard,
       listOfAllTerms,
       listOfAllTasksList,
+      setListOfallTerms,
     } = this.props;
 
     const {
@@ -149,6 +150,8 @@ class OptionCover extends Component {
           moveToAnotherListVisi={moveToAnotherListVisi}
           datePickerVisi={datePickerVisi}
           copyCardVisi={copyCardVisi}
+          setListOfallTerms={setListOfallTerms}
+          listOfAllTerms={listOfAllTerms}
         />
       </>
     );

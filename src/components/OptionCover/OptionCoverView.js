@@ -148,6 +148,8 @@ const OptionCover = ({
   totalTasks,
   toggleCurrentListVisiFunc,
   closeAllListsWindowsFunc,
+  setListOfallTerms,
+  listOfAllTerms,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -264,6 +266,8 @@ const OptionCover = ({
             taskId={optionCoverData[0].clickedCardId}
             toggleTermToCard={toggleTermToCard}
             optionCover={true}
+            setListOfallTerms={setListOfallTerms}
+            listOfAllTerms={listOfAllTerms}
           />
         ) : null}
       </StyledOptionBox>

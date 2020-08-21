@@ -15,11 +15,10 @@ const StyledDetailToolsWrap = styled.div`
 `;
 
 function DetailTools({
-  labelsVisibility,
-  handleLabelsVisibility,
+  labelVisi,
   deleteCard,
   addNewCard,
-  idUpdatedList,
+  currentListId,
   taskId,
   matchedColorsToThisCard,
   addPriorityForCards,
@@ -30,15 +29,13 @@ function DetailTools({
   addCommentToCard,
   listOfAllComments,
   editCommentToCard,
-  toggleDetailMove,
+  moveToAnotherListVisi,
   taskTitle,
   wholeList,
   moveCardToAnotherList,
   taskTitleList,
   matchedPriority,
-  copyVisibility,
-  toggleDateVisibility,
-  dateVisibility,
+  datePickerVisi,
   toggleLabelColorToCard,
   listOfAllBadges,
   listOfAllTasksId,
@@ -47,18 +44,20 @@ function DetailTools({
   matchedTerms,
   toggleTermToCard,
   termDoneCheckbox,
-  setTasksListVisibility,
-  tasksListVisibility,
+  tasksListVisi,
   setListOfTasksList,
   listOfAllTasksList,
   matchedListTasks,
+  toggleCurrentListVisiFunc,
+  closeAllListsWindowsFunc,
+  copyCardVisi,
+  setListOfallTerms,
+  listOfAllTerms,
 }) {
   return (
     <StyledDetailToolsWrap>
       <DetailCoverMarks
         matchedColorsToThisCard={matchedColorsToThisCard}
-        handleLabelsVisibility={handleLabelsVisibility}
-        labelsVisibility={labelsVisibility}
         toggleCommentFeature={toggleCommentFeature}
         toggleCommentVisibility={toggleCommentVisibility}
         commentChange={commentChange}
@@ -68,42 +67,41 @@ function DetailTools({
         listOfAllComments={listOfAllComments}
         editCommentToCard={editCommentToCard}
         matchedTerms={matchedTerms}
-        toggleDateVisibility={toggleDateVisibility}
         termDoneCheckbox={termDoneCheckbox}
         listOfAllTasksList={listOfAllTasksList}
         matchedListTasks={matchedListTasks}
-        tasksListVisibility={tasksListVisibility}
-        setTasksListVisibility={setTasksListVisibility}
         addNewCard={addNewCard}
-        idUpdatedList={idUpdatedList}
+        currentListId={currentListId}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+        closeAllListsWindowsFunc={closeAllListsWindowsFunc}
       />
       <DetailCoverNav
-        handleLabelsVisibility={handleLabelsVisibility}
-        labelsVisibility={labelsVisibility}
+        labelVisi={labelVisi}
         deleteCard={deleteCard}
-        idUpdatedList={idUpdatedList}
+        currentListId={currentListId}
         taskId={taskId}
         addPriorityForCards={addPriorityForCards}
-        toggleDetailMove={toggleDetailMove}
+        moveToAnotherListVisi={moveToAnotherListVisi}
         taskTitle={taskTitle}
         wholeList={wholeList}
         moveCardToAnotherList={moveCardToAnotherList}
         taskTitleList={taskTitleList}
         matchedPriority={matchedPriority}
-        copyVisibility={copyVisibility}
         matchedColorsToThisCard={matchedColorsToThisCard}
-        toggleDateVisibility={toggleDateVisibility}
-        dateVisibility={dateVisibility}
+        datePickerVisi={datePickerVisi}
         toggleLabelColorToCard={toggleLabelColorToCard}
         listOfAllBadges={listOfAllBadges}
         listOfAllTasksId={listOfAllTasksId}
         labelColors={labelColors}
         setLabelColors={setLabelColors}
         toggleTermToCard={toggleTermToCard}
-        setTasksListVisibility={setTasksListVisibility}
-        tasksListVisibility={tasksListVisibility}
         setListOfTasksList={setListOfTasksList}
         listOfAllTasksList={listOfAllTasksList}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+        copyCardVisi={copyCardVisi}
+        setListOfallTerms={setListOfallTerms}
+        listOfAllTerms={listOfAllTerms}
+        tasksListVisi={tasksListVisi}
       />
     </StyledDetailToolsWrap>
   );

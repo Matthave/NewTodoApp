@@ -70,6 +70,7 @@ function MoveToAnotherListBox({
   taskId,
   optionCover,
   currentListId,
+  moveToInSuggestedVisi,
 }) {
   return (
     <StyledChangeListDetails
@@ -81,7 +82,15 @@ function MoveToAnotherListBox({
         Replace Card
         <span
           className="fas fa-times"
-          onClick={() => toggleCurrentListVisiFunc("moveToAnotherListVisi")}
+          onClick={() =>
+            toggleCurrentListVisiFunc(
+              `${
+                moveToInSuggestedVisi
+                  ? moveToInSuggestedVisi
+                  : "moveToAnotherListVisi"
+              }`
+            )
+          }
         ></span>
       </StyledReplaceTitle>
       <>

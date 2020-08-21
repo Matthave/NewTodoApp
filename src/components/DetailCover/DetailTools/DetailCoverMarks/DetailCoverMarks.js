@@ -137,8 +137,6 @@ const StyledCheckIcon = styled.span`
 
 function DetailCoverMarks({
   matchedColorsToThisCard,
-  handleLabelsVisibility,
-  labelsVisibility,
   toggleCommentFeature,
   toggleCommentVisibility,
   commentChange,
@@ -148,36 +146,38 @@ function DetailCoverMarks({
   listOfAllComments,
   editCommentToCard,
   matchedTerms,
-  toggleDateVisibility,
   termDoneCheckbox,
   matchedListTasks,
   listOfAllTasksList,
-  tasksListVisibility,
-  setTasksListVisibility,
   addNewCard,
-  idUpdatedList,
+  currentListId,
+  toggleCurrentListVisiFunc,
+  closeAllListsWindowsFunc,
+  tasksListVisi,
 }) {
   return (
-    <StyledDetailMarks>
+    <StyledDetailMarks className="detailCoverClose">
       <div>
-        <StyledTitle marginTop>
-          <StyledIcon className="fas fa-tag" />
+        <StyledTitle marginTop className="detailCoverClose">
+          <StyledIcon className="fas fa-tag detailCoverClose" />
           Labels
         </StyledTitle>
         {matchedColorsToThisCard.length === 0 ? (
-          <StyledPlaceholder>This card have no labels yet</StyledPlaceholder>
+          <StyledPlaceholder className="detailCoverClose">
+            This card have no labels yet
+          </StyledPlaceholder>
         ) : (
-          <StyledLabelsWrap className="detailCover_labelsWrap">
+          <StyledLabelsWrap className="detailCover_labelsWrap detailCoverClose">
             {matchedColorsToThisCard.map((ele) => (
               <div
                 key={ele.color}
                 id={`${ele.labelId}DetailCover`}
-                className={`labelElement_DetailCover`}
+                className={`labelElement_DetailCover detailCoverClose`}
                 style={{
                   backgroundColor: ele.color,
                   margin: "0px 5px 5px 0px",
                 }}
-                onClick={() => handleLabelsVisibility(!labelsVisibility)}
+                onClick={() => toggleCurrentListVisiFunc("labelVisi")}
               >
                 {ele.name}
               </div>
@@ -185,17 +185,20 @@ function DetailCoverMarks({
           </StyledLabelsWrap>
         )}
       </div>
-      <StyledTitle marginTop>
-        <StyledIcon className="far fa-clock" />
+      <StyledTitle marginTop className="detailCoverClose">
+        <StyledIcon className="far fa-clock detailCoverClose" />
         Terms
       </StyledTitle>
       {matchedTerms.length === 0 ? (
-        <StyledPlaceholder>This card has no deadline yet</StyledPlaceholder>
+        <StyledPlaceholder className="detailCoverClose">
+          This card has no deadline yet
+        </StyledPlaceholder>
       ) : (
         <>
           {matchedTerms.map((ele) => (
-            <StyledTermWrap key={ele.term} className="calendar">
+            <StyledTermWrap key={ele.term} className="detailCoverClose">
               <StyledCheckedBox
+                className="detailCoverClose"
                 onClick={() => termDoneCheckbox(taskId)}
                 style={{
                   backgroundColor: `${
@@ -208,23 +211,23 @@ function DetailCoverMarks({
                   }`,
                 }}
               >
-                <StyledCheckIcon className="fas fa-check suggested" />
+                <StyledCheckIcon className="fas fa-check detailCoverClose" />
               </StyledCheckedBox>
               <StyledTerm
-                onClick={() => toggleDateVisibility()}
-                className="calendar"
+                className="detailCoverClose"
+                onClick={() => toggleCurrentListVisiFunc("datePickerVisi")}
               >
                 {`${ele.day} ${ele.monthName} ${ele.year}`} at{" "}
                 {`${ele.hour}:${ele.minutes}`}
                 <StyledStatus
-                  className="calendar"
+                  className="detailCoverClose"
                   style={{
                     backgroundColor: ele.statusColor,
                     opacity: `${ele.statusColor === "#888" ? 0 : 1}`,
                   }}
                 >{`${ele.status}`}</StyledStatus>
                 <StyledIcon
-                  className="fas fa-chevron-down calendar"
+                  className="fas fa-chevron-down detailCoverClose"
                   pointer
                   marginLeft
                 />
@@ -233,12 +236,14 @@ function DetailCoverMarks({
           ))}
         </>
       )}
-      <StyledTitle marginTop>
-        <StyledIcon className="fas fa-check-double" />
+      <StyledTitle marginTop className="detailCoverClose">
+        <StyledIcon className="fas fa-check-double detailCoverClose" />
         Tasks List
       </StyledTitle>
       {matchedListTasks.length === 0 ? (
-        <StyledPlaceholder>This card has no tasks list yet</StyledPlaceholder>
+        <StyledPlaceholder className="detailCoverClose">
+          This card has no tasks list yet
+        </StyledPlaceholder>
       ) : (
         matchedListTasks.map((ele) => (
           <TasksListInDetailCover
@@ -249,21 +254,23 @@ function DetailCoverMarks({
             taskId={taskId}
             unActiveSubtasks={ele.unActiveSubtasks}
             totalOfSubTasks={ele.totalOfSubTasks}
-            tasksListVisibility={tasksListVisibility}
-            setTasksListVisibility={setTasksListVisibility}
+            toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+            closeAllListsWindowsFunc={closeAllListsWindowsFunc}
+            tasksListVisi={tasksListVisi}
             addNewCard={addNewCard}
-            idUpdatedList={idUpdatedList}
+            currentListId={currentListId}
           />
         ))
       )}
-      <StyledDetailDescription>
-        <StyledTitle>
+      <StyledDetailDescription className="detailCoverClose">
+        <StyledTitle className="detailCoverClose">
           <StyledIcon className="fas fa-stream" />
           Description
           <StyledButton
             greyBgc
             marginLeft
             hoverBgc
+            className="detailCoverClose"
             style={{
               color: `${
                 listOfAllComments.length !== 0 ? "#42516e" : "rgba(0,0,0,0)"
@@ -284,7 +291,7 @@ function DetailCoverMarks({
         {listOfAllComments.length !== 0 ? null : (
           <StyledTextArea
             placeholder="Click to add more detailed comment..."
-            className="input textArea"
+            className="input textArea detailCoverClose"
             onClick={() => toggleCommentFeature(true)}
             onChange={(e) => commentChange(e)}
             onKeyPress={(e) => addCommentToCard(e, taskId, commentValue)}
@@ -292,18 +299,23 @@ function DetailCoverMarks({
           />
         )}
         {toggleCommentVisibility ? (
-          <StyledCommentOptionWrap>
+          <StyledCommentOptionWrap className="detailCoverClose">
             <StyledButton
-              className="commentBtn"
+              className="commentBtn detailCoverClose"
               onClick={(e) => addCommentToCard(e, taskId, commentValue)}
             >
               SAVE
             </StyledButton>
-            <StyledIcon biggerSize pointer className="far fa-times-circle" />
+            <StyledIcon
+              biggerSize
+              pointer
+              className="far fa-times-circle detailCoverClose"
+            />
           </StyledCommentOptionWrap>
         ) : null}
         {listOfAllComments.map((ele) => (
           <StyledComment
+            className="detailCoverClose"
             key={ele.id}
             onClick={(e) => editCommentToCard(toggleCommentVisibility)}
           >

@@ -70,12 +70,20 @@ const StyledButton = styled.button`
   }
 `;
 
-function TasksListView({ changeTasksListTitle, tasksListTitle, addTasksList }) {
+function TasksListView({
+  changeTasksListTitle,
+  tasksListTitle,
+  addTasksList,
+  toggleCurrentListVisiFunc,
+}) {
   return (
     <StyledNameTask className="tasksList">
       <StyledReplaceTitle className="tasksList">
         Add tasks list
-        <span className="fas fa-times" />
+        <span
+          className="fas fa-times"
+          onClick={() => toggleCurrentListVisiFunc("tasksListVisi")}
+        />
       </StyledReplaceTitle>
       <StyledTitle className="tasksList">Title</StyledTitle>
       <StyledLabelInput

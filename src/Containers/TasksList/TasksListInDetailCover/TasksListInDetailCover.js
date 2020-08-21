@@ -59,7 +59,7 @@ class TasksListInDetailCover extends Component {
     matchedList[0].activeSubtasks += 1;
     matchedList[0].totalOfSubTasks += 1;
     //This is for refresh page durring add or checking subTask
-    this.props.setTasksListVisibility(!this.props.tasksListVisibility);
+    this.props.closeAllListsWindowsFunc();
     this.setState({
       subTaskToggleVisi: false,
       subTaskInputValue: "",
@@ -75,7 +75,7 @@ class TasksListInDetailCover extends Component {
     //Delete it
     this.props.listOfAllTasksList.splice(matchedTasksListIndex, 1);
     //Refresh it
-    this.props.setTasksListVisibility(!this.props.tasksListVisibility);
+    this.props.closeAllListsWindowsFunc();
   };
 
   makeThisTaskDone = (subTaskId, subTaskActive) => {
@@ -101,7 +101,7 @@ class TasksListInDetailCover extends Component {
       matchedTasksList[0].unActiveSubtasks -= 1;
     }
     //This is for refresh page durring add or checking subTask
-    this.props.setTasksListVisibility(!this.props.tasksListVisibility);
+    this.props.closeAllListsWindowsFunc();
     this.setState({
       subTaskToggleVisi: false,
       subTaskInputValue: "",
@@ -109,7 +109,7 @@ class TasksListInDetailCover extends Component {
   };
 
   subTaskOptionsVisiToggle = (subTaskName) => {
-    this.props.setTasksListVisibility(!this.props.tasksListVisibility);
+    this.props.closeAllListsWindowsFunc();
     this.setState({
       subTaskOptionsVisi: !this.state.subTaskOptionsVisi,
       subTaskNameOptionClicked: subTaskName,
@@ -124,7 +124,7 @@ class TasksListInDetailCover extends Component {
       unActiveSubtasks,
       totalOfSubTasks,
       addNewCard,
-      idUpdatedList,
+      currentListId,
       listOfAllTasksList,
     } = this.props;
 
@@ -151,7 +151,7 @@ class TasksListInDetailCover extends Component {
         subTaskOptionsVisiToggle={this.subTaskOptionsVisiToggle}
         subTaskOptionsVisi={subTaskOptionsVisi}
         addNewCard={addNewCard}
-        idUpdatedList={idUpdatedList}
+        currentListId={currentListId}
         listOfAllTasksList={listOfAllTasksList}
         subTaskNameOptionClicked={subTaskNameOptionClicked}
       />

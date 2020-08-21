@@ -17,15 +17,7 @@ const Main = () => {
   const [taskName, setTaskName] = useState("");
   const [taskId, setTaskId] = useState("");
   const [idUpdatedList, setIdUpdatedList] = useState();
-  const [visibilityChangeListInDetails, setChangeListInDetails] = useState(
-    false
-  );
-  const [
-    labelsVisibilityDetailsComp,
-    setLabelsVisibilityDetailsComp,
-  ] = useState(false);
   const [toggle, setToggle] = useState(false);
-
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
   const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
@@ -34,8 +26,6 @@ const Main = () => {
   const [listOfAllTasksList, setListOfTasksList] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [toggleCommentVisibility, setToggleCommentVisibility] = useState(false);
-  const [copyVisibility, setCopyVisibility] = useState(false);
-  const [dateVisibility, setDateVisibility] = useState(false);
   const [tasksListVisibility, setTasksListVisibility] = useState(false);
   useEffect(() => {
     document.addEventListener("click", hideTheme);
@@ -82,26 +72,14 @@ const Main = () => {
     ) {
       showThemeOptionFunction(false);
     }
-
-    if (!searchingClass.includes("suggested")) {
-      setChangeListInDetails(false);
-      setCopyVisibility(false);
-    }
-
     if (
       searchingClass.includes("coverOption") ||
       searchingClass.includes("cover_box")
     ) {
       setVisibilityOptionCover(false);
     }
-    if (!searchingClass.includes("label")) {
-      setLabelsVisibilityDetailsComp(false);
-    }
     if (!searchingClass.includes("textArea")) {
       setToggleCommentVisibility(false);
-    }
-    if (!searchingClass.includes("calendar")) {
-      setDateVisibility(false);
     }
     if (!searchingClass.includes("tasksList")) {
       setTasksListVisibility(false);
@@ -421,57 +399,57 @@ const Main = () => {
     deleteCard(listIdToDelte, taskId);
   };
 
-  const copyCard = (
-    listId,
-    taskTitle,
-    copyId,
-    preventCardId,
-    canCopyLabels
-  ) => {
-    const lablesToCopy = listOfAllBadges.filter(
-      (ele) => ele.id === preventCardId
-    );
-    const commentToCopy = listOfAllComments.filter(
-      (ele) => ele.id === preventCardId
-    );
+  // const copyCard = (
+  //   listId,
+  //   taskTitle,
+  //   copyId,
+  //   preventCardId,
+  //   canCopyLabels
+  // ) => {
+  //   const lablesToCopy = listOfAllBadges.filter(
+  //     (ele) => ele.id === preventCardId
+  //   );
+  //   const commentToCopy = listOfAllComments.filter(
+  //     (ele) => ele.id === preventCardId
+  //   );
 
-    const dateToCopy = listOfAllTerms.filter((ele) => ele.id === preventCardId);
+  //   const dateToCopy = listOfAllTerms.filter((ele) => ele.id === preventCardId);
 
-    if (lablesToCopy.length !== 0 && canCopyLabels) {
-      lablesToCopy.forEach((ele) => {
-        listOfAllBadges.push({
-          id: copyId,
-          color: ele.color,
-          labelId: `${ele.color}${copyId}`,
-          name: ele.name,
-        });
-      });
-    }
+  //   if (lablesToCopy.length !== 0 && canCopyLabels) {
+  //     lablesToCopy.forEach((ele) => {
+  //       listOfAllBadges.push({
+  //         id: copyId,
+  //         color: ele.color,
+  //         labelId: `${ele.color}${copyId}`,
+  //         name: ele.name,
+  //       });
+  //     });
+  //   }
 
-    if (commentToCopy.length !== 0) {
-      listOfAllComments.push({ id: copyId, comment: commentToCopy[0].comment });
-    }
+  //   if (commentToCopy.length !== 0) {
+  //     listOfAllComments.push({ id: copyId, comment: commentToCopy[0].comment });
+  //   }
 
-    if (dateToCopy.length !== 0) {
-      listOfAllTerms.push({
-        id: copyId,
-        term: dateToCopy[0].term,
-        classN: "termSpan",
-        day: dateToCopy[0].day,
-        month: dateToCopy[0].month,
-        year: dateToCopy[0].year,
-        monthName: dateToCopy[0].monthName,
-        hour: dateToCopy[0].hour,
-        minutes: dateToCopy[0].minutes,
-        status: dateToCopy[0].status,
-        statusColor: dateToCopy[0].statusColor,
-        fontColor: dateToCopy[0].fontColor,
-        beforeDoneState: dateToCopy[0].beforeDoneState,
-      });
-    }
+  //   if (dateToCopy.length !== 0) {
+  //     listOfAllTerms.push({
+  //       id: copyId,
+  //       term: dateToCopy[0].term,
+  //       classN: "termSpan",
+  //       day: dateToCopy[0].day,
+  //       month: dateToCopy[0].month,
+  //       year: dateToCopy[0].year,
+  //       monthName: dateToCopy[0].monthName,
+  //       hour: dateToCopy[0].hour,
+  //       minutes: dateToCopy[0].minutes,
+  //       status: dateToCopy[0].status,
+  //       statusColor: dateToCopy[0].statusColor,
+  //       fontColor: dateToCopy[0].fontColor,
+  //       beforeDoneState: dateToCopy[0].beforeDoneState,
+  //     });
+  //   }
 
-    addNewCard(listId, taskTitle, copyId);
-  };
+  //   addNewCard(listId, taskTitle, copyId);
+  // };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
     const copy = [...wholeList];
@@ -492,10 +470,6 @@ const Main = () => {
   };
 
   //LABLES FEATURES
-  const handleLabelsVisibilityDetailsComp = (toggle) => {
-    setLabelsVisibilityDetailsComp(toggle);
-  };
-
   const toggleLabelColorToCard = (color, taskId) => {
     const alreadyExistedBadges = listOfAllBadges.filter(
       (ele) => ele.id === taskId
@@ -581,98 +555,6 @@ const Main = () => {
     setToggleCommentVisibility(toggle);
   };
 
-  const toggleDateVisibility = () => {
-    setDateVisibility(!dateVisibility);
-  };
-
-  const toggleTermToCard = (
-    taskId,
-    date,
-    day,
-    month,
-    year,
-    monthName,
-    hour,
-    minutes,
-    status,
-    statusColor,
-    fontColor,
-    buttonType
-  ) => {
-    if (buttonType === "save") {
-      const termExistAlready = listOfAllTerms.filter(
-        (ele) => ele.id === taskId
-      );
-      if (termExistAlready.length !== 0) {
-        const existingTermIndex = listOfAllTerms.findIndex(
-          (ele) => ele.id === taskId
-        );
-        const currentCard = document.getElementById(`${taskId}term`);
-        currentCard.innerHTML = "";
-        listOfAllTerms.splice(existingTermIndex, 1);
-      }
-      const currentCard = document.getElementById(`${taskId}term`);
-      const termSpan = document.createElement("span");
-      termSpan.classList.add("termSpan");
-      termSpan.textContent = `${day} ${monthName} ${status}`;
-      termSpan.style.backgroundColor = statusColor;
-      termSpan.style.color = fontColor;
-      currentCard.appendChild(termSpan);
-
-      setListOfallTerms([
-        ...listOfAllTerms,
-        {
-          id: taskId,
-          classN: "termSpan",
-          term: date,
-          day,
-          month,
-          year,
-          monthName,
-          hour,
-          minutes,
-          status,
-          statusColor,
-          fontColor,
-          beforeDoneState: { beforeColor: "", beforeStatus: "" },
-        },
-      ]);
-      setDateVisibility(!dateVisibility);
-    } else {
-      //When btnDelete clicked, delete from list and form card DOM
-      const termToDeleteIndex = listOfAllTerms.findIndex(
-        (ele) => ele.id === taskId
-      );
-      listOfAllTerms.splice(termToDeleteIndex, 1);
-      const currentCardTerm = document.getElementById(`${taskId}term`);
-      currentCardTerm.innerHTML = "";
-      if (termToDeleteIndex !== -1) {
-        setDateVisibility(!dateVisibility);
-      }
-    }
-  };
-
-  const termDoneCheckbox = (taskId) => {
-    const matchedTerm = listOfAllTerms.filter((ele) => ele.id === taskId);
-    const currentCardTerm = document.getElementById(`${taskId}term`)
-      .children[0];
-
-    if (matchedTerm[0].status !== "Done") {
-      matchedTerm[0].beforeDoneState.beforeStatus = matchedTerm[0].status;
-      matchedTerm[0].beforeDoneState.beforeColor = matchedTerm[0].statusColor;
-      matchedTerm[0].status = "Done";
-      matchedTerm[0].statusColor = "#5AAC44";
-      currentCardTerm.style.backgroundColor = "#5AAC44";
-    } else {
-      matchedTerm[0].status = matchedTerm[0].beforeDoneState.beforeStatus;
-      matchedTerm[0].statusColor = matchedTerm[0].beforeDoneState.beforeColor;
-      matchedTerm[0].beforeDoneState.beforeStatus = "";
-      matchedTerm[0].beforeDoneState.beforeColor = "";
-      currentCardTerm.style.backgroundColor = matchedTerm[0].statusColor;
-    }
-    setDateVisibility(!dateVisibility);
-  };
-
   const toggleTasksListVisibility = (toggle) => {
     setTasksListVisibility(toggle);
   };
@@ -720,9 +602,9 @@ const Main = () => {
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
-          toggleTermToCard={toggleTermToCard}
           listOfAllTerms={listOfAllTerms}
           listOfAllTasksList={listOfAllTasksList}
+          setListOfallTerms={setListOfallTerms}
         />
       ) : null}
       {visibilityTaskDetails ? (
@@ -733,12 +615,9 @@ const Main = () => {
           updateCard={updateCard}
           addNewCard={addNewCard}
           deleteCard={deleteCard}
-          idUpdatedList={idUpdatedList}
-          visibilityChangeListInDetails={visibilityChangeListInDetails}
+          currentListId={idUpdatedList}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
-          handleLabelsVisibility={handleLabelsVisibilityDetailsComp}
-          labelsVisibility={labelsVisibilityDetailsComp}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           labelColors={labelColors}
@@ -750,16 +629,12 @@ const Main = () => {
           listOfAllComments={listOfAllComments}
           setListOfAllComments={setListOfAllComments}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
-          copyVisibility={copyVisibility}
-          toggleDateVisibility={toggleDateVisibility}
-          toggleTermToCard={toggleTermToCard}
-          dateVisibility={dateVisibility}
           listOfAllTerms={listOfAllTerms}
-          termDoneCheckbox={termDoneCheckbox}
           setTasksListVisibility={toggleTasksListVisibility}
           tasksListVisibility={tasksListVisibility}
           setListOfTasksList={setListOfTasksList}
           listOfAllTasksList={listOfAllTasksList}
+          setListOfallTerms={setListOfallTerms}
         />
       ) : null}
     </main>

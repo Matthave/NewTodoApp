@@ -4,6 +4,7 @@ import Labels from "../../../../Containers/Labels/Labels";
 import MoveToAnotherListBox from "../../../MoveToAnotherList/MoveToAnotherListBox";
 import DatePicker from "../../../../Containers/DatePicker/DatePicker";
 import TasksList from "../../../../Containers/TasksList/TasksList";
+import CopyCard from "../../../../Containers/CopyCard/CopyCard";
 import { device } from "../../../../Style/MediaQuery/mq";
 
 const StyledDetailNav = styled.nav`
@@ -54,56 +55,53 @@ const StyledDetailList = styled.li`
 `;
 
 function DetailCoverNav({
-  handleLabelsVisibility,
-  labelsVisibility,
+  labelVisi,
   deleteCard,
-  idUpdatedList,
+  currentListId,
   taskId,
   addPriorityForCards,
-  toggleDetailMove,
+  moveToAnotherListVisi,
   taskTitle,
   wholeList,
   moveCardToAnotherList,
   taskTitleList,
   matchedPriority,
-  copyVisibility,
   matchedColorsToThisCard,
-  toggleDateVisibility,
-  dateVisibility,
+  datePickerVisi,
   toggleLabelColorToCard,
   listOfAllBadges,
   listOfAllTasksId,
   labelColors,
   setLabelColors,
   toggleTermToCard,
-  setTasksListVisibility,
-  tasksListVisibility,
+  tasksListVisi,
   setListOfTasksList,
   listOfAllTasksList,
+  copyCardVisi,
+  toggleCurrentListVisiFunc,
+  listOfAllTerms,
+  setListOfallTerms,
 }) {
   return (
     <StyledDetailNav>
       <StyledDetailUl>
         <StyledDetailList first> ADD TO CARD</StyledDetailList>
         <StyledDetailList
-          onClick={() => handleLabelsVisibility(!labelsVisibility)}
-          className="label"
+          onClick={() => toggleCurrentListVisiFunc("labelVisi")}
         >
-          <StyledIcon className="fas fa-tag label" />
+          <StyledIcon className="fas fa-tag" />
           Edit labels
         </StyledDetailList>
         <StyledDetailList
-          onClick={() => setTasksListVisibility(!tasksListVisibility)}
-          className="tasksList"
+          onClick={() => toggleCurrentListVisiFunc("tasksListVisi")}
         >
-          <StyledIcon className="fas fa-list-alt tasksList" />
+          <StyledIcon className="fas fa-list-alt" />
           Tasks list
         </StyledDetailList>
         <StyledDetailList
-          onClick={() => toggleDateVisibility()}
-          className="calendar"
+          onClick={() => toggleCurrentListVisiFunc("datePickerVisi")}
         >
-          <StyledIcon className="far fa-clock calendar" />
+          <StyledIcon className="far fa-clock" />
           Term
         </StyledDetailList>
         <StyledDetailList>
@@ -113,12 +111,16 @@ function DetailCoverNav({
       </StyledDetailUl>
       <StyledDetailUl>
         <StyledDetailList first> ACTIONS</StyledDetailList>
-        <StyledDetailList className="suggested">
-          <StyledIcon className="fas fa-long-arrow-alt-right suggested" />
+        <StyledDetailList
+          onClick={() => toggleCurrentListVisiFunc("moveToAnotherListVisi")}
+        >
+          <StyledIcon className="fas fa-long-arrow-alt-right" />
           Move
         </StyledDetailList>
-        <StyledDetailList className="suggested">
-          <StyledIcon className="far fa-clipboard suggested" />
+        <StyledDetailList
+          onClick={() => toggleCurrentListVisiFunc("copyCardVisi")}
+        >
+          <StyledIcon className="far fa-clipboard" />
           Copy
         </StyledDetailList>
         <StyledDetailList
@@ -128,7 +130,7 @@ function DetailCoverNav({
           }}
         >
           <StyledIcon
-            className="fas fa-exclamation-circle suggested"
+            className="fas fa-exclamation-circle"
             style={{
               color: `${matchedPriority.length !== 0 ? "#db4a36" : "#42516e"}`,
             }}
@@ -137,16 +139,16 @@ function DetailCoverNav({
         </StyledDetailList>
         <StyledDetailList
           className="delete"
-          onClick={(e) => deleteCard(idUpdatedList, taskId, "byButton")}
+          onClick={(e) => deleteCard(currentListId, taskId, "byButton")}
         >
-          <StyledIcon className="fas fa-archive suggested" />
+          <StyledIcon className="fas fa-archive" />
           Archive
         </StyledDetailList>
       </StyledDetailUl>
-      {labelsVisibility ? (
+      {labelVisi ? (
         <Labels
           detailCover={true}
-          handleLabelsVisibility={handleLabelsVisibility}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           taskId={taskId}
@@ -155,28 +157,41 @@ function DetailCoverNav({
           setLabelColors={setLabelColors}
         />
       ) : null}
-      {toggleDetailMove ? (
+      {moveToAnotherListVisi ? (
         <MoveToAnotherListBox
           taskTitle={taskTitle}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           taskId={taskId}
-          currentListId={idUpdatedList}
-          byElement="byNavMove"
+          currentListId={currentListId}
         />
       ) : null}
-      {dateVisibility ? (
+      {copyCardVisi ? (
+        <CopyCard
+          matchedColorsToThisCard={matchedColorsToThisCard}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          wholeList={wholeList}
+          taskTitle={taskTitle}
+          taskId={taskId}
+          currentListId={currentListId}
+        />
+      ) : null}
+      {datePickerVisi ? (
         <DatePicker
-          toggleDateVisibility={toggleDateVisibility}
           toggleTermToCard={toggleTermToCard}
           taskId={taskId}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          listOfAllTerms={listOfAllTerms}
+          setListOfallTerms={setListOfallTerms}
         />
       ) : null}
-      {tasksListVisibility ? (
+      {tasksListVisi ? (
         <TasksList
           setListOfTasksList={setListOfTasksList}
           listOfAllTasksList={listOfAllTasksList}
           taskId={taskId}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
         />
       ) : null}
     </StyledDetailNav>

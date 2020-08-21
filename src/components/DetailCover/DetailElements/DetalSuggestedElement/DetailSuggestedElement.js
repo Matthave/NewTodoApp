@@ -14,28 +14,32 @@ const StyledStrongText = styled.strong`
 `;
 
 function DetailSuggestedElement({
-  changeListInDetails,
   taskTitleList,
   taskTitle,
-  visibilityChangeListInDetails,
+  moveToInSuggestedVisi,
+  toggleCurrentListVisiFunc,
   wholeList,
   moveCardToAnotherList,
   taskId,
 }) {
   return (
-    <StyledLightText className="suggested">
+    <StyledLightText>
       On the list{" "}
-      <StyledStrongText className="suggested">
+      <StyledStrongText
+        onClick={() => toggleCurrentListVisiFunc("moveToInSuggestedVisi")}
+      >
         {taskTitleList.length !== 0 ? taskTitleList : "No Name List"}
+        {}
       </StyledStrongText>
-      {visibilityChangeListInDetails ? (
+      {moveToInSuggestedVisi ? (
         <MoveToAnotherListBox
           taskTitle={taskTitle}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           taskId={taskId}
           taskTitleList={taskTitleList}
-          byElement="byListName"
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          moveToInSuggestedVisi={"moveToInSuggestedVisi"}
         />
       ) : null}
     </StyledLightText>

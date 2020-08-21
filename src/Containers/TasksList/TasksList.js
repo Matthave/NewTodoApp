@@ -32,15 +32,18 @@ class TasksList extends Component {
         totalOfSubTasks: 0,
       },
     ]);
+    this.props.toggleCurrentListVisiFunc("tasksListVisi"); // Close this tasksList window
   };
 
   render() {
     const { tasksListTitle } = this.state;
+    const { toggleCurrentListVisiFunc } = this.props;
     return (
       <TasksListView
         changeTasksListTitle={this.changeTasksListTitle}
         tasksListTitle={tasksListTitle}
         addTasksList={this.addTasksList}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
       />
     );
   }

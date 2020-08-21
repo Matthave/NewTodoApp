@@ -5,12 +5,22 @@ class DetailCover extends React.Component {
   state = {
     taskTitle: "",
     commentValue: "",
+    moveToAnotherListVisi: false,
+    copyCardVisi: false,
+    labelVisi: false,
+    datePickerVisi: false,
+    moveToInSuggestedVisi: false,
+    tasksListVisi: false,
   };
 
   componentDidMount() {
     this.setState({
       taskTitle: this.props.taskName,
     });
+
+    document.addEventListener("click", (e) =>
+      this.closeAllListsWindowsByListener(e)
+    );
   }
 
   taskTitleFeature = (e) => {
@@ -47,6 +57,51 @@ class DetailCover extends React.Component {
     this.props.listOfAllComments.splice(commentIndexToDelete, 1);
   };
 
+  termDoneCheckbox = (taskId) => {
+    // CheckBox handler and also other informations about term/date in DetailCoverMarks
+    const matchedTerm = this.props.listOfAllTerms.filter(
+      (ele) => ele.id === taskId
+    );
+    const currentCardTerm = document.getElementById(`${taskId}term`)
+      .children[0];
+
+    if (matchedTerm[0].status !== "Done") {
+      matchedTerm[0].beforeDoneState.beforeStatus = matchedTerm[0].status;
+      matchedTerm[0].beforeDoneState.beforeColor = matchedTerm[0].statusColor;
+      matchedTerm[0].status = "Done";
+      matchedTerm[0].statusColor = "#5AAC44";
+      currentCardTerm.style.backgroundColor = "#5AAC44";
+    } else {
+      matchedTerm[0].status = matchedTerm[0].beforeDoneState.beforeStatus;
+      matchedTerm[0].statusColor = matchedTerm[0].beforeDoneState.beforeColor;
+      matchedTerm[0].beforeDoneState.beforeStatus = "";
+      matchedTerm[0].beforeDoneState.beforeColor = "";
+      currentCardTerm.style.backgroundColor = matchedTerm[0].statusColor;
+    }
+    this.setState({
+      datePickerVisi: false, //Just refresh
+    });
+  };
+
+  toggleCurrentListVisiFunc = (nameVisi) => {
+    this.setState({ [nameVisi]: !this.state[nameVisi] });
+  };
+
+  closeAllListsWindowsFunc = () => {
+    this.setState({
+      moveToAnotherListVisi: false,
+      copyCardVisi: false,
+      labelVisi: false,
+      datePickerVisi: false,
+    });
+  };
+
+  closeAllListsWindowsByListener = (e) => {
+    if (e.target.className.includes("detailCoverClose")) {
+      this.closeAllListsWindowsFunc();
+    }
+  };
+
   render() {
     const {
       taskId,
@@ -54,12 +109,9 @@ class DetailCover extends React.Component {
       updateCard,
       deleteCard,
       addNewCard,
-      idUpdatedList,
-      visibilityChangeListInDetails,
+      currentListId,
       wholeList,
       moveCardToAnotherList,
-      labelsVisibility,
-      handleLabelsVisibility,
       toggleLabelColorToCard,
       listOfAllBadges,
       labelColors,
@@ -69,21 +121,24 @@ class DetailCover extends React.Component {
       toggleCommentVisibility,
       toggleCommentFeature,
       listOfAllComments,
-      toggleDetailMove,
       listOfAllPriorityTasks,
-      copyVisibility,
-      toggleDateVisibility,
-      dateVisibility,
       listOfAllTerms,
+      setListOfallTerms,
       toggleTermToCard,
-      termDoneCheckbox,
-      tasksListVisibility,
-      setTasksListVisibility,
       setListOfTasksList,
       listOfAllTasksList,
     } = this.props;
 
-    const { taskTitle, commentValue } = this.state;
+    const {
+      taskTitle,
+      commentValue,
+      moveToAnotherListVisi,
+      copyCardVisi,
+      labelVisi,
+      moveToInSuggestedVisi,
+      datePickerVisi,
+      tasksListVisi,
+    } = this.state;
 
     const copyOfallBadges = [...listOfAllBadges];
     const matchedColorsToThisCard = copyOfallBadges.filter(
@@ -112,13 +167,12 @@ class DetailCover extends React.Component {
           taskTitle={taskTitle}
           taskTitleFeature={this.taskTitleFeature}
           taskTitleList={taskTitleList}
-          visibilityChangeListInDetails={visibilityChangeListInDetails}
+          moveToInSuggestedVisi={moveToInSuggestedVisi}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
-          labelsVisibility={labelsVisibility}
-          handleLabelsVisibility={handleLabelsVisibility}
+          labelVisi={labelVisi}
           deleteCard={deleteCard}
-          idUpdatedList={idUpdatedList}
+          currentListId={currentListId}
           taskId={taskId}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
@@ -134,19 +188,21 @@ class DetailCover extends React.Component {
           addCommentToCard={this.addCommentToCard}
           listOfAllComments={matchedComments}
           editCommentToCard={this.editCommentToCard}
-          toggleDetailMove={toggleDetailMove}
+          moveToAnotherListVisi={moveToAnotherListVisi}
           matchedPriority={matchedPriority}
-          copyVisibility={copyVisibility}
-          toggleDateVisibility={toggleDateVisibility}
-          dateVisibility={dateVisibility}
+          datePickerVisi={datePickerVisi}
           matchedTerms={matchedTerms}
           toggleTermToCard={toggleTermToCard}
-          termDoneCheckbox={termDoneCheckbox}
-          setTasksListVisibility={setTasksListVisibility}
-          tasksListVisibility={tasksListVisibility}
+          termDoneCheckbox={this.termDoneCheckbox}
+          tasksListVisi={tasksListVisi}
           setListOfTasksList={setListOfTasksList}
           listOfAllTasksList={listOfAllTasksList}
           matchedListTasks={matchedListTasks}
+          copyCardVisi={copyCardVisi}
+          toggleCurrentListVisiFunc={this.toggleCurrentListVisiFunc}
+          closeAllListsWindowsFunc={this.closeAllListsWindowsFunc}
+          setListOfallTerms={setListOfallTerms}
+          listOfAllTerms={listOfAllTerms}
         />
       </>
     );

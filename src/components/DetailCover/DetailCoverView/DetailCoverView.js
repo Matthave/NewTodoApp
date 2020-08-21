@@ -38,15 +38,14 @@ function DetailCoverView({
   updateCard,
   deleteCard,
   addNewCard,
-  idUpdatedList,
+  currentListId,
   taskTitle,
   taskTitleFeature,
   taskTitleList,
-  visibilityChangeListInDetails,
+  moveToInSuggestedVisi,
   wholeList,
   moveCardToAnotherList,
-  labelsVisibility,
-  handleLabelsVisibility,
+  labelVisi,
   taskId,
   toggleLabelColorToCard,
   listOfAllBadges,
@@ -62,51 +61,53 @@ function DetailCoverView({
   addCommentToCard,
   listOfAllComments,
   editCommentToCard,
-  toggleDetailMove,
+  moveToAnotherListVisi,
   matchedPriority,
-  copyVisibility,
-  toggleDateVisibility,
-  dateVisibility,
+  datePickerVisi,
   matchedTerms,
   toggleTermToCard,
   termDoneCheckbox,
-  setTasksListVisibility,
-  tasksListVisibility,
+  tasksListVisi,
   setListOfTasksList,
   listOfAllTasksList,
   matchedListTasks,
+  toggleCurrentListVisiFunc,
+  closeAllListsWindowsFunc,
+  copyCardVisi,
+  listOfAllTerms,
+  setListOfallTerms,
 }) {
   return (
     <StyledCover
       className="cover"
-      onClick={(e) => updateCard(e, taskTitle, idUpdatedList, taskId)}
+      onClick={(e) => updateCard(e, taskTitle, currentListId, taskId)}
     >
       <StyledDetail
         className="detail"
-        onClick={(e) => updateCard(e, taskTitle, idUpdatedList, taskId)}
+        onClick={(e) => updateCard(e, taskTitle, currentListId, taskId)}
       >
         <span className="fas fa-credit-card"></span>
         <DetailInputElement
           taskTitle={taskTitle}
           taskTitleFeature={taskTitleFeature}
           updateCard={updateCard}
-          idUpdatedList={idUpdatedList}
+          currentListId={currentListId}
           taskId={taskId}
         />
         <DetailSuggestedElement
           taskTitleList={taskTitleList}
           taskTitle={taskTitle}
-          visibilityChangeListInDetails={visibilityChangeListInDetails}
+          moveToInSuggestedVisi={moveToInSuggestedVisi}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           taskId={taskId}
         />
         <DetailTools
-          labelsVisibility={labelsVisibility}
-          handleLabelsVisibility={handleLabelsVisibility}
+          labelVisi={labelVisi}
           deleteCard={deleteCard}
           addNewCard={addNewCard}
-          idUpdatedList={idUpdatedList}
+          currentListId={currentListId}
           taskId={taskId}
           matchedColorsToThisCard={matchedColorsToThisCard}
           addPriorityForCards={addPriorityForCards}
@@ -117,15 +118,13 @@ function DetailCoverView({
           addCommentToCard={addCommentToCard}
           listOfAllComments={listOfAllComments}
           editCommentToCard={editCommentToCard}
-          toggleDetailMove={toggleDetailMove}
+          moveToAnotherListVisi={moveToAnotherListVisi}
           taskTitle={taskTitle}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           taskTitleList={taskTitleList}
           matchedPriority={matchedPriority}
-          copyVisibility={copyVisibility}
-          toggleDateVisibility={toggleDateVisibility}
-          dateVisibility={dateVisibility}
+          datePickerVisi={datePickerVisi}
           toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           listOfAllTasksId={listOfAllTasksId}
@@ -134,11 +133,15 @@ function DetailCoverView({
           matchedTerms={matchedTerms}
           toggleTermToCard={toggleTermToCard}
           termDoneCheckbox={termDoneCheckbox}
-          setTasksListVisibility={setTasksListVisibility}
-          tasksListVisibility={tasksListVisibility}
+          tasksListVisi={tasksListVisi}
           setListOfTasksList={setListOfTasksList}
           listOfAllTasksList={listOfAllTasksList}
           matchedListTasks={matchedListTasks}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          closeAllListsWindowsFunc={closeAllListsWindowsFunc}
+          copyCardVisi={copyCardVisi}
+          listOfAllTerms={listOfAllTerms}
+          setListOfallTerms={setListOfallTerms}
         />
       </StyledDetail>
     </StyledCover>

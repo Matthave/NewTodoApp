@@ -5,7 +5,7 @@ import SubtasksOptionView from "../../../components/TasksList/SubtasksOptionView
 class SubtasksOption extends Component {
   subTaskToCard = () => {
     this.props.addNewCard(
-      this.props.idUpdatedList,
+      this.props.currentListId,
       this.props.subTaskNameOptionClicked
     );
 
@@ -48,6 +48,7 @@ class SubtasksOption extends Component {
       <SubtasksOptionView
         subTaskToCard={this.subTaskToCard}
         subTaskDelete={this.subTaskDelete}
+        subTaskOptionsVisiToggle={this.props.subTaskOptionsVisiToggle}
       />
     );
   }

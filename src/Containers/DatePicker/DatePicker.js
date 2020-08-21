@@ -340,7 +340,7 @@ class DatePicker extends Component {
         (toD === currD + 3 && currM === toM && currY === toY) ||
         (toD === currD + 2 && currM === toM && currY === toY)
       ) {
-        return this.props.toggleTermToCard(
+        return this.toggleTermToCard(
           this.props.taskId,
           todayFullDate,
           toD,
@@ -356,7 +356,7 @@ class DatePicker extends Component {
         );
       }
       if (toD === currD + 1 && currM === toM && currY === toY) {
-        return this.props.toggleTermToCard(
+        return this.toggleTermToCard(
           this.props.taskId,
           todayFullDate,
           "Tomorrow",
@@ -377,7 +377,7 @@ class DatePicker extends Component {
         currH <= hour &&
         currMin <= minutes
       ) {
-        return this.props.toggleTermToCard(
+        return this.toggleTermToCard(
           this.props.taskId,
           todayFullDate,
           "Today",
@@ -400,7 +400,7 @@ class DatePicker extends Component {
         (currD > toD && currM < toM && currY <= toY) ||
         currY < toY
       ) {
-        return this.props.toggleTermToCard(
+        return this.toggleTermToCard(
           this.props.taskId,
           todayFullDate,
           toD,
@@ -415,7 +415,7 @@ class DatePicker extends Component {
           buttonType
         );
       } else {
-        return this.props.toggleTermToCard(
+        return this.toggleTermToCard(
           this.props.taskId,
           todayFullDate,
           toD,
@@ -491,6 +491,70 @@ class DatePicker extends Component {
         document.querySelector(".warnSpanTime").style.color = "#fff";
       }
     }
+  };
+
+  toggleTermToCard = (
+    taskId,
+    date,
+    day,
+    month,
+    year,
+    monthName,
+    hour,
+    minutes,
+    status,
+    statusColor,
+    fontColor,
+    buttonType
+  ) => {
+    if (buttonType === "save") {
+      const termExistAlready = this.props.listOfAllTerms.filter(
+        (ele) => ele.id === taskId
+      );
+      if (termExistAlready.length !== 0) {
+        const existingTermIndex = this.props.listOfAllTerms.findIndex(
+          (ele) => ele.id === taskId
+        );
+        const currentCard = document.getElementById(`${taskId}term`);
+        currentCard.innerHTML = "";
+        this.props.listOfAllTerms.splice(existingTermIndex, 1);
+      }
+      const currentCard = document.getElementById(`${taskId}term`);
+      const termSpan = document.createElement("span");
+      termSpan.classList.add("termSpan");
+      termSpan.textContent = `${day} ${monthName} ${status}`;
+      termSpan.style.backgroundColor = statusColor;
+      termSpan.style.color = fontColor;
+      currentCard.appendChild(termSpan);
+
+      this.props.setListOfallTerms([
+        ...this.props.listOfAllTerms,
+        {
+          id: taskId,
+          classN: "termSpan",
+          term: date,
+          day,
+          month,
+          year,
+          monthName,
+          hour,
+          minutes,
+          status,
+          statusColor,
+          fontColor,
+          beforeDoneState: { beforeColor: "", beforeStatus: "" },
+        },
+      ]);
+    } else {
+      //When btnDelete clicked, delete from list and form card DOM
+      const termToDeleteIndex = this.props.listOfAllTerms.findIndex(
+        (ele) => ele.id === taskId
+      );
+      this.props.listOfAllTerms.splice(termToDeleteIndex, 1);
+      const currentCardTerm = document.getElementById(`${taskId}term`);
+      currentCardTerm.innerHTML = "";
+    }
+    this.props.toggleCurrentListVisiFunc("datePickerVisi");
   };
 
   render() {

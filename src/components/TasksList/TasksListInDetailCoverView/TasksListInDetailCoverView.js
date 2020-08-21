@@ -28,15 +28,6 @@ const StyledTasksList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* max-height: 160px;
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0);
-  } */
 `;
 
 const StyledGreyButton = styled.button`
@@ -173,7 +164,7 @@ function TasksListInDetailCoverView({
   subTaskOptionsVisiToggle,
   subTaskOptionsVisi,
   addNewCard,
-  idUpdatedList,
+  currentListId,
   listOfAllTasksList,
   subTaskNameOptionClicked,
 }) {
@@ -246,7 +237,7 @@ function TasksListInDetailCoverView({
             listName={listName}
             taskId={taskId}
             addNewCard={addNewCard}
-            idUpdatedList={idUpdatedList}
+            currentListId={currentListId}
           />
         ) : null}
       </StyledTasksList>

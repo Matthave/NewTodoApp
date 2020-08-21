@@ -20,19 +20,19 @@ function Detail_Input({
   taskTitle,
   taskTitleFeature,
   updateCard,
-  idUpdatedList,
+  currentListId,
   taskId,
 }) {
   return (
     <>
       <StyledTaskName
-        className="input"
+        className="input detailCoverClose"
         value={taskTitle}
         onChange={(e) => taskTitleFeature(e)}
       />
       <span
-        className="fas fa-times close"
-        onClick={(e) => updateCard(e, taskTitle, idUpdatedList, taskId)}
+        className="fas fa-times close detailCoverClose"
+        onClick={(e) => updateCard(e, taskTitle, currentListId, taskId)}
       />
     </>
   );

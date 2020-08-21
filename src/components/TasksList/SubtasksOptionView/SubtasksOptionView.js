@@ -51,11 +51,18 @@ const StyledListElement = styled.li`
   }
 `;
 
-function SubtasksOptionView({ subTaskToCard, subTaskDelete }) {
+function SubtasksOptionView({
+  subTaskToCard,
+  subTaskDelete,
+  subTaskOptionsVisiToggle,
+}) {
   return (
     <StyledOptionWindow>
       <StyledTitle>Subtasks options</StyledTitle>
-      <StyledX className="fas fa-times" />
+      <StyledX
+        className="fas fa-times"
+        onClick={() => subTaskOptionsVisiToggle("")}
+      />
       <StyledWrapList>
         <StyledListElement onClick={() => subTaskToCard()}>
           Make card from it
