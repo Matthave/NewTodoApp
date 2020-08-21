@@ -8,6 +8,7 @@ class OptionCover extends Component {
     copyCardVisi: false,
     labelVisi: false,
     datePickerVisi: false,
+    reloadOptionCoverCompState: false,
   };
 
   componentDidMount() {
@@ -59,6 +60,12 @@ class OptionCover extends Component {
       copyCardVisi: false,
       labelVisi: false,
       datePickerVisi: false,
+    });
+  };
+
+  reloadCoverComponentFunc = () => {
+    this.setState({
+      reloadOptionCoverCompState: !this.state.reloadOptionCoverCompState,
     });
   };
 
@@ -152,6 +159,7 @@ class OptionCover extends Component {
           copyCardVisi={copyCardVisi}
           setListOfallTerms={setListOfallTerms}
           listOfAllTerms={listOfAllTerms}
+          reloadCoverComponentFunc={this.reloadCoverComponentFunc}
         />
       </>
     );

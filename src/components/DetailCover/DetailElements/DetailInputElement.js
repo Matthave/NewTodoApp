@@ -31,7 +31,7 @@ function Detail_Input({
         onChange={(e) => taskTitleFeature(e)}
       />
       <span
-        className="fas fa-times close detailCoverClose"
+        className="fas fa-times close"
         onClick={(e) => updateCard(e, taskTitle, currentListId, taskId)}
       />
     </>

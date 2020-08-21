@@ -10,6 +10,10 @@ class TasksListInDetailCover extends Component {
     subTaskOptionsVisi: false,
   };
 
+  componentDidMount() {
+    document.addEventListener("click", (e) => this.subTaskOptionsHideFunc(e));
+  }
+
   subTaskToggle = () => {
     //Handler for input and btn visibility
     this.setState({
@@ -114,6 +118,11 @@ class TasksListInDetailCover extends Component {
       subTaskOptionsVisi: !this.state.subTaskOptionsVisi,
       subTaskNameOptionClicked: subTaskName,
     });
+  };
+
+  subTaskOptionsHideFunc = (e) => {
+    if (e.target.className.includes("detailCoverClose"))
+      this.setState({ subTaskOptionsVisi: false });
   };
 
   render() {

@@ -76,6 +76,7 @@ function DetailCoverView({
   copyCardVisi,
   listOfAllTerms,
   setListOfallTerms,
+  reloadCoverComponentFunc,
 }) {
   return (
     <StyledCover
@@ -142,6 +143,7 @@ function DetailCoverView({
           copyCardVisi={copyCardVisi}
           listOfAllTerms={listOfAllTerms}
           setListOfallTerms={setListOfallTerms}
+          reloadCoverComponentFunc={reloadCoverComponentFunc}
         />
       </StyledDetail>
     </StyledCover>

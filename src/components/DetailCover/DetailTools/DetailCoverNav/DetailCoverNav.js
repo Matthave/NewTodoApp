@@ -81,6 +81,7 @@ function DetailCoverNav({
   toggleCurrentListVisiFunc,
   listOfAllTerms,
   setListOfallTerms,
+  reloadCoverComponentFunc,
 }) {
   return (
     <StyledDetailNav>
@@ -155,6 +156,7 @@ function DetailCoverNav({
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
+          reloadCoverComponentFunc={reloadCoverComponentFunc}
         />
       ) : null}
       {moveToAnotherListVisi ? (

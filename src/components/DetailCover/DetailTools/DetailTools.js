@@ -53,6 +53,7 @@ function DetailTools({
   copyCardVisi,
   setListOfallTerms,
   listOfAllTerms,
+  reloadCoverComponentFunc,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -102,6 +103,7 @@ function DetailTools({
         setListOfallTerms={setListOfallTerms}
         listOfAllTerms={listOfAllTerms}
         tasksListVisi={tasksListVisi}
+        reloadCoverComponentFunc={reloadCoverComponentFunc}
       />
     </StyledDetailToolsWrap>
   );

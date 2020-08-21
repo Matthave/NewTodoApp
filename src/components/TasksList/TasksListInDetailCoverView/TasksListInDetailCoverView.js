@@ -169,16 +169,19 @@ function TasksListInDetailCoverView({
   subTaskNameOptionClicked,
 }) {
   return (
-    <StyledWrap>
-      <StyledListTitle>{listName}</StyledListTitle>
+    <StyledWrap className={"detailCoverClose"}>
+      <StyledListTitle className={"detailCoverClose"}>
+        {listName}
+      </StyledListTitle>
       <StyledGreyButton
+        className={"detailCoverClose"}
         marginTop0
         onClick={() => deleteTasksList(listName, taskId)}
       >
         Delete
       </StyledGreyButton>
-      <StyledBarWrap>
-        <StyledPerecntage>
+      <StyledBarWrap className={"detailCoverClose"}>
+        <StyledPerecntage className={"detailCoverClose"}>
           {totalOfSubTasks === 0
             ? "0%"
             : `${Math.floor(
@@ -187,8 +190,9 @@ function TasksListInDetailCoverView({
                   100
               )}%`}
         </StyledPerecntage>
-        <StyledBarContainer>
+        <StyledBarContainer className={"detailCoverClose"}>
           <StyledBarInner
+            className={"detailCoverClose"}
             style={{
               width: `${
                 (unActiveSubtasks /
@@ -202,10 +206,11 @@ function TasksListInDetailCoverView({
           />
         </StyledBarContainer>
       </StyledBarWrap>
-      <StyledTasksList>
+      <StyledTasksList className={"detailCoverClose"}>
         {subTasksList.map((ele) => (
-          <StyledSubTaskWrap key={ele.id}>
+          <StyledSubTaskWrap key={ele.id} className={"detailCoverClose"}>
             <StyledCheckedBox
+              className={"detailCoverClose"}
               style={{
                 backgroundColor: `${ele.active ? "#fff" : "#0079bf"}`,
                 border: `${
@@ -217,6 +222,7 @@ function TasksListInDetailCoverView({
               <StyledCheckIcon className="fas fa-check" />
             </StyledCheckedBox>
             <StyledSubTaskName
+              className={"detailCoverClose"}
               style={{
                 textDecoration: `${ele.active ? "initial" : "line-through"}`,
               }}
@@ -244,10 +250,14 @@ function TasksListInDetailCoverView({
       {subTaskToggleVisi ? (
         <>
           <StyledInput
+            className={"detailCoverClose"}
             onChange={(e) => subTaskInupChange(e)}
             value={subTaskInputValue}
           />
-          <StyledButton onClick={() => addSubTaskFunc()}>
+          <StyledButton
+            onClick={() => addSubTaskFunc()}
+            className={"detailCoverClose"}
+          >
             Add SubTask
           </StyledButton>
           <StyledWarnningSpan className="subTaskWarnSpan">
@@ -255,7 +265,10 @@ function TasksListInDetailCoverView({
           </StyledWarnningSpan>
         </>
       ) : (
-        <StyledGreyButton onClick={() => subTaskToggle()}>
+        <StyledGreyButton
+          onClick={() => subTaskToggle()}
+          className={"detailCoverClose"}
+        >
           Add Element
         </StyledGreyButton>
       )}

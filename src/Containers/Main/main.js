@@ -17,7 +17,6 @@ const Main = () => {
   const [taskName, setTaskName] = useState("");
   const [taskId, setTaskId] = useState("");
   const [idUpdatedList, setIdUpdatedList] = useState();
-  const [toggle, setToggle] = useState(false);
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
   const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
@@ -469,64 +468,6 @@ const Main = () => {
     });
   };
 
-  //LABLES FEATURES
-  const toggleLabelColorToCard = (color, taskId) => {
-    const alreadyExistedBadges = listOfAllBadges.filter(
-      (ele) => ele.id === taskId
-    );
-
-    const matchedBages = [];
-    alreadyExistedBadges.forEach((ele) => {
-      if (ele.color === color) {
-        matchedBages.push(color);
-      }
-    });
-
-    if (matchedBages.length === 0) {
-      //Add only if this color and Id don't exist already
-      const nameBadge = labelColors.filter((ele) => ele.color === color);
-      // const dataForClasses = color.slice(1, -1);
-
-      listOfAllBadges.push({
-        id: taskId,
-        color: color,
-        name: nameBadge[0].value,
-        labelId: `${color}${taskId}`,
-      });
-
-      createLabelsElement(color, taskId, nameBadge[0].value);
-
-      //CheckIcon Visible
-      const checkIcon = document.getElementById(`${color}Check`);
-      checkIcon.style.display = "block";
-      setToggle(!toggle);
-    } else {
-      const indexToDelete = listOfAllBadges.findIndex(
-        (ele) => ele.id === taskId && ele.color === color
-      );
-
-      //Delete from list of badges when exist and from DOM
-      listOfAllBadges.splice(indexToDelete, 1);
-      const matchedColor = document.getElementById(`${color}${taskId}`);
-      matchedColor.remove();
-
-      //CheckIcon Visible
-      const checkIcon = document.getElementById(`${color}Check`);
-      checkIcon.style.display = "none";
-      setToggle(!toggle);
-    }
-  };
-
-  const createLabelsElement = (color, taskId, nameLabel) => {
-    const currentTask = document.getElementById(taskId);
-    const newLabel = document.createElement("div");
-    newLabel.classList.add(`labelElement`);
-    newLabel.setAttribute("id", `${color}${taskId}`);
-    newLabel.style.backgroundColor = `${color}`;
-    newLabel.textContent = nameLabel;
-    currentTask.children[0].appendChild(newLabel);
-  };
-
   const addPriorityForCards = (e, cardId, byElement) => {
     if (!listOfAllPriorityTasks.includes(cardId)) {
       setListOfPriority([...listOfAllPriorityTasks, cardId]);
@@ -593,7 +534,6 @@ const Main = () => {
           taskName={taskName}
           updateCard={updateCard}
           deleteCard={deleteCard}
-          toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
@@ -618,7 +558,6 @@ const Main = () => {
           currentListId={idUpdatedList}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
-          toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           labelColors={labelColors}
           setLabelColors={setLabelColors}

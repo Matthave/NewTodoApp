@@ -11,6 +11,7 @@ class DetailCover extends React.Component {
     datePickerVisi: false,
     moveToInSuggestedVisi: false,
     tasksListVisi: false,
+    reloadDetalCoverCompState: false,
   };
 
   componentDidMount() {
@@ -18,10 +19,20 @@ class DetailCover extends React.Component {
       taskTitle: this.props.taskName,
     });
 
-    document.addEventListener("click", (e) =>
-      this.closeAllListsWindowsByListener(e)
+    document.addEventListener(
+      "click",
+      (e) => this.closeAllListsWindowsByListener(e),
+      false
     );
   }
+
+  componentWillUnmount = () => {
+    document.removeEventListener(
+      "click",
+      (e) => this.closeAllListsWindowsByListener(e),
+      false
+    );
+  };
 
   taskTitleFeature = (e) => {
     this.setState({
@@ -93,6 +104,8 @@ class DetailCover extends React.Component {
       copyCardVisi: false,
       labelVisi: false,
       datePickerVisi: false,
+      tasksListVisi: false,
+      moveToInSuggestedVisi: false,
     });
   };
 
@@ -100,6 +113,12 @@ class DetailCover extends React.Component {
     if (e.target.className.includes("detailCoverClose")) {
       this.closeAllListsWindowsFunc();
     }
+  };
+
+  reloadCoverComponentFunc = () => {
+    this.setState({
+      reloadDetalCoverCompState: !this.state.reloadDetalCoverCompState,
+    });
   };
 
   render() {
@@ -203,6 +222,7 @@ class DetailCover extends React.Component {
           closeAllListsWindowsFunc={this.closeAllListsWindowsFunc}
           setListOfallTerms={setListOfallTerms}
           listOfAllTerms={listOfAllTerms}
+          reloadCoverComponentFunc={this.reloadCoverComponentFunc}
         />
       </>
     );

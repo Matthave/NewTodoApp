@@ -150,6 +150,7 @@ const OptionCover = ({
   closeAllListsWindowsFunc,
   setListOfallTerms,
   listOfAllTerms,
+  reloadCoverComponentFunc,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -236,6 +237,7 @@ const OptionCover = ({
             labelColors={labelColors}
             setLabelColors={setLabelColors}
             optionCover={true}
+            reloadCoverComponentFunc={reloadCoverComponentFunc}
           />
         ) : null}
         {moveToAnotherListVisi ? (

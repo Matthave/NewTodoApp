@@ -172,7 +172,7 @@ function DetailCoverMarks({
               <div
                 key={ele.color}
                 id={`${ele.labelId}DetailCover`}
-                className={`labelElement_DetailCover detailCoverClose`}
+                className={`labelElement_DetailCover`}
                 style={{
                   backgroundColor: ele.color,
                   margin: "0px 5px 5px 0px",
@@ -196,7 +196,7 @@ function DetailCoverMarks({
       ) : (
         <>
           {matchedTerms.map((ele) => (
-            <StyledTermWrap key={ele.term} className="detailCoverClose">
+            <StyledTermWrap key={ele.term}>
               <StyledCheckedBox
                 className="detailCoverClose"
                 onClick={() => termDoneCheckbox(taskId)}
@@ -214,20 +214,18 @@ function DetailCoverMarks({
                 <StyledCheckIcon className="fas fa-check detailCoverClose" />
               </StyledCheckedBox>
               <StyledTerm
-                className="detailCoverClose"
                 onClick={() => toggleCurrentListVisiFunc("datePickerVisi")}
               >
                 {`${ele.day} ${ele.monthName} ${ele.year}`} at{" "}
                 {`${ele.hour}:${ele.minutes}`}
                 <StyledStatus
-                  className="detailCoverClose"
                   style={{
                     backgroundColor: ele.statusColor,
                     opacity: `${ele.statusColor === "#888" ? 0 : 1}`,
                   }}
                 >{`${ele.status}`}</StyledStatus>
                 <StyledIcon
-                  className="fas fa-chevron-down detailCoverClose"
+                  className="fas fa-chevron-down"
                   pointer
                   marginLeft
                 />

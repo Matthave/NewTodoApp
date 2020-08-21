@@ -124,6 +124,65 @@ class Labels extends Component {
     }
   };
 
+  //LABLES FEATURES
+  toggleLabelColorToCard = (color, taskId) => {
+    const { listOfAllBadges, labelColors, setLabelColors } = this.props;
+    const alreadyExistedBadges = listOfAllBadges.filter(
+      (ele) => ele.id === taskId
+    );
+
+    const matchedBages = [];
+    alreadyExistedBadges.forEach((ele) => {
+      if (ele.color === color) {
+        matchedBages.push(color);
+      }
+    });
+
+    if (matchedBages.length === 0) {
+      //Add only if this color and Id don't exist already
+      const nameBadge = labelColors.filter((ele) => ele.color === color);
+      // const dataForClasses = color.slice(1, -1);
+
+      listOfAllBadges.push({
+        id: taskId,
+        color: color,
+        name: nameBadge[0].value,
+        labelId: `${color}${taskId}`,
+      });
+
+      this.createLabelsElement(color, taskId, nameBadge[0].value);
+
+      //CheckIcon Visible
+      const checkIcon = document.getElementById(`${color}Check`);
+      checkIcon.style.display = "block";
+      this.props.reloadCoverComponentFunc();
+    } else {
+      const indexToDelete = listOfAllBadges.findIndex(
+        (ele) => ele.id === taskId && ele.color === color
+      );
+
+      //Delete from list of badges when exist and from DOM
+      listOfAllBadges.splice(indexToDelete, 1);
+      const matchedColor = document.getElementById(`${color}${taskId}`);
+      matchedColor.remove();
+
+      //CheckIcon Visible
+      const checkIcon = document.getElementById(`${color}Check`);
+      checkIcon.style.display = "none";
+      this.props.reloadCoverComponentFunc();
+    }
+  };
+
+  createLabelsElement = (color, taskId, nameLabel) => {
+    const currentTask = document.getElementById(taskId);
+    const newLabel = document.createElement("div");
+    newLabel.classList.add(`labelElement`);
+    newLabel.setAttribute("id", `${color}${taskId}`);
+    newLabel.style.backgroundColor = `${color}`;
+    newLabel.textContent = nameLabel;
+    currentTask.children[0].appendChild(newLabel);
+  };
+
   render() {
     const {
       toggleCurrentListVisiFunc,
@@ -131,7 +190,6 @@ class Labels extends Component {
       optionCover,
       addLabelColor,
       optionCoverData,
-      toggleLabelColorToCard,
       taskId,
       labelColors,
     } = this.props;
@@ -155,7 +213,7 @@ class Labels extends Component {
         colorNameWindowVisi={colorNameWindowVisi}
         addLabelColor={addLabelColor}
         optionCoverData={optionCoverData}
-        toggleLabelColorToCard={toggleLabelColorToCard}
+        toggleLabelColorToCard={this.toggleLabelColorToCard}
         taskId={taskId}
         generateCheckIcon={this.generateCheckIcon}
         searchLabelColor={this.searchLabelColor}
