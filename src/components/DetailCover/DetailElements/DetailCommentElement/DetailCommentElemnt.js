@@ -61,13 +61,13 @@ const StyledIcon = styled.span`
 
 function DetailCommentElemnt({
   listOfAllComments,
-  toggleCurrentListVisiFunc,
   editCommentToCard,
   commentChange,
   addCommentToCard,
   taskId,
   commentValue,
   commentVisi,
+  commentVisiToggleFunc,
 }) {
   return (
     <>
@@ -75,16 +75,16 @@ function DetailCommentElemnt({
         <StyledTextArea
           placeholder="Click to add more detailed comment..."
           className="input textArea"
-          onClick={() => toggleCurrentListVisiFunc("commentVisi")}
+          onClick={() => commentVisiToggleFunc()}
           onChange={(e) => commentChange(e)}
           onKeyPress={(e) => addCommentToCard(e, taskId, commentValue)}
           value={commentValue}
         />
       )}
       {commentVisi ? (
-        <StyledCommentOptionWrap className="detailCoverClose">
+        <StyledCommentOptionWrap>
           <StyledButton
-            className="commentBtn detailCoverClose"
+            className="commentBtn"
             onClick={(e) => addCommentToCard(e, taskId, commentValue)}
           >
             SAVE
@@ -92,15 +92,13 @@ function DetailCommentElemnt({
           <StyledIcon
             biggerSize
             pointer
-            className="far fa-times-circle detailCoverClose"
+            className="far fa-times-circle commentClose"
+            onClick={(e) => addCommentToCard(e, taskId, commentValue)}
           />
         </StyledCommentOptionWrap>
       ) : null}
       {listOfAllComments.map((ele) => (
-        <StyledComment
-          key={ele.id}
-          onClick={(e) => editCommentToCard(commentVisi)}
-        >
+        <StyledComment key={ele.id} onClick={() => editCommentToCard(taskId)}>
           {ele.comment}
         </StyledComment>
       ))}

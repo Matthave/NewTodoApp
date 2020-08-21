@@ -76,6 +76,7 @@ function DetailCoverView({
   listOfAllTerms,
   setListOfallTerms,
   reloadCoverComponentFunc,
+  commentVisiToggleFunc,
 }) {
   return (
     <StyledCover
@@ -142,6 +143,7 @@ function DetailCoverView({
           listOfAllTerms={listOfAllTerms}
           setListOfallTerms={setListOfallTerms}
           reloadCoverComponentFunc={reloadCoverComponentFunc}
+          commentVisiToggleFunc={commentVisiToggleFunc}
         />
       </StyledDetail>
     </StyledCover>

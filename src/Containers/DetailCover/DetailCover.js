@@ -42,12 +42,16 @@ class DetailCover extends React.Component {
   };
 
   commentChange = (e) => {
-    this.setState({ commentValue: e.target.value }); //Set input comment
+    this.setState({ commentValue: e.target.value, commentVisi: true }); //Set input comment
   };
 
   addCommentToCard = (e, taskId, comment) => {
     //Add comment by click and by Enter button, add comment to commentList and TextArea is disparing, Comment is generate
     // by list of matched comment in DetailCoverMarks Component
+    if (comment === "") {
+      return this.toggleCurrentListVisiFunc("commentVisi");
+    }
+
     if (e.target.className.includes("commentBtn") || e.which === 13) {
       this.props.setListOfAllComments([
         ...this.props.listOfAllComments,
@@ -58,16 +62,29 @@ class DetailCover extends React.Component {
       ]);
       this.toggleCurrentListVisiFunc("commentVisi");
     }
+
+    if (e.target.className.includes("commentClose")) {
+      this.setState({
+        commentVisi: false,
+        commentValue: "",
+      });
+    }
   };
 
-  editCommentToCard = (e, taskId) => {
+  editCommentToCard = (taskId) => {
     //Function that run when we want edit our comment - EditBtn is disapiring, textArea is appearing
+    const currentCommentValue = this.props.listOfAllComments.find(
+      (ele) => ele.id === taskId
+    );
+
     this.setState({
       commentVisi: true,
+      commentValue: currentCommentValue.comment,
     });
     const commentIndexToDelete = this.props.listOfAllComments.findIndex(
       (ele) => ele.id === taskId
     );
+
     this.props.listOfAllComments.splice(commentIndexToDelete, 1);
   };
 
@@ -122,6 +139,12 @@ class DetailCover extends React.Component {
   reloadCoverComponentFunc = () => {
     this.setState({
       reloadDetalCoverCompState: !this.state.reloadDetalCoverCompState,
+    });
+  };
+
+  commentVisiToggleFunc = () => {
+    this.setState({
+      commentVisi: true,
     });
   };
 
@@ -206,6 +229,7 @@ class DetailCover extends React.Component {
           commentVisi={commentVisi}
           commentChange={this.commentChange}
           commentValue={commentValue}
+          commentVisiToggleFunc={this.commentVisiToggleFunc}
           addCommentToCard={this.addCommentToCard}
           listOfAllComments={matchedComments}
           editCommentToCard={this.editCommentToCard}

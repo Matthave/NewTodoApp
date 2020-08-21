@@ -53,6 +53,7 @@ function DetailTools({
   setListOfallTerms,
   listOfAllTerms,
   reloadCoverComponentFunc,
+  commentVisiToggleFunc,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -73,6 +74,7 @@ function DetailTools({
         currentListId={currentListId}
         toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
         closeAllListsWindowsFunc={closeAllListsWindowsFunc}
+        commentVisiToggleFunc={commentVisiToggleFunc}
       />
       <DetailCoverNav
         labelVisi={labelVisi}

@@ -120,6 +120,7 @@ function DetailCoverMarks({
   toggleCurrentListVisiFunc,
   closeAllListsWindowsFunc,
   tasksListVisi,
+  commentVisiToggleFunc,
 }) {
   return (
     <StyledDetailMarks className="detailCoverClose">
@@ -218,7 +219,6 @@ function DetailCoverMarks({
             taskId={taskId}
             unActiveSubtasks={ele.unActiveSubtasks}
             totalOfSubTasks={ele.totalOfSubTasks}
-            toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
             closeAllListsWindowsFunc={closeAllListsWindowsFunc}
             tasksListVisi={tasksListVisi}
             addNewCard={addNewCard}
@@ -234,7 +234,6 @@ function DetailCoverMarks({
             greyBgc
             marginLeft
             hoverBgc
-            className="detailCoverClose"
             style={{
               color: `${
                 listOfAllComments.length !== 0 ? "#42516e" : "rgba(0,0,0,0)"
@@ -247,7 +246,7 @@ function DetailCoverMarks({
               }`,
               marginLeft: `${listOfAllComments.length !== 0 ? "6px" : "50px"}`,
             }}
-            onClick={(e) => editCommentToCard(commentVisi)}
+            onClick={() => editCommentToCard(taskId)}
           >
             Edit
           </StyledButton>
@@ -261,6 +260,7 @@ function DetailCoverMarks({
           taskId={taskId}
           commentValue={commentValue}
           commentVisi={commentVisi}
+          commentVisiToggleFunc={commentVisiToggleFunc}
         />
       </StyledDetailDescription>
     </StyledDetailMarks>
