@@ -126,7 +126,7 @@ class Labels extends Component {
 
   //LABLES FEATURES
   toggleLabelColorToCard = (color, taskId) => {
-    const { listOfAllBadges, labelColors, setLabelColors } = this.props;
+    const { listOfAllBadges, labelColors } = this.props;
     const alreadyExistedBadges = listOfAllBadges.filter(
       (ele) => ele.id === taskId
     );

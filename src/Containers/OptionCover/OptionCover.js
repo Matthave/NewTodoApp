@@ -18,6 +18,31 @@ class OptionCover extends Component {
     });
   }
 
+  addPriorityForCards = (e, cardId, byElement) => {
+    const { listOfAllPriorityTasks, setListOfPriority } = this.props;
+    if (!listOfAllPriorityTasks.includes(cardId)) {
+      setListOfPriority([...listOfAllPriorityTasks, cardId]);
+      const clickedCardDOM = document.getElementById(cardId);
+      clickedCardDOM.style.border = "1px solid #db4a36";
+      e.target.style.color = "#db4a36";
+      e.target.children[0].style.color = "#db4a36";
+    } else if (listOfAllPriorityTasks.includes(cardId)) {
+      const indexToDelete = listOfAllPriorityTasks.findIndex(
+        (ele) => ele === cardId
+      );
+      listOfAllPriorityTasks.splice(indexToDelete, 1);
+      const clickedCardDOM = document.getElementById(cardId);
+      clickedCardDOM.style.border = null;
+      if (byElement === "detailCover") {
+        e.target.style.color = "#42516e";
+        e.target.children[0].style.color = "#42516e";
+      } else {
+        e.target.style.color = "#fff";
+        e.target.children[0].style.color = "#fff";
+      }
+    }
+  };
+
   setOptionCoverPostion = (taskData) => {
     const mainOffsetTop = document.querySelector(".main").offsetTop;
     const coverBox = document.querySelector(".cover_box");
@@ -79,7 +104,6 @@ class OptionCover extends Component {
       listOfAllTasksId,
       labelColors,
       setLabelColors,
-      addPriorityForCards,
       wholeList,
       moveCardToAnotherList,
       listOfAllPriorityTasks,
@@ -87,7 +111,9 @@ class OptionCover extends Component {
       toggleTermToCard,
       listOfAllTerms,
       listOfAllTasksList,
+      listOfAllComments,
       setListOfallTerms,
+      addNewCard,
     } = this.props;
 
     const {
@@ -140,7 +166,7 @@ class OptionCover extends Component {
           matchedColorsToThisCard={matchedColorsToThisCard}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
-          addPriorityForCards={addPriorityForCards}
+          addPriorityForCards={this.addPriorityForCards}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           matchedPriority={matchedPriority}
@@ -159,7 +185,9 @@ class OptionCover extends Component {
           copyCardVisi={copyCardVisi}
           setListOfallTerms={setListOfallTerms}
           listOfAllTerms={listOfAllTerms}
+          listOfAllComments={listOfAllComments}
           reloadCoverComponentFunc={this.reloadCoverComponentFunc}
+          addNewCard={addNewCard}
         />
       </>
     );

@@ -127,6 +127,7 @@ class DetailCover extends React.Component {
       tasksListVisi: false,
       moveToInSuggestedVisi: false,
       commentVisi: false,
+      commentValue: "",
     });
   };
 
@@ -148,6 +149,31 @@ class DetailCover extends React.Component {
     });
   };
 
+  addPriorityForCards = (e, cardId, byElement) => {
+    const { listOfAllPriorityTasks, setListOfPriority } = this.props;
+    if (!listOfAllPriorityTasks.includes(cardId)) {
+      setListOfPriority([...listOfAllPriorityTasks, cardId]);
+      const clickedCardDOM = document.getElementById(cardId);
+      clickedCardDOM.style.border = "1px solid #db4a36";
+      e.target.style.color = "#db4a36";
+      e.target.children[0].style.color = "#db4a36";
+    } else if (listOfAllPriorityTasks.includes(cardId)) {
+      const indexToDelete = listOfAllPriorityTasks.findIndex(
+        (ele) => ele === cardId
+      );
+      listOfAllPriorityTasks.splice(indexToDelete, 1);
+      const clickedCardDOM = document.getElementById(cardId);
+      clickedCardDOM.style.border = null;
+      if (byElement === "detailCover") {
+        e.target.style.color = "#42516e";
+        e.target.children[0].style.color = "#42516e";
+      } else {
+        e.target.style.color = "#fff";
+        e.target.children[0].style.color = "#fff";
+      }
+    }
+  };
+
   render() {
     const {
       taskId,
@@ -163,7 +189,6 @@ class DetailCover extends React.Component {
       labelColors,
       setLabelColors,
       listOfAllTasksId,
-      addPriorityForCards,
       listOfAllComments,
       listOfAllPriorityTasks,
       listOfAllTerms,
@@ -225,7 +250,7 @@ class DetailCover extends React.Component {
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
-          addPriorityForCards={addPriorityForCards}
+          addPriorityForCards={this.addPriorityForCards}
           commentVisi={commentVisi}
           commentChange={this.commentChange}
           commentValue={commentValue}

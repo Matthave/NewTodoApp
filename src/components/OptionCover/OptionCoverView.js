@@ -151,6 +151,8 @@ const OptionCover = ({
   setListOfallTerms,
   listOfAllTerms,
   reloadCoverComponentFunc,
+  listOfAllComments,
+  addNewCard,
 }) => {
   return (
     <StyledCover className="coverOption">
@@ -260,6 +262,11 @@ const OptionCover = ({
             taskId={optionCoverData[0].clickedCardId}
             currentListId={optionCoverData[0].listId}
             optionCover={true}
+            listOfAllBadges={listOfAllBadges}
+            listOfAllTerms={listOfAllTerms}
+            listOfAllComments={listOfAllComments}
+            listOfAllTasksId={listOfAllTasksId}
+            addNewCard={addNewCard}
           />
         ) : null}
         {datePickerVisi ? (

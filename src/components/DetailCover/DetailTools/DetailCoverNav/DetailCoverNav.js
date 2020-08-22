@@ -80,8 +80,10 @@ function DetailCoverNav({
   copyCardVisi,
   toggleCurrentListVisiFunc,
   listOfAllTerms,
+  listOfAllComments,
   setListOfallTerms,
   reloadCoverComponentFunc,
+  addNewCard,
 }) {
   return (
     <StyledDetailNav>
@@ -177,6 +179,11 @@ function DetailCoverNav({
           taskTitle={taskTitle}
           taskId={taskId}
           currentListId={currentListId}
+          listOfAllBadges={listOfAllBadges}
+          listOfAllTerms={listOfAllTerms}
+          listOfAllComments={listOfAllComments}
+          listOfAllTasksId={listOfAllTasksId}
+          addNewCard={addNewCard}
         />
       ) : null}
       {datePickerVisi ? (

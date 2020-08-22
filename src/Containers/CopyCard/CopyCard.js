@@ -4,7 +4,7 @@ import CopyCardView from "../../components/CopyCard/CopyCardView";
 class CopyCard extends Component {
   state = {
     copyTextArea: "",
-    canCopyLabels: true,
+    copyLabelsAllow: true,
   };
 
   componentDidMount() {
@@ -20,28 +20,91 @@ class CopyCard extends Component {
     });
   };
 
+  copyCard = (preventCardId, listId, copyLabelsAllow) => {
+    const {
+      listOfAllComments,
+      listOfAllTasksId,
+      listOfAllBadges,
+      listOfAllTerms,
+      addNewCard,
+    } = this.props;
+    const lablesToCopy = listOfAllBadges.filter(
+      (ele) => ele.id === preventCardId
+    );
+
+    const commentToCopy = listOfAllComments.filter(
+      (ele) => ele.id === preventCardId
+    );
+
+    const newId = Math.max(...listOfAllTasksId) + 1;
+    listOfAllTasksId.push(newId);
+
+    const dateToCopy = listOfAllTerms.filter((ele) => ele.id === preventCardId);
+
+    if (lablesToCopy.length !== 0 && copyLabelsAllow) {
+      lablesToCopy.forEach((ele) => {
+        listOfAllBadges.push({
+          id: String(newId),
+          color: ele.color,
+          labelId: `${ele.color}${newId}`,
+          name: ele.name,
+        });
+      });
+    }
+
+    if (commentToCopy.length !== 0) {
+      listOfAllComments.push({
+        id: String(newId),
+        comment: commentToCopy[0].comment,
+      });
+    }
+
+    if (dateToCopy.length !== 0) {
+      listOfAllTerms.push({
+        id: String(newId),
+        term: dateToCopy[0].term,
+        classN: "termSpan",
+        day: dateToCopy[0].day,
+        month: dateToCopy[0].month,
+        year: dateToCopy[0].year,
+        monthName: dateToCopy[0].monthName,
+        hour: dateToCopy[0].hour,
+        minutes: dateToCopy[0].minutes,
+        status: dateToCopy[0].status,
+        statusColor: dateToCopy[0].statusColor,
+        fontColor: dateToCopy[0].fontColor,
+        beforeDoneState: dateToCopy[0].beforeDoneState,
+      });
+    }
+
+    addNewCard(listId, this.state.copyTextArea, String(newId));
+  };
+
   render() {
     const {
       matchedColorsToThisCard,
       wholeList,
       taskId,
+      taskTitle,
       currentListId,
       optionCover,
       toggleCurrentListVisiFunc,
     } = this.props;
-    const { copyTextArea, canCopyLabels } = this.state;
+    const { copyTextArea, copyLabelsAllow } = this.state;
     return (
       <CopyCardView
         changeCopyTextArea={this.changeCopyTextArea}
         copyTextArea={copyTextArea}
         matchedColorsToThisCard={matchedColorsToThisCard}
         toggleCanCopyLables={this.toggleCanCopyLables}
-        canCopyLabels={canCopyLabels}
+        copyLabelsAllow={copyLabelsAllow}
         wholeList={wholeList}
         taskId={taskId}
+        taskTitle={taskTitle}
         currentListId={currentListId}
         optionCover={optionCover}
         toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+        copyCard={this.copyCard}
       />
     );
   }

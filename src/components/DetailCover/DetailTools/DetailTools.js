@@ -102,8 +102,10 @@ function DetailTools({
         copyCardVisi={copyCardVisi}
         setListOfallTerms={setListOfallTerms}
         listOfAllTerms={listOfAllTerms}
+        listOfAllComments={listOfAllComments}
         tasksListVisi={tasksListVisi}
         reloadCoverComponentFunc={reloadCoverComponentFunc}
+        addNewCard={addNewCard}
       />
     </StyledDetailToolsWrap>
   );

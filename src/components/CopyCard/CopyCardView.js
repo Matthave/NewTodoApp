@@ -138,12 +138,14 @@ function CopyCardView({
   copyTextArea,
   matchedColorsToThisCard,
   toggleCanCopyLables,
-  canCopyLabels,
+  copyLabelsAllow,
   wholeList,
   optionCover,
   toggleCurrentListVisiFunc,
   taskId,
+  taskTitle,
   currentListId,
+  copyCard,
 }) {
   return (
     <StyledCopyWrap optionCoverPosition={optionCover}>
@@ -155,32 +157,33 @@ function CopyCardView({
           onClick={() => toggleCurrentListVisiFunc("copyCardVisi")}
         />
       </StyledLabelTitle>
-      <StyledReplaceTitle className="suggested">Title</StyledReplaceTitle>
+      <StyledReplaceTitle>Title</StyledReplaceTitle>
       <StyledTextArea
-        className="suggested"
         onChange={(e) => changeCopyTextArea(e)}
         value={copyTextArea}
       />
       <StyledReplaceTitle className="suggested">Keep...</StyledReplaceTitle>
       <StyledCheckedBox
-        className="suggested"
         onClick={() => toggleCanCopyLables()}
         style={{
-          backgroundColor: `${canCopyLabels ? "#0079bf" : "#fff"}`,
-          border: `${canCopyLabels ? "2px solid #0079bf" : "2px solid #aaa"}`,
+          backgroundColor: `${copyLabelsAllow ? "#0079bf" : "#fff"}`,
+          border: `${copyLabelsAllow ? "2px solid #0079bf" : "2px solid #aaa"}`,
         }}
       >
-        <StyledCheckIcon className="fas fa-check suggested" />
+        <StyledCheckIcon className="fas fa-check" />
       </StyledCheckedBox>
-      <StyledCheckBoxTitle className="suggested">
+      <StyledCheckBoxTitle>
         Labels ({matchedColorsToThisCard.length})
       </StyledCheckBoxTitle>
-      <StyledReplaceTitle className="suggested">
+      <StyledReplaceTitle>
         <StyledIcon className="fas fa-map-marker" />
         Copy to...
       </StyledReplaceTitle>
       {wholeList.map((list) => (
-        <StyledSuggestList className="suggested" key={list.id}>
+        <StyledSuggestList
+          key={list.id}
+          onClick={() => copyCard(taskId, list.id, copyLabelsAllow)}
+        >
           <StyledIcon biggerFont className="fas fa-long-arrow-alt-left" />
           {list.title}
         </StyledSuggestList>

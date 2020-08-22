@@ -394,58 +394,6 @@ const Main = () => {
     deleteCard(listIdToDelte, taskId);
   };
 
-  // const copyCard = (
-  //   listId,
-  //   taskTitle,
-  //   copyId,
-  //   preventCardId,
-  //   canCopyLabels
-  // ) => {
-  //   const lablesToCopy = listOfAllBadges.filter(
-  //     (ele) => ele.id === preventCardId
-  //   );
-  //   const commentToCopy = listOfAllComments.filter(
-  //     (ele) => ele.id === preventCardId
-  //   );
-
-  //   const dateToCopy = listOfAllTerms.filter((ele) => ele.id === preventCardId);
-
-  //   if (lablesToCopy.length !== 0 && canCopyLabels) {
-  //     lablesToCopy.forEach((ele) => {
-  //       listOfAllBadges.push({
-  //         id: copyId,
-  //         color: ele.color,
-  //         labelId: `${ele.color}${copyId}`,
-  //         name: ele.name,
-  //       });
-  //     });
-  //   }
-
-  //   if (commentToCopy.length !== 0) {
-  //     listOfAllComments.push({ id: copyId, comment: commentToCopy[0].comment });
-  //   }
-
-  //   if (dateToCopy.length !== 0) {
-  //     listOfAllTerms.push({
-  //       id: copyId,
-  //       term: dateToCopy[0].term,
-  //       classN: "termSpan",
-  //       day: dateToCopy[0].day,
-  //       month: dateToCopy[0].month,
-  //       year: dateToCopy[0].year,
-  //       monthName: dateToCopy[0].monthName,
-  //       hour: dateToCopy[0].hour,
-  //       minutes: dateToCopy[0].minutes,
-  //       status: dateToCopy[0].status,
-  //       statusColor: dateToCopy[0].statusColor,
-  //       fontColor: dateToCopy[0].fontColor,
-  //       beforeDoneState: dateToCopy[0].beforeDoneState,
-  //     });
-  //   }
-
-  //   addNewCard(listId, taskTitle, copyId);
-  // };
-
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
     const copy = [...wholeList];
     const splicedElement = copy.splice(draggedListIndex, 1);
@@ -462,30 +410,6 @@ const Main = () => {
       blank.style.backgroundColor = "transparent";
       blank.style.borderRadius = "0";
     });
-  };
-
-  const addPriorityForCards = (e, cardId, byElement) => {
-    if (!listOfAllPriorityTasks.includes(cardId)) {
-      setListOfPriority([...listOfAllPriorityTasks, cardId]);
-      const clickedCardDOM = document.getElementById(cardId);
-      clickedCardDOM.style.border = "1px solid #db4a36";
-      e.target.style.color = "#db4a36";
-      e.target.children[0].style.color = "#db4a36";
-    } else if (listOfAllPriorityTasks.includes(cardId)) {
-      const indexToDelete = listOfAllPriorityTasks.findIndex(
-        (ele) => ele === cardId
-      );
-      listOfAllPriorityTasks.splice(indexToDelete, 1);
-      const clickedCardDOM = document.getElementById(cardId);
-      clickedCardDOM.style.border = null;
-      if (byElement === "detailCover") {
-        e.target.style.color = "#42516e";
-        e.target.children[0].style.color = "#42516e";
-      } else {
-        e.target.style.color = "#fff";
-        e.target.children[0].style.color = "#fff";
-      }
-    }
   };
 
   const toggleTasksListVisibility = (toggle) => {
@@ -530,13 +454,15 @@ const Main = () => {
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
           setLabelColors={setLabelColors}
-          addPriorityForCards={addPriorityForCards}
+          setListOfPriority={setListOfPriority}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           listOfAllTerms={listOfAllTerms}
           listOfAllTasksList={listOfAllTasksList}
+          listOfAllComments={listOfAllComments}
           setListOfallTerms={setListOfallTerms}
+          addNewCard={addNewCard}
         />
       ) : null}
       {visibilityTaskDetails ? (
@@ -554,11 +480,11 @@ const Main = () => {
           labelColors={labelColors}
           setLabelColors={setLabelColors}
           listOfAllTasksId={listOfAllTasksId}
-          addPriorityForCards={addPriorityForCards}
           listOfAllComments={listOfAllComments}
           setListOfAllComments={setListOfAllComments}
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           listOfAllTerms={listOfAllTerms}
+          setListOfPriority={setListOfPriority}
           setTasksListVisibility={toggleTasksListVisibility}
           tasksListVisibility={tasksListVisibility}
           setListOfTasksList={setListOfTasksList}
