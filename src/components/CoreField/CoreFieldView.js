@@ -16,7 +16,7 @@ const StyledListInput = styled.input`
   width: 265px;
   background-color: #76ce8e;
   border-radius: 4px;
-  padding: 12px 7.5px;
+  padding: 11px 7.5px;
   text-align: left;
   cursor: pointer;
   transition: 0.1s linear;
@@ -50,10 +50,11 @@ const StyledWrapList = styled.div`
 const StyledButton = styled.button`
   align-self: flex-start;
   width: 50%;
+  height: 30px;
+  line-height: 30px;
   background-color: #5aac44;
   border-radius: 5px;
   color: white;
-  padding: 8px 20px;
   margin-top: 5px;
   cursor: pointer;
 
@@ -68,6 +69,7 @@ const StyledWrapAddListBtn = styled.div`
   align-items: center;
   align-self: flex-start;
   width: 275px;
+  max-height: 84.2px;
   border-radius: 4px;
   padding: 0px 5px 5px 5px;
   margin-right: 125px;
