@@ -10,6 +10,7 @@ const StyledMain = styled.main`
   background-color: #4bbf6b;
   padding: 40px 6px 0px 6px;
   overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 const StyledListInput = styled.input`

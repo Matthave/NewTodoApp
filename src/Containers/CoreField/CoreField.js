@@ -50,8 +50,10 @@ const MainField = ({
   };
 
   const scroll = (e) => {
-    const scrollPosition = e.target.scrollLeft;
-    updatedScrollPosition(scrollPosition);
+    if (!e.target.className.includes("lists")) {
+      const scrollPosition = e.target.scrollLeft;
+      updatedScrollPosition(scrollPosition);
+    }
   };
 
   const mousePositionX = (e) => {

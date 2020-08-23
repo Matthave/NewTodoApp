@@ -8,7 +8,6 @@ const StyledMoveListWrap = styled.div`
   top: 43px;
   left: 230px;
   width: 280px;
-  height: 200px;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0px 0.5px 0px 0.5px #aaa;
@@ -37,13 +36,7 @@ const StyledTitle = styled.h3`
 
 const StyledAvailableList = styled.div`
   width: 100%;
-  max-height: 230px;
   margin: 10px auto;
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    width: 0;
-  }
 `;
 
 const StyledNameList = styled.h4`

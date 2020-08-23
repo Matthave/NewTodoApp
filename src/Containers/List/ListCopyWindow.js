@@ -26,7 +26,7 @@ class ListCopyWindow extends Component {
     }
     const currentList = wholeList.filter((ele) => ele.id === listId);
 
-    copyNewList(currentList[0].tasks, listId, this.state.textAreaValue);
+    copyNewList(currentList[0].tasks, this.state.textAreaValue);
     copyListVisibility();
   };
 

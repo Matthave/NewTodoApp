@@ -24,6 +24,8 @@ const Main = () => {
   const [listOfAllTasksList, setListOfTasksList] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [tasksListVisibility, setTasksListVisibility] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
     document.addEventListener("click", hideTheme);
   });
@@ -133,22 +135,44 @@ const Main = () => {
     if (byButton === "byButton") {
       //Delete Card Badges from array if matched exist also other matched lists
       const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
-      const matchedPriorityIndex = listOfAllPriorityTasks.findIndex(
+      const matchedPriority = listOfAllPriorityTasks.filter(
         (ele) => ele === taskId
       );
-      const matchedCommentIndex = listOfAllComments.findIndex(
+      const matchedComment = listOfAllComments.filter(
         (ele) => ele.id === taskId
       );
-      const matchedTermIndex = listOfAllTerms.findIndex(
-        (ele) => ele === taskId
-      );
+      const matchedTerms = listOfAllTerms.filter((ele) => ele.id === taskId);
       const matchedTasksList = listOfAllTasksList.filter(
         (ele) => ele.id === taskId
       );
 
-      listOfAllPriorityTasks.splice(matchedPriorityIndex, 1);
-      listOfAllComments.splice(matchedCommentIndex, 1);
-      listOfAllTerms.splice(matchedTermIndex, 1);
+      if (matchedPriority.length !== 0) {
+        matchedPriority.forEach((element) => {
+          const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
+            (ele) => ele === taskId
+          );
+          listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
+        });
+      }
+
+      if (matchedComment.length !== 0) {
+        matchedComment.forEach((element) => {
+          const indexOfCommentToDelete = listOfAllComments.findIndex(
+            (ele) => ele.id === taskId
+          );
+          listOfAllComments.splice(indexOfCommentToDelete, 1);
+        });
+      }
+
+      if (matchedTerms.length !== 0) {
+        matchedTerms.forEach((element) => {
+          const indexOfTermToDelete = listOfAllTerms.findIndex(
+            (ele) => ele.id === taskId
+          );
+          listOfAllTerms.splice(indexOfTermToDelete, 1);
+        });
+      }
+
       if (matchedBadges.length !== 0) {
         matchedBadges.forEach((element) => {
           const indexOfBadgedToDelete = listOfAllBadges.findIndex(
@@ -196,13 +220,13 @@ const Main = () => {
       ...wholeList,
       {
         title: listInputValue,
-        id: `${wholeList.length === 0 ? 0 : theBiggest + 1}`,
+        id: Number(`${wholeList.length === 0 ? 0 : theBiggest + 1}`),
         tasks: [],
       },
     ]);
   };
 
-  const copyNewList = (tasksToCopy, listId, listNewName) => {
+  const copyNewList = (tasksToCopy, listNewName) => {
     const tasksToCopyArr = [...tasksToCopy];
     //Copy pure List, without tasks
     let biggerThanLast = [];
@@ -215,18 +239,19 @@ const Main = () => {
       tasks: [],
     });
 
+    //Find proper list for change tasks id
+    const listIndex = wholeList.findIndex((list) => list.id === newId);
     //Add preview tasks to newList (tasks have wrong id now)
     tasksToCopyArr.forEach((ele) => {
       addNewCard(newId, ele.taskName, ele.id);
     });
-
     //Change tasks id to correct, also other parameters
     const theBiggestId = Math.max(...listOfAllTasksId);
-    wholeList[newId].tasks.forEach((ele, index) => {
+    wholeList[listIndex].tasks.forEach((ele, index) => {
       const newIdForCard = String(theBiggestId + (index + 1)); //Calculate new unique id
       ele.id = newIdForCard;
 
-      listOfAllTasksId.push(newIdForCard); // Add id to listOfId
+      listOfAllTasksId.push(Number(newIdForCard)); // Add id to listOfId
 
       if (ele.badges.length !== 0) {
         ele.badges.forEach((badge) => {
@@ -246,6 +271,9 @@ const Main = () => {
         }); // Add proper comment, with new uniqe Id
       }
 
+      if (ele.priority === "priority")
+        listOfAllPriorityTasks.push(String(newIdForCard));
+
       if (ele.date.length !== 0) {
         listOfAllTerms.push({
           id: newIdForCard,
@@ -264,6 +292,8 @@ const Main = () => {
         });
       } // Add proper term, with new uniqe Id
     });
+    console.log(listOfAllTasksId);
+    setRefresh(!refresh);
   };
 
   const updateListTitle = (newTitle, listId) => {

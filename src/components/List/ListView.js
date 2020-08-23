@@ -149,7 +149,7 @@ function ListView({
         <ListMoveCardsWindow
           wholeList={wholeList}
           listId={id}
-          addNewCardFeature={addNewCardFeature}
+          tasks={tasks}
           moveCardToAnotherList={moveCardToAnotherList}
         />
       ) : null}
