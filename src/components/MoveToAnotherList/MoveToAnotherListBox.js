@@ -74,11 +74,11 @@ function MoveToAnotherListBox({
 }) {
   return (
     <StyledChangeListDetails
-      className="replaceCard suggested"
+      className="replaceCard"
       rightPosition={optionCover}
       topPosition={optionCover}
     >
-      <StyledReplaceTitle border alignCenter biggerMargin className="suggested">
+      <StyledReplaceTitle border alignCenter biggerMargin>
         Replace Card
         <span
           className="fas fa-times"
@@ -94,13 +94,13 @@ function MoveToAnotherListBox({
         ></span>
       </StyledReplaceTitle>
       <>
-        <StyledReplaceTitle className="suggested">
+        <StyledReplaceTitle>
           <StyledIcon className="fas fa-map-marker" />
           Suggested
         </StyledReplaceTitle>
         {wholeList.map((list) => (
           <StyledSuggestList
-            className="suggested"
+            className="suggestedListToMove"
             onClick={() =>
               moveCardToAnotherList(taskId, taskTitle, list.id, currentListId)
             }

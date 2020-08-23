@@ -20,7 +20,8 @@ const StyledCover = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
 
   &::-webkit-scrollbar {
-    height: 20px;
+    height: 17.5px;
+    width: 0px;
     position: relative;
     z-index: 999;
   }
@@ -157,7 +158,7 @@ const OptionCover = ({
   return (
     <StyledCover className="coverOption">
       <StyledOptionBox className="cover_box">
-        <StyledWrapTextAndLabels>
+        <StyledWrapTextAndLabels className="cover_box">
           <StyledWrapLabels className="coverOption_wrapLabel">
             {matchedColorsToThisCard.map((ele) => (
               <div

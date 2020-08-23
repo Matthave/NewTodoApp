@@ -84,6 +84,7 @@ const StyledCheckBoxTitle = styled.span`
 const StyledSuggestList = styled.div`
   width: 100%;
   max-width: 275px;
+  align-self: flex-start;
   word-break: break-all;
   margin: 0 auto;
   margin-bottom: 7px;

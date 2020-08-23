@@ -30,7 +30,7 @@ const StyledListInput = styled.input`
   &:focus {
     background-color: #fff !important;
     ::placeholder {
-      color: black;
+      color: #888;
     }
   }
 `;
@@ -70,6 +70,7 @@ const StyledWrapAddListBtn = styled.div`
   width: 275px;
   border-radius: 4px;
   padding: 0px 5px 5px 5px;
+  margin-right: 125px;
   padding-top: ${(props) => (props.bgc ? "5px" : "0px")};
   background-color: ${(props) => (props.bgc ? "#ebecf0" : "transparent")};
   transition: 0.1s linear;

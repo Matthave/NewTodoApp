@@ -21,6 +21,7 @@ function DetailSuggestedElement({
   wholeList,
   moveCardToAnotherList,
   taskId,
+  currentListId,
 }) {
   return (
     <StyledLightText>
@@ -39,6 +40,7 @@ function DetailSuggestedElement({
           taskId={taskId}
           taskTitleList={taskTitleList}
           toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          currentListId={currentListId}
           moveToInSuggestedVisi={"moveToInSuggestedVisi"}
         />
       ) : null}

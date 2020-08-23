@@ -103,6 +103,7 @@ function DetailCoverView({
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           taskId={taskId}
+          currentListId={currentListId}
         />
         <DetailTools
           labelVisi={labelVisi}

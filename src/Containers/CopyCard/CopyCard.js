@@ -78,6 +78,7 @@ class CopyCard extends Component {
     }
 
     addNewCard(listId, this.state.copyTextArea, String(newId));
+    this.props.toggleCurrentListVisiFunc("copyCardVisi");
   };
 
   render() {

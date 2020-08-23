@@ -39,6 +39,7 @@ const MainField = ({
     if (e.which === 13 && showList) {
       addNewList(listInputValue);
       showListHandle(true);
+      setListInput("");
     }
   };
 

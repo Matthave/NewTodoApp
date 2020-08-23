@@ -8,7 +8,6 @@ import Color from "color";
 
 const Main = () => {
   const [showThemeOption, showThemeOptionFunction] = useState(false);
-  const [numberOfTask, numberOfTaskFunction] = useState(0);
   const [whichColor, setWhichColor] = useState(["#76ce8e"]);
   const [visibilityOptionsCover, setVisibilityOptionCover] = useState(false);
   const [optionCoverData, setOptionCoverData] = useState("");
@@ -127,7 +126,7 @@ const Main = () => {
         setListOfAllTasksId([...listOfAllTasksId, theBiggestId + 1]);
       }
     }
-    numberOfTaskFunction(numberOfTask + 1);
+    setListOfAllBadges(listOfAllBadges);
   };
 
   const deleteCard = (listId, taskId, byButton) => {
@@ -181,15 +180,14 @@ const Main = () => {
       (element) => element.id === taskId
     );
     correctList[0].tasks.splice(taskIndex, 1);
-
-    numberOfTaskFunction(numberOfTask - 1);
     setVisibilityOptionCover(false);
     setVisibilityTaskDetails(false);
   };
 
   const addNewList = (listInputValue) => {
     if (listInputValue === "") return;
-    if (listInputValue.length < 2) return;
+    if (listInputValue.length < 1) return;
+    if (wholeList.length === 10) return;
 
     let biggerThanLast = [];
     wholeList.forEach((list) => biggerThanLast.push(list.id));
@@ -356,15 +354,14 @@ const Main = () => {
       correctList[0].tasks[index].taskName = updatedTitle;
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
+      return;
     }
 
-    // For changing taskName by detailCover component without closing this componentView
     if (
-      !e.target.className.includes("input") &&
-      !e.target.className.includes("suggested") &&
+      // For changing taskName by detailCover component without closing this componentView
       !e.target.className.includes("close") &&
-      !e.target.className.includes("delete") &&
-      !e.target.className.includes("cover_textArea")
+      !e.target.className.includes("suggestedListToMove") &&
+      !e.which
     ) {
       const correctList = wholeList.filter((list) => list.id === listId);
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
@@ -374,6 +371,7 @@ const Main = () => {
         );
         correctList[0].tasks[index].taskName = updatedTitle;
         setTaskName(updatedTitle);
+        return;
       }
     }
 
