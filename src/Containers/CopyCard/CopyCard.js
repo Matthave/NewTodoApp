@@ -16,7 +16,7 @@ class CopyCard extends Component {
 
   toggleCanCopyLables = () => {
     this.setState({
-      canCopyLabels: !this.state.canCopyLabels,
+      copyLabelsAllow: !this.state.copyLabelsAllow,
     });
   };
 

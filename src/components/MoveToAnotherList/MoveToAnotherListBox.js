@@ -13,6 +13,7 @@ const StyledChangeListDetails = styled.div`
   border-radius: 3px;
   padding: 10px;
   margin-bottom: 17.5px;
+  z-index: 999;
 `;
 
 const StyledReplaceTitle = styled.h3`

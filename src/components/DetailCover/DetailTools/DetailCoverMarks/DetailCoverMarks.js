@@ -92,6 +92,7 @@ const StyledCheckedBox = styled.span`
   color: white;
   cursor: pointer;
   transition: 0.1s linear;
+  z-index: 0;
 `;
 
 const StyledCheckIcon = styled.span`

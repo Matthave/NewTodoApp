@@ -54,10 +54,11 @@ const StyledThemeDiv = styled.div`
 
 function ThemeFieldView({ themeOption, changeColor, blockOfColors }) {
   return (
-    <StyledThemeDiv showTheme={themeOption}>
-      <StyledThemeDivTitle>Colors</StyledThemeDivTitle>
+    <StyledThemeDiv showTheme={themeOption} className="theme">
+      <StyledThemeDivTitle className="theme">Colors</StyledThemeDivTitle>
       {blockOfColors.map((block) => (
         <StyledColorDiv
+          className="theme"
           onClick={() =>
             changeColor(
               block.mainColor,

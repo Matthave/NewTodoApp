@@ -32,7 +32,9 @@ function NavListView({
       onMouseLeave={(e) => elementHoverLeave(e)}
       onClick={themeFunction}
     >
-      <Link>{linkTitle}</Link>
+      <Link className={`${linkTitle === "Theme" ? "theme" : null}`}>
+        {linkTitle}
+      </Link>
     </StyledList>
   );
 }
