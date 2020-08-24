@@ -2,7 +2,13 @@ import React from "react";
 import ThemeFieldView from "../../components/ThemeField/ThemeFieldView";
 
 function ThemeField({ themeOption, setWhichColor }) {
-  const changeColor = (mainColor, navColor, listColor, inputColor) => {
+  const changeColor = (
+    mainColor,
+    navColor,
+    listColor,
+    inputColor,
+    addListInput
+  ) => {
     const main = document.querySelector(".main");
     main.style.backgroundColor = mainColor;
 
@@ -19,6 +25,11 @@ function ThemeField({ themeOption, setWhichColor }) {
       input.style.backgroundColor = inputColor;
     });
 
+    const addList = document.querySelectorAll(".addList");
+    addList.forEach((input) => {
+      input.style.backgroundColor = addListInput;
+    });
+
     setWhichColor([listColor]);
   };
 
@@ -26,56 +37,65 @@ function ThemeField({ themeOption, setWhichColor }) {
     {
       mainColor: "#0079BF",
       navColor: "#0067A3",
-      listColor: "#3D99CE",
+      listColor: "rgba(61, 153, 206,0.65)",
       inputColor: "#4D95BE",
+      addListInput: "#3D99CE",
     },
     {
       mainColor: "#D29034",
       navColor: "#B37B2C",
-      listColor: "#DDAB65",
+      listColor: "rgba(221, 171, 101,0.65)",
       inputColor: "#C9A26C",
+      addListInput: "#DDAB65",
     },
     {
       mainColor: "#519839",
       navColor: "#458131",
-      listColor: "#7BB168",
+      listColor: "rgba(123, 177, 104,0.65)",
       inputColor: "#7DA76F",
+      addListInput: "#7BB168",
     },
     {
       mainColor: "#B04632",
       navColor: "#963C2B",
-      listColor: "#C37263",
+      listColor: "rgba(195, 114, 99,0.65)",
       inputColor: "#B5766B",
+      addListInput: "#C37263",
     },
     {
       mainColor: "#89609E",
       navColor: "#755286",
-      listColor: "#A586B5",
+      listColor: "rgba(165, 134, 181,0.65)",
       inputColor: "#9E86AB",
+      addListInput: "#A586B5",
     },
     {
       mainColor: "#CD5A91",
       navColor: "#AE4D7B",
-      listColor: "#D981AB",
+      listColor: "rgba(217, 129, 171, 0.65)",
       inputColor: "#C682A3",
+      addListInput: "#D981AB",
     },
     {
       mainColor: "#4BBF6B",
       navColor: "#40A35B",
-      listColor: "#76CE8E",
+      listColor: "rgba(118, 206, 142, 0.65)",
       inputColor: "#79BE8C",
+      addListInput: "#76ce8e",
     },
     {
       mainColor: "#00AECC",
       navColor: "#0094AE",
-      listColor: "#3DC1D8",
+      listColor: "rgba(61, 193, 216, 0.65)",
       inputColor: "#4DB4C6",
+      addListInput: "#3dc1d8",
     },
     {
       mainColor: "#838C91",
       navColor: "#6F777B",
-      listColor: "#A1A8AB",
+      listColor: "rgba(161, 168, 171,0.65)",
       inputColor: "#9BA0A3",
+      addListInput: "#A1A8AB",
     },
   ];
   return (

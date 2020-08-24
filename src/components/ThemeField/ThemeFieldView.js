@@ -22,13 +22,6 @@ const StyledColorDiv = styled.div`
   }
 `;
 
-const StyledThemeDivTitle = styled.h3`
-  width: 100%;
-  padding: 10px 0px;
-  text-align: center;
-  font-size: 2rem;
-`;
-
 const StyledThemeDiv = styled.div`
   position: fixed;
   bottom: 17.5px;
@@ -52,10 +45,42 @@ const StyledThemeDiv = styled.div`
   }
 `;
 
+const StyledLabelTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #42516e;
+  text-align: center;
+  padding-bottom: 10px;
+  margin: 10px;
+  font-size: 17px;
+  color: #42516e;
+`;
+
+const StyledX = styled.span`
+  margin-left: 10px;
+  font-size: 17px;
+  color: #42516e;
+  cursor: pointer;
+  opacity: 0;
+`;
+
+const StyledBack = styled.span`
+  font-size: 19px;
+  cursor: pointer;
+  color: #42516e;
+`;
+
+const StyledTitle = styled.h4``;
+
 function ThemeFieldView({ themeOption, changeColor, blockOfColors }) {
   return (
     <StyledThemeDiv showTheme={themeOption} className="theme">
-      <StyledThemeDivTitle className="theme">Colors</StyledThemeDivTitle>
+      <StyledLabelTitle className="theme">
+        <StyledBack className="fas fa-angle-left" />
+        <StyledTitle className="theme">Colors</StyledTitle>
+        <StyledX className="fas fa-times theme" />
+      </StyledLabelTitle>
       {blockOfColors.map((block) => (
         <StyledColorDiv
           className="theme"
@@ -64,7 +89,8 @@ function ThemeFieldView({ themeOption, changeColor, blockOfColors }) {
               block.mainColor,
               block.navColor,
               block.listColor,
-              block.inputColor
+              block.inputColor,
+              block.addListInput
             )
           }
           style={{ backgroundColor: block.mainColor }}

@@ -14,6 +14,7 @@ const StyledChangeListDetails = styled.div`
   padding: 10px;
   margin-bottom: 17.5px;
   z-index: 999;
+  box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
 `;
 
 const StyledReplaceTitle = styled.h3`

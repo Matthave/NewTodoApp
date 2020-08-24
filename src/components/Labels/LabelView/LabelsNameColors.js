@@ -21,6 +21,7 @@ const StyledNameLabels = styled.div`
   border-radius: 4px;
   padding: 5px;
   margin-bottom: 17.5px;
+  box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
 `;
 
 const StyledLabelTitle = styled.div`

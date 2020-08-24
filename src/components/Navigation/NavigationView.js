@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NavListView from "./NavListView/NavListView";
+import myLogo from "../../img/myLogo.png";
 
 const StyledNav = styled.nav`
   width: 100vw;
@@ -54,6 +55,16 @@ const StyledInput = styled.input`
   }
 `;
 
+const Styledlogo = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const StyledHiperLink = styled.a`
+  position: fixed;
+  z-index: 0;
+`;
+
 const navigationElements = ["Your list", "Theme", "Help"];
 
 const Navigation = ({
@@ -73,6 +84,13 @@ const Navigation = ({
             key={element}
           />
         ))}
+        <StyledHiperLink
+          href="http://matthave.pl/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Styledlogo src={myLogo}></Styledlogo>
+        </StyledHiperLink>
         <StyledList lastEle>
           <StyledInput className="item" placeholder="Search..." />
         </StyledList>

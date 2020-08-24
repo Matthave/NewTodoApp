@@ -10,6 +10,7 @@ const StyledOptionWindow = styled.div`
   height: 140px;
   background-color: #fff;
   border-radius: 4px;
+  box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
 `;
 
 const StyledTitle = styled.h3`

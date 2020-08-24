@@ -12,6 +12,7 @@ const StyledNameTask = styled.div`
   background-color: #fff;
   border-radius: 3px;
   padding: 10px;
+  box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
 `;
 
 const StyledReplaceTitle = styled.h3`

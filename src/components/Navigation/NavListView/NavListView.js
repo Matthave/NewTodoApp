@@ -5,12 +5,13 @@ const StyledList = styled.li`
   width: ${(props) => (props.lastEle ? "auto" : "75px")};
   height: 100%;
   text-align: center;
-  background-color: #76ce8e;
+  background-color: rgba(118, 206, 142, 0.65);
   border-radius: 4px;
   transition: 0.1s linear;
   margin-right: 4px;
   margin-left: ${(props) => (props.lastEle ? "auto" : "initial")};
   padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
+  z-index: 1;
 `;
 
 const Link = styled.a`
@@ -27,7 +28,7 @@ function NavListView({
 }) {
   return (
     <StyledList
-      className="list"
+      className="list theme"
       onMouseEnter={(e) => elementHoverEnter(e)}
       onMouseLeave={(e) => elementHoverLeave(e)}
       onClick={themeFunction}
