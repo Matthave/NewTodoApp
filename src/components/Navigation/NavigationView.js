@@ -62,6 +62,8 @@ const Styledlogo = styled.img`
 
 const StyledHiperLink = styled.a`
   position: fixed;
+  top: 5px;
+  left: calc(50% - 15px);
   z-index: 0;
 `;
 

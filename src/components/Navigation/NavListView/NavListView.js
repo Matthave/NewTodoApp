@@ -11,7 +11,7 @@ const StyledList = styled.li`
   margin-right: 4px;
   margin-left: ${(props) => (props.lastEle ? "auto" : "initial")};
   padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
-  z-index: 1;
+  z-index: ${(props) => (props.zIndex ? 1 : "initial")};
 `;
 
 const Link = styled.a`
@@ -32,6 +32,7 @@ function NavListView({
       onMouseEnter={(e) => elementHoverEnter(e)}
       onMouseLeave={(e) => elementHoverLeave(e)}
       onClick={themeFunction}
+      zIndex={`${linkTitle === "Theme" ? true : false}`}
     >
       <Link className={`${linkTitle === "Theme" ? "theme" : null}`}>
         {linkTitle}
