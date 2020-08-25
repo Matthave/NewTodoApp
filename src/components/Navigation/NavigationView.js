@@ -4,7 +4,7 @@ import NavListView from "./NavListView/NavListView";
 import myLogo from "../../img/myLogo.png";
 
 const StyledNav = styled.nav`
-  width: 100vw;
+  width: 100%;
   height: 40px;
   background-color: #40a35b;
   padding: 0px 4px;
@@ -69,21 +69,16 @@ const StyledHiperLink = styled.a`
 
 const navigationElements = ["Your list", "Theme", "Help"];
 
-const Navigation = ({
-  elementHoverEnter,
-  elementHoverLeave,
-  themeFunction,
-}) => {
+const Navigation = ({ themeFunction, lighThisColor }) => {
   return (
     <StyledNav className="nav">
       <StyledUl>
         {navigationElements.map((element) => (
           <NavListView
             themeFunction={element === "Theme" ? themeFunction : null}
-            elementHoverEnter={(e) => elementHoverEnter(e)}
-            elementHoverLeave={(e) => elementHoverLeave(e)}
             linkTitle={element}
             key={element}
+            lighThisColor={lighThisColor}
           />
         ))}
         <StyledHiperLink

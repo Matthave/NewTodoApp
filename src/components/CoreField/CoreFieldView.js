@@ -6,11 +6,12 @@ const StyledMain = styled.main`
   display: flex;
   align-items: flex-start;
   width: auto;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 80px);
   background-color: #4bbf6b;
-  padding: 40px 6px 0px 6px;
+  padding: 0px 6px 0px 6px;
   overflow-x: scroll;
   overflow-y: hidden;
+  transition: 0.1s linear;
 `;
 
 const StyledListInput = styled.input`
@@ -107,8 +108,6 @@ function CoreFieldView({
   addNewListByKey,
   addNewListByButton,
   copyNewList,
-  elementHoverEnter,
-  elementHoverLeave,
   hideFontSizeLabel,
   setHideFontSizeLabel,
   listOfAllTasksList,
@@ -159,8 +158,6 @@ function CoreFieldView({
             className="addList"
             value={listInputValue}
             onKeyPress={(e) => addNewListByKey(e)}
-            onMouseEnter={(e) => elementHoverEnter(e)}
-            onMouseLeave={(e) => elementHoverLeave(e)}
           />
           {showList ? (
             <StyledButton onClick={() => addNewListByButton(listInputValue)}>

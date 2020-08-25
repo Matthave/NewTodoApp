@@ -11,7 +11,12 @@ const StyledList = styled.li`
   margin-right: 4px;
   margin-left: ${(props) => (props.lastEle ? "auto" : "initial")};
   padding: ${(props) => (props.lastEle ? "initial" : "8px 0px")};
-  z-index: ${(props) => (props.zIndex ? 1 : "initial")};
+  z-index: 1;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.hoverBGC ? `${props.lighThisColor} !important` : null};
+  }
 `;
 
 const Link = styled.a`
@@ -20,19 +25,14 @@ const Link = styled.a`
   color: #fff;
 `;
 
-function NavListView({
-  elementHoverEnter,
-  elementHoverLeave,
-  themeFunction,
-  linkTitle,
-}) {
+function NavListView({ themeFunction, linkTitle, lighThisColor }) {
+  const colorBgcHSL = `hsl(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%)`;
   return (
     <StyledList
       className="list theme"
-      onMouseEnter={(e) => elementHoverEnter(e)}
-      onMouseLeave={(e) => elementHoverLeave(e)}
       onClick={themeFunction}
-      zIndex={`${linkTitle === "Theme" ? true : false}`}
+      hoverBGC
+      lighThisColor={colorBgcHSL}
     >
       <Link className={`${linkTitle === "Theme" ? "theme" : null}`}>
         {linkTitle}

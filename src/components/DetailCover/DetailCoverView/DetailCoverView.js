@@ -32,6 +32,7 @@ const StyledDetail = styled.div`
   border-radius: 3px;
   background-color: #f4f5f7;
   margin-bottom: 25px;
+  z-index: 2;
 `;
 
 function DetailCoverView({

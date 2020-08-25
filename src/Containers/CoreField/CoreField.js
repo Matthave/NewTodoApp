@@ -10,8 +10,6 @@ const MainField = ({
   copyNewList,
   moveCardToAnotherList,
   updateListTitle,
-  elementHoverEnter,
-  elementHoverLeave,
   visibilityOptionFunction,
   taskDetailsFunction,
   moveListToAnotherPlace,
@@ -103,8 +101,6 @@ const MainField = ({
       addNewList={addNewList}
       addNewListByButton={addNewListByButton}
       addNewListByKey={addNewListByKey}
-      elementHoverEnter={elementHoverEnter}
-      elementHoverLeave={elementHoverLeave}
       hideFontSizeLabel={hideFontSizeLabel}
       setHideFontSizeLabel={setHideFontSizeLabel}
       listOfAllTasksList={listOfAllTasksList}

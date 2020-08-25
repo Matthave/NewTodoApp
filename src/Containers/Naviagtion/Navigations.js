@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavigationView from "../../components/Navigation/NavigationView";
+import Color from "color";
 
 class Navigations extends Component {
   themeFunction = () => {
@@ -7,13 +8,15 @@ class Navigations extends Component {
   };
 
   render() {
-    const { elementHoverEnter, elementHoverLeave } = this.props;
+    const { whichColor } = this.props;
+
+    const currentLiColor = Color(whichColor[0]);
+    const lighThisColor = currentLiColor.lighten(0.1);
     return (
       <>
         <NavigationView
-          elementHoverEnter={elementHoverEnter}
-          elementHoverLeave={elementHoverLeave}
           themeFunction={this.themeFunction}
+          lighThisColor={lighThisColor}
         />
       </>
     );

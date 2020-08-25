@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navigations from "../Naviagtion/Navigations";
+import MenuBar from "../MenuBar/MenuBar";
 import CoreField from "../CoreField/CoreField";
 import ThemeField from "../ThemeField/ThemeField";
 import OptionCover from "../OptionCover/OptionCover";
 import DetailCover from "../DetailCover/DetailCover";
-import Color from "color";
 
 const Main = () => {
   const [showThemeOption, showThemeOptionFunction] = useState(false);
@@ -288,42 +288,12 @@ const Main = () => {
         });
       } // Add proper term, with new uniqe Id
     });
-    console.log(listOfAllTasksId);
     setRefresh(!refresh);
   };
 
   const updateListTitle = (newTitle, listId) => {
     const updatedList = wholeList.filter((list) => list.id === listId);
     updatedList[0].title = newTitle;
-  };
-
-  const elementHoverEnter = (e) => {
-    const arrayClassList = [];
-    e.target.classList.forEach((item) => {
-      arrayClassList.push(item);
-    });
-
-    if (arrayClassList.includes("list")) {
-      const currentLiColor = Color(
-        `${
-          e.target.style.backgroundColor
-            ? e.target.style.backgroundColor
-            : "#76ce8e"
-        }`
-      );
-      return (e.target.style.backgroundColor = currentLiColor.lighten(0.1));
-    }
-  };
-
-  const elementHoverLeave = (e) => {
-    const arrayClassList = [];
-    e.target.classList.forEach((item) => {
-      arrayClassList.push(item);
-    });
-
-    if (arrayClassList.includes("list")) {
-      return (e.target.style.backgroundColor = whichColor);
-    }
   };
 
   const visibilityOptionFunction = (
@@ -445,18 +415,16 @@ const Main = () => {
       <Navigations
         themeToggle={showThemeOptionFunction}
         themeOption={showThemeOption}
-        elementHoverEnter={elementHoverEnter}
-        elementHoverLeave={elementHoverLeave}
+        whichColor={whichColor}
       />
       <ThemeField themeOption={showThemeOption} setWhichColor={setWhichColor} />
+      <MenuBar whichColor={whichColor} />
       <CoreField
         wholeList={wholeList}
         setWholeList={setWholeList}
         addNewCard={addNewCard}
         deleteCard={deleteCard}
         addNewList={addNewList}
-        elementHoverEnter={elementHoverEnter}
-        elementHoverLeave={elementHoverLeave}
         visibilityOptionFunction={visibilityOptionFunction}
         taskDetailsFunction={taskDetailsFunction}
         updateListTitle={updateListTitle}
