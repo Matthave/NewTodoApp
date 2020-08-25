@@ -12,6 +12,7 @@ const StyledMain = styled.main`
   overflow-x: scroll;
   overflow-y: hidden;
   transition: 0.1s linear;
+  padding-top: 15px;
 `;
 
 const StyledListInput = styled.input`

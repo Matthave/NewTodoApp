@@ -189,7 +189,7 @@ class List extends Component {
 
     const allBlankSpan = document.querySelectorAll(".frontBlankList");
     allBlankSpan.forEach((all) => {
-      all.style.display = "none";
+      all.style.width = "0";
     });
 
     const draggedListIndex = this.props.wholeList.findIndex(

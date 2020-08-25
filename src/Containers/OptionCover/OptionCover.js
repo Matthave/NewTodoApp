@@ -63,7 +63,7 @@ class OptionCover extends Component {
       mainOffsetTop +
       taskData[0].top -
       currentListScrollNow -
-      40 +
+      25 +
       coverBoxHeight / 1.65;
     const positionX = 285 * listIndex + 18.5 - scrollPosition;
 

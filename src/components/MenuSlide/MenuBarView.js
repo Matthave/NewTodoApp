@@ -16,7 +16,7 @@ const StyledInputTitle = styled.input`
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
-  margin: auto 5px;
+  margin: auto 5px 0px 5px;
   font-size: 18px;
   font-weight: 600;
   color: white;
@@ -44,7 +44,7 @@ const StyledShowMenu = styled.button`
   background-color: ${(props) =>
     props.hoverBGC ? `${props.lighThisColor}` : null};
   border-radius: 4px;
-  margin: auto 0 auto auto;
+  margin: auto 0 0 auto;
   font-size: 15px;
   font-weight: 400;
   color: white;
