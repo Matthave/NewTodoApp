@@ -15,6 +15,9 @@ function ThemeField({ themeOption, setWhichColor }) {
     const menuBar = document.querySelector(".menuBar");
     menuBar.style.backgroundColor = mainColor;
 
+    const squarMenuBGC = document.querySelector(".squarMenuBGC");
+    squarMenuBGC.style.backgroundColor = mainColor;
+
     const nav = document.querySelector(".nav");
     nav.style.backgroundColor = navColor;
 

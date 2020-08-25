@@ -62,7 +62,12 @@ const StyledIcon = styled.span`
   margin-right: 5px;
 `;
 
-function MenuBarView({ boardNameValue, boardNameChangeFunc, lighThisColor }) {
+function MenuBarView({
+  boardNameValue,
+  boardNameChangeFunc,
+  lighThisColor,
+  slideMenuFunc,
+}) {
   const colorOfBgc = `hsl(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%)`;
   return (
     <StyledNav className="menuBar">
@@ -73,8 +78,13 @@ function MenuBarView({ boardNameValue, boardNameChangeFunc, lighThisColor }) {
         hoverBGC
         lighThisColor={colorOfBgc} // Send this color to styledComp as a props
       />
-      <StyledShowMenu hoverBGC lighThisColor={colorOfBgc}>
-        <StyledIcon className="fas fa-ellipsis-v" /> Show Menu
+      <StyledShowMenu
+        hoverBGC
+        lighThisColor={colorOfBgc}
+        className="menu"
+        onClick={() => slideMenuFunc()}
+      >
+        <StyledIcon className="fas fa-ellipsis-v menu" /> Show Menu
       </StyledShowMenu>
     </StyledNav>
   );

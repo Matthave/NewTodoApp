@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigations from "../Naviagtion/Navigations";
-import MenuBar from "../MenuBar/MenuBar";
+import MenuBar from "../MenuSlide/MenuBar";
 import CoreField from "../CoreField/CoreField";
 import ThemeField from "../ThemeField/ThemeField";
 import OptionCover from "../OptionCover/OptionCover";

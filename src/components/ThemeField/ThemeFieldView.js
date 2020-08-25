@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { device } from "../../Style/MediaQuery/mq";
 
 const StyledColorDiv = styled.div`
-  width: 75px;
-  height: 75px;
+  width: 45%;
+  height: 85px;
   border-radius: 5px;
   margin-right: 5px;
   margin-left: 5px;
@@ -15,18 +14,15 @@ const StyledColorDiv = styled.div`
   &:hover {
     opacity: 0.75;
   }
-
-  @media ${device.laptop} {
-    width: 45%;
-    height: 85px;
-  }
 `;
 
 const StyledThemeDiv = styled.div`
   position: fixed;
+  top: calc(0% + 40px);
   bottom: 17.5px;
   right: 0;
-  width: 100%;
+  width: 320px;
+  align-content: flex-start;
   transform: ${(props) =>
     props.showTheme ? "translateX(0px)" : "translateX(100vw)"};
   display: flex;
@@ -36,13 +32,6 @@ const StyledThemeDiv = styled.div`
   padding: 10px;
   transition: 0.3s linear;
   z-index: 999;
-
-  @media ${device.laptop} {
-    top: calc(0% + 40px);
-    right: 0;
-    width: 375px;
-    align-content: flex-start;
-  }
 `;
 
 const StyledLabelTitle = styled.div`

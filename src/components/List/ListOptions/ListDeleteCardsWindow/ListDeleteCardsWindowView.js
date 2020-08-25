@@ -65,7 +65,7 @@ function ListDeleteCardsWindowView({ deleteCardsFromListFunc, listId }) {
       <StyledTitle className="listOptions">Archive All Cards</StyledTitle>
       <StyledText className="listOptions">
         {
-          "This option will remove all cards from the list on the board. To view archived cards and restore them, click 'Menu' > 'Archived Cards'"
+          "This option will remove all cards from the list on the board. To view archived cards and restore them, click 'Show Menu' > 'Archived elements'"
         }
       </StyledText>
       <StyledButton onClick={() => deleteCardsFromListFunc(listId)}>
