@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import MenuBarView from "../../components/MenuSlide/MenuBarView";
 import MenuSlideView from "../../components/MenuSlide/MenuSlideView";
+import Labels from "../../Containers/Labels/Labels";
 import Color from "color";
 
 export class MenuBar extends Component {
   state = {
     boardNameValue: "Your Todo List",
     slideMenuState: false,
+    labelVisi: false,
   };
 
   componentDidMount() {
@@ -25,6 +27,13 @@ export class MenuBar extends Component {
     const searchingClass = e.target.className;
     if (!searchingClass.includes("menu"))
       this.setState({ slideMenuState: false });
+
+    if (!searchingClass.includes("label")) this.setState({ labelVisi: false });
+  };
+
+  //This one is for label
+  toggleCurrentListVisiFunc = () => {
+    this.setState({ labelVisi: true, slideMenuState: false });
   };
 
   render() {
@@ -32,7 +41,13 @@ export class MenuBar extends Component {
     const currentLiColor = Color(this.props.whichColor[0]);
     const lighThisColor = currentLiColor.lighten(0.05);
 
-    const { boardNameValue, slideMenuState } = this.state;
+    const {
+      listOfAllBadges,
+      listOfAllTasksId,
+      labelColors,
+      setLabelColors,
+    } = this.props;
+    const { boardNameValue, slideMenuState, labelVisi } = this.state;
     return (
       <>
         <MenuBarView
@@ -41,7 +56,20 @@ export class MenuBar extends Component {
           slideMenuFunc={this.slideMenuFunc}
           lighThisColor={lighThisColor}
         />
-        <MenuSlideView slideMenuState={slideMenuState} />
+        <MenuSlideView
+          slideMenuState={slideMenuState}
+          toggleCurrentListVisiFunc={this.toggleCurrentListVisiFunc}
+        />
+        {labelVisi ? (
+          <Labels
+            toggleCurrentListVisiFunc={this.toggleCurrentListVisiFunc}
+            listOfAllBadges={listOfAllBadges}
+            listOfAllTasksId={listOfAllTasksId}
+            labelColors={labelColors}
+            setLabelColors={setLabelColors}
+            menuSlideClasses={true}
+          />
+        ) : null}
       </>
     );
   }

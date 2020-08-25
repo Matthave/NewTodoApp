@@ -189,9 +189,9 @@ class Labels extends Component {
       detailCover,
       optionCover,
       addLabelColor,
-      optionCoverData,
       taskId,
       labelColors,
+      menuSlideClasses,
     } = this.props;
 
     const {
@@ -212,7 +212,6 @@ class Labels extends Component {
         nameLabelVisibilityFunc={this.nameLabelVisibilityFunc}
         colorNameWindowVisi={colorNameWindowVisi}
         addLabelColor={addLabelColor}
-        optionCoverData={optionCoverData}
         toggleLabelColorToCard={this.toggleLabelColorToCard}
         taskId={taskId}
         generateCheckIcon={this.generateCheckIcon}
@@ -225,6 +224,7 @@ class Labels extends Component {
         saveNameLabel={this.saveNameLabel}
         currentSquarEdit={currentSquarEdit}
         optionCover={optionCover}
+        menuSlideClasses={menuSlideClasses}
       />
     );
   }

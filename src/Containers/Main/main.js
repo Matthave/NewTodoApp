@@ -418,7 +418,13 @@ const Main = () => {
         whichColor={whichColor}
       />
       <ThemeField themeOption={showThemeOption} setWhichColor={setWhichColor} />
-      <MenuBar whichColor={whichColor} />
+      <MenuBar
+        whichColor={whichColor}
+        listOfAllBadges={listOfAllBadges}
+        listOfAllTasksId={listOfAllTasksId}
+        labelColors={labelColors}
+        setLabelColors={setLabelColors}
+      />
       <CoreField
         wholeList={wholeList}
         setWholeList={setWholeList}

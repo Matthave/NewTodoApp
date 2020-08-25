@@ -16,6 +16,7 @@ const StyledLabels = styled.div`
   padding: 5px;
   margin-bottom: 17.5px;
   box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
+  z-index: 999;
 `;
 
 const StyledLabelWrapEle = styled.div`
@@ -124,6 +125,7 @@ function LabelsChooseColors({
   generateCheckIcon,
   searchLabelColor,
   searchInputLabel,
+  menuSlideClasses,
 }) {
   useEffect(() => {
     generateCheckIcon();
@@ -131,13 +133,13 @@ function LabelsChooseColors({
 
   return (
     <StyledLabels
-      className="label"
+      className={`${menuSlideClasses ? "menuSlidePosition label" : "label"}`}
       optionCoverPosition={optionCover}
       detailCover={detailCover}
     >
       <StyledLabelTitle className="label">
         <StyledBack className="fas fa-angle-left label" />
-        <StyledTitle>Labels</StyledTitle>
+        <StyledTitle className="label">Labels</StyledTitle>
         <StyledX
           className="fas fa-times"
           onClick={() => toggleCurrentListVisiFunc("labelVisi")}
@@ -152,7 +154,11 @@ function LabelsChooseColors({
       {filteredColors.map((color) => (
         <StyledLabelWrapEle key={color.color} className="label">
           <StyledLabelElement
-            onClick={() => toggleLabelColorToCard(color.color, taskId)}
+            onClick={
+              menuSlideClasses
+                ? null
+                : () => toggleLabelColorToCard(color.color, taskId)
+            }
             style={{ backgroundColor: `${color.color}` }}
             className="label"
             id={color.color}

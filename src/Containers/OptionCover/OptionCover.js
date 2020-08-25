@@ -100,7 +100,6 @@ class OptionCover extends Component {
       optionCoverData,
       updateCard,
       deleteCard,
-      toggleLabelColorToCard,
       listOfAllBadges,
       listOfAllTasksId,
       labelColors,
@@ -162,7 +161,6 @@ class OptionCover extends Component {
           taskTitle={taskTitle}
           updateCard={updateCard}
           deleteCard={deleteCard}
-          toggleLabelColorToCard={toggleLabelColorToCard}
           listOfAllBadges={listOfAllBadges}
           matchedColorsToThisCard={matchedColorsToThisCard}
           labelColors={labelColors}

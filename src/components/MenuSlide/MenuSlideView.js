@@ -1,4 +1,5 @@
 import React from "react";
+import MenuSlideNavView from "./MenuSlideNavView/MenuSlideNavView";
 import styled from "styled-components";
 
 const StyledMenu = styled.div`
@@ -16,6 +17,7 @@ const StyledMenu = styled.div`
   background-color: #f4f5f7;
   transition: 0.3s linear;
   z-index: 999;
+  padding: 5px 0px;
 `;
 
 const StyledLabelTitle = styled.div`
@@ -26,19 +28,19 @@ const StyledLabelTitle = styled.div`
   text-align: center;
   padding-bottom: 10px;
   margin: 10px;
-  font-size: 17px;
+  font-size: 15px;
   color: #42516e;
 `;
 
 const StyledX = styled.span`
   margin-left: 10px;
-  font-size: 17px;
+  font-size: 15px;
   color: #42516e;
   cursor: pointer;
 `;
 
 const StyledBack = styled.span`
-  font-size: 19px;
+  font-size: 15px;
   cursor: pointer;
   color: #42516e;
   opacity: 0;
@@ -46,41 +48,7 @@ const StyledBack = styled.span`
 
 const StyledTitle = styled.h4``;
 
-const StyledWrapList = styled.div`
-  display: flex;
-  width: 100%;
-  height: 42.5px;
-  line-height: 42.5px;
-  padding: 0px 15px;
-  margin-bottom: 10px;
-  transition: 0.1s linear;
-
-  &:hover {
-    background-color: #e6e8ed;
-  }
-`;
-
-const StyledList = styled.div`
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: #172b4d;
-`;
-
-const StyledSquarBGC = styled.span`
-  width: 22.5px;
-  height: 22.5px;
-  background-color: #4bbf6b;
-  border-radius: 4px;
-  margin: auto 11px auto 0px;
-`;
-
-const StyledIcon = styled.span`
-  font-size: 17.5px;
-  margin: auto 15px auto 0px;
-  color: #172b4d;
-`;
-
-function MenuSlideView({ slideMenuState }) {
+function MenuSlideView({ slideMenuState, toggleCurrentListVisiFunc }) {
   return (
     <StyledMenu showMenu={slideMenuState} className="menu">
       <StyledLabelTitle className="menu">
@@ -88,20 +56,7 @@ function MenuSlideView({ slideMenuState }) {
         <StyledTitle className="menu">Menu</StyledTitle>
         <StyledX className="fas fa-times" />
       </StyledLabelTitle>
-      <StyledWrapList>
-        <StyledSquarBGC className="squarMenuBGC menu" />
-        <StyledList className="menu">Change background</StyledList>
-      </StyledWrapList>
-
-      <StyledWrapList>
-        <StyledIcon className="fas fa-tag menu" />
-        <StyledList className="menu">Labels</StyledList>
-      </StyledWrapList>
-
-      <StyledWrapList>
-        <StyledIcon className="fas fa-archive menu" />
-        <StyledList className="menu">Archived elements</StyledList>
-      </StyledWrapList>
+      <MenuSlideNavView toggleCurrentListVisiFunc={toggleCurrentListVisiFunc} />
     </StyledMenu>
   );
 }

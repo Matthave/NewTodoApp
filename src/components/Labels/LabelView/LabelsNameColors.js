@@ -22,6 +22,7 @@ const StyledNameLabels = styled.div`
   padding: 5px;
   margin-bottom: 17.5px;
   box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
+  z-index: 999;
 `;
 
 const StyledLabelTitle = styled.div`
@@ -111,10 +112,11 @@ function LabelsNameColors({
   choosedSquar,
   saveNameLabel,
   currentSquarEdit,
+  menuSlideClasses,
 }) {
   return (
     <StyledNameLabels
-      className="label"
+      className={`${menuSlideClasses ? "menuSlidePosition label" : "label"}`}
       detailCover={detailCover}
       optionCoverPosition={optionCover}
       onKeyPress={(e) => saveNameLabel(e)}
@@ -124,21 +126,21 @@ function LabelsNameColors({
           className="fas fa-angle-left label"
           onClick={(e) => nameLabelVisibilityFunc(e, false, null, "back")}
         />
-        <StyledTitle>Change Label</StyledTitle>
+        <StyledTitle className="label">Change Label</StyledTitle>
         <StyledX
           className="fas fa-times"
           onClick={(e) => nameLabelVisibilityFunc(e, false, null)}
         />
       </StyledLabelTitle>
-      <StyledName>Name</StyledName>
+      <StyledName className="label">Name</StyledName>
       <StyledLabelInput
         className="label"
         marginTop
         onChange={(e) => nameLabelInput(e)}
         value={nameLabelInputValue}
       />
-      <StyledName>Colors</StyledName>
-      <StyledWrapColors>
+      <StyledName className="label">Colors</StyledName>
+      <StyledWrapColors className="label">
         {filteredColors.map((color) => (
           <StyledColorSquar
             style={{

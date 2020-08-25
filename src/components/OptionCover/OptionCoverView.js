@@ -232,8 +232,6 @@ const OptionCover = ({
         {labelVisi ? (
           <Labels
             toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
-            optionCoverData={optionCoverData}
-            toggleLabelColorToCard={toggleLabelColorToCard}
             taskId={optionCoverData[0].clickedCardId}
             listOfAllBadges={listOfAllBadges}
             listOfAllTasksId={listOfAllTasksId}

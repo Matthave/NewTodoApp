@@ -189,6 +189,16 @@ const GlobalStyle = createGlobalStyle`
     border-radius:3px;
    }
 
+   .menuSlidePosition{
+     top:40px ;
+     right:0px ;
+     bottom:0px ;
+     width:320px;
+     height:auto ;
+     border-radius:0px;
+     background-color:#F4F5F7;
+   }
+
 ::-webkit-scrollbar{
     height:17.5px;
 }::-webkit-scrollbar-track{

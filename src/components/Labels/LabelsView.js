@@ -19,6 +19,7 @@ function LabelsView({
   choosedSquar,
   saveNameLabel,
   currentSquarEdit,
+  menuSlideClasses,
 }) {
   return (
     <>
@@ -33,6 +34,7 @@ function LabelsView({
           saveNameLabel={saveNameLabel}
           currentSquarEdit={currentSquarEdit}
           optionCover={optionCover}
+          menuSlideClasses={menuSlideClasses}
         />
       ) : (
         <LabelsChooseColors
@@ -46,6 +48,7 @@ function LabelsView({
           searchLabelColor={searchLabelColor}
           searchInputLabel={searchInputLabel}
           optionCover={optionCover}
+          menuSlideClasses={menuSlideClasses}
         />
       )}
     </>
