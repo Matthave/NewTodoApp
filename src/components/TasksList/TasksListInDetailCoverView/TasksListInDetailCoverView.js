@@ -36,6 +36,7 @@ const StyledGreyButton = styled.button`
   padding: 5px;
   margin-top: ${(props) => (props.marginTop0 ? "0px" : "15px")};
   margin-bottom: 10px;
+  margin-right: ${(props) => (props.marginRight12 ? "12.5px" : "0px")};
   background-color: #eaecf0;
   border-radius: 4px;
   cursor: pointer;
@@ -176,6 +177,7 @@ function TasksListInDetailCoverView({
       <StyledGreyButton
         className={"detailCoverClose"}
         marginTop0
+        marginRight12
         onClick={() => deleteTasksList(listName, taskId)}
       >
         Delete

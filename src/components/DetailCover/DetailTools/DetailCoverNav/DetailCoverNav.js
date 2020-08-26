@@ -19,10 +19,10 @@ const StyledDetailNav = styled.nav`
 const StyledDetailUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   @media ${device.laptop} {
     flex-direction: column;
-    width: 200px;
+    width: 100%;
   }
 `;
 
@@ -38,7 +38,7 @@ const StyledDetailList = styled.li`
   background-color: ${(props) => (props.first ? "transparent" : "#eaecf0")};
   border-radius: ${(props) => (props.first ? "null" : "3px")};
   padding: 7.5px;
-  margin-right: ${(props) => (props.first ? "0px" : "10px")};
+  padding-left: ${(props) => (props.first ? "15px" : "7.5px")};
   margin-bottom: ${(props) => (props.first ? "5px" : "10px")};
   list-style: none;
   font-size: 14px;
@@ -50,7 +50,7 @@ const StyledDetailList = styled.li`
   }
 
   @media ${device.laptop} {
-    width: 100%;
+    width: 90%;
   }
 `;
 
