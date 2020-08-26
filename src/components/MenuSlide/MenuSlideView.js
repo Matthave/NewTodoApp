@@ -1,5 +1,6 @@
 import React from "react";
 import MenuSlideNavView from "./MenuSlideNavView/MenuSlideNavView";
+import ArchivedCardsComp from "./ArchivedCardsComp/ArchivedCardsComp";
 import styled from "styled-components";
 
 const StyledMenu = styled.div`
@@ -48,15 +49,34 @@ const StyledBack = styled.span`
 
 const StyledTitle = styled.h4``;
 
-function MenuSlideView({ slideMenuState, toggleCurrentListVisiFunc }) {
+function MenuSlideView({
+  slideMenuState,
+  archivedElementVisi,
+  toggleCurrentListVisiFunc,
+  showArchivedCardFunc,
+  archivedSearchFunc,
+  listOfAllArchivedCard,
+  archivedSearchValue,
+  taskDetailsFunction,
+}) {
   return (
     <StyledMenu showMenu={slideMenuState} className="menu">
       <StyledLabelTitle className="menu">
         <StyledBack className="fas fa-angle-left menu" />
         <StyledTitle className="menu">Menu</StyledTitle>
-        <StyledX className="fas fa-times" />
+        <StyledX className="fas fa-times closeMenu" />
       </StyledLabelTitle>
-      <MenuSlideNavView toggleCurrentListVisiFunc={toggleCurrentListVisiFunc} />
+      <MenuSlideNavView
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+        showArchivedCardFunc={showArchivedCardFunc}
+      />
+      <ArchivedCardsComp
+        archivedElementVisi={archivedElementVisi}
+        listOfAllArchivedCard={listOfAllArchivedCard}
+        archivedSearchFunc={archivedSearchFunc}
+        archivedSearchValue={archivedSearchValue}
+        taskDetailsFunction={taskDetailsFunction}
+      />
     </StyledMenu>
   );
 }

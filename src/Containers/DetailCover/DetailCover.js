@@ -229,6 +229,10 @@ class DetailCover extends React.Component {
       (ele) => ele.id === taskId
     );
 
+    const isThisCardArchived = this.props.listOfAllArchivedCard.filter(
+      (ele) => ele.id === taskId
+    );
+
     return (
       <>
         <DetailCoverView
@@ -274,6 +278,7 @@ class DetailCover extends React.Component {
           setListOfallTerms={setListOfallTerms}
           listOfAllTerms={listOfAllTerms}
           reloadCoverComponentFunc={this.reloadCoverComponentFunc}
+          isThisCardArchived={isThisCardArchived}
         />
       </>
     );

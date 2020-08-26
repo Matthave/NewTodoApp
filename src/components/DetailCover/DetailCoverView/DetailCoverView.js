@@ -13,9 +13,10 @@ const StyledCover = styled.div`
   overflow-y: scroll;
   background-attachment: fixed;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
 
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
   }
 `;
 
@@ -28,11 +29,44 @@ const StyledDetail = styled.div`
   width: 100%;
   max-width: 775px;
   min-height: calc(100vh - 40px - 17.5px);
-  padding: 15px;
+  padding-bottom: 15px;
   border-radius: 3px;
   background-color: #f4f5f7;
   margin-bottom: 25px;
-  z-index: 2;
+  z-index: 1000;
+`;
+
+const StyledArchivedInfo = styled.div`
+  display: flex;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.05) 25%,
+    transparent 0,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 0,
+    rgba(0, 0, 0, 0.05) 75%,
+    transparent 0,
+    transparent
+  );
+  background-size: 14px 14px;
+  background-color: #fdfae5;
+  padding: 0 25px;
+  line-height: 60px;
+`;
+
+const StyledText = styled.h3`
+  margin: auto 0;
+  letter-spacing: 0.5px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #172b4d;
+`;
+
+const StyledIcon = styled.span`
+  margin-right: 15px;
 `;
 
 function DetailCoverView({
@@ -78,6 +112,7 @@ function DetailCoverView({
   setListOfallTerms,
   reloadCoverComponentFunc,
   commentVisiToggleFunc,
+  isThisCardArchived,
 }) {
   return (
     <StyledCover
@@ -88,7 +123,14 @@ function DetailCoverView({
         className="detail"
         onClick={(e) => updateCard(e, taskTitle, currentListId, taskId)}
       >
-        <span className="fas fa-credit-card"></span>
+        {isThisCardArchived.length !== 0 ? (
+          <StyledArchivedInfo>
+            <StyledText>
+              <StyledIcon className="fas fa-archive" />
+              This card is archived
+            </StyledText>
+          </StyledArchivedInfo>
+        ) : null}
         <DetailInputElement
           taskTitle={taskTitle}
           taskTitleFeature={taskTitleFeature}

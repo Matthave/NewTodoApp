@@ -6,6 +6,7 @@ const StyledLightText = styled.h3`
   margin-top: 7.5px;
   font-weight: 400;
   font-size: 1.4rem;
+  padding-left: 15px;
   color: #172b4d;
 `;
 

@@ -18,12 +18,13 @@ const StyledCover = styled.div`
   overflow-x: scroll;
   background-attachment: fixed;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 
   &::-webkit-scrollbar {
     height: 17.5px;
     width: 0px;
     position: relative;
-    z-index: 999;
+    z-index: 1000;
   }
 
   &::-webkit-scrollbar-track {
@@ -46,7 +47,7 @@ const StyledOptionBox = styled.div`
   width: 450px;
   display: flex;
   flex-wrap: wrap;
-  z-index: 999;
+  z-index: 1000;
 `;
 
 const StyledTextArea = styled.textarea`

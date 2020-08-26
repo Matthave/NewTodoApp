@@ -35,7 +35,7 @@ const StyledIcon = styled.span`
   color: #172b4d;
 `;
 
-function MenuSlideNavView({ toggleCurrentListVisiFunc }) {
+function MenuSlideNavView({ toggleCurrentListVisiFunc, showArchivedCardFunc }) {
   return (
     <>
       <StyledWrapList className="menu">
@@ -51,7 +51,7 @@ function MenuSlideNavView({ toggleCurrentListVisiFunc }) {
         <StyledList className="menu label">Labels</StyledList>
       </StyledWrapList>
 
-      <StyledWrapList className="menu">
+      <StyledWrapList className="menu" onClick={() => showArchivedCardFunc()}>
         <StyledIcon className="fas fa-archive menu" />
         <StyledList className="menu">Archived elements</StyledList>
       </StyledWrapList>

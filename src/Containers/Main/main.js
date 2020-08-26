@@ -16,6 +16,7 @@ const Main = () => {
   const [taskName, setTaskName] = useState("");
   const [taskId, setTaskId] = useState("");
   const [idUpdatedList, setIdUpdatedList] = useState();
+  const [listOfAllArchivedCard, setListOfAllArchivedCard] = useState([]);
   const [listOfAllTasksId, setListOfAllTasksId] = useState([]);
   const [listOfAllBadges, setListOfAllBadges] = useState([]);
   const [listOfAllPriorityTasks, setListOfPriority] = useState([]);
@@ -104,6 +105,7 @@ const Main = () => {
         priority: `${matchedPriority.length === 0 ? null : "priority"}`,
         date: matchedDate,
         cover: "",
+        archived: false,
       });
     } else {
       //Add new card by button 'Add Card'
@@ -117,6 +119,7 @@ const Main = () => {
         priority: false,
         date: [],
         cover: "",
+        archived: false,
       });
       if (listOfAllTasksId.length === 0) {
         setListOfAllTasksId([0]);
@@ -142,56 +145,56 @@ const Main = () => {
         (ele) => ele.id === taskId
       );
 
-      if (matchedPriority.length !== 0) {
-        matchedPriority.forEach((element) => {
-          const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
-            (ele) => ele === taskId
-          );
-          listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
-        });
-      }
+      // if (matchedPriority.length !== 0) {
+      //   matchedPriority.forEach((element) => {
+      //     const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
+      //       (ele) => ele === taskId
+      //     );
+      //     listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
+      //   });
+      // }
 
-      if (matchedComment.length !== 0) {
-        matchedComment.forEach((element) => {
-          const indexOfCommentToDelete = listOfAllComments.findIndex(
-            (ele) => ele.id === taskId
-          );
-          listOfAllComments.splice(indexOfCommentToDelete, 1);
-        });
-      }
+      // if (matchedComment.length !== 0) {
+      //   matchedComment.forEach((element) => {
+      //     const indexOfCommentToDelete = listOfAllComments.findIndex(
+      //       (ele) => ele.id === taskId
+      //     );
+      //     listOfAllComments.splice(indexOfCommentToDelete, 1);
+      //   });
+      // }
 
-      if (matchedTerms.length !== 0) {
-        matchedTerms.forEach((element) => {
-          const indexOfTermToDelete = listOfAllTerms.findIndex(
-            (ele) => ele.id === taskId
-          );
-          listOfAllTerms.splice(indexOfTermToDelete, 1);
-        });
-      }
+      // if (matchedTerms.length !== 0) {
+      //   matchedTerms.forEach((element) => {
+      //     const indexOfTermToDelete = listOfAllTerms.findIndex(
+      //       (ele) => ele.id === taskId
+      //     );
+      //     listOfAllTerms.splice(indexOfTermToDelete, 1);
+      //   });
+      // }
 
-      if (matchedBadges.length !== 0) {
-        matchedBadges.forEach((element) => {
-          const indexOfBadgedToDelete = listOfAllBadges.findIndex(
-            (ele) => ele.id === taskId && ele.color === element.color
-          );
-          listOfAllBadges.splice(indexOfBadgedToDelete, 1);
-        });
-      }
+      // if (matchedBadges.length !== 0) {
+      //   matchedBadges.forEach((element) => {
+      //     const indexOfBadgedToDelete = listOfAllBadges.findIndex(
+      //       (ele) => ele.id === taskId && ele.color === element.color
+      //     );
+      //     listOfAllBadges.splice(indexOfBadgedToDelete, 1);
+      //   });
+      // }
 
-      if (matchedTasksList.length !== 0) {
-        matchedTasksList.forEach((element) => {
-          const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
-            (ele) => ele.id === element.id && ele.listName === element.listName
-          );
-          listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
-        });
-      }
+      // if (matchedTasksList.length !== 0) {
+      //   matchedTasksList.forEach((element) => {
+      //     const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
+      //       (ele) => ele.id === element.id && ele.listName === element.listName
+      //     );
+      //     listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
+      //   });
+      // }
 
       //Delete Card Id from array
-      const matchedIdList = listOfAllTasksId.findIndex(
-        (ele) => ele === taskId * 1
-      );
-      listOfAllTasksId.splice(matchedIdList, 1);
+      // const matchedIdList = listOfAllTasksId.findIndex(
+      //   (ele) => ele === taskId * 1
+      // );
+      // listOfAllTasksId.splice(matchedIdList, 1);
     }
 
     //Delete Card from list( by every way )
@@ -199,7 +202,12 @@ const Main = () => {
     const taskIndex = correctList[0].tasks.findIndex(
       (element) => element.id === taskId
     );
-    correctList[0].tasks.splice(taskIndex, 1);
+    const archivedCard = correctList[0].tasks.splice(taskIndex, 1);
+    archivedCard[0].archived = true;
+
+    if (byButton === "byButton")
+      setListOfAllArchivedCard([...listOfAllArchivedCard, ...archivedCard]);
+
     setVisibilityOptionCover(false);
     setVisibilityTaskDetails(false);
   };
@@ -338,42 +346,60 @@ const Main = () => {
   };
 
   const updateCard = (e, updatedTitle, listId, taskId) => {
+    const correctList = wholeList.filter((list) => list.id === listId);
+    const index = correctList[0].tasks.findIndex((ele) => ele.id === taskId);
+    if (!correctList[0].tasks[index]) {
+      updateArchivedCard(e, updatedTitle, taskId);
+      return;
+    } // Check if this updateCard call is from active card or archived
+
     // For changing taskName by detailCover component and optionCover
     if (
       e.target.className.includes("cover") ||
       e.target.className.includes("cover_saveBtn") ||
       e.which === 13
     ) {
-      const correctList = wholeList.filter((list) => list.id === listId);
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
-      const index = correctList[0].tasks.findIndex((ele) => ele.id === taskId);
       correctList[0].tasks[index].taskName = updatedTitle;
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
       return;
     }
-
     if (
       // For changing taskName by detailCover component without closing this componentView
       !e.target.className.includes("close") &&
       !e.target.className.includes("suggestedListToMove") &&
       !e.which
     ) {
-      const correctList = wholeList.filter((list) => list.id === listId);
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
       if (correctList[0]) {
-        const index = correctList[0].tasks.findIndex(
+        const foundIndex = correctList[0].tasks.findIndex(
           (ele) => ele.id === taskId
         );
-        correctList[0].tasks[index].taskName = updatedTitle;
+        correctList[0].tasks[foundIndex].taskName = updatedTitle;
         setTaskName(updatedTitle);
         return;
       }
     }
-
     if (e.target.className.includes("close")) {
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
+    }
+  };
+
+  const updateArchivedCard = (e, updatedTitle, taskId) => {
+    const archivedList = listOfAllArchivedCard.filter(
+      (ele) => ele.id === taskId
+    );
+
+    if (archivedList.length === 0) return setVisibilityTaskDetails(false);
+    archivedList[0].taskName = updatedTitle;
+    setTaskName(updatedTitle);
+    if (
+      e.target.className.includes("close") ||
+      e.target.className.includes("cover")
+    ) {
+      return setVisibilityTaskDetails(false);
     }
   };
 
@@ -424,6 +450,8 @@ const Main = () => {
         listOfAllTasksId={listOfAllTasksId}
         labelColors={labelColors}
         setLabelColors={setLabelColors}
+        listOfAllArchivedCard={listOfAllArchivedCard}
+        taskDetailsFunction={taskDetailsFunction}
       />
       <CoreField
         wholeList={wholeList}
@@ -488,6 +516,7 @@ const Main = () => {
           setListOfTasksList={setListOfTasksList}
           listOfAllTasksList={listOfAllTasksList}
           setListOfallTerms={setListOfallTerms}
+          listOfAllArchivedCard={listOfAllArchivedCard}
         />
       ) : null}
     </main>

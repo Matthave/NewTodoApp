@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const StyledDetailMarks = styled.div`
   flex-grow: 1;
+  padding-left: 15px;
 `;
 
 const StyledDetailDescription = styled.div`

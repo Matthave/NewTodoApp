@@ -12,7 +12,7 @@ const StyledDetailNav = styled.nav`
   flex-direction: column;
   height: 300px;
   @media ${device.laptop} {
-    width: 200px;
+    width: 215px;
   }
 `;
 
