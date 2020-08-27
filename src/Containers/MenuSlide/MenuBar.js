@@ -11,6 +11,7 @@ export class MenuBar extends Component {
     labelVisi: false,
     archivedElementVisi: false,
     archivedSearchValue: "",
+    warningBeforeDeleteVisi: false,
   };
 
   componentDidMount() {
@@ -31,6 +32,12 @@ export class MenuBar extends Component {
       this.setState({ slideMenuState: false, archivedElementVisi: false });
 
     if (!searchingClass.includes("label")) this.setState({ labelVisi: false });
+
+    if (
+      searchingClass.includes("delete") ||
+      searchingClass.includes("closeWarning")
+    )
+      this.setState({ warningBeforeDeleteVisi: false });
   };
 
   archivedSearchFunc = (e) => {
@@ -44,6 +51,10 @@ export class MenuBar extends Component {
 
   showArchivedCardFunc = () => {
     this.setState({ archivedElementVisi: !this.state.archivedElementVisi });
+  };
+
+  warningBeforeDeleteFunc = (taskIdToDelete) => {
+    this.setState({ warningBeforeDeleteVisi: true });
   };
 
   render() {
@@ -61,6 +72,7 @@ export class MenuBar extends Component {
       labelColors,
       setLabelColors,
       taskDetailsFunction,
+      deleteCard,
     } = this.props;
     const {
       boardNameValue,
@@ -68,6 +80,7 @@ export class MenuBar extends Component {
       labelVisi,
       archivedElementVisi,
       archivedSearchValue,
+      warningBeforeDeleteVisi,
     } = this.state;
     return (
       <>
@@ -86,6 +99,9 @@ export class MenuBar extends Component {
           showArchivedCardFunc={this.showArchivedCardFunc}
           listOfAllArchivedCard={listOfAllArchivedCardFilter}
           taskDetailsFunction={taskDetailsFunction}
+          warningBeforeDeleteFunc={this.warningBeforeDeleteFunc}
+          warningBeforeDeleteVisi={warningBeforeDeleteVisi}
+          deleteCard={deleteCard}
         />
         {labelVisi ? (
           <Labels

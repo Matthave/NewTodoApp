@@ -1,5 +1,6 @@
 import React from "react";
-import TasksPreviewCard from "../../TasksList/TasksPreviewInCard/TaskPreviewInCard";
+// import TasksPreviewCard from "../../TasksList/TasksPreviewInCard/TaskPreviewInCard";
+import DeleteLastWarning from "./DeleteLastWarning/DeleteLastWarning";
 import styled from "styled-components";
 
 const StyledWrapArchivedCards = styled.div`
@@ -114,6 +115,9 @@ function ArchivedCardsComp({
   archivedSearchFunc,
   archivedSearchValue,
   taskDetailsFunction,
+  warningBeforeDeleteFunc,
+  warningBeforeDeleteVisi,
+  deleteCard,
 }) {
   return (
     <StyledWrapArchivedCards
@@ -193,7 +197,18 @@ function ArchivedCardsComp({
             </StyledCard>
             <StyledWrapArchivedOptions>
               <StyledOption className="menu">Move to list</StyledOption>
-              <StyledOption className="menu">Delete</StyledOption>
+              <StyledOption
+                className="menu"
+                onClick={() => warningBeforeDeleteFunc()}
+              >
+                Delete
+              </StyledOption>
+              {warningBeforeDeleteVisi ? (
+                <DeleteLastWarning
+                  taskId={archivedCard.id}
+                  deleteCard={deleteCard}
+                />
+              ) : null}
             </StyledWrapArchivedOptions>
           </div>
         ))

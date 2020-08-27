@@ -93,6 +93,10 @@ const Main = () => {
     const matchedList = wholeList.filter((ele) => ele.id === listId);
     const matchedDate = listOfAllTerms.filter((ele) => ele.id === taskId);
 
+    const matchedTasksList = listOfAllTasksList.filter(
+      (ele) => ele.id === taskId
+    );
+
     //"Add card" by move already existing card
     if (taskId) {
       correctList[0].tasks.push({
@@ -104,6 +108,7 @@ const Main = () => {
         badges: matchedBadges,
         priority: `${matchedPriority.length === 0 ? null : "priority"}`,
         date: matchedDate,
+        tasksLists: matchedTasksList,
         cover: "",
         archived: false,
       });
@@ -118,6 +123,7 @@ const Main = () => {
         badges: [],
         priority: false,
         date: [],
+        tasksLists: [],
         cover: "",
         archived: false,
       });
@@ -164,71 +170,68 @@ const Main = () => {
     correctList[0].tasks.splice(taskIndex, 1);
   };
 
-  // const deleteCardd = () => {
-  //Delete Card Badges from array if matched exist also other matched lists
-  // const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
-  // const matchedPriority = listOfAllPriorityTasks.filter(
-  //   (ele) => ele === taskId
-  // );
-  // const matchedComment = listOfAllComments.filter(
-  //   (ele) => ele.id === taskId
-  // );
-  // const matchedTerms = listOfAllTerms.filter((ele) => ele.id === taskId);
-  // const matchedTasksList = listOfAllTasksList.filter(
-  //   (ele) => ele.id === taskId
-  // );
-  // if (matchedPriority.length !== 0) {
-  //   matchedPriority.forEach((element) => {
-  //     const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
-  //       (ele) => ele === taskId
-  //     );
-  //     listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
-  //   });
-  // }
-  // if (matchedComment.length !== 0) {
-  //   matchedComment.forEach((element) => {
-  //     const indexOfCommentToDelete = listOfAllComments.findIndex(
-  //       (ele) => ele.id === taskId
-  //     );
-  //     listOfAllComments.splice(indexOfCommentToDelete, 1);
-  //   });
-  // }
-  // if (matchedTerms.length !== 0) {
-  //   matchedTerms.forEach((element) => {
-  //     const indexOfTermToDelete = listOfAllTerms.findIndex(
-  //       (ele) => ele.id === taskId
-  //     );
-  //     listOfAllTerms.splice(indexOfTermToDelete, 1);
-  //   });
-  // }
-  // if (matchedBadges.length !== 0) {
-  //   matchedBadges.forEach((element) => {
-  //     const indexOfBadgedToDelete = listOfAllBadges.findIndex(
-  //       (ele) => ele.id === taskId && ele.color === element.color
-  //     );
-  //     listOfAllBadges.splice(indexOfBadgedToDelete, 1);
-  //   });
-  // }
-  // if (matchedTasksList.length !== 0) {
-  //   matchedTasksList.forEach((element) => {
-  //     const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
-  //       (ele) => ele.id === element.id && ele.listName === element.listName
-  //     );
-  //     listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
-  //   });
-  // }
-  //Delete Card Id from array
-  // const matchedIdList = listOfAllTasksId.findIndex(
-  //   (ele) => ele === taskId * 1
-  // );
-  // listOfAllTasksId.splice(matchedIdList, 1);
-  //Delete Card from list( by every way )
-  // const correctList = wholeList.filter((list) => list.id === listId);
-  // const taskIndex = correctList[0].tasks.findIndex(
-  //   (element) => element.id === taskId
-  // );
-  // correctList[0].tasks.splice(taskIndex, 1);
-  // };
+  const deleteCard = (taskId) => {
+    // Delete Card Badges from array if matched exist also other matched lists
+    const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
+    const matchedPriority = listOfAllPriorityTasks.filter(
+      (ele) => ele === taskId
+    );
+    const matchedComment = listOfAllComments.filter((ele) => ele.id === taskId);
+    const matchedTerms = listOfAllTerms.filter((ele) => ele.id === taskId);
+    const matchedTasksList = listOfAllTasksList.filter(
+      (ele) => ele.id === taskId
+    );
+    if (matchedPriority.length !== 0) {
+      matchedPriority.forEach((element) => {
+        const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
+          (ele) => ele === taskId
+        );
+        listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
+      });
+    }
+    if (matchedComment.length !== 0) {
+      matchedComment.forEach((element) => {
+        const indexOfCommentToDelete = listOfAllComments.findIndex(
+          (ele) => ele.id === taskId
+        );
+        listOfAllComments.splice(indexOfCommentToDelete, 1);
+      });
+    }
+    if (matchedTerms.length !== 0) {
+      matchedTerms.forEach((element) => {
+        const indexOfTermToDelete = listOfAllTerms.findIndex(
+          (ele) => ele.id === taskId
+        );
+        listOfAllTerms.splice(indexOfTermToDelete, 1);
+      });
+    }
+    if (matchedBadges.length !== 0) {
+      matchedBadges.forEach((element) => {
+        const indexOfBadgedToDelete = listOfAllBadges.findIndex(
+          (ele) => ele.id === taskId && ele.color === element.color
+        );
+        listOfAllBadges.splice(indexOfBadgedToDelete, 1);
+      });
+    }
+    if (matchedTasksList.length !== 0) {
+      matchedTasksList.forEach((element) => {
+        const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
+          (ele) => ele.id === element.id && ele.listName === element.listName
+        );
+        listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
+      });
+    }
+    // Delete Card Id from array
+    const indexMatchedIdList = listOfAllTasksId.findIndex(
+      (ele) => ele === taskId * 1
+    );
+    listOfAllTasksId.splice(indexMatchedIdList, 1);
+    // Delete card from archived list
+    const indexMatchedArchivedCard = listOfAllArchivedCard.findIndex(
+      (ele) => ele.id === taskId
+    );
+    listOfAllArchivedCard.splice(indexMatchedArchivedCard, 1);
+  };
 
   const addNewList = (listInputValue) => {
     if (listInputValue === "") return;
@@ -476,6 +479,7 @@ const Main = () => {
         setLabelColors={setLabelColors}
         listOfAllArchivedCard={listOfAllArchivedCard}
         taskDetailsFunction={taskDetailsFunction}
+        deleteCard={deleteCard}
       />
       <CoreField
         wholeList={wholeList}

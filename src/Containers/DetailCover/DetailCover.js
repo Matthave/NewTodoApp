@@ -27,13 +27,13 @@ class DetailCover extends React.Component {
     );
   }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     document.removeEventListener(
       "click",
       (e) => this.closeAllListsWindowsByListener(e),
       false
     );
-  };
+  }
 
   taskTitleFeature = (e) => {
     this.setState({
