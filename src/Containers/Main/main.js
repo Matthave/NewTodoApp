@@ -434,11 +434,23 @@ const Main = () => {
     listIdToMove,
     listIdToDelte
   ) => {
-    //Add to new list, and delete from preview
-    addNewCard(listIdToMove, taskTitle, taskId);
-    replaceCard(listIdToDelte, taskId);
-    setVisibilityTaskDetails(false);
-    setVisibilityOptionCover(false);
+    const isThisCardArchivedIndex = listOfAllArchivedCard.findIndex(
+      // Is that archived or active card?
+      (ele) => ele.id === taskId
+    );
+    if (isThisCardArchivedIndex !== -1) {
+      //Add to choosed list and delete from archived list
+      addNewCard(listIdToMove, taskTitle, taskId);
+      listOfAllArchivedCard.splice(isThisCardArchivedIndex, 1);
+      setVisibilityTaskDetails(false);
+      setVisibilityOptionCover(false);
+    } else {
+      //Add to new list and delete from preview
+      addNewCard(listIdToMove, taskTitle, taskId);
+      replaceCard(listIdToDelte, taskId);
+      setVisibilityTaskDetails(false);
+      setVisibilityOptionCover(false);
+    }
   };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
@@ -472,6 +484,8 @@ const Main = () => {
       />
       <ThemeField themeOption={showThemeOption} setWhichColor={setWhichColor} />
       <MenuBar
+        wholeList={wholeList}
+        moveCardToAnotherList={moveCardToAnotherList}
         whichColor={whichColor}
         listOfAllBadges={listOfAllBadges}
         listOfAllTasksId={listOfAllTasksId}

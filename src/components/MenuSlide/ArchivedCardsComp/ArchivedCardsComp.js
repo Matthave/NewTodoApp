@@ -1,6 +1,7 @@
 import React from "react";
 // import TasksPreviewCard from "../../TasksList/TasksPreviewInCard/TaskPreviewInCard";
 import DeleteLastWarning from "./DeleteLastWarning/DeleteLastWarning";
+import MoveToAnotherList from "../../MoveToAnotherList/MoveToAnotherListBox";
 import styled from "styled-components";
 
 const StyledWrapArchivedCards = styled.div`
@@ -116,9 +117,15 @@ function ArchivedCardsComp({
   archivedSearchValue,
   taskDetailsFunction,
   warningBeforeDeleteFunc,
+  moveToActiveFunc,
+  moveToActiveVisi,
   warningBeforeDeleteVisi,
   deleteCard,
   taskIdToDelete,
+  moveTaskData,
+  wholeList,
+  moveCardToAnotherList,
+  toggleCurrentListVisiFunc,
 }) {
   return (
     <StyledWrapArchivedCards
@@ -197,7 +204,19 @@ function ArchivedCardsComp({
               </div>
             </StyledCard>
             <StyledWrapArchivedOptions>
-              <StyledOption className="menu">Move to list</StyledOption>
+              <StyledOption
+                className="menu"
+                onClick={() =>
+                  moveToActiveFunc(
+                    archivedCard.id,
+                    archivedCard.taskName,
+                    archivedCard.currentList,
+                    archivedCard.currentListName
+                  )
+                }
+              >
+                Move to list
+              </StyledOption>
               <StyledOption
                 className="menu"
                 onClick={() => warningBeforeDeleteFunc(archivedCard.id)}
@@ -216,6 +235,18 @@ function ArchivedCardsComp({
         <DeleteLastWarning
           taskIdToDelete={taskIdToDelete}
           deleteCard={deleteCard}
+        />
+      ) : null}
+      {moveToActiveVisi ? (
+        <MoveToAnotherList
+          taskTitle={moveTaskData.taskTitle}
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
+          taskId={moveTaskData.taskId}
+          taskTitleList={moveTaskData.currentListName}
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          currentListId={moveTaskData.currentListId}
+          moveToInSuggestedVisi={"moveToActiveVisi"}
         />
       ) : null}
     </StyledWrapArchivedCards>

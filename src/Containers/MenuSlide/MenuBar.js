@@ -12,7 +12,9 @@ export class MenuBar extends Component {
     archivedElementVisi: false,
     archivedSearchValue: "",
     warningBeforeDeleteVisi: false,
+    moveToActiveVisi: false,
     taskIdToDelete: "",
+    moveTaskData: "",
   };
 
   componentDidMount() {
@@ -37,17 +39,26 @@ export class MenuBar extends Component {
     if (
       searchingClass.includes("ultimateDelete") ||
       searchingClass.includes("closeWarning")
-    )
+    ) {
       this.setState({ warningBeforeDeleteVisi: false });
+    }
+
+    if (searchingClass.includes("suggestedListToMove")) {
+      this.setState({ moveToActiveVisi: false });
+    }
   };
 
   archivedSearchFunc = (e) => {
     this.setState({ archivedSearchValue: e.target.value });
   };
 
-  //This one is for label
-  toggleCurrentListVisiFunc = () => {
-    this.setState({ labelVisi: true, slideMenuState: false });
+  //This one is for label and moveToAnotherList window, for X button to close
+  toggleCurrentListVisiFunc = (stateToClose) => {
+    if (stateToClose === "moveToActiveVisi") {
+      this.setState({ moveToActiveVisi: false, slideMenuState: true });
+    } else {
+      this.setState({ labelVisi: true, slideMenuState: false });
+    }
   };
 
   showArchivedCardFunc = () => {
@@ -56,6 +67,13 @@ export class MenuBar extends Component {
 
   warningBeforeDeleteFunc = (taskIdToDelete) => {
     this.setState({ warningBeforeDeleteVisi: true, taskIdToDelete });
+  };
+
+  moveToActiveFunc = (taskId, taskTitle, currenListId, currentListName) => {
+    this.setState({
+      moveToActiveVisi: true,
+      moveTaskData: { taskId, taskTitle, currenListId, currentListName },
+    });
   };
 
   render() {
@@ -68,12 +86,14 @@ export class MenuBar extends Component {
     );
 
     const {
+      wholeList,
       listOfAllBadges,
       listOfAllTasksId,
       labelColors,
       setLabelColors,
       taskDetailsFunction,
       deleteCard,
+      moveCardToAnotherList,
     } = this.props;
     const {
       boardNameValue,
@@ -82,7 +102,9 @@ export class MenuBar extends Component {
       archivedElementVisi,
       archivedSearchValue,
       warningBeforeDeleteVisi,
+      moveToActiveVisi,
       taskIdToDelete,
+      moveTaskData,
     } = this.state;
     return (
       <>
@@ -93,6 +115,8 @@ export class MenuBar extends Component {
           lighThisColor={lighThisColor}
         />
         <MenuSlideView
+          wholeList={wholeList}
+          moveCardToAnotherList={moveCardToAnotherList}
           slideMenuState={slideMenuState}
           archivedElementVisi={archivedElementVisi}
           archivedSearchValue={archivedSearchValue}
@@ -101,10 +125,13 @@ export class MenuBar extends Component {
           showArchivedCardFunc={this.showArchivedCardFunc}
           listOfAllArchivedCard={listOfAllArchivedCardFilter}
           taskDetailsFunction={taskDetailsFunction}
+          moveToActiveFunc={this.moveToActiveFunc}
+          moveToActiveVisi={moveToActiveVisi}
           warningBeforeDeleteFunc={this.warningBeforeDeleteFunc}
           warningBeforeDeleteVisi={warningBeforeDeleteVisi}
           deleteCard={deleteCard}
           taskIdToDelete={taskIdToDelete}
+          moveTaskData={moveTaskData}
         />
         {labelVisi ? (
           <Labels

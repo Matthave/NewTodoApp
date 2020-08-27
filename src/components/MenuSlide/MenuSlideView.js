@@ -58,10 +58,15 @@ function MenuSlideView({
   listOfAllArchivedCard,
   archivedSearchValue,
   taskDetailsFunction,
+  moveToActiveFunc,
+  moveToActiveVisi,
   warningBeforeDeleteFunc,
   warningBeforeDeleteVisi,
   deleteCard,
   taskIdToDelete,
+  moveTaskData,
+  wholeList,
+  moveCardToAnotherList,
 }) {
   return (
     <StyledMenu showMenu={slideMenuState} className="menu">
@@ -80,10 +85,16 @@ function MenuSlideView({
         archivedSearchFunc={archivedSearchFunc}
         archivedSearchValue={archivedSearchValue}
         taskDetailsFunction={taskDetailsFunction}
+        moveToActiveFunc={moveToActiveFunc}
+        moveToActiveVisi={moveToActiveVisi}
         warningBeforeDeleteFunc={warningBeforeDeleteFunc}
         warningBeforeDeleteVisi={warningBeforeDeleteVisi}
         deleteCard={deleteCard}
         taskIdToDelete={taskIdToDelete}
+        moveTaskData={moveTaskData}
+        wholeList={wholeList}
+        moveCardToAnotherList={moveCardToAnotherList}
+        toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
       />
     </StyledMenu>
   );
