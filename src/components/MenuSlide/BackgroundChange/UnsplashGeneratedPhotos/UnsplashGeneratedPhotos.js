@@ -81,7 +81,7 @@ function UnsplashGeneratedPhotos({
   unsplashSearchPhotosChange,
   unsplashSearchPhotosValue,
   unsplashPhotos,
-  loadingIconVisi,
+  setThisPhotoFunc,
 }) {
   return (
     <>
@@ -94,7 +94,10 @@ function UnsplashGeneratedPhotos({
       <StyledOptionsWrap>
         {unsplashPhotos.map((ele) => (
           <StyledOption key={ele.id}>
-            <StyledImg src={ele.urls.small} />
+            <StyledImg
+              src={ele.urls.small}
+              onClick={() => setThisPhotoFunc(ele.urls.full)}
+            />
             <StyledAuthor
               className="authorName"
               target="_blank"

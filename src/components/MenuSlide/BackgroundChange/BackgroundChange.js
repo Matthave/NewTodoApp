@@ -107,6 +107,7 @@ function BackgroundChange({
   unsplashSearchPhotosValue,
   unsplashSearchPhotosChange,
   showThemeColorsFunc,
+  setThisPhotoFunc,
 }) {
   return (
     <StyledMenu className="menu">
@@ -120,6 +121,7 @@ function BackgroundChange({
           unsplashSearchPhotosChange={unsplashSearchPhotosChange}
           unsplashSearchPhotosValue={unsplashSearchPhotosValue}
           unsplashPhotos={unsplashPhotos}
+          setThisPhotoFunc={setThisPhotoFunc}
         />
       ) : (
         <StyledOptionsWrap>

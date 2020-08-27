@@ -37,7 +37,6 @@ export class MenuBar extends Component {
         }
       })
       .then((data) => {
-        console.log(data.results);
         this.setState({ unsplashPhotos: data.results });
       })
       .catch((err) => {
@@ -160,6 +159,25 @@ export class MenuBar extends Component {
     this.props.showThemeOptionFunction(true);
   };
 
+  setThisPhotoFunc = (fullPhoto) => {
+    const mainEle = document.querySelector(".main");
+    const navEle = document.querySelector(".nav");
+    const menuBarEle = document.querySelector(".menuBar");
+    const restEle = document.querySelectorAll(".transparent");
+
+    document.body.style.backgroundImage = `url(${fullPhoto})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    mainEle.style.backgroundColor = "transparent";
+    menuBarEle.style.backgroundColor = "transparent";
+    navEle.style.backgroundColor = "rgba(0,0,0,0.2)";
+    restEle.forEach(
+      (ele) => (ele.style.backgroundColor = "rgba(255,255,255,0.25)")
+    );
+
+    this.props.setWhichColor(["rgba(150,150,150,0.1)"]);
+  };
+
   render() {
     //Import current color of mainElement and by Color set it lighten
     const currentLiColor = Color(this.props.whichColor[0]);
@@ -241,6 +259,7 @@ export class MenuBar extends Component {
             unsplashSearchPhotosValue={unsplashSearchPhotosValue}
             unsplashSearchPhotosChange={this.unsplashSearchPhotosChange}
             showThemeColorsFunc={this.showThemeColorsFunc}
+            setThisPhotoFunc={this.setThisPhotoFunc}
           />
         ) : null}
       </>

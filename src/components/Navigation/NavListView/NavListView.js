@@ -29,7 +29,7 @@ function NavListView({ themeFunction, linkTitle, lighThisColor }) {
   const colorBgcHSL = `hsl(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%)`;
   return (
     <StyledList
-      className="list theme"
+      className="list theme transparent"
       onClick={themeFunction}
       hoverBGC
       lighThisColor={colorBgcHSL}

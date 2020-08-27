@@ -36,10 +36,6 @@ const StyledListInput = styled.input`
       color: #888;
     }
   }
-
-  &:hover {
-    box-shadow: 0 0 10px 1px rgba(50, 50, 50, 0.1);
-  }
 `;
 
 const StyledWrapList = styled.div`
@@ -158,7 +154,7 @@ function CoreFieldView({
             placeholder="Add another list"
             onClick={showAddListHandle}
             onChange={(e) => listInputHandle(e)}
-            className="addList"
+            className="addList transparent"
             value={listInputValue}
             onKeyPress={(e) => addNewListByKey(e)}
           />

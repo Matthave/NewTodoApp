@@ -81,7 +81,7 @@ function MenuBarView({
       <StyledShowMenu
         hoverBGC
         lighThisColor={colorOfBgc}
-        className="menu"
+        className="menu transparent"
         onClick={() => slideMenuFunc()}
       >
         <StyledIcon className="fas fa-ellipsis-v menu" /> Show Menu

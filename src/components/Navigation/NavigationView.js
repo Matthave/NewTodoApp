@@ -88,8 +88,8 @@ const Navigation = ({ themeFunction, lighThisColor }) => {
         >
           <Styledlogo src={myLogo}></Styledlogo>
         </StyledHiperLink>
-        <StyledList lastEle>
-          <StyledInput className="item" placeholder="Search..." />
+        <StyledList lastEle className="transparent">
+          <StyledInput className="item transparent" placeholder="Search..." />
         </StyledList>
       </StyledUl>
     </StyledNav>

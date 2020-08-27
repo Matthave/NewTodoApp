@@ -499,6 +499,7 @@ const Main = () => {
         taskDetailsFunction={taskDetailsFunction}
         deleteCard={deleteCard}
         showThemeOptionFunction={showThemeOptionFunction}
+        setWhichColor={setWhichColor}
       />
       <CoreField
         wholeList={wholeList}
