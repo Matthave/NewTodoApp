@@ -12,6 +12,7 @@ export class MenuBar extends Component {
     archivedElementVisi: false,
     archivedSearchValue: "",
     warningBeforeDeleteVisi: false,
+    taskIdToDelete: "",
   };
 
   componentDidMount() {
@@ -34,7 +35,7 @@ export class MenuBar extends Component {
     if (!searchingClass.includes("label")) this.setState({ labelVisi: false });
 
     if (
-      searchingClass.includes("delete") ||
+      searchingClass.includes("ultimateDelete") ||
       searchingClass.includes("closeWarning")
     )
       this.setState({ warningBeforeDeleteVisi: false });
@@ -54,7 +55,7 @@ export class MenuBar extends Component {
   };
 
   warningBeforeDeleteFunc = (taskIdToDelete) => {
-    this.setState({ warningBeforeDeleteVisi: true });
+    this.setState({ warningBeforeDeleteVisi: true, taskIdToDelete });
   };
 
   render() {
@@ -81,6 +82,7 @@ export class MenuBar extends Component {
       archivedElementVisi,
       archivedSearchValue,
       warningBeforeDeleteVisi,
+      taskIdToDelete,
     } = this.state;
     return (
       <>
@@ -102,6 +104,7 @@ export class MenuBar extends Component {
           warningBeforeDeleteFunc={this.warningBeforeDeleteFunc}
           warningBeforeDeleteVisi={warningBeforeDeleteVisi}
           deleteCard={deleteCard}
+          taskIdToDelete={taskIdToDelete}
         />
         {labelVisi ? (
           <Labels

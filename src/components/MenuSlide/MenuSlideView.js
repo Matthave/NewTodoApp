@@ -61,6 +61,7 @@ function MenuSlideView({
   warningBeforeDeleteFunc,
   warningBeforeDeleteVisi,
   deleteCard,
+  taskIdToDelete,
 }) {
   return (
     <StyledMenu showMenu={slideMenuState} className="menu">
@@ -82,6 +83,7 @@ function MenuSlideView({
         warningBeforeDeleteFunc={warningBeforeDeleteFunc}
         warningBeforeDeleteVisi={warningBeforeDeleteVisi}
         deleteCard={deleteCard}
+        taskIdToDelete={taskIdToDelete}
       />
     </StyledMenu>
   );

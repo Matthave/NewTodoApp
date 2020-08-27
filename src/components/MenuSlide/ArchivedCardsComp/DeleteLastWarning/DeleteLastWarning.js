@@ -7,9 +7,11 @@ const StyledMoveListWrap = styled.div`
   position: absolute;
   width: 250px;
   height: 200px;
+  top: calc(50% - 100px);
+  left: calc(50% - 125px);
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 0px 0.5px 0px 0.5px #aaa;
+  box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
   z-index: 999;
   cursor: initial;
 `;
@@ -56,7 +58,7 @@ const StyledText = styled.h4`
   font-size: 14px;
 `;
 
-function DeleteLastWarning({ taskId, deleteCard }) {
+function DeleteLastWarning({ taskIdToDelete, deleteCard }) {
   return (
     <StyledMoveListWrap className="menu">
       <StyledX className="fas fa-times menu closeWarning" />
@@ -65,9 +67,13 @@ function DeleteLastWarning({ taskId, deleteCard }) {
         {
           "All card details will be deleted from the application and it will not be possible to restore the card. There is no going back."
         }
-        {taskId}
       </StyledText>
-      <StyledButton onClick={() => deleteCard(taskId)}>Delete</StyledButton>
+      <StyledButton
+        className="ultimateDelete"
+        onClick={() => deleteCard(taskIdToDelete)}
+      >
+        Delete
+      </StyledButton>
     </StyledMoveListWrap>
   );
 }

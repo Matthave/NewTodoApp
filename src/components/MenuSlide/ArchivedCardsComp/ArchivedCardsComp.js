@@ -118,6 +118,7 @@ function ArchivedCardsComp({
   warningBeforeDeleteFunc,
   warningBeforeDeleteVisi,
   deleteCard,
+  taskIdToDelete,
 }) {
   return (
     <StyledWrapArchivedCards
@@ -199,16 +200,10 @@ function ArchivedCardsComp({
               <StyledOption className="menu">Move to list</StyledOption>
               <StyledOption
                 className="menu"
-                onClick={() => warningBeforeDeleteFunc()}
+                onClick={() => warningBeforeDeleteFunc(archivedCard.id)}
               >
                 Delete
               </StyledOption>
-              {warningBeforeDeleteVisi ? (
-                <DeleteLastWarning
-                  taskId={archivedCard.id}
-                  deleteCard={deleteCard}
-                />
-              ) : null}
             </StyledWrapArchivedOptions>
           </div>
         ))
@@ -217,6 +212,12 @@ function ArchivedCardsComp({
           There is no archived elements
         </StyledBlankTitle>
       )}
+      {warningBeforeDeleteVisi ? (
+        <DeleteLastWarning
+          taskIdToDelete={taskIdToDelete}
+          deleteCard={deleteCard}
+        />
+      ) : null}
     </StyledWrapArchivedCards>
   );
 }
