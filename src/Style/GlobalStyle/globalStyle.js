@@ -199,6 +199,19 @@ const GlobalStyle = createGlobalStyle`
      background-color:#F4F5F7;
    }
 
+   .ultimateDelete{
+     background-color:#CF513D;
+     color:#fff;
+
+     &:hover{
+      background-color:#ef715d;
+     }
+   }
+
+   .fa-skull-crossbones{
+     color:#fff;
+   }
+
 ::-webkit-scrollbar{
     height:17.5px;
 }::-webkit-scrollbar-track{

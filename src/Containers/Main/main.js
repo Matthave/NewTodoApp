@@ -50,17 +50,17 @@ const Main = () => {
   ]);
 
   const [labelColors, setLabelColors] = useState([
-    { color: "#61BD4F", colorName: "green", value: "", id: 0 },
-    { color: "#F2D600", colorName: "yellow", value: "", id: 1 },
-    { color: "#FF9F1A", colorName: "orange", value: "", id: 2 },
-    { color: "#EB5A46", colorName: "red", value: "", id: 3 },
-    { color: "#C377E0", colorName: "purple", value: "", id: 4 },
-    { color: "#0079BF", colorName: "blue", id: 5 },
-    { color: "#00C2E0", colorName: "light blue ocean", value: "", id: 6 },
-    { color: "#51E898", colorName: "light green", value: "", id: 7 },
-    { color: "#FF78CB", colorName: "pink", value: "", id: 8 },
-    { color: "#344563", colorName: "dark blue", value: "", id: 9 },
+    { color: "#0079BF", colorName: "blue", id: 1 },
+    { color: "#00C2E0", colorName: "light blue ocean", value: "", id: 2 },
+    { color: "#51E898", colorName: "light green", value: "", id: 3 },
+    { color: "#61BD4F", colorName: "green", value: "", id: 4 },
+    { color: "#C377E0", colorName: "purple", value: "", id: 5 },
+    { color: "#FF78CB", colorName: "pink", value: "", id: 6 },
+    { color: "#EB5A46", colorName: "red", value: "", id: 7 },
+    { color: "#FF9F1A", colorName: "orange", value: "", id: 8 },
+    { color: "#F2D600", colorName: "yellow", value: "", id: 9 },
     { color: "#B3BAC5", colorName: "grey", value: "", id: 10 },
+    { color: "#344563", colorName: "dark blue", value: "", id: 11 },
   ]);
 
   const hideTheme = (e) => {
@@ -394,6 +394,7 @@ const Main = () => {
       // For changing taskName by detailCover component without closing this componentView
       !e.target.className.includes("close") &&
       !e.target.className.includes("suggestedListToMove") &&
+      !e.target.className.includes("ultimateDelete") &&
       !e.which
     ) {
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
@@ -406,7 +407,10 @@ const Main = () => {
         return;
       }
     }
-    if (e.target.className.includes("close")) {
+    if (
+      e.target.className.includes("close") ||
+      e.target.className.includes("ultimateDelete")
+    ) {
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
     }
@@ -494,6 +498,7 @@ const Main = () => {
         listOfAllArchivedCard={listOfAllArchivedCard}
         taskDetailsFunction={taskDetailsFunction}
         deleteCard={deleteCard}
+        showThemeOptionFunction={showThemeOptionFunction}
       />
       <CoreField
         wholeList={wholeList}
@@ -560,6 +565,7 @@ const Main = () => {
           listOfAllTasksList={listOfAllTasksList}
           setListOfallTerms={setListOfallTerms}
           listOfAllArchivedCard={listOfAllArchivedCard}
+          deleteCard={deleteCard}
         />
       ) : null}
     </main>

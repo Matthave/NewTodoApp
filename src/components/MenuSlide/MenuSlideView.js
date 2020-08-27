@@ -67,6 +67,7 @@ function MenuSlideView({
   moveTaskData,
   wholeList,
   moveCardToAnotherList,
+  backgroundChangeFunc,
 }) {
   return (
     <StyledMenu showMenu={slideMenuState} className="menu">
@@ -78,6 +79,7 @@ function MenuSlideView({
       <MenuSlideNavView
         toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
         showArchivedCardFunc={showArchivedCardFunc}
+        backgroundChangeFunc={backgroundChangeFunc}
       />
       <ArchivedCardsComp
         archivedElementVisi={archivedElementVisi}

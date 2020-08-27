@@ -54,6 +54,8 @@ function DetailTools({
   listOfAllTerms,
   reloadCoverComponentFunc,
   commentVisiToggleFunc,
+  isThisCardArchived,
+  deleteCard,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -106,6 +108,8 @@ function DetailTools({
         tasksListVisi={tasksListVisi}
         reloadCoverComponentFunc={reloadCoverComponentFunc}
         addNewCard={addNewCard}
+        isThisCardArchived={isThisCardArchived}
+        deleteCard={deleteCard}
       />
     </StyledDetailToolsWrap>
   );

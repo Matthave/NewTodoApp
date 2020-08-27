@@ -84,6 +84,8 @@ function DetailCoverNav({
   setListOfallTerms,
   reloadCoverComponentFunc,
   addNewCard,
+  isThisCardArchived,
+  deleteCard,
 }) {
   return (
     <StyledDetailNav>
@@ -140,13 +142,23 @@ function DetailCoverNav({
           />
           Priority
         </StyledDetailList>
-        <StyledDetailList
-          className="delete"
-          onClick={(e) => archiveCard(currentListId, taskId)}
-        >
-          <StyledIcon className="fas fa-archive" />
-          Archive
-        </StyledDetailList>
+        {isThisCardArchived.length !== 0 ? (
+          <StyledDetailList
+            className="delete ultimateDelete"
+            onClick={(e) => deleteCard(taskId)}
+          >
+            <StyledIcon className="fas fa-skull-crossbones" />
+            Delete
+          </StyledDetailList>
+        ) : (
+          <StyledDetailList
+            className="delete"
+            onClick={(e) => archiveCard(currentListId, taskId)}
+          >
+            <StyledIcon className="fas fa-archive" />
+            Archive
+          </StyledDetailList>
+        )}
       </StyledDetailUl>
       {labelVisi ? (
         <Labels

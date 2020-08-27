@@ -90,7 +90,8 @@ const StyledX = styled.span`
 
 const StyledBack = styled.span`
   font-size: 15px;
-  opacity: 0;
+  opacity: ${(props) => (props.active ? 1 : 0)};
+  cursor: ${(props) => (props.active ? "pointer" : "initial")};
 `;
 
 const StyledTitle = styled.h4``;
@@ -138,7 +139,10 @@ function LabelsChooseColors({
       detailCover={detailCover}
     >
       <StyledLabelTitle className="label">
-        <StyledBack className="fas fa-angle-left label" />
+        <StyledBack
+          className="fas fa-angle-left label backToMenu"
+          active={menuSlideClasses}
+        />
         <StyledTitle className="label">Labels</StyledTitle>
         <StyledX
           className="fas fa-times"

@@ -35,10 +35,14 @@ const StyledIcon = styled.span`
   color: #172b4d;
 `;
 
-function MenuSlideNavView({ toggleCurrentListVisiFunc, showArchivedCardFunc }) {
+function MenuSlideNavView({
+  toggleCurrentListVisiFunc,
+  showArchivedCardFunc,
+  backgroundChangeFunc,
+}) {
   return (
     <>
-      <StyledWrapList className="menu">
+      <StyledWrapList className="menu" onClick={() => backgroundChangeFunc()}>
         <StyledSquarBGC className="squarMenuBGC menu" />
         <StyledList className="menu">Change background</StyledList>
       </StyledWrapList>

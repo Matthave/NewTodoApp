@@ -113,6 +113,7 @@ function DetailCoverView({
   reloadCoverComponentFunc,
   commentVisiToggleFunc,
   isThisCardArchived,
+  deleteCard,
 }) {
   return (
     <StyledCover
@@ -188,6 +189,8 @@ function DetailCoverView({
           setListOfallTerms={setListOfallTerms}
           reloadCoverComponentFunc={reloadCoverComponentFunc}
           commentVisiToggleFunc={commentVisiToggleFunc}
+          isThisCardArchived={isThisCardArchived}
+          deleteCard={deleteCard}
         />
       </StyledDetail>
     </StyledCover>

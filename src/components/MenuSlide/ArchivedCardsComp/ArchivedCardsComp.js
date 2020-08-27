@@ -246,7 +246,7 @@ function ArchivedCardsComp({
           taskTitleList={moveTaskData.currentListName}
           toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           currentListId={moveTaskData.currentListId}
-          moveToInSuggestedVisi={"moveToActiveVisi"}
+          closeInThisState={"moveToActiveVisi"}
         />
       ) : null}
     </StyledWrapArchivedCards>

@@ -72,7 +72,7 @@ function MoveToAnotherListBox({
   taskId,
   optionCover,
   currentListId,
-  moveToInSuggestedVisi,
+  closeInThisState,
 }) {
   return (
     <StyledChangeListDetails
@@ -86,11 +86,7 @@ function MoveToAnotherListBox({
           className="fas fa-times"
           onClick={() =>
             toggleCurrentListVisiFunc(
-              `${
-                moveToInSuggestedVisi
-                  ? moveToInSuggestedVisi
-                  : "moveToAnotherListVisi"
-              }`
+              `${closeInThisState ? closeInThisState : "moveToAnotherListVisi"}`
             )
           }
         ></span>

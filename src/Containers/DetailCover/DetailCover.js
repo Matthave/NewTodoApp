@@ -196,6 +196,7 @@ class DetailCover extends React.Component {
       toggleTermToCard,
       setListOfTasksList,
       listOfAllTasksList,
+      deleteCard,
     } = this.props;
 
     const {
@@ -279,6 +280,7 @@ class DetailCover extends React.Component {
           listOfAllTerms={listOfAllTerms}
           reloadCoverComponentFunc={this.reloadCoverComponentFunc}
           isThisCardArchived={isThisCardArchived}
+          deleteCard={deleteCard}
         />
       </>
     );

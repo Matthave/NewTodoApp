@@ -42,7 +42,7 @@ function DetailSuggestedElement({
           taskTitleList={taskTitleList}
           toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           currentListId={currentListId}
-          moveToInSuggestedVisi={"moveToInSuggestedVisi"}
+          closeInThisState={"moveToInSuggestedVisi"}
         />
       ) : null}
     </StyledLightText>

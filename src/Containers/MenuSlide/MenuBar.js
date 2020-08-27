@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MenuBarView from "../../components/MenuSlide/MenuBarView";
 import MenuSlideView from "../../components/MenuSlide/MenuSlideView";
 import Labels from "../../Containers/Labels/Labels";
+import BackgroundChange from "../../components/MenuSlide/BackgroundChange/BackgroundChange";
 import Color from "color";
 
 export class MenuBar extends Component {
@@ -15,10 +16,63 @@ export class MenuBar extends Component {
     moveToActiveVisi: false,
     taskIdToDelete: "",
     moveTaskData: "",
+    backgroundChangeVisi: false,
+    showUnsplashPhotosVisi: false,
+    showColorsBgcVisi: false,
+    unsplashPhotos: [],
+    unsplashSearchPhotosValue: "",
   };
 
   componentDidMount() {
     document.addEventListener("click", (e) => this.hideMenuFunc(e));
+
+    fetch(
+      `https://api.unsplash.com/search/photos?query=mountains&orientation=landscape&per_page=30&client_id=3V45fUhL4RJF0ob0TFJcFcS-ACxAeAHkvYbdVcTvy1o`
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error(res.status);
+        }
+      })
+      .then((data) => {
+        console.log(data.results);
+        this.setState({ unsplashPhotos: data.results });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    if (
+      previousState.unsplashSearchPhotosValue !==
+      this.state.unsplashSearchPhotosValue
+    ) {
+      fetch(
+        `https://api.unsplash.com/search/photos?query=${
+          this.state.unsplashSearchPhotosValue !== ""
+            ? this.state.unsplashSearchPhotosValue
+            : "mountains"
+        }&orientation=landscape&per_page=30&client_id=3V45fUhL4RJF0ob0TFJcFcS-ACxAeAHkvYbdVcTvy1o`
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw Error(res.status);
+          }
+        })
+        .then((data) => {
+          this.setState({
+            unsplashPhotos: data.results,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   boardNameChangeFunc = (e) => {
@@ -32,7 +86,11 @@ export class MenuBar extends Component {
   hideMenuFunc = (e) => {
     const searchingClass = e.target.className;
     if (searchingClass.includes("closeMenu") || searchingClass.includes("main"))
-      this.setState({ slideMenuState: false, archivedElementVisi: false });
+      this.setState({
+        slideMenuState: false,
+        archivedElementVisi: false,
+        backgroundChangeVisi: false,
+      });
 
     if (!searchingClass.includes("label")) this.setState({ labelVisi: false });
 
@@ -45,6 +103,15 @@ export class MenuBar extends Component {
 
     if (searchingClass.includes("suggestedListToMove")) {
       this.setState({ moveToActiveVisi: false });
+    }
+
+    if (searchingClass.includes("backToMenu")) {
+      this.setState({
+        slideMenuState: true,
+        backgroundChangeVisi: false,
+        labelVisi: false,
+        showUnsplashPhotosVisi: false,
+      });
     }
   };
 
@@ -76,6 +143,23 @@ export class MenuBar extends Component {
     });
   };
 
+  backgroundChangeFunc = () => {
+    this.setState({ backgroundChangeVisi: true, slideMenuState: false });
+  };
+
+  showUnsplashPhotosFunc = () => {
+    this.setState({ showUnsplashPhotosVisi: true });
+  };
+
+  unsplashSearchPhotosChange = (e) => {
+    this.setState({ unsplashSearchPhotosValue: e.target.value });
+  };
+
+  showThemeColorsFunc = () => {
+    this.setState({ backgroundChangeVisi: false, slideMenuState: false });
+    this.props.showThemeOptionFunction(true);
+  };
+
   render() {
     //Import current color of mainElement and by Color set it lighten
     const currentLiColor = Color(this.props.whichColor[0]);
@@ -105,6 +189,10 @@ export class MenuBar extends Component {
       moveToActiveVisi,
       taskIdToDelete,
       moveTaskData,
+      backgroundChangeVisi,
+      showUnsplashPhotosVisi,
+      unsplashPhotos,
+      unsplashSearchPhotosValue,
     } = this.state;
     return (
       <>
@@ -132,6 +220,7 @@ export class MenuBar extends Component {
           deleteCard={deleteCard}
           taskIdToDelete={taskIdToDelete}
           moveTaskData={moveTaskData}
+          backgroundChangeFunc={this.backgroundChangeFunc}
         />
         {labelVisi ? (
           <Labels
@@ -141,6 +230,17 @@ export class MenuBar extends Component {
             labelColors={labelColors}
             setLabelColors={setLabelColors}
             menuSlideClasses={true}
+          />
+        ) : null}
+        {backgroundChangeVisi ? (
+          <BackgroundChange
+            labelColors={labelColors}
+            showUnsplashPhotosFunc={this.showUnsplashPhotosFunc}
+            showUnsplashPhotosVisi={showUnsplashPhotosVisi}
+            unsplashPhotos={unsplashPhotos}
+            unsplashSearchPhotosValue={unsplashSearchPhotosValue}
+            unsplashSearchPhotosChange={this.unsplashSearchPhotosChange}
+            showThemeColorsFunc={this.showThemeColorsFunc}
           />
         ) : null}
       </>
