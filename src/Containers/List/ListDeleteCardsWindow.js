@@ -11,7 +11,7 @@ class ListDeleteCardsWindow extends Component {
     }); // Add card id to container
     everyCardId.forEach((ele) => {
       //Use deleteCard function to every card which id is in container
-      this.props.deleteCard(listId, ele, "byButton");
+      this.props.archiveCard(listId, ele);
     });
   };
 

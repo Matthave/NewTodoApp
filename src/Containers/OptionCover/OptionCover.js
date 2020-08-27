@@ -99,7 +99,7 @@ class OptionCover extends Component {
     const {
       optionCoverData,
       updateCard,
-      deleteCard,
+      archiveCard,
       listOfAllBadges,
       listOfAllTasksId,
       labelColors,
@@ -160,7 +160,7 @@ class OptionCover extends Component {
           taskTitleFeature={this.taskTitleFeature}
           taskTitle={taskTitle}
           updateCard={updateCard}
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
           listOfAllBadges={listOfAllBadges}
           matchedColorsToThisCard={matchedColorsToThisCard}
           labelColors={labelColors}

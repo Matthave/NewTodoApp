@@ -56,7 +56,7 @@ const StyledDetailList = styled.li`
 
 function DetailCoverNav({
   labelVisi,
-  deleteCard,
+  archiveCard,
   currentListId,
   taskId,
   addPriorityForCards,
@@ -142,7 +142,7 @@ function DetailCoverNav({
         </StyledDetailList>
         <StyledDetailList
           className="delete"
-          onClick={(e) => deleteCard(currentListId, taskId, "byButton")}
+          onClick={(e) => archiveCard(currentListId, taskId)}
         >
           <StyledIcon className="fas fa-archive" />
           Archive

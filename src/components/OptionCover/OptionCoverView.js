@@ -128,10 +128,9 @@ const OptionCover = ({
   taskTitleFeature,
   taskTitle,
   updateCard,
-  deleteCard,
+  archiveCard,
   handleLabelsVisibility,
   labelVisi,
-  toggleLabelColorToCard,
   listOfAllBadges,
   matchedColorsToThisCard,
   listOfAllTasksId,
@@ -220,7 +219,7 @@ const OptionCover = ({
           </StyledSaveButton>
         </StyledWrapTextAndLabels>
         <OptionCoverListView
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
           taskTitle={taskTitle}
           listId={optionCoverData[0].listId}
           handleLabelsVisibility={handleLabelsVisibility}

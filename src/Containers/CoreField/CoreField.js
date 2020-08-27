@@ -5,7 +5,8 @@ const MainField = ({
   wholeList,
   listOption,
   addNewCard,
-  deleteCard,
+  replaceCard,
+  archiveCard,
   addNewList,
   copyNewList,
   moveCardToAnotherList,
@@ -84,7 +85,8 @@ const MainField = ({
       wholeList={wholeList}
       listOption={listOption}
       addNewCard={addNewCard}
-      deleteCard={deleteCard}
+      replaceCard={replaceCard}
+      archiveCard={archiveCard}
       showListHandle={showListHandle}
       setListInput={setListInput}
       scrollPosition={scrollPosition}

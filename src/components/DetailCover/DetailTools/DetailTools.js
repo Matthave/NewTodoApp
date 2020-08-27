@@ -16,7 +16,7 @@ const StyledDetailToolsWrap = styled.div`
 
 function DetailTools({
   labelVisi,
-  deleteCard,
+  archiveCard,
   addNewCard,
   currentListId,
   taskId,
@@ -78,7 +78,7 @@ function DetailTools({
       />
       <DetailCoverNav
         labelVisi={labelVisi}
-        deleteCard={deleteCard}
+        archiveCard={archiveCard}
         currentListId={currentListId}
         taskId={taskId}
         addPriorityForCards={addPriorityForCards}

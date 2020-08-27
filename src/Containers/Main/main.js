@@ -130,87 +130,105 @@ const Main = () => {
     setListOfAllBadges(listOfAllBadges);
   };
 
-  const deleteCard = (listId, taskId, byButton) => {
-    if (byButton === "byButton") {
-      //Delete Card Badges from array if matched exist also other matched lists
-      const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
-      const matchedPriority = listOfAllPriorityTasks.filter(
-        (ele) => ele === taskId
-      );
-      const matchedComment = listOfAllComments.filter(
-        (ele) => ele.id === taskId
-      );
-      const matchedTerms = listOfAllTerms.filter((ele) => ele.id === taskId);
-      const matchedTasksList = listOfAllTasksList.filter(
-        (ele) => ele.id === taskId
-      );
-
-      // if (matchedPriority.length !== 0) {
-      //   matchedPriority.forEach((element) => {
-      //     const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
-      //       (ele) => ele === taskId
-      //     );
-      //     listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
-      //   });
-      // }
-
-      // if (matchedComment.length !== 0) {
-      //   matchedComment.forEach((element) => {
-      //     const indexOfCommentToDelete = listOfAllComments.findIndex(
-      //       (ele) => ele.id === taskId
-      //     );
-      //     listOfAllComments.splice(indexOfCommentToDelete, 1);
-      //   });
-      // }
-
-      // if (matchedTerms.length !== 0) {
-      //   matchedTerms.forEach((element) => {
-      //     const indexOfTermToDelete = listOfAllTerms.findIndex(
-      //       (ele) => ele.id === taskId
-      //     );
-      //     listOfAllTerms.splice(indexOfTermToDelete, 1);
-      //   });
-      // }
-
-      // if (matchedBadges.length !== 0) {
-      //   matchedBadges.forEach((element) => {
-      //     const indexOfBadgedToDelete = listOfAllBadges.findIndex(
-      //       (ele) => ele.id === taskId && ele.color === element.color
-      //     );
-      //     listOfAllBadges.splice(indexOfBadgedToDelete, 1);
-      //   });
-      // }
-
-      // if (matchedTasksList.length !== 0) {
-      //   matchedTasksList.forEach((element) => {
-      //     const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
-      //       (ele) => ele.id === element.id && ele.listName === element.listName
-      //     );
-      //     listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
-      //   });
-      // }
-
-      //Delete Card Id from array
-      // const matchedIdList = listOfAllTasksId.findIndex(
-      //   (ele) => ele === taskId * 1
-      // );
-      // listOfAllTasksId.splice(matchedIdList, 1);
-    }
-
-    //Delete Card from list( by every way )
+  const archiveCard = (listId, taskId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
     const taskIndex = correctList[0].tasks.findIndex(
       (element) => element.id === taskId
     );
+    const badgesToThisCard = listOfAllBadges.filter(
+      (badge) => badge.id === taskId
+    );
+    const commentsToThisCard = listOfAllComments.filter(
+      (comment) => comment.id === taskId
+    );
+    const termsToThisCard = listOfAllTerms.filter((term) => term.id === taskId);
     const archivedCard = correctList[0].tasks.splice(taskIndex, 1);
-    archivedCard[0].archived = true;
 
-    if (byButton === "byButton")
-      setListOfAllArchivedCard([...listOfAllArchivedCard, ...archivedCard]);
+    archivedCard[0].archived = true;
+    archivedCard[0].badges = badgesToThisCard;
+    archivedCard[0].date = termsToThisCard;
+    archivedCard[0].comment = commentsToThisCard;
+
+    listOfAllArchivedCard.push(...archivedCard);
+    // setListOfAllArchivedCard([...listOfAllArchivedCard, ...archivedCard]);
 
     setVisibilityOptionCover(false);
     setVisibilityTaskDetails(false);
   };
+
+  const replaceCard = (listId, taskId) => {
+    const correctList = wholeList.filter((list) => list.id === listId);
+    const taskIndex = correctList[0].tasks.findIndex(
+      (element) => element.id === taskId
+    );
+    correctList[0].tasks.splice(taskIndex, 1);
+  };
+
+  // const deleteCardd = () => {
+  //Delete Card Badges from array if matched exist also other matched lists
+  // const matchedBadges = listOfAllBadges.filter((ele) => ele.id === taskId);
+  // const matchedPriority = listOfAllPriorityTasks.filter(
+  //   (ele) => ele === taskId
+  // );
+  // const matchedComment = listOfAllComments.filter(
+  //   (ele) => ele.id === taskId
+  // );
+  // const matchedTerms = listOfAllTerms.filter((ele) => ele.id === taskId);
+  // const matchedTasksList = listOfAllTasksList.filter(
+  //   (ele) => ele.id === taskId
+  // );
+  // if (matchedPriority.length !== 0) {
+  //   matchedPriority.forEach((element) => {
+  //     const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
+  //       (ele) => ele === taskId
+  //     );
+  //     listOfAllPriorityTasks.splice(indexOfPriorityToDelete, 1);
+  //   });
+  // }
+  // if (matchedComment.length !== 0) {
+  //   matchedComment.forEach((element) => {
+  //     const indexOfCommentToDelete = listOfAllComments.findIndex(
+  //       (ele) => ele.id === taskId
+  //     );
+  //     listOfAllComments.splice(indexOfCommentToDelete, 1);
+  //   });
+  // }
+  // if (matchedTerms.length !== 0) {
+  //   matchedTerms.forEach((element) => {
+  //     const indexOfTermToDelete = listOfAllTerms.findIndex(
+  //       (ele) => ele.id === taskId
+  //     );
+  //     listOfAllTerms.splice(indexOfTermToDelete, 1);
+  //   });
+  // }
+  // if (matchedBadges.length !== 0) {
+  //   matchedBadges.forEach((element) => {
+  //     const indexOfBadgedToDelete = listOfAllBadges.findIndex(
+  //       (ele) => ele.id === taskId && ele.color === element.color
+  //     );
+  //     listOfAllBadges.splice(indexOfBadgedToDelete, 1);
+  //   });
+  // }
+  // if (matchedTasksList.length !== 0) {
+  //   matchedTasksList.forEach((element) => {
+  //     const indexOfTaskListToDelete = listOfAllTasksList.findIndex(
+  //       (ele) => ele.id === element.id && ele.listName === element.listName
+  //     );
+  //     listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
+  //   });
+  // }
+  //Delete Card Id from array
+  // const matchedIdList = listOfAllTasksId.findIndex(
+  //   (ele) => ele === taskId * 1
+  // );
+  // listOfAllTasksId.splice(matchedIdList, 1);
+  //Delete Card from list( by every way )
+  // const correctList = wholeList.filter((list) => list.id === listId);
+  // const taskIndex = correctList[0].tasks.findIndex(
+  //   (element) => element.id === taskId
+  // );
+  // correctList[0].tasks.splice(taskIndex, 1);
+  // };
 
   const addNewList = (listInputValue) => {
     if (listInputValue === "") return;
@@ -347,8 +365,11 @@ const Main = () => {
 
   const updateCard = (e, updatedTitle, listId, taskId) => {
     const correctList = wholeList.filter((list) => list.id === listId);
-    const index = correctList[0].tasks.findIndex((ele) => ele.id === taskId);
-    if (!correctList[0].tasks[index]) {
+    const ifTaskIdArchived = listOfAllArchivedCard.filter(
+      (archived) => archived.id === taskId
+    );
+
+    if (ifTaskIdArchived.length !== 0) {
       updateArchivedCard(e, updatedTitle, taskId);
       return;
     } // Check if this updateCard call is from active card or archived
@@ -360,6 +381,7 @@ const Main = () => {
       e.which === 13
     ) {
       if (updatedTitle.length === 0) return setVisibilityTaskDetails(false);
+      const index = correctList[0].tasks.findIndex((ele) => ele.id === taskId);
       correctList[0].tasks[index].taskName = updatedTitle;
       setVisibilityTaskDetails(false);
       setVisibilityOptionCover(false);
@@ -411,7 +433,9 @@ const Main = () => {
   ) => {
     //Add to new list, and delete from preview
     addNewCard(listIdToMove, taskTitle, taskId);
-    deleteCard(listIdToDelte, taskId);
+    replaceCard(listIdToDelte, taskId);
+    setVisibilityTaskDetails(false);
+    setVisibilityOptionCover(false);
   };
 
   const moveListToAnotherPlace = (draggedListIndex, addToThisIndex) => {
@@ -457,7 +481,8 @@ const Main = () => {
         wholeList={wholeList}
         setWholeList={setWholeList}
         addNewCard={addNewCard}
-        deleteCard={deleteCard}
+        replaceCard={replaceCard}
+        archiveCard={archiveCard}
         addNewList={addNewList}
         visibilityOptionFunction={visibilityOptionFunction}
         taskDetailsFunction={taskDetailsFunction}
@@ -475,7 +500,7 @@ const Main = () => {
           optionCoverData={optionCoverData}
           taskName={taskName}
           updateCard={updateCard}
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
           listOfAllBadges={listOfAllBadges}
           listOfAllTasksId={listOfAllTasksId}
           labelColors={labelColors}
@@ -498,7 +523,7 @@ const Main = () => {
           taskTitleList={taskTitleList}
           updateCard={updateCard}
           addNewCard={addNewCard}
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
           currentListId={idUpdatedList}
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}

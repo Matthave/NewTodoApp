@@ -33,7 +33,8 @@ function ListView({
   listOptionToggle,
   wholeList,
   setWholeList,
-  deleteCard,
+  replaceCard,
+  archiveCard,
   id,
   tasks,
   moveCardToAnotherList,
@@ -142,7 +143,7 @@ function ListView({
         <ListDeleteCardsWindow
           listId={id}
           wholeList={wholeList}
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
         />
       ) : null}
       {moveCardsVisibilityState ? (

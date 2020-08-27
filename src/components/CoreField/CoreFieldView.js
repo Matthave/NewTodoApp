@@ -91,7 +91,8 @@ function CoreFieldView({
   wholeList,
   listOption,
   addNewCard,
-  deleteCard,
+  replaceCard,
+  archiveCard,
   showListHandle,
   setListInput,
   scrollPosition,
@@ -131,7 +132,8 @@ function CoreFieldView({
             tasks={list.tasks}
             listOption={listOption}
             addNewCard={addNewCard}
-            deleteCard={deleteCard}
+            replaceCard={replaceCard}
+            archiveCard={archiveCard}
             showListHandle={showListHandle}
             setListInput={setListInput}
             scrollPosition={scrollPosition}

@@ -71,7 +71,7 @@ const StyledIcon = styled.span`
 
 function DetailCoverView({
   updateCard,
-  deleteCard,
+  archiveCard,
   addNewCard,
   currentListId,
   taskTitle,
@@ -150,7 +150,7 @@ function DetailCoverView({
         />
         <DetailTools
           labelVisi={labelVisi}
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
           addNewCard={addNewCard}
           currentListId={currentListId}
           taskId={taskId}

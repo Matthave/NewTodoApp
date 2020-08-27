@@ -179,7 +179,7 @@ class DetailCover extends React.Component {
       taskId,
       taskTitleList,
       updateCard,
-      deleteCard,
+      archiveCard,
       addNewCard,
       currentListId,
       wholeList,
@@ -245,7 +245,7 @@ class DetailCover extends React.Component {
           wholeList={wholeList}
           moveCardToAnotherList={moveCardToAnotherList}
           labelVisi={labelVisi}
-          deleteCard={deleteCard}
+          archiveCard={archiveCard}
           currentListId={currentListId}
           taskId={taskId}
           toggleLabelColorToCard={toggleLabelColorToCard}

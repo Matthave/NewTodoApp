@@ -114,7 +114,7 @@ class List extends Component {
   };
 
   deleteCardFeatureByMove = (listId, taskId) => {
-    this.props.deleteCard(listId, taskId);
+    this.props.replaceCard(listId, taskId);
     this.setState({
       textAreaValue: "",
     });
@@ -239,7 +239,7 @@ class List extends Component {
     });
     everyCardId.forEach((ele) => {
       //Use deleteCard function to every card which id is in container
-      this.props.deleteCard(listId, ele, "byButton");
+      this.props.archiveCard(listId, ele);
     });
     this.props.setWholeList(filterWholeList);
   };
@@ -295,7 +295,8 @@ class List extends Component {
       id,
       tasks,
       wholeList,
-      deleteCard,
+      archiveCard,
+      replaceCard,
       setWholeList,
       scrollPosition,
       isDragAndDropTrue,
@@ -329,7 +330,8 @@ class List extends Component {
           selectedList={selectedList}
           listOptionToggle={this.listOptionToggle}
           wholeList={wholeList}
-          deleteCard={deleteCard}
+          replaceCard={replaceCard}
+          archiveCard={archiveCard}
           setWholeList={setWholeList}
           id={id}
           tasks={tasks}

@@ -33,7 +33,7 @@ const StyledIcon = styled.span`
 `;
 
 function OptionCoverListView({
-  deleteCard,
+  archiveCard,
   listId,
   addPriorityForCards,
   optionCoverData,
@@ -89,9 +89,7 @@ function OptionCoverListView({
           Priority
         </StyledList>
         <StyledList
-          onClick={(e) =>
-            deleteCard(listId, optionCoverData[0].clickedCardId, "byButton")
-          }
+          onClick={(e) => archiveCard(listId, optionCoverData[0].clickedCardId)}
         >
           <StyledIcon className="fas fa-archive" />
           Archive
