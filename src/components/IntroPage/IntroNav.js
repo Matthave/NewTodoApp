@@ -11,7 +11,7 @@ const StyledNav = styled.nav`
   height: 80px;
   background-color: transparent;
   padding: 10px 20px;
-  transition: 0.75s linear;
+  transition: 1s linear;
   font-size: 20px;
 
   @media ${device.laptop} {

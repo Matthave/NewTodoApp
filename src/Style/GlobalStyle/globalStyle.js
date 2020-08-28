@@ -229,6 +229,24 @@ const GlobalStyle = createGlobalStyle`
   cursor: pointer;
    }
 
+   .headerLinkIntro{
+  height: 50px;
+  line-height:50px;
+  background-color: #61bd4f;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-size: 25px;
+  text-decoration:none;
+  color: #fff;
+  transition:0.1s linear;
+  cursor: pointer;
+
+  &:hover{
+    background-color: #50a33e;
+  }
+   }
+
 ::-webkit-scrollbar{
     height:17.5px;
 }::-webkit-scrollbar-track{
