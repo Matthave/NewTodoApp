@@ -67,7 +67,7 @@ const StyledHiperLink = styled.a`
   z-index: 0;
 `;
 
-const navigationElements = ["Your list", "Theme", "Help"];
+const navigationElements = ["Home", "Your list", "Theme"];
 
 const Navigation = ({ themeFunction, lighThisColor }) => {
   return (

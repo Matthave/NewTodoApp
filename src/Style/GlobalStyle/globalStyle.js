@@ -212,6 +212,23 @@ const GlobalStyle = createGlobalStyle`
      color:#fff;
    }
 
+   .navLink{
+    text-decoration: none;
+  font-size: 1.5rem;
+  color: #fff;
+   }
+
+   .navLinkIntro{
+    background-color: #fff;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin: auto 0 auto auto;
+  font-size: inherit;
+  text-decoration:none;
+  color: #0079bf;
+  cursor: pointer;
+   }
+
 ::-webkit-scrollbar{
     height:17.5px;
 }::-webkit-scrollbar-track{

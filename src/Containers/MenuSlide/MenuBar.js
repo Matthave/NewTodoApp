@@ -74,6 +74,10 @@ export class MenuBar extends Component {
     }
   }
 
+  componentWillUnmount() {
+    document.removeEventListener("click", (e) => this.hideMenuFunc(e));
+  }
+
   boardNameChangeFunc = (e) => {
     this.setState({ boardNameValue: e.target.value.substr(0, 17) });
   };
@@ -89,6 +93,7 @@ export class MenuBar extends Component {
         slideMenuState: false,
         archivedElementVisi: false,
         backgroundChangeVisi: false,
+        showUnsplashPhotosVisi: false,
       });
 
     if (!searchingClass.includes("label")) this.setState({ labelVisi: false });
@@ -159,10 +164,11 @@ export class MenuBar extends Component {
     this.props.showThemeOptionFunction(true);
   };
 
-  setThisPhotoFunc = (fullPhoto) => {
+  setThisPhotoFunc = (fullPhoto, thumbPhoto) => {
     const mainEle = document.querySelector(".main");
     const navEle = document.querySelector(".nav");
     const menuBarEle = document.querySelector(".menuBar");
+    const squarMenuBGC = document.querySelector(".squarMenuBGC");
     const restEle = document.querySelectorAll(".transparent");
 
     document.body.style.backgroundImage = `url(${fullPhoto})`;
@@ -170,6 +176,9 @@ export class MenuBar extends Component {
     document.body.style.backgroundPosition = "center";
     mainEle.style.backgroundColor = "transparent";
     menuBarEle.style.backgroundColor = "transparent";
+    squarMenuBGC.style.backgroundImage = `url(${thumbPhoto})`;
+    squarMenuBGC.style.backgroundSize = "cover";
+    squarMenuBGC.style.backgroundPosition = "center";
     navEle.style.backgroundColor = "rgba(0,0,0,0.2)";
     restEle.forEach(
       (ele) => (ele.style.backgroundColor = "rgba(255,255,255,0.25)")

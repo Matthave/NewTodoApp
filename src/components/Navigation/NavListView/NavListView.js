@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledList = styled.li`
@@ -34,9 +35,15 @@ function NavListView({ themeFunction, linkTitle, lighThisColor }) {
       hoverBGC
       lighThisColor={colorBgcHSL}
     >
-      <Link className={`${linkTitle === "Theme" ? "theme" : null}`}>
-        {linkTitle}
-      </Link>
+      {linkTitle === "Home" ? (
+        <NavLink exact to="/" className="navLink">
+          {linkTitle}
+        </NavLink>
+      ) : (
+        <Link className={`${linkTitle === "Theme" ? "theme" : null}`}>
+          {linkTitle}
+        </Link>
+      )}
     </StyledList>
   );
 }
