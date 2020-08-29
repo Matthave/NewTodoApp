@@ -60,6 +60,37 @@ export class IntroPage extends Component {
     firstDot.style.backgroundColor = "#23cfea";
   }
 
+  componentDidUpdate() {
+    const robotSVG = document.querySelector(".robotSVG");
+    const { currentImg } = this.state;
+
+    if (currentImg === 0) {
+      robotSVG.style.top = "5%";
+      robotSVG.style.left = "20%";
+      robotSVG.style.transform = "rotate(10deg)";
+    }
+    if (currentImg === 1) {
+      robotSVG.style.top = "5%";
+      robotSVG.style.left = "65%";
+      robotSVG.style.transform = "rotate(10deg)";
+    }
+    if (currentImg === 2) {
+      robotSVG.style.top = "40%";
+      robotSVG.style.left = "65%";
+      robotSVG.style.transform = "rotate(0deg)";
+    }
+    if (currentImg === 3) {
+      robotSVG.style.top = "20%";
+      robotSVG.style.left = "35%";
+      robotSVG.style.transform = "rotate(15deg)";
+    }
+    if (currentImg === 4) {
+      robotSVG.style.top = "40%";
+      robotSVG.style.left = "65%";
+      robotSVG.style.transform = "rotate(10deg)";
+    }
+  }
+
   componentWillUnmount() {
     document.removeEventListener("scroll", this.scrollEventStart);
   }
@@ -91,34 +122,11 @@ export class IntroPage extends Component {
         currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
         this.setState({ currentImg: currentImg + 1 });
-
-        if (currentImg + 1 === 0) {
-          robotSVG.style.left = "20%;";
-        }
-        if (currentImg + 1 === 1) {
-          robotSVG.style.left = "65%";
-        }
-        if (currentImg + 1 === 2) {
-          robotSVG.style.top = "45%";
-        }
-        if (currentImg + 1 === 3) {
-          robotSVG.style.top = "15%";
-          robotSVG.style.left = "32%";
-          robotSVG.style.transform = "rotate(0deg)";
-        }
-        if (currentImg + 1 === 4) {
-          robotSVG.style.top = "35%";
-          robotSVG.style.left = "65%";
-          robotSVG.style.transform = "rotate(10deg)";
-        }
       } else {
         const currentDot = document.getElementById(`0`);
         currentDot.style.width = "17.5px";
         currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
-        robotSVG.style.left = "20%";
-        robotSVG.style.top = "5%";
-
         this.setState({ currentImg: 0 });
       }
     } else {
@@ -128,36 +136,11 @@ export class IntroPage extends Component {
         currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
         this.setState({ currentImg: currentImg - 1 });
-
-        if (currentImg === 0) {
-          robotSVG.style.top = "35%";
-          robotSVG.style.left = "20%";
-        }
-        if (currentImg === 1) {
-          robotSVG.style.left = "20%";
-        }
-        if (currentImg === 2) {
-          robotSVG.style.left = "65%";
-          robotSVG.style.top = "5%";
-        }
-        if (currentImg === 3) {
-          robotSVG.style.top = "45%";
-          robotSVG.style.left = "65%";
-          robotSVG.style.transform = "rotate(10deg)";
-        }
-        if (currentImg === 4) {
-          robotSVG.style.top = "15%";
-          robotSVG.style.left = "32%";
-          robotSVG.style.transform = "rotate(0deg)";
-        }
       } else {
         const currentDot = document.getElementById(`4`);
         currentDot.style.width = "17.5px";
         currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
-        robotSVG.style.top = "35%";
-        robotSVG.style.left = "65%";
-        robotSVG.style.transform = "rotate(10deg)";
         this.setState({ currentImg: 4 });
       }
     }

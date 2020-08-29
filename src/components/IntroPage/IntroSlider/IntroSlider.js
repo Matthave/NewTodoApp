@@ -150,7 +150,7 @@ const StyledRobotSvg = styled.img`
   transform: rotate(10deg);
   transition: 0.2s linear;
   @media ${device.laptopL} {
-    display: inline;
+    display: block;
     font-size: 17px;
     margin: auto auto;
   }
