@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Arial, Helvetica, sans-serif;
     box-sizing:border-box;
     border:none;
-    outline:none;
+    outline:0;
     font-family: 'Roboto', sans-serif;
   }
 

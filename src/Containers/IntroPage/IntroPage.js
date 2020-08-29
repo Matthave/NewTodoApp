@@ -55,8 +55,8 @@ export class IntroPage extends Component {
   componentDidMount() {
     document.addEventListener("scroll", this.scrollEventStart);
     const firstDot = document.getElementById(`${this.state.currentImg}`);
-    firstDot.style.width = "15px";
-    firstDot.style.height = "15px";
+    firstDot.style.width = "17.5px";
+    firstDot.style.height = "17.5px";
     firstDot.style.backgroundColor = "#23cfea";
   }
 
@@ -78,36 +78,36 @@ export class IntroPage extends Component {
     const { currentImg } = this.state;
     const everyDots = document.querySelectorAll(".dots");
     everyDots.forEach((dot) => {
-      dot.style.width = "10px";
-      dot.style.height = "10px";
+      dot.style.width = "12.5px";
+      dot.style.height = "12.5px";
       dot.style.backgroundColor = "#888";
     });
 
     if (direction === "right") {
       if (currentImg <= 3) {
         const currentDot = document.getElementById(`${currentImg + 1}`);
-        currentDot.style.width = "15px";
-        currentDot.style.height = "15px";
+        currentDot.style.width = "17.5px";
+        currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
         this.setState({ currentImg: currentImg + 1 });
       } else {
         const currentDot = document.getElementById(`0`);
-        currentDot.style.width = "15px";
-        currentDot.style.height = "15px";
+        currentDot.style.width = "17.5px";
+        currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
         this.setState({ currentImg: 0 });
       }
     } else {
       if (currentImg >= 1) {
         const currentDot = document.getElementById(`${currentImg - 1}`);
-        currentDot.style.width = "15px";
-        currentDot.style.height = "15px";
+        currentDot.style.width = "17.5px";
+        currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
         this.setState({ currentImg: currentImg - 1 });
       } else {
         const currentDot = document.getElementById(`4`);
-        currentDot.style.width = "15px";
-        currentDot.style.height = "15px";
+        currentDot.style.width = "17.5px";
+        currentDot.style.height = "17.5px";
         currentDot.style.backgroundColor = "#23cfea";
         this.setState({ currentImg: 4 });
       }
@@ -117,12 +117,12 @@ export class IntroPage extends Component {
   sliderByDotFunc = (e, dotId) => {
     const everyDots = document.querySelectorAll(".dots");
     everyDots.forEach((dot) => {
-      dot.style.width = "10px";
-      dot.style.height = "10px";
+      dot.style.width = "12.5px";
+      dot.style.height = "12.5px";
       dot.style.backgroundColor = "#888";
     });
-    e.target.style.width = "15px";
-    e.target.style.height = "15px";
+    e.target.style.width = "17.5px";
+    e.target.style.height = "17.5px";
     e.target.style.backgroundColor = "#23cfea";
     this.setState({ currentImg: dotId });
   };

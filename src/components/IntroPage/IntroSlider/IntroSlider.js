@@ -7,7 +7,7 @@ const StyledSliderWrap = styled.div`
   flex-direction: column;
   width: 100%;
   background-color: #fff;
-  padding: 15px 0px 15px;
+  padding: 15px 0px 30px;
 `;
 
 const StyledText = styled.h3`
@@ -69,8 +69,10 @@ const StyledIcon = styled.span`
 
 const StyledImg = styled.img`
   width: 150%;
+  border-radius: 10px;
   filter: grayscale(25%);
   cursor: pointer;
+
   @media ${device.tablet} {
     width: 100%;
   }
@@ -78,9 +80,11 @@ const StyledImg = styled.img`
 
 const StyledDescriptionWrap = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
   height: 100px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background-color: rgba(0, 0, 50, 0.6);
 `;
 
@@ -116,12 +120,14 @@ const StyledDotsWrap = styled.div`
 `;
 
 const StyledDot = styled.div`
-  width: 10px;
-  height: 10px;
+  width: 12.5px;
+  height: 12.5px;
+  transform-origin: center;
   background-color: #888;
   border-radius: 50%;
   margin: auto 5px;
   cursor: pointer;
+  transition: 0.2s linear;
 
   &:hover {
     background-color: #23cfea !important;
