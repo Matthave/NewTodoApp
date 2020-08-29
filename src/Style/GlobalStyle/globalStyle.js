@@ -216,6 +216,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   font-size: 1.5rem;
   color: #fff;
+  padding:7px 17px;
    }
 
    .navLinkIntro{
@@ -226,16 +227,19 @@ const GlobalStyle = createGlobalStyle`
   font-size: inherit;
   text-decoration:none;
   color: #0079bf;
+  transition:0.1s linear;
   cursor: pointer;
+
+  &:hover{
+    transform: rotate(4deg);
+  }
    }
 
    .headerLinkIntro{
-  height: 50px;
-  line-height:50px;
   background-color: #61bd4f;
   border-radius: 5px;
-  margin: 0 auto;
-  padding: 0 15px;
+  margin: 10px auto auto;
+  padding: 10px 15px;
   font-size: 25px;
   text-decoration:none;
   color: #fff;

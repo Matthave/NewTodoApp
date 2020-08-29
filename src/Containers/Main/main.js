@@ -480,7 +480,7 @@ const Main = () => {
   };
 
   return (
-    <main>
+    <main className="app">
       <Navigations
         themeToggle={showThemeOptionFunction}
         themeOption={showThemeOption}

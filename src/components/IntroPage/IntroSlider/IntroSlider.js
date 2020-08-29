@@ -6,8 +6,8 @@ const StyledSliderWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: calc(100vh - 80px);
   background-color: #fff;
-  padding: 15px 0px 30px;
 `;
 
 const StyledText = styled.h3`
@@ -16,6 +16,7 @@ const StyledText = styled.h3`
   font-weight: ${(props) => (props.smallerFont ? "400" : "600")};
   font-size: ${(props) => (props.smallerFont ? "25px" : "35px")};
   margin: 10px auto;
+  margin-top: ${(props) => (props.smallerFont ? "10px" : "35px")};
   color: #172b4d;
 `;
 
@@ -52,7 +53,7 @@ const StyledView = styled.div`
   position: relative;
   width: 100%;
   max-width: 880px;
-  max-height: 500px;
+  max-height: 460px;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(74, 115, 159, 0.29);
   margin: auto 0;
@@ -70,7 +71,6 @@ const StyledIcon = styled.span`
 const StyledImg = styled.img`
   width: 150%;
   border-radius: 10px;
-  filter: grayscale(25%);
   cursor: pointer;
 
   @media ${device.tablet} {
