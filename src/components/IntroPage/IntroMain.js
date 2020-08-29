@@ -9,11 +9,16 @@ const StyledMainWrap = styled.main`
   width: 100%;
 `;
 
-function IntroMain() {
+function IntroMain({ sliderFunc, sliderByDotFunc, allImages, currentImg }) {
   return (
     <StyledMainWrap>
       <IntroHeader></IntroHeader>
-      <IntroSlider></IntroSlider>
+      <IntroSlider
+        sliderFunc={sliderFunc}
+        sliderByDotFunc={sliderByDotFunc}
+        allImages={allImages}
+        currentImg={currentImg}
+      ></IntroSlider>
     </StyledMainWrap>
   );
 }
