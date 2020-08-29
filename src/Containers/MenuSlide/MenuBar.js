@@ -195,12 +195,16 @@ export class MenuBar extends Component {
     this.props.showThemeOptionFunction(true);
   };
 
-  setThisPhotoFunc = (fullPhoto, thumbPhoto) => {
+  setThisPhotoFunc = (fullPhoto, thumbPhoto, color) => {
     const mainEle = document.querySelector(".main");
     const navEle = document.querySelector(".nav");
     const menuBarEle = document.querySelector(".menuBar");
     const squarMenuBGC = document.querySelector(".squarMenuBGC");
     const restEle = document.querySelectorAll(".transparent");
+    const navListEle = document.querySelectorAll(".list");
+    const addListEle = document.querySelector(".addList");
+    const menuBar = document.querySelector(".menuBar");
+    const menuBarInput = document.querySelector(".menuBarInput");
 
     document.body.style.backgroundImage = `url(${fullPhoto})`;
     document.body.style.backgroundSize = "cover";
@@ -210,12 +214,18 @@ export class MenuBar extends Component {
     squarMenuBGC.style.backgroundImage = `url(${thumbPhoto})`;
     squarMenuBGC.style.backgroundSize = "cover";
     squarMenuBGC.style.backgroundPosition = "center";
-    navEle.style.backgroundColor = "rgba(0,0,0,0.2)";
+    menuBar.style.color = color;
+    addListEle.style.color = color;
+    navEle.style.backgroundColor = "rgba(0,0,0,0.15)";
+    menuBarInput.style.color = color;
     restEle.forEach(
       (ele) => (ele.style.backgroundColor = "rgba(255,255,255,0.25)")
     );
+    navListEle.forEach((ele) => {
+      ele.style.color = color;
+    });
 
-    this.props.setWhichColor(["rgba(150,150,150,0.1)"]);
+    this.props.setWhichColor(["rgb(255,255,255)"]);
   };
 
   render() {

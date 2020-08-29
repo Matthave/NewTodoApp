@@ -215,7 +215,7 @@ const GlobalStyle = createGlobalStyle`
    .navLink{
   text-decoration: none;
   font-size: 1.5rem;
-  color: #fff;
+  color:inherit;
   padding: 7px 0px;
   background-color:red;
    }

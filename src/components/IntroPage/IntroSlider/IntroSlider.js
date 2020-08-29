@@ -148,7 +148,8 @@ const StyledRobotSvg = styled.img`
   left: 20%;
   width: 400px;
   transform: rotate(10deg);
-  transition: 0.2s linear;
+  transition: 0.2s;
+  cursor: pointer;
   @media ${device.laptopL} {
     display: block;
     font-size: 17px;
@@ -188,7 +189,11 @@ function IntroSlider({ sliderFunc, sliderByDotFunc, allImages, currentImg }) {
               ))}
             </StyledDotsWrap>
           </StyledDescriptionWrap>
-          <StyledRobotSvg src={roboSVG} className="robotSVG" />
+          <StyledRobotSvg
+            src={roboSVG}
+            className="robotSVG"
+            onClick={() => sliderFunc("right")}
+          />
         </StyledView>
         <StyledArrow onClick={() => sliderFunc("right")}>
           <StyledIcon className="fas fa-angle-right" />

@@ -20,7 +20,6 @@ const StyledInputTitle = styled.input`
   margin: auto 5px 0px 5px;
   font-size: 18px;
   font-weight: 600;
-  color: white;
   padding: 0 10px;
   transition: 0.1s linear;
   cursor: pointer;
@@ -32,11 +31,11 @@ const StyledInputTitle = styled.input`
 
   &:focus {
     background-color: #fff;
-    color: #000;
+    color: #000 !important;
   }
 
   &::placeholder {
-    color: #fff;
+    color: inherit;
   }
 `;
 
@@ -48,19 +47,16 @@ const StyledShowMenu = styled.button`
   margin: auto 0 0 auto;
   font-size: 15px;
   font-weight: 400;
-  color: white;
+  color: inherit;
   padding: 0 10px;
   transition: 0.1s linear;
   cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 0 5px 1px rgba(50, 50, 50, 0.1);
-  }
 `;
 
 const StyledIcon = styled.span`
   font-size: 15px;
   margin-right: 5px;
+  color: inherit;
 `;
 
 function MenuBarView({
@@ -69,10 +65,11 @@ function MenuBarView({
   lighThisColor,
   slideMenuFunc,
 }) {
-  const colorOfBgc = `hsl(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%)`;
+  const colorOfBgc = `hsla(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%, 0.65)`;
   return (
     <StyledNav className="menuBar">
       <StyledInputTitle
+        className="menuBarInput"
         onChange={(e) => boardNameChangeFunc(e)}
         value={boardNameValue}
         placeholder="Name your board..."

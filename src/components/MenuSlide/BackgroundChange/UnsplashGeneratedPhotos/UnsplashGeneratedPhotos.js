@@ -96,7 +96,9 @@ function UnsplashGeneratedPhotos({
           <StyledOption key={ele.id}>
             <StyledImg
               src={ele.urls.small}
-              onClick={() => setThisPhotoFunc(ele.urls.full, ele.urls.thumb)}
+              onClick={() =>
+                setThisPhotoFunc(ele.urls.full, ele.urls.thumb, ele.color)
+              }
             />
             <StyledAuthor
               className="authorName"

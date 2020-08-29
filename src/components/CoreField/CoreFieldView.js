@@ -27,7 +27,7 @@ const StyledListInput = styled.input`
   font-size: 15px;
 
   &::placeholder {
-    color: white;
+    color: inherit;
   }
 
   &:focus {
@@ -151,7 +151,7 @@ function CoreFieldView({
         <StyledWrapAddListBtn bgc={showList ? true : false}>
           <StyledListInput
             bgc={showList ? true : false}
-            placeholder="Add another list"
+            placeholder=" + Add another list"
             onClick={showAddListHandle}
             onChange={(e) => listInputHandle(e)}
             className="addList transparent"

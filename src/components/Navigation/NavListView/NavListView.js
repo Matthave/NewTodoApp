@@ -34,12 +34,12 @@ const StyledIcon = styled.span`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 7px 0px;
-  color: #fff;
+  color: inherit;
   font-size: 1.5rem;
 `;
 
 function NavListView({ lighThisColor }) {
-  const colorBgcHSL = `hsl(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%)`;
+  const colorBgcHSL = `hsla(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%,0.65)`;
   return (
     <>
       <StyledList

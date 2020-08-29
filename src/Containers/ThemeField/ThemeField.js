@@ -14,6 +14,7 @@ function ThemeField({ themeOption, setWhichColor }) {
 
     const menuBar = document.querySelector(".menuBar");
     menuBar.style.backgroundColor = mainColor;
+    menuBar.style.color = "inherit";
 
     const squarMenuBGC = document.querySelector(".squarMenuBGC");
     squarMenuBGC.style.backgroundColor = mainColor;
@@ -24,6 +25,7 @@ function ThemeField({ themeOption, setWhichColor }) {
     const lists = document.querySelectorAll(".list");
     lists.forEach((list) => {
       list.style.backgroundColor = listColor;
+      list.style.color = "#fff";
     });
 
     const inputs = document.querySelectorAll(".item");
@@ -34,7 +36,11 @@ function ThemeField({ themeOption, setWhichColor }) {
     const addList = document.querySelectorAll(".addList");
     addList.forEach((input) => {
       input.style.backgroundColor = addListInput;
+      input.style.color = "inherit";
     });
+
+    const menuBarInput = document.querySelector(".menuBarInput");
+    menuBarInput.style.color = "#000";
 
     setWhichColor([listColor]);
   };
