@@ -65,9 +65,6 @@ const Main = () => {
 
   const hideTheme = (e) => {
     const searchingClass = e.target.className;
-    if (!searchingClass.includes("theme")) {
-      showThemeOptionFunction(false);
-    }
     if (
       searchingClass.includes("coverOption") ||
       searchingClass.includes("cover_box")

@@ -5,6 +5,7 @@ import myLogo from "../../img/myLogo.png";
 
 const StyledNav = styled.nav`
   width: 100%;
+  min-width: 320px;
   height: 40px;
   background-color: #40a35b;
   padding: 0px 4px;
@@ -67,20 +68,11 @@ const StyledHiperLink = styled.a`
   z-index: 0;
 `;
 
-const navigationElements = ["Home", "Your list", "Theme"];
-
 const Navigation = ({ themeFunction, lighThisColor }) => {
   return (
     <StyledNav className="nav">
       <StyledUl>
-        {navigationElements.map((element) => (
-          <NavListView
-            themeFunction={element === "Theme" ? themeFunction : null}
-            linkTitle={element}
-            key={element}
-            lighThisColor={lighThisColor}
-          />
-        ))}
+        <NavListView lighThisColor={lighThisColor} />
         <StyledHiperLink
           href="http://matthave.pl/"
           target="_blank"

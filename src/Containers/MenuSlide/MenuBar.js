@@ -88,13 +88,18 @@ export class MenuBar extends Component {
 
   hideMenuFunc = (e) => {
     const searchingClass = e.target.className;
-    if (searchingClass.includes("closeMenu") || searchingClass.includes("main"))
+    if (
+      searchingClass.includes("closeMenu") ||
+      searchingClass.includes("main")
+    ) {
+      this.props.showThemeOptionFunction(false);
       this.setState({
         slideMenuState: false,
         archivedElementVisi: false,
         backgroundChangeVisi: false,
         showUnsplashPhotosVisi: false,
       });
+    }
 
     if (!searchingClass.includes("label")) this.setState({ labelVisi: false });
 
@@ -110,6 +115,7 @@ export class MenuBar extends Component {
     }
 
     if (searchingClass.includes("backToMenu")) {
+      this.props.showThemeOptionFunction(false);
       this.setState({
         slideMenuState: true,
         backgroundChangeVisi: false,
@@ -117,6 +123,31 @@ export class MenuBar extends Component {
         showUnsplashPhotosVisi: false,
       });
     }
+
+    if (searchingClass.includes("labels")) {
+      this.props.showThemeOptionFunction(false);
+      this.setState({
+        labelVisi: !this.state.labelVisi,
+        backgroundChangeVisi: false,
+        showUnsplashPhotosVisi: false,
+      });
+    }
+
+    if (searchingClass.includes("archive")) {
+      this.props.showThemeOptionFunction(false);
+      this.setState({
+        slideMenuState: !this.state.slideMenuState,
+        backgroundChangeVisi: false,
+        showUnsplashPhotosVisi: false,
+        labelVisi: false,
+      });
+      setTimeout(() => {
+        this.setState({ archivedElementVisi: true });
+      }, 450);
+    }
+
+    if (searchingClass.includes("theme"))
+      this.setState({ backgroundChangeVisi: !this.state.backgroundChangeVisi });
   };
 
   archivedSearchFunc = (e) => {

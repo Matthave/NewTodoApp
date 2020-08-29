@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../../../Style/MediaQuery/mq";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -13,7 +14,7 @@ const StyledHeader = styled.header`
 const StyledTextWrap = styled.div`
   display: flex;
   width: 100%;
-  min-width: 320px;
+  min-width: 300px;
   flex-direction: column;
   padding: 20px 0 0;
   margin: 70px auto auto;
@@ -21,12 +22,16 @@ const StyledTextWrap = styled.div`
 
 const StyledText = styled.h3`
   width: 45%;
-  min-width: 320px;
+  min-width: 300px;
   text-align: center;
-  font-size: ${(props) => (props.smallerText ? "25px" : "45px")};
+  font-size: ${(props) => (props.smallerText ? "20px" : "40px")};
   font-weight: ${(props) => (props.smallerText ? "400" : "600")};
-  margin: 10px auto 20px;
+  margin: 0 auto 20px;
   color: #fff;
+
+  @media ${device.tablet} {
+    font-size: ${(props) => (props.smallerText ? "25px" : "45px")};
+  }
 `;
 
 function IntroHeader() {

@@ -5,6 +5,7 @@ const StyledNav = styled.nav`
   display: flex;
   align-items: "center";
   width: 100%;
+  min-width: 320px;
   height: 40px;
   background-color: #4bbf6b;
   padding: 0 7.5px;
@@ -12,7 +13,7 @@ const StyledNav = styled.nav`
 `;
 
 const StyledInputTitle = styled.input`
-  width: auto;
+  width: 175px;
   height: 30px;
   background-color: transparent;
   border-radius: 4px;

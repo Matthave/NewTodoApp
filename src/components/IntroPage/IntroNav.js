@@ -10,16 +10,18 @@ const StyledNav = styled.nav`
   width: 100%;
   height: 80px;
   background-color: transparent;
-  padding: 10px 20px;
+  padding: 10px 10px;
   transition: 0.75s linear;
   font-size: 20px;
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     font-size: 25px;
+    padding: 10px 25px;
   }
 `;
 
 const StyledTitle = styled.a`
+  width: 50%;
   font-size: 25px;
   font-weight: 600;
   font-family: "Pacifico", cursive;
@@ -27,8 +29,8 @@ const StyledTitle = styled.a`
   text-decoration: none;
   color: #fff;
 
-  @media ${device.laptop} {
-    font-size: 35px;
+  @media ${device.tablet} {
+    font-size: 30px;
   }
 `;
 

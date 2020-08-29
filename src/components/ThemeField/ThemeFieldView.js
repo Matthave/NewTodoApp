@@ -51,7 +51,6 @@ const StyledX = styled.span`
   font-size: 17px;
   color: #42516e;
   cursor: pointer;
-  opacity: 0;
 `;
 
 const StyledBack = styled.span`
@@ -64,15 +63,14 @@ const StyledTitle = styled.h4``;
 
 function ThemeFieldView({ themeOption, changeColor, blockOfColors }) {
   return (
-    <StyledThemeDiv showTheme={themeOption} className="theme">
-      <StyledLabelTitle className="theme">
-        <StyledBack className="fas fa-angle-left" />
-        <StyledTitle className="theme">Colors</StyledTitle>
-        <StyledX className="fas fa-times theme" />
+    <StyledThemeDiv showTheme={themeOption}>
+      <StyledLabelTitle>
+        <StyledBack className="fas fa-angle-left backToMenu" />
+        <StyledTitle>Colors</StyledTitle>
+        <StyledX className="fas fa-times closeMenu" />
       </StyledLabelTitle>
       {blockOfColors.map((block) => (
         <StyledColorDiv
-          className="theme"
           onClick={() =>
             changeColor(
               block.mainColor,

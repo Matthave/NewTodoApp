@@ -128,10 +128,9 @@ function BackgroundChange({
           <StyledOption onClick={() => showUnsplashPhotosFunc()}>
             <StyledImg src={`${photo}`} />
           </StyledOption>
-          <StyledOption className="theme" onClick={() => showThemeColorsFunc()}>
+          <StyledOption onClick={() => showThemeColorsFunc()}>
             {labelColors.map((color) => (
               <StyledColorBar
-                className="theme"
                 key={color.color}
                 style={{ backgroundColor: `${color.color}` }}
               />

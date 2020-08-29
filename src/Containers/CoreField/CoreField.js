@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CoreFieldView from "../../components/CoreField/CoreFieldView";
 
 const MainField = ({
@@ -23,6 +23,15 @@ const MainField = ({
   const [showList, showListHandle] = useState(false);
   const [scrollPosition, updatedScrollPosition] = useState(0);
   const [isDragDropTrue, isDragDropTrueFeature] = useState("");
+
+  useEffect(() => {
+    document.addEventListener("click", function (e) {
+      const searchingClass = e.target.className;
+      if (!searchingClass.includes("addList")) {
+        showListHandle(false);
+      }
+    });
+  });
 
   const showAddListHandle = () => {
     showListHandle(true);

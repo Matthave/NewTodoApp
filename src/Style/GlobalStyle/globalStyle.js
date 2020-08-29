@@ -213,16 +213,17 @@ const GlobalStyle = createGlobalStyle`
    }
 
    .navLink{
-    text-decoration: none;
+  text-decoration: none;
   font-size: 1.5rem;
   color: #fff;
-  padding:7px 17px;
+  padding: 7px 0px;
+  background-color:red;
    }
 
    .navLinkIntro{
     background-color: #fff;
   border-radius: 5px;
-  padding: 5px 20px;
+  padding: 5px 10px;
   margin: auto 0 auto auto;
   font-size: inherit;
   text-decoration:none;
@@ -236,10 +237,12 @@ const GlobalStyle = createGlobalStyle`
    }
 
    .headerLinkIntro{
+  height:50px;
+  line-height:50px;
   background-color: #61bd4f;
   border-radius: 5px;
-  margin: 10px auto auto;
-  padding: 10px 15px;
+  padding: 0 15px;
+  margin: 0 auto 20px;
   font-size: 25px;
   text-decoration:none;
   color: #fff;
