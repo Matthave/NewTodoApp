@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import roboSVG from "../../../img/robotSVG.svg";
 import { device } from "../../../Style/MediaQuery/mq";
 
 const StyledSliderWrap = styled.div`
@@ -140,6 +141,21 @@ const StyledDot = styled.div`
   }
 `;
 
+const StyledRobotSvg = styled.img`
+  display: none;
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  width: 400px;
+  transform: rotate(10deg);
+  transition: 0.2s linear;
+  @media ${device.laptopL} {
+    display: inline;
+    font-size: 17px;
+    margin: auto auto;
+  }
+`;
+
 function IntroSlider({ sliderFunc, sliderByDotFunc, allImages, currentImg }) {
   return (
     <StyledSliderWrap>
@@ -172,6 +188,7 @@ function IntroSlider({ sliderFunc, sliderByDotFunc, allImages, currentImg }) {
               ))}
             </StyledDotsWrap>
           </StyledDescriptionWrap>
+          <StyledRobotSvg src={roboSVG} className="robotSVG" />
         </StyledView>
         <StyledArrow onClick={() => sliderFunc("right")}>
           <StyledIcon className="fas fa-angle-right" />

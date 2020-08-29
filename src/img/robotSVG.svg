@@ -1,0 +1,51 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+    <defs>
+        <linearGradient y2="1" x2="1" y1="0.39375" x1="0.34766" id="svg_12">
+            <stop offset="0" stop-color="#191919" />
+            <stop offset="1" stop-color="#e6e6e6" />
+        </linearGradient>
+        <filter height="200%" width="200%" y="-50%" x="-50%" id="svg_20_blur">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic" />
+        </filter>
+        <linearGradient spreadMethod="pad" y2="1" x2="1" y1="0" x1="0" id="svg_25">
+            <stop offset="0" stop-color="#222222" />
+            <stop offset="0.51953" stop-color="#DDDDDD" />
+            <stop offset="1" stop-color="#222222" />
+        </linearGradient>
+    </defs>
+    <g>
+        <title>background</title>
+        <rect fill="transparent" id="canvas_background" height="150" width="150" y="-1" x="-1" />
+        <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+            <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%" />
+        </g>
+    </g>
+    <g>
+        <title>Layer 1</title>
+        <path stroke="#000" transform="rotate(145.0853729248047 327.798095703125,341.7753601074218) " id="svg_21"
+            d="m288.00009,341.77536l13.26602,-13l53.06386,0c7.32666,0 13.26613,5.82029 13.26613,13c0,7.17963 -5.93947,13 -13.26613,13l-53.06386,0l-13.26602,-13z"
+            stroke-opacity="null" stroke-width="1.5" fill="#4c4c4c" />
+        <rect stroke="#000" rx="11" id="svg_4" height="87" width="211" y="223.84999" x="317.5" stroke-opacity="null"
+            stroke-width="1.5" fill="url(#svg_25)" />
+        <rect id="svg_5" height="1" width="0" y="138.85" x="845.5" fill-opacity="null" stroke-opacity="null"
+            stroke-width="1.5" stroke="#000" fill="#fff" />
+        <ellipse stroke="#000" ry="44" rx="52" id="svg_7" cy="310.85" cx="395.5" stroke-opacity="null"
+            stroke-width="1.5" fill="url(#svg_12)" />
+        <ellipse id="svg_8" cy="212.85" cx="614.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5"
+            stroke="#000" fill="#fff" />
+        <rect stroke="#000" rx="11" id="svg_9" height="87" width="211" y="223.84999" x="278.5" fill-opacity="null"
+            stroke-opacity="null" stroke-width="1.5" fill="#fff" />
+        <ellipse ry="14" rx="7.5" id="svg_14" cy="255.85" cx="318" stroke-opacity="null" stroke-width="1.5"
+            stroke="#000" fill="#000000" />
+        <ellipse ry="14" rx="7.5" id="svg_15" cy="255.85" cx="441" stroke-opacity="null" stroke-width="1.5"
+            stroke="#000" fill="#000000" />
+        <path stroke="#000" id="svg_16" d="m363.36251,284.21579l34.99997,0l0,7.2l-17.5,1.8l-17.49999,-1.8l0.00002,-7.2z"
+            stroke-opacity="null" stroke-width="0" fill="#8e1515" />
+        <ellipse filter="url(#svg_20_blur)" stroke="#000" ry="12" rx="12" id="svg_20" cy="187.35" cx="396.5"
+            stroke-opacity="null" stroke-width="0" fill="#00ffff" />
+        <path stroke="#000" transform="rotate(131.59619140625 399.01940917968756,349.8088073730469) " id="svg_22"
+            d="m352.17431,349.80881l15.61505,-13l62.45997,0c8.62401,0 15.61519,5.82029 15.61519,13c0,7.17963 -6.99118,13 -15.61519,13l-62.45997,0l-15.61505,-13z"
+            stroke-opacity="null" stroke-width="1.5" fill="#4c4c4c" />
+    </g>
+</svg>
