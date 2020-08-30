@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.js": "/NewTodoApp/static/js/main.bb3c1963.chunk.js",
-    "main.js.map": "/NewTodoApp/static/js/main.bb3c1963.chunk.js.map",
+    "main.js": "/NewTodoApp/static/js/main.96265010.chunk.js",
+    "main.js.map": "/NewTodoApp/static/js/main.96265010.chunk.js.map",
     "runtime-main.js": "/NewTodoApp/static/js/runtime-main.db59cd49.js",
     "runtime-main.js.map": "/NewTodoApp/static/js/runtime-main.db59cd49.js.map",
-    "static/js/2.a5018e56.chunk.js": "/NewTodoApp/static/js/2.a5018e56.chunk.js",
-    "static/js/2.a5018e56.chunk.js.map": "/NewTodoApp/static/js/2.a5018e56.chunk.js.map",
+    "static/js/2.d3078e0f.chunk.js": "/NewTodoApp/static/js/2.d3078e0f.chunk.js",
+    "static/js/2.d3078e0f.chunk.js.map": "/NewTodoApp/static/js/2.d3078e0f.chunk.js.map",
     "index.html": "/NewTodoApp/index.html",
-    "precache-manifest.18b13d61aefe4d6358a7283d5816ff4e.js": "/NewTodoApp/precache-manifest.18b13d61aefe4d6358a7283d5816ff4e.js",
+    "precache-manifest.9c11050f0c6ecde64f2ebdabf6219ef4.js": "/NewTodoApp/precache-manifest.9c11050f0c6ecde64f2ebdabf6219ef4.js",
     "service-worker.js": "/NewTodoApp/service-worker.js",
-    "static/js/2.a5018e56.chunk.js.LICENSE.txt": "/NewTodoApp/static/js/2.a5018e56.chunk.js.LICENSE.txt",
+    "static/js/2.d3078e0f.chunk.js.LICENSE.txt": "/NewTodoApp/static/js/2.d3078e0f.chunk.js.LICENSE.txt",
     "static/media/Five.png": "/NewTodoApp/static/media/Five.06290940.png",
     "static/media/Four.png": "/NewTodoApp/static/media/Four.c0f50c3a.png",
     "static/media/One.png": "/NewTodoApp/static/media/One.12a30cc6.png",
     "static/media/Three.png": "/NewTodoApp/static/media/Three.c6a334c4.png",
     "static/media/Two.png": "/NewTodoApp/static/media/Two.435975dc.png",
     "static/media/myLogo.png": "/NewTodoApp/static/media/myLogo.d7d06777.png",
-    "static/media/photosIntro.jpg": "/NewTodoApp/static/media/photosIntro.5bba6920.jpg"
+    "static/media/photosIntro.jpg": "/NewTodoApp/static/media/photosIntro.5bba6920.jpg",
+    "static/media/robotSVG.svg": "/NewTodoApp/static/media/robotSVG.8ae8265b.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.db59cd49.js",
-    "static/js/2.a5018e56.chunk.js",
-    "static/js/main.bb3c1963.chunk.js"
+    "static/js/2.d3078e0f.chunk.js",
+    "static/js/main.96265010.chunk.js"
   ]
 }
