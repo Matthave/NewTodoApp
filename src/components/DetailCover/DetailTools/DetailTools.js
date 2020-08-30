@@ -56,6 +56,7 @@ function DetailTools({
   commentVisiToggleFunc,
   isThisCardArchived,
   deleteCard,
+  coverCardVisi,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -110,6 +111,7 @@ function DetailTools({
         addNewCard={addNewCard}
         isThisCardArchived={isThisCardArchived}
         deleteCard={deleteCard}
+        coverCardVisi={coverCardVisi}
       />
     </StyledDetailToolsWrap>
   );

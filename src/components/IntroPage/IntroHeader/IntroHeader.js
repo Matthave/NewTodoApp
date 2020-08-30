@@ -31,6 +31,7 @@ const StyledText = styled.h3`
 
   @media ${device.tablet} {
     font-size: ${(props) => (props.smallerText ? "25px" : "45px")};
+    margin-top: ${(props) => (props.smallerText ? "20px" : "0")};
   }
 `;
 

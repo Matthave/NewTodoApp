@@ -108,7 +108,6 @@ export class IntroPage extends Component {
   sliderFunc = (direction) => {
     const { currentImg } = this.state;
     const everyDots = document.querySelectorAll(".dots");
-    const robotSVG = document.querySelector(".robotSVG");
     everyDots.forEach((dot) => {
       dot.style.width = "12.5px";
       dot.style.height = "12.5px";

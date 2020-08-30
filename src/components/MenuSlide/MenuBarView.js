@@ -10,6 +10,7 @@ const StyledNav = styled.nav`
   background-color: #4bbf6b;
   padding: 0 7.5px;
   transition: 0.1s linear;
+  color: #fff;
 `;
 
 const StyledInputTitle = styled.input`
@@ -23,6 +24,7 @@ const StyledInputTitle = styled.input`
   padding: 0 10px;
   transition: 0.1s linear;
   cursor: pointer;
+  color: inherit;
 
   &:hover {
     background-color: ${(props) =>
@@ -35,14 +37,13 @@ const StyledInputTitle = styled.input`
   }
 
   &::placeholder {
-    color: inherit;
+    color: #000;
   }
 `;
 
 const StyledShowMenu = styled.button`
   height: 30px;
-  background-color: ${(props) =>
-    props.hoverBGC ? `${props.lighThisColor}` : null};
+  background-color: #76ce8e;
   border-radius: 4px;
   margin: auto 0 0 auto;
   font-size: 15px;
@@ -51,6 +52,11 @@ const StyledShowMenu = styled.button`
   padding: 0 10px;
   transition: 0.1s linear;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.hoverBGC ? `${props.lighThisColor} !important` : null};
+  }
 `;
 
 const StyledIcon = styled.span`
@@ -65,7 +71,7 @@ function MenuBarView({
   lighThisColor,
   slideMenuFunc,
 }) {
-  const colorOfBgc = `hsla(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%, 0.65)`;
+  const colorOfBgc = `hsla(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%, 0.85)`;
   return (
     <StyledNav className="menuBar">
       <StyledInputTitle

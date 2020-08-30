@@ -54,7 +54,7 @@ const StyledView = styled.div`
   position: relative;
   width: 100%;
   max-width: 880px;
-  max-height: 460px;
+  max-height: 475px;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(74, 115, 159, 0.29);
   margin: auto 0;
@@ -96,12 +96,11 @@ const StyledDescriptionText = styled.h3`
   transform: translate(-50%, -50%);
   width: 75%;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.75px;
   color: #fff;
 
   @media ${device.tablet} {
-    display: inline;
     font-size: 17px;
   }
 `;
@@ -110,9 +109,9 @@ const StyledDotsWrap = styled.div`
   display: flex;
   justify-content: space-around;
   position: absolute;
-  top: 70%;
+  top: 75%;
   left: 50%;
-  width: 40%;
+  width: 50%;
   transform: translate(-50%, -50%);
 
   @media ${device.tablet} {

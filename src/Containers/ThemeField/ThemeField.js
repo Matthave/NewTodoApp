@@ -14,10 +14,11 @@ function ThemeField({ themeOption, setWhichColor }) {
 
     const menuBar = document.querySelector(".menuBar");
     menuBar.style.backgroundColor = mainColor;
-    menuBar.style.color = "inherit";
+    menuBar.style.color = "#fff";
 
     const squarMenuBGC = document.querySelector(".squarMenuBGC");
     squarMenuBGC.style.backgroundColor = mainColor;
+    squarMenuBGC.style.backgroundImage = "none";
 
     const nav = document.querySelector(".nav");
     nav.style.backgroundColor = navColor;
@@ -39,8 +40,8 @@ function ThemeField({ themeOption, setWhichColor }) {
       input.style.color = "inherit";
     });
 
-    const menuBarInput = document.querySelector(".menuBarInput");
-    menuBarInput.style.color = "#000";
+    const showMenu = document.querySelector(".menu");
+    showMenu.style.backgroundColor = listColor;
 
     setWhichColor([listColor]);
   };

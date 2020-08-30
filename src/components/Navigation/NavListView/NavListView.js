@@ -39,7 +39,7 @@ const StyledIcon = styled.span`
 `;
 
 function NavListView({ lighThisColor }) {
-  const colorBgcHSL = `hsla(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%,0.65)`;
+  const colorBgcHSL = `hsla(${lighThisColor.color[0]},${lighThisColor.color[1]}%,${lighThisColor.color[2]}%,0.85)`;
   return (
     <>
       <StyledList

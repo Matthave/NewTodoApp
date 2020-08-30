@@ -13,6 +13,7 @@ class DetailCover extends React.Component {
     tasksListVisi: false,
     reloadDetalCoverCompState: false,
     commentVisi: false,
+    coverCardVisi: false,
   };
 
   componentDidMount() {
@@ -128,6 +129,7 @@ class DetailCover extends React.Component {
       moveToInSuggestedVisi: false,
       commentVisi: false,
       commentValue: "",
+      coverCardVisi: false,
     });
   };
 
@@ -209,6 +211,7 @@ class DetailCover extends React.Component {
       datePickerVisi,
       tasksListVisi,
       commentVisi,
+      coverCardVisi,
     } = this.state;
 
     const copyOfallBadges = [...listOfAllBadges];
@@ -281,6 +284,7 @@ class DetailCover extends React.Component {
           reloadCoverComponentFunc={this.reloadCoverComponentFunc}
           isThisCardArchived={isThisCardArchived}
           deleteCard={deleteCard}
+          coverCardVisi={coverCardVisi}
         />
       </>
     );

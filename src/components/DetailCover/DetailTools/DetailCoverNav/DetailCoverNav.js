@@ -5,6 +5,7 @@ import MoveToAnotherListBox from "../../../MoveToAnotherList/MoveToAnotherListBo
 import DatePicker from "../../../../Containers/DatePicker/DatePicker";
 import TasksList from "../../../../Containers/TasksList/TasksList";
 import CopyCard from "../../../../Containers/CopyCard/CopyCard";
+import CoverCard from "../../../../Containers/CoverCard/CoverCard";
 import { device } from "../../../../Style/MediaQuery/mq";
 
 const StyledDetailNav = styled.nav`
@@ -64,7 +65,6 @@ function DetailCoverNav({
   taskTitle,
   wholeList,
   moveCardToAnotherList,
-  taskTitleList,
   matchedPriority,
   matchedColorsToThisCard,
   datePickerVisi,
@@ -86,6 +86,7 @@ function DetailCoverNav({
   addNewCard,
   isThisCardArchived,
   deleteCard,
+  coverCardVisi,
 }) {
   return (
     <StyledDetailNav>
@@ -109,7 +110,9 @@ function DetailCoverNav({
           <StyledIcon className="far fa-clock" />
           Term
         </StyledDetailList>
-        <StyledDetailList>
+        <StyledDetailList
+          onClick={() => toggleCurrentListVisiFunc("coverCardVisi")}
+        >
           <StyledIcon className="far fa-image" />
           Cover
         </StyledDetailList>
@@ -213,6 +216,12 @@ function DetailCoverNav({
           listOfAllTasksList={listOfAllTasksList}
           taskId={taskId}
           toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+        />
+      ) : null}
+      {coverCardVisi ? (
+        <CoverCard
+          toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+          labelColors={labelColors}
         />
       ) : null}
     </StyledDetailNav>

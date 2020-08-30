@@ -204,8 +204,6 @@ export class MenuBar extends Component {
     const navListEle = document.querySelectorAll(".list");
     const addListEle = document.querySelector(".addList");
     const menuBar = document.querySelector(".menuBar");
-    const menuBarInput = document.querySelector(".menuBarInput");
-
     document.body.style.backgroundImage = `url(${fullPhoto})`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
@@ -217,7 +215,6 @@ export class MenuBar extends Component {
     menuBar.style.color = color;
     addListEle.style.color = color;
     navEle.style.backgroundColor = "rgba(0,0,0,0.15)";
-    menuBarInput.style.color = color;
     restEle.forEach(
       (ele) => (ele.style.backgroundColor = "rgba(255,255,255,0.25)")
     );
@@ -225,13 +222,13 @@ export class MenuBar extends Component {
       ele.style.color = color;
     });
 
-    this.props.setWhichColor(["rgb(255,255,255)"]);
+    this.props.setWhichColor(["rgb(155,155,155)"]);
   };
 
   render() {
     //Import current color of mainElement and by Color set it lighten
     const currentLiColor = Color(this.props.whichColor[0]);
-    const lighThisColor = currentLiColor.lighten(0.05);
+    const lighThisColor = currentLiColor.lighten(0.1);
 
     const listOfAllArchivedCardFilter = this.props.listOfAllArchivedCard.filter(
       (ele) => ele.taskName.includes(this.state.archivedSearchValue)

@@ -114,6 +114,7 @@ function DetailCoverView({
   commentVisiToggleFunc,
   isThisCardArchived,
   deleteCard,
+  coverCardVisi,
 }) {
   return (
     <StyledCover
@@ -191,6 +192,7 @@ function DetailCoverView({
           commentVisiToggleFunc={commentVisiToggleFunc}
           isThisCardArchived={isThisCardArchived}
           deleteCard={deleteCard}
+          coverCardVisi={coverCardVisi}
         />
       </StyledDetail>
     </StyledCover>
