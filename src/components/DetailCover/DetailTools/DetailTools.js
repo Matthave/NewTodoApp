@@ -57,6 +57,7 @@ function DetailTools({
   isThisCardArchived,
   deleteCard,
   coverCardVisi,
+  listOfAllCover,
 }) {
   return (
     <StyledDetailToolsWrap>
@@ -112,6 +113,7 @@ function DetailTools({
         isThisCardArchived={isThisCardArchived}
         deleteCard={deleteCard}
         coverCardVisi={coverCardVisi}
+        listOfAllCover={listOfAllCover}
       />
     </StyledDetailToolsWrap>
   );

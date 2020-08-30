@@ -78,7 +78,28 @@ const StyledHalfBox = styled.div`
   margin: auto 0 0;
 `;
 
-function CoverCardChoice({ labelColors, setCoverColorFunc }) {
+const StyledButton = styled.button`
+  width: 90%;
+  height: 32.5px;
+  background-color: #cf513d;
+  border-radius: 4px;
+  margin: 0 auto 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.15s linear;
+  align-self: center;
+
+  &:hover {
+    opacity: 0.85;
+  }
+`;
+
+function CoverCardChoice({
+  labelColors,
+  setCoverColorFunc,
+  coverAlreadyExist,
+  deleteCoverColorFunc,
+}) {
   return (
     <StyledWrap>
       <StyledSectionTitle>Type</StyledSectionTitle>
@@ -95,10 +116,17 @@ function CoverCardChoice({ labelColors, setCoverColorFunc }) {
           <StyledLinePart />
         </StyledTypeElementWrap>
       </StyledSection>
+      {coverAlreadyExist.length !== 0 ? (
+        <StyledButton onClick={() => deleteCoverColorFunc()}>
+          Delete Cover
+        </StyledButton>
+      ) : null}
+
       <StyledSectionTitle>Colors</StyledSectionTitle>
       <StyledSection>
         {labelColors.map((color) => (
           <StyledColorElement
+            key={color.color}
             style={{ backgroundColor: color.color }}
             onClick={() => setCoverColorFunc(color.color)}
           />

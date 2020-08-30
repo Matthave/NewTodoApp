@@ -180,7 +180,7 @@ class Labels extends Component {
     newLabel.setAttribute("id", `${color}${taskId}`);
     newLabel.style.backgroundColor = `${color}`;
     newLabel.textContent = nameLabel;
-    currentTask.children[0].appendChild(newLabel);
+    currentTask.children[1].appendChild(newLabel);
   };
 
   render() {

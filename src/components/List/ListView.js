@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../../components/Card/Card";
+import Card from "../../Containers/Card/Card";
 import ListButtons from "./ListButtons/ListButtons";
 import ListInput from "./ListInput/ListInput";
 import ListOptions from "./ListOptions/ListOptions";
@@ -69,6 +69,7 @@ function ListView({
   copyListVisibilityState,
   addNewList,
   copyNewList,
+  listOfAllCover,
 }) {
   return (
     <div
@@ -101,6 +102,7 @@ function ListView({
           hideFontSizeLabel={hideFontSizeLabel}
           setHideFontSizeLabel={setHideFontSizeLabel}
           listOfAllTasksList={listOfAllTasksList}
+          listOfAllCover={listOfAllCover}
         />
       ))}
       <div className="blank" />

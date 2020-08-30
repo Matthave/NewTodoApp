@@ -309,6 +309,7 @@ class List extends Component {
       moveCardToAnotherList,
       addNewList,
       copyNewList,
+      listOfAllCover,
     } = this.props;
     const {
       showAddField,
@@ -369,6 +370,7 @@ class List extends Component {
           copyListVisibilityState={copyListVisibilityState}
           addNewList={addNewList}
           copyNewList={copyNewList}
+          listOfAllCover={listOfAllCover}
         />
       </div>
     );

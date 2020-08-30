@@ -111,6 +111,7 @@ function CoreFieldView({
   listOfAllTasksList,
   setWholeList,
   moveCardToAnotherList,
+  listOfAllCover,
 }) {
   return (
     <StyledMain
@@ -146,6 +147,7 @@ function CoreFieldView({
             moveCardToAnotherList={moveCardToAnotherList}
             addNewList={addNewList}
             copyNewList={copyNewList}
+            listOfAllCover={listOfAllCover}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>

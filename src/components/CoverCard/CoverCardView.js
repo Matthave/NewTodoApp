@@ -50,6 +50,8 @@ function CoverCardView({
   toggleCurrentListVisiFunc,
   labelColors,
   setCoverColorFunc,
+  coverAlreadyExist,
+  deleteCoverColorFunc,
 }) {
   return (
     <StyledCoverWrap>
@@ -64,6 +66,8 @@ function CoverCardView({
       <CoverCardChoice
         labelColors={labelColors}
         setCoverColorFunc={setCoverColorFunc}
+        coverAlreadyExist={coverAlreadyExist}
+        deleteCoverColorFunc={deleteCoverColorFunc}
       />
     </StyledCoverWrap>
   );

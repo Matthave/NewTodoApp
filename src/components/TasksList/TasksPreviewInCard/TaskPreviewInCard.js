@@ -5,14 +5,13 @@ const StyledSubTasksCounter = styled.h4`
   align-self: ${(props) => (props.card ? "null" : "flex-start")};
   border-radius: 4px;
   padding: 2.5px 5px;
-  margin: ${(props) => (props.card ? "5px 0px 0px 3px" : "0px 0px 0px 3px")};
+  margin: 0px 4px 4px;
   font-size: 12px;
 `;
 
 const StyledIcon = styled.span`
   margin-right: 5px;
   font-size: 12.5px;
-  vertical-align: middle;
 `;
 
 function TaskPreviewInCard({ totalTasks, unActiveTasks, card }) {

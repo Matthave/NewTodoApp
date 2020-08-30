@@ -1,40 +1,5 @@
 import React, { Component } from "react";
-import TasksPreviewCard from "../TasksList/TasksPreviewInCard/TaskPreviewInCard";
-import styled from "styled-components";
-
-const StyledContentWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  pointer-events: none;
-  padding: 2px;
-`;
-
-const StyledContent = styled.h3`
-  flex-grow: 1;
-  font-size: 14px;
-  font-weight: 400;
-  color: #172b4d;
-`;
-
-const StyledEdit = styled.span`
-  margin: 0 5px;
-  align-self: center;
-  pointer-events: initial;
-`;
-
-const StyledIcon = styled.span`
-  margin-right: 5px;
-  font-size: 12.5px;
-  vertical-align: middle;
-`;
-
-const StyledTermInCard = styled.span`
-  color: #888;
-  font-size: 12.5px;
-  letter-spacing: 0.5px;
-  margin-left: 3px;
-`;
+import CardView from "../../components/Card/CardView";
 
 class Card extends Component {
   state = {
@@ -95,9 +60,8 @@ class Card extends Component {
     const draggedCard = document.getElementById(taskId);
 
     const draggedCardChildren = draggedCard.children;
-    const draggenCardLabelsChildren = [...draggedCardChildren[0].children]; //Weard thing that is need to properly dragging without doubling card content?
-    const draggedCardTermChildren = [...draggedCard.children[2].children]; //Weard thing that is need to properly dragging without doubling card content?
-    const draggedCardTasksList = [...draggedCard.children[3].children]; //Weard thing that is need to properly dragging without doubling card content?
+    const draggenCardLabelsChildren = [...draggedCardChildren[1].children]; //Weard thing that is need to properly dragging without doubling card content?
+    const draggedCardTermChildren = [...draggedCard.children[3].children]; //Weard thing that is need to properly dragging without doubling card content?
 
     if (e.pageX < 285 - scrollHeighFromMain) {
       if (wholeList[0].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place call it
@@ -105,9 +69,6 @@ class Card extends Component {
         ele.textContent = "";
       });
       draggedCardTermChildren.forEach((ele) => {
-        ele.textContent = "";
-      });
-      draggedCardTasksList.forEach((ele) => {
         ele.textContent = "";
       });
       deleteCardFeatureByMove(listId, taskId);
@@ -125,9 +86,6 @@ class Card extends Component {
           ele.textContent = "";
         });
         draggedCardTermChildren.forEach((ele) => {
-          ele.textContent = "";
-        });
-        draggedCardTasksList.forEach((ele) => {
           ele.textContent = "";
         });
         deleteCardFeatureByMove(listId, taskId);
@@ -234,76 +192,18 @@ class Card extends Component {
     });
 
     return (
-      <div
-        id={task.id}
-        className="card"
-        onDoubleClick={(e) =>
-          taskDetailsFunction(task.taskName, inputTitle, listId, task.id)
-        }
-        onMouseDown={(e) => this.mouseDownFeature(e)}
-        style={{
-          border: task.priority === "priority" ? "1px solid #db4a36" : null,
-        }}
-      >
-        <div
-          className="card_wrapLabel"
-          onClick={() => this.labelFontSizeToggle(hideFontSizeLabel)}
-          style={{
-            fontSize: hideFontSizeLabel ? 0 : "12px",
-            pointerEvents: "none",
-          }}
-        >
-          {task.badges.map((ele) => (
-            <div
-              key={ele.color}
-              id={ele.labelId}
-              className="labelElement"
-              style={{ backgroundColor: ele.color, pointerEvents: "none" }}
-            >
-              {ele.name}
-            </div>
-          ))}
-        </div>
-        <StyledContentWrap>
-          <StyledContent>{task.taskName}</StyledContent>
-          <StyledEdit
-            className="fas fa-highlighter"
-            onClick={(e) =>
-              visibilityOptionFunction(
-                e,
-                true,
-                task,
-                listId,
-                task.currentListName,
-                task.id
-              )
-            }
-          />
-        </StyledContentWrap>
-
-        <div
-          style={{ width: "100%", pointerEvents: "none" }}
-          id={`${task.id}term`}
-        >
-          {task.date.map((ele) => (
-            <StyledTermInCard
-              key={ele.id}
-              className={ele.classN}
-              style={{ backgroundColor: ele.statusColor, color: ele.fontColor }}
-            >
-              <StyledIcon className="far fa-clock" />
-              {`${ele.day} ${ele.monthName} ${ele.status}`}
-            </StyledTermInCard>
-          ))}
-        </div>
-        <div>
-          <TasksPreviewCard
-            unActiveTasks={unActiveTasks}
-            totalTasks={totalTasks}
-            card={true}
-          />
-        </div>
-      </div>
+      <CardView
+        task={task}
+        listId={listId}
+        taskDetailsFunction={taskDetailsFunction}
+        inputTitle={inputTitle}
+        hideFontSizeLabel={hideFontSizeLabel}
+        visibilityOptionFunction={visibilityOptionFunction}
+        unActiveTasks={unActiveTasks}
+        totalTasks={totalTasks}
+        mouseDownFeature={this.mouseDownFeature}
+        labelFontSizeToggle={this.labelFontSizeToggle}
+      />
     );
   }
 }

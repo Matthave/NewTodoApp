@@ -69,6 +69,13 @@ const StyledIcon = styled.span`
   margin-right: 15px;
 `;
 
+const StyledCoverBlock = styled.div`
+  display: flex;
+  width: 100%;
+  height: ${(props) => (props.disabled ? "0px" : "120px")};
+  transition: 0.1s linear;
+`;
+
 function DetailCoverView({
   updateCard,
   archiveCard,
@@ -115,6 +122,8 @@ function DetailCoverView({
   isThisCardArchived,
   deleteCard,
   coverCardVisi,
+  listOfAllCover,
+  coverListFilter,
 }) {
   return (
     <StyledCover
@@ -133,6 +142,17 @@ function DetailCoverView({
             </StyledText>
           </StyledArchivedInfo>
         ) : null}
+        {coverListFilter.length !== 0 ? (
+          coverListFilter.map((ele) => (
+            <StyledCoverBlock
+              style={{ backgroundColor: ele.background }}
+              key={ele.id}
+              id={`detailCoverCoverBlock${taskId}`}
+            />
+          ))
+        ) : (
+          <StyledCoverBlock disabled id={`detailCoverCoverBlock${taskId}`} />
+        )}
         <DetailInputElement
           taskTitle={taskTitle}
           taskTitleFeature={taskTitleFeature}
@@ -193,6 +213,7 @@ function DetailCoverView({
           isThisCardArchived={isThisCardArchived}
           deleteCard={deleteCard}
           coverCardVisi={coverCardVisi}
+          listOfAllCover={listOfAllCover}
         />
       </StyledDetail>
     </StyledCover>

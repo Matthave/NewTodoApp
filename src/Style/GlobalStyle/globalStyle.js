@@ -35,7 +35,6 @@ const GlobalStyle = createGlobalStyle`
   max-width:260px;
   word-break: break-all;
   margin: 10px 0px;
-  padding: 9px 7.5px;
   font-size: 1.4rem;
   box-shadow: 0px 0.5px 0px 0.5px #aaa;
   background-color: #fff;
@@ -70,11 +69,10 @@ const GlobalStyle = createGlobalStyle`
 
   .labelElement{
     align-self:center;
-    min-width: 15%;
+    width:15%;
     min-height:8px;
     border-radius:5px;
-    margin-bottom:4px;
-    margin-right:4px;
+    margin: 4px 4px 0px;
     padding: 3px;
     color:white;
     transition: 0.1s linear;
@@ -184,9 +182,9 @@ const GlobalStyle = createGlobalStyle`
     color: #888;
     font-size: 12.5px;
     letter-spacing: 0.5px;
-    margin-left:3px;
     padding: 2.5px 5px;
     border-radius:3px;
+    margin: 0px 4px 4px;
    }
 
    .menuSlidePosition{

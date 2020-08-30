@@ -23,6 +23,7 @@ const Main = () => {
   const [listOfAllComments, setListOfAllComments] = useState([]);
   const [listOfAllTerms, setListOfallTerms] = useState([]);
   const [listOfAllTasksList, setListOfTasksList] = useState([]);
+  const [listOfAllCover, setListOfAllCover] = useState([]);
   const [hideFontSizeLabel, setHideFontSizeLabel] = useState(false);
   const [tasksListVisibility, setTasksListVisibility] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -89,6 +90,7 @@ const Main = () => {
 
     const matchedList = wholeList.filter((ele) => ele.id === listId);
     const matchedDate = listOfAllTerms.filter((ele) => ele.id === taskId);
+    const matchedCover = listOfAllCover.filter((ele) => ele.id === taskId);
 
     const matchedTasksList = listOfAllTasksList.filter(
       (ele) => ele.id === taskId
@@ -106,7 +108,7 @@ const Main = () => {
         priority: `${matchedPriority.length === 0 ? null : "priority"}`,
         date: matchedDate,
         tasksLists: matchedTasksList,
-        cover: "",
+        cover: matchedCover,
         archived: false,
       });
     } else {
@@ -121,7 +123,7 @@ const Main = () => {
         priority: false,
         date: [],
         tasksLists: [],
-        cover: "",
+        cover: [],
         archived: false,
       });
       if (listOfAllTasksId.length === 0) {
@@ -515,6 +517,7 @@ const Main = () => {
         listOfAllTasksList={listOfAllTasksList}
         moveCardToAnotherList={moveCardToAnotherList}
         copyNewList={copyNewList}
+        listOfAllCover={listOfAllCover}
       />
       {visibilityOptionsCover ? (
         <OptionCover
@@ -563,6 +566,7 @@ const Main = () => {
           listOfAllTasksList={listOfAllTasksList}
           setListOfallTerms={setListOfallTerms}
           listOfAllArchivedCard={listOfAllArchivedCard}
+          listOfAllCover={listOfAllCover}
           deleteCard={deleteCard}
         />
       ) : null}

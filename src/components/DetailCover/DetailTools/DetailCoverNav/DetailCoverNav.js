@@ -87,6 +87,7 @@ function DetailCoverNav({
   isThisCardArchived,
   deleteCard,
   coverCardVisi,
+  listOfAllCover,
 }) {
   return (
     <StyledDetailNav>
@@ -222,6 +223,8 @@ function DetailCoverNav({
         <CoverCard
           toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
           labelColors={labelColors}
+          listOfAllCover={listOfAllCover}
+          taskId={taskId}
         />
       ) : null}
     </StyledDetailNav>

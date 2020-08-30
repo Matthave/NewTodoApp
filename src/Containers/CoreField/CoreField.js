@@ -19,6 +19,7 @@ const MainField = ({
   setHideFontSizeLabel,
   listOfAllTasksList,
   setWholeList,
+  listOfAllCover,
 }) => {
   const [showList, showListHandle] = useState(false);
   const [scrollPosition, updatedScrollPosition] = useState(0);
@@ -118,6 +119,7 @@ const MainField = ({
       setWholeList={setWholeList}
       moveCardToAnotherList={moveCardToAnotherList}
       copyNewList={copyNewList}
+      listOfAllCover={listOfAllCover}
     />
   );
 };

@@ -199,6 +199,7 @@ class DetailCover extends React.Component {
       setListOfTasksList,
       listOfAllTasksList,
       deleteCard,
+      listOfAllCover,
     } = this.props;
 
     const {
@@ -234,6 +235,10 @@ class DetailCover extends React.Component {
     );
 
     const isThisCardArchived = this.props.listOfAllArchivedCard.filter(
+      (ele) => ele.id === taskId
+    );
+
+    const coverListFilter = this.props.listOfAllCover.filter(
       (ele) => ele.id === taskId
     );
 
@@ -285,6 +290,8 @@ class DetailCover extends React.Component {
           isThisCardArchived={isThisCardArchived}
           deleteCard={deleteCard}
           coverCardVisi={coverCardVisi}
+          listOfAllCover={listOfAllCover}
+          coverListFilter={coverListFilter}
         />
       </>
     );
