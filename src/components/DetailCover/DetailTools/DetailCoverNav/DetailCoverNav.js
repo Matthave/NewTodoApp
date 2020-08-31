@@ -199,6 +199,7 @@ function DetailCoverNav({
           listOfAllTerms={listOfAllTerms}
           listOfAllComments={listOfAllComments}
           listOfAllTasksId={listOfAllTasksId}
+          listOfAllCover={listOfAllCover}
           addNewCard={addNewCard}
         />
       ) : null}

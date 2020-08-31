@@ -113,6 +113,7 @@ class OptionCover extends Component {
       listOfAllTasksList,
       listOfAllComments,
       setListOfallTerms,
+      listOfAllCover,
       addNewCard,
     } = this.props;
 
@@ -185,6 +186,7 @@ class OptionCover extends Component {
           setListOfallTerms={setListOfallTerms}
           listOfAllTerms={listOfAllTerms}
           listOfAllComments={listOfAllComments}
+          listOfAllCover={listOfAllCover}
           reloadCoverComponentFunc={this.reloadCoverComponentFunc}
           addNewCard={addNewCard}
         />

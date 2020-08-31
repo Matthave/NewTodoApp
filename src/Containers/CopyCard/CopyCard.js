@@ -25,6 +25,7 @@ class CopyCard extends Component {
       listOfAllComments,
       listOfAllTasksId,
       listOfAllBadges,
+      listOfAllCover,
       listOfAllTerms,
       addNewCard,
     } = this.props;
@@ -33,6 +34,10 @@ class CopyCard extends Component {
     );
 
     const commentToCopy = listOfAllComments.filter(
+      (ele) => ele.id === preventCardId
+    );
+
+    const coverToCopy = listOfAllCover.filter(
       (ele) => ele.id === preventCardId
     );
 
@@ -56,6 +61,14 @@ class CopyCard extends Component {
       listOfAllComments.push({
         id: String(newId),
         comment: commentToCopy[0].comment,
+      });
+    }
+
+    if (coverToCopy.length !== 0) {
+      listOfAllCover.push({
+        id: String(newId),
+        background: coverToCopy[0].background,
+        fullCover: coverToCopy[0].fullCover,
       });
     }
 

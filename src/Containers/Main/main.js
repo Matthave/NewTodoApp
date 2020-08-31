@@ -299,6 +299,14 @@ const Main = () => {
         }); // Add proper comment, with new uniqe Id
       }
 
+      if (ele.cover.length !== 0) {
+        listOfAllCover.push({
+          id: newIdForCard,
+          background: ele.cover[0].background,
+          fullCover: ele.cover[0].fullCover,
+        }); // Add proper comment, with new uniqe Id
+      }
+
       if (ele.priority === "priority")
         listOfAllPriorityTasks.push(String(newIdForCard));
 
@@ -543,6 +551,7 @@ const Main = () => {
           listOfAllComments={listOfAllComments}
           setListOfallTerms={setListOfallTerms}
           addNewCard={addNewCard}
+          listOfAllCover={listOfAllCover}
         />
       ) : null}
       {visibilityTaskDetails ? (
