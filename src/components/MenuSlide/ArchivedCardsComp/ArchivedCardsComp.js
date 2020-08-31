@@ -3,6 +3,7 @@ import React from "react";
 import DeleteLastWarning from "./DeleteLastWarning/DeleteLastWarning";
 import MoveToAnotherList from "../../MoveToAnotherList/MoveToAnotherListBox";
 import styled from "styled-components";
+import ArchivedCard from "./ArchivedCard/ArchivedCard";
 
 const StyledWrapArchivedCards = styled.div`
   display: flex;
@@ -15,54 +16,6 @@ const StyledWrapArchivedCards = styled.div`
   &::-webkit-scrollbar {
     width: 0px;
   }
-`;
-
-const StyledCard = styled.div`
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 40px;
-  max-width: 260px;
-  word-break: break-all;
-  margin: 20px auto 5px auto;
-  padding: 9px 7.5px;
-  font-size: 1.4rem;
-  box-shadow: 0px 0.5px 0px 0.5px #aaa;
-  background-color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
-  color: black;
-`;
-
-const StyledContentWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  pointer-events: none;
-  padding: 2px;
-`;
-
-const StyledContent = styled.h3`
-  flex-grow: 1;
-  font-size: 14px;
-  font-weight: 400;
-  color: #172b4d;
-`;
-
-const StyledIcon = styled.span`
-  margin-right: 5px;
-  font-size: 12.5px;
-  vertical-align: middle;
-`;
-
-const StyledTermInCard = styled.span`
-  color: #888;
-  font-size: 12.5px;
-  letter-spacing: 0.5px;
-  margin-left: 3px;
 `;
 
 const StyledBlankTitle = styled.h4`
@@ -126,6 +79,7 @@ function ArchivedCardsComp({
   wholeList,
   moveCardToAnotherList,
   toggleCurrentListVisiFunc,
+  listOfAllCover,
 }) {
   return (
     <StyledWrapArchivedCards
@@ -142,67 +96,11 @@ function ArchivedCardsComp({
       {listOfAllArchivedCard.length !== 0 ? (
         listOfAllArchivedCard.map((archivedCard) => (
           <div key={archivedCard.id} className="menu">
-            <StyledCard
-              className="menu"
-              onDoubleClick={(e) =>
-                taskDetailsFunction(
-                  archivedCard.taskName,
-                  archivedCard.currentListName,
-                  archivedCard.currentList,
-                  archivedCard.id
-                )
-              }
-              id={archivedCard.id}
-              style={{
-                border:
-                  archivedCard.priority === "priority"
-                    ? "1px solid #db4a36"
-                    : null,
-              }}
-            >
-              <div
-                className="card_wrapLabel"
-                style={{
-                  pointerEvents: "none",
-                }}
-              >
-                {archivedCard.badges.map((ele) => (
-                  <div
-                    key={ele.color}
-                    id={ele.labelId}
-                    className="labelElement"
-                    style={{
-                      backgroundColor: ele.color,
-                      pointerEvents: "none",
-                    }}
-                  >
-                    {ele.name}
-                  </div>
-                ))}
-              </div>
-              <StyledContentWrap>
-                <StyledContent>{archivedCard.taskName}</StyledContent>
-              </StyledContentWrap>
-
-              <div
-                style={{ width: "100%", pointerEvents: "none" }}
-                id={`${archivedCard.id}term`}
-              >
-                {archivedCard.date.map((ele) => (
-                  <StyledTermInCard
-                    key={ele.id}
-                    className={ele.classN}
-                    style={{
-                      backgroundColor: ele.statusColor,
-                      color: ele.fontColor,
-                    }}
-                  >
-                    <StyledIcon className="far fa-clock" />
-                    {`${ele.day} ${ele.monthName} ${ele.status}`}
-                  </StyledTermInCard>
-                ))}
-              </div>
-            </StyledCard>
+            <ArchivedCard
+              archivedCard={archivedCard}
+              taskDetailsFunction={taskDetailsFunction}
+              listOfAllCover={listOfAllCover}
+            />
             <StyledWrapArchivedOptions>
               <StyledOption
                 className="menu"

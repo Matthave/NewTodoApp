@@ -177,11 +177,14 @@ class Card extends Component {
       visibilityOptionFunction,
       hideFontSizeLabel,
       listOfAllTasksList,
+      listOfAllCover,
     } = this.props;
 
     const matchedTasksList = listOfAllTasksList.filter(
       (ele) => ele.id === task.id
     );
+
+    const matchedCover = listOfAllCover.filter((ele) => ele.id === task.id);
 
     let unActiveTasks = 0;
     let totalTasks = 0;
@@ -203,6 +206,7 @@ class Card extends Component {
         totalTasks={totalTasks}
         mouseDownFeature={this.mouseDownFeature}
         labelFontSizeToggle={this.labelFontSizeToggle}
+        matchedCover={matchedCover}
       />
     );
   }

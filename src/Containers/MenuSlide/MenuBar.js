@@ -243,6 +243,7 @@ export class MenuBar extends Component {
       taskDetailsFunction,
       deleteCard,
       moveCardToAnotherList,
+      listOfAllCover,
     } = this.props;
     const {
       boardNameValue,
@@ -286,6 +287,7 @@ export class MenuBar extends Component {
           taskIdToDelete={taskIdToDelete}
           moveTaskData={moveTaskData}
           backgroundChangeFunc={this.backgroundChangeFunc}
+          listOfAllCover={listOfAllCover}
         />
         {labelVisi ? (
           <Labels

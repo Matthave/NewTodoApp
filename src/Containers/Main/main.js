@@ -146,6 +146,10 @@ const Main = () => {
     const commentsToThisCard = listOfAllComments.filter(
       (comment) => comment.id === taskId
     );
+
+    const coverToThisCard = listOfAllCover.filter(
+      (cover) => cover.id === taskId
+    );
     const termsToThisCard = listOfAllTerms.filter((term) => term.id === taskId);
     const archivedCard = correctList[0].tasks.splice(taskIndex, 1);
 
@@ -153,9 +157,9 @@ const Main = () => {
     archivedCard[0].badges = badgesToThisCard;
     archivedCard[0].date = termsToThisCard;
     archivedCard[0].comment = commentsToThisCard;
+    archivedCard[0].cover = coverToThisCard;
 
     listOfAllArchivedCard.push(...archivedCard);
-    // setListOfAllArchivedCard([...listOfAllArchivedCard, ...archivedCard]);
 
     setVisibilityOptionCover(false);
     setVisibilityTaskDetails(false);
@@ -499,6 +503,7 @@ const Main = () => {
         deleteCard={deleteCard}
         showThemeOptionFunction={showThemeOptionFunction}
         setWhichColor={setWhichColor}
+        listOfAllCover={listOfAllCover}
       />
       <CoreField
         wholeList={wholeList}

@@ -52,6 +52,7 @@ function CoverCardView({
   setCoverColorFunc,
   coverAlreadyExist,
   deleteCoverColorFunc,
+  setTypeOfCoverFunc,
 }) {
   return (
     <StyledCoverWrap>
@@ -68,6 +69,7 @@ function CoverCardView({
         setCoverColorFunc={setCoverColorFunc}
         coverAlreadyExist={coverAlreadyExist}
         deleteCoverColorFunc={deleteCoverColorFunc}
+        setTypeOfCoverFunc={setTypeOfCoverFunc}
       />
     </StyledCoverWrap>
   );

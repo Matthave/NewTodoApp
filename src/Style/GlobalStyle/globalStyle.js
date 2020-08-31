@@ -136,13 +136,12 @@ const GlobalStyle = createGlobalStyle`
    }
 
   .fa-highlighter{
-    color:#777;
     align-self:center;
     margin:2px;
     margin-bottom:0px;
     color:#000;
     @media ${device.laptop} {
-      color:#fff;
+      color:transparent;
 
       &:hover{
         color:#000;

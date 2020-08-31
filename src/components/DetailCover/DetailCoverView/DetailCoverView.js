@@ -39,7 +39,7 @@ const StyledDetail = styled.div`
 const StyledArchivedInfo = styled.div`
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 120px;
   background-color: #fff;
   background-image: linear-gradient(
     to bottom right,

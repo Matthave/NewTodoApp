@@ -2,16 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledElementWraper = styled.div`
-  display: flex;
+  display: ${(props) => (props.disabled ? "none" : "flex")};
   flex-wrap: wrap;
   width: 100%;
   height: auto;
   pointer-events: none;
 `;
 
-function CardBadgesElement({ task }) {
+function CardBadgesElement({ task, matchedCover }) {
   return (
-    <StyledElementWraper>
+    <StyledElementWraper
+      disabled={matchedCover.length !== 0 && matchedCover[0].fullCover}
+    >
       {task.badges.map((ele) => (
         <div
           key={ele.color}

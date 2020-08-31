@@ -68,6 +68,7 @@ function MenuSlideView({
   wholeList,
   moveCardToAnotherList,
   backgroundChangeFunc,
+  listOfAllCover,
 }) {
   return (
     <StyledMenu showMenu={slideMenuState} className="menu">
@@ -97,6 +98,7 @@ function MenuSlideView({
         wholeList={wholeList}
         moveCardToAnotherList={moveCardToAnotherList}
         toggleCurrentListVisiFunc={toggleCurrentListVisiFunc}
+        listOfAllCover={listOfAllCover}
       />
     </StyledMenu>
   );

@@ -46,7 +46,7 @@ const StyledTypeElementWrap = styled.div`
   height: 60px;
   border-radius: 5px;
   border: 1px solid #aaa;
-  background-color: #b4bac3;
+  background-color: ${(props) => (props.bgc ? props.bgc : "#b4bac3")};
   margin: 0 5px;
   cursor: pointer;
 `;
@@ -99,19 +99,33 @@ function CoverCardChoice({
   setCoverColorFunc,
   coverAlreadyExist,
   deleteCoverColorFunc,
+  setTypeOfCoverFunc,
 }) {
   return (
     <StyledWrap>
       <StyledSectionTitle>Type</StyledSectionTitle>
       <StyledSection>
-        <StyledTypeElementWrap className="coverCardType">
+        <StyledTypeElementWrap
+          bgc={
+            coverAlreadyExist.length !== 0 && coverAlreadyExist[0].background
+          }
+          className="cardType"
+          onClick={() => setTypeOfCoverFunc("half")}
+        >
           <StyledHalfBox>
             <StyledLinePart upperLine inBox />
             <StyledLinePart inBox />
             <StyledCirclePart />
           </StyledHalfBox>
         </StyledTypeElementWrap>
-        <StyledTypeElementWrap reverseDirection className="coverCardType">
+        <StyledTypeElementWrap
+          bgc={
+            coverAlreadyExist.length !== 0 && coverAlreadyExist[0].background
+          }
+          reverseDirection
+          className="cardType"
+          onClick={() => setTypeOfCoverFunc("full")}
+        >
           <StyledLinePart upperLine />
           <StyledLinePart />
         </StyledTypeElementWrap>

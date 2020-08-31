@@ -13,12 +13,15 @@ const StyledTermInCard = styled.span`
 `;
 
 const StyledTermWrap = styled.div`
-  display: flex;
+  display: ${(props) => (props.disabled ? "none" : "flex")};
 `;
 
-function CardTermsElement({ task }) {
+function CardTermsElement({ task, matchedCover }) {
   return (
-    <StyledTermWrap id={`${task.id}term`}>
+    <StyledTermWrap
+      id={`${task.id}term`}
+      disabled={matchedCover.length !== 0 && matchedCover[0].fullCover}
+    >
       {task.date.map((ele) => (
         <StyledTermInCard
           key={ele.id}
