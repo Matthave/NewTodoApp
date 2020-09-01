@@ -22,6 +22,7 @@ class CopyCard extends Component {
 
   copyCard = (preventCardId, listId, copyLabelsAllow) => {
     const {
+      listOfAllPriorityTasks,
       listOfAllComments,
       listOfAllTasksId,
       listOfAllBadges,
@@ -32,15 +33,15 @@ class CopyCard extends Component {
     const lablesToCopy = listOfAllBadges.filter(
       (ele) => ele.id === preventCardId
     );
-
     const commentToCopy = listOfAllComments.filter(
       (ele) => ele.id === preventCardId
     );
-
     const coverToCopy = listOfAllCover.filter(
       (ele) => ele.id === preventCardId
     );
-
+    const priorityToCopy = listOfAllPriorityTasks.filter(
+      (ele) => ele === preventCardId
+    );
     const newId = Math.max(...listOfAllTasksId) + 1;
     listOfAllTasksId.push(newId);
 
@@ -55,6 +56,10 @@ class CopyCard extends Component {
           name: ele.name,
         });
       });
+    }
+
+    if (priorityToCopy.length !== 0) {
+      listOfAllPriorityTasks.push(String(newId));
     }
 
     if (commentToCopy.length !== 0) {

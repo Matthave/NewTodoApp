@@ -88,6 +88,7 @@ function DetailCoverNav({
   deleteCard,
   coverCardVisi,
   listOfAllCover,
+  listOfAllPriorityTasks,
 }) {
   return (
     <StyledDetailNav>
@@ -200,6 +201,7 @@ function DetailCoverNav({
           listOfAllComments={listOfAllComments}
           listOfAllTasksId={listOfAllTasksId}
           listOfAllCover={listOfAllCover}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
           addNewCard={addNewCard}
         />
       ) : null}

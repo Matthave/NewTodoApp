@@ -52,11 +52,11 @@ function NavListView({ lighThisColor }) {
         </NavLink>
       </StyledList>
       <StyledList
-        className="list transparent labels"
+        className="list transparent labelMenu"
         hoverBGC
         lighThisColor={colorBgcHSL}
       >
-        <StyledIcon className="fas fa-tag labels" />
+        <StyledIcon className="fas fa-tag labelMenu" />
       </StyledList>
       <StyledList
         className="list transparent archive"

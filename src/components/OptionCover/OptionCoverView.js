@@ -151,6 +151,7 @@ const OptionCover = ({
   closeAllListsWindowsFunc,
   setListOfallTerms,
   listOfAllTerms,
+  listOfAllPriorityTasks,
   reloadCoverComponentFunc,
   listOfAllComments,
   addNewCard,
@@ -268,6 +269,7 @@ const OptionCover = ({
             listOfAllTasksId={listOfAllTasksId}
             addNewCard={addNewCard}
             listOfAllCover={listOfAllCover}
+            listOfAllPriorityTasks={listOfAllPriorityTasks}
           />
         ) : null}
         {datePickerVisi ? (

@@ -291,6 +291,7 @@ class DetailCover extends React.Component {
           deleteCard={deleteCard}
           coverCardVisi={coverCardVisi}
           listOfAllCover={listOfAllCover}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
           coverListFilter={coverListFilter}
         />
       </>

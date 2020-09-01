@@ -187,6 +187,7 @@ class OptionCover extends Component {
           listOfAllTerms={listOfAllTerms}
           listOfAllComments={listOfAllComments}
           listOfAllCover={listOfAllCover}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
           reloadCoverComponentFunc={this.reloadCoverComponentFunc}
           addNewCard={addNewCard}
         />

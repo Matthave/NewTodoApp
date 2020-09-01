@@ -125,6 +125,7 @@ function DetailCoverView({
   deleteCard,
   coverCardVisi,
   listOfAllCover,
+  listOfAllPriorityTasks,
   coverListFilter,
 }) {
   return (
@@ -219,6 +220,7 @@ function DetailCoverView({
           deleteCard={deleteCard}
           coverCardVisi={coverCardVisi}
           listOfAllCover={listOfAllCover}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
         />
       </StyledDetail>
     </StyledCover>

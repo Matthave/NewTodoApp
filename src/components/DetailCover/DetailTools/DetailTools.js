@@ -57,6 +57,7 @@ function DetailTools({
   isThisCardArchived,
   deleteCard,
   coverCardVisi,
+  listOfAllPriorityTasks,
   listOfAllCover,
 }) {
   return (
@@ -114,6 +115,7 @@ function DetailTools({
         deleteCard={deleteCard}
         coverCardVisi={coverCardVisi}
         listOfAllCover={listOfAllCover}
+        listOfAllPriorityTasks={listOfAllPriorityTasks}
       />
     </StyledDetailToolsWrap>
   );

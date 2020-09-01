@@ -146,7 +146,9 @@ const Main = () => {
     const commentsToThisCard = listOfAllComments.filter(
       (comment) => comment.id === taskId
     );
-
+    const priorityToThisCard = listOfAllPriorityTasks.filter(
+      (priority) => priority === taskId
+    );
     const coverToThisCard = listOfAllCover.filter(
       (cover) => cover.id === taskId
     );
@@ -158,9 +160,11 @@ const Main = () => {
     archivedCard[0].date = termsToThisCard;
     archivedCard[0].comment = commentsToThisCard;
     archivedCard[0].cover = coverToThisCard;
+    archivedCard[0].priority = `${
+      priorityToThisCard.lenght !== 0 ? "priority" : false
+    }`;
 
     listOfAllArchivedCard.push(...archivedCard);
-
     setVisibilityOptionCover(false);
     setVisibilityTaskDetails(false);
   };
@@ -280,7 +284,6 @@ const Main = () => {
       ele.id = newIdForCard;
 
       listOfAllTasksId.push(Number(newIdForCard)); // Add id to listOfId
-
       if (ele.badges.length !== 0) {
         ele.badges.forEach((badge) => {
           listOfAllBadges.push({
@@ -291,14 +294,12 @@ const Main = () => {
           }); // Add proper badges to list of Badges, with new uniqe Id
         });
       }
-
       if (ele.comment.length !== 0) {
         listOfAllComments.push({
           id: newIdForCard,
           comment: ele.comment[0].comment,
         }); // Add proper comment, with new uniqe Id
       }
-
       if (ele.cover.length !== 0) {
         listOfAllCover.push({
           id: newIdForCard,
@@ -307,10 +308,8 @@ const Main = () => {
           fullCover: ele.cover[0].fullCover,
         }); // Add proper comment, with new uniqe Id
       }
-
       if (ele.priority === "priority")
         listOfAllPriorityTasks.push(String(newIdForCard));
-
       if (ele.date.length !== 0) {
         listOfAllTerms.push({
           id: newIdForCard,

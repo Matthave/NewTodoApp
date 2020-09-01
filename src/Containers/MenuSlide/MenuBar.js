@@ -124,7 +124,7 @@ export class MenuBar extends Component {
       });
     }
 
-    if (searchingClass.includes("labels")) {
+    if (searchingClass.includes("labelMenu")) {
       this.props.showThemeOptionFunction(false);
       this.setState({
         labelVisi: !this.state.labelVisi,
