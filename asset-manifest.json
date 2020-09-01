@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/NewTodoApp/static/js/main.d0c7b020.chunk.js",
-    "main.js.map": "/NewTodoApp/static/js/main.d0c7b020.chunk.js.map",
+    "main.js": "/NewTodoApp/static/js/main.facac8c5.chunk.js",
+    "main.js.map": "/NewTodoApp/static/js/main.facac8c5.chunk.js.map",
     "runtime-main.js": "/NewTodoApp/static/js/runtime-main.db59cd49.js",
     "runtime-main.js.map": "/NewTodoApp/static/js/runtime-main.db59cd49.js.map",
     "static/js/2.d3078e0f.chunk.js": "/NewTodoApp/static/js/2.d3078e0f.chunk.js",
     "static/js/2.d3078e0f.chunk.js.map": "/NewTodoApp/static/js/2.d3078e0f.chunk.js.map",
     "index.html": "/NewTodoApp/index.html",
-    "precache-manifest.9c96665df6b754b39f6d25be24a43d25.js": "/NewTodoApp/precache-manifest.9c96665df6b754b39f6d25be24a43d25.js",
+    "precache-manifest.2519925ac5189ba5c26ab64d57279d0c.js": "/NewTodoApp/precache-manifest.2519925ac5189ba5c26ab64d57279d0c.js",
     "service-worker.js": "/NewTodoApp/service-worker.js",
     "static/js/2.d3078e0f.chunk.js.LICENSE.txt": "/NewTodoApp/static/js/2.d3078e0f.chunk.js.LICENSE.txt",
     "static/media/Five.png": "/NewTodoApp/static/media/Five.06290940.png",
@@ -22,6 +22,6 @@
   "entrypoints": [
     "static/js/runtime-main.db59cd49.js",
     "static/js/2.d3078e0f.chunk.js",
-    "static/js/main.d0c7b020.chunk.js"
+    "static/js/main.facac8c5.chunk.js"
   ]
 }
