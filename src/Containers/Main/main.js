@@ -161,7 +161,7 @@ const Main = () => {
     archivedCard[0].comment = commentsToThisCard;
     archivedCard[0].cover = coverToThisCard;
     archivedCard[0].priority = `${
-      priorityToThisCard.lenght !== 0 ? "priority" : false
+      priorityToThisCard.length !== 0 ? "priority" : false
     }`;
 
     listOfAllArchivedCard.push(...archivedCard);

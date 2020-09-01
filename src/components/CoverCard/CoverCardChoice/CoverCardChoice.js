@@ -26,13 +26,17 @@ const StyledSectionTitle = styled.h3`
 `;
 
 const StyledColorElement = styled.div`
-  width: 18%;
-  height: 35px;
+  width: 17%;
+  height: 32.5px;
   border-radius: 4px;
   filter: grayscale(15%);
-  margin: 2px;
+  margin: 3.5px;
   cursor: pointer;
   transition: 0.1s linear;
+
+  &:nth-last-child(2) {
+    display: none;
+  }
 
   &:hover {
     opacity: 0.75;
@@ -44,14 +48,18 @@ const StyledTypeElementWrap = styled.div`
   flex-direction: ${(props) =>
     props.reverseDirection ? "column-reverse" : "column"};
   width: 45%;
-  height: 60px;
+  height: 65px;
   border-radius: 5px;
-  border: 1px solid #aaa;
+  border: 3px solid #fff;
+  box-shadow: ${(props) =>
+    props.boxShadow ? "0 0 0px 2px #0F76B1" : "0 0 0px 2px #fff"};
   background-color: ${(props) => (props.bgColor ? props.bgColor : "#b4bac3")};
   background-image: ${(props) => (props.bgImage ? props.bgImage : "#b4bac3")};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 2px;
+  padding-bottom: ${(props) => (props.paddingBottom ? "5px" : "2px")};
   margin: 0 5px;
   cursor: pointer;
 `;
@@ -60,8 +68,9 @@ const StyledLinePart = styled.span`
   width: ${(props) => (props.upperLine ? "80%" : "35%")};
   height: 4px;
   border-radius: 5px;
-  background-color: ${(props) => (props.inBox ? "#B4BAC3" : "#fff")};
-  margin: 3px 5px; ;
+  background-color: ${(props) =>
+    props.inBox ? "#B4BAC3" : "rgba(255,255,255,0.75)"};
+  margin: 2px 5px; ;
 `;
 
 const StyledCirclePart = styled.span`
@@ -74,12 +83,11 @@ const StyledCirclePart = styled.span`
 
 const StyledHalfBox = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
-  height: 35px;
+  height: 40px;
   flex-direction: column;
   background-color: #fff;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   margin: auto 0 0;
 `;
 
@@ -191,6 +199,9 @@ function CoverCardChoice({
       <StyledSectionTitle>Type</StyledSectionTitle>
       <StyledSection>
         <StyledTypeElementWrap
+          boxShadow={
+            coverAlreadyExist.length !== 0 && !coverAlreadyExist[0].fullCover
+          }
           bgColor={
             coverAlreadyExist.length !== 0 && coverAlreadyExist[0].background
           }
@@ -199,6 +210,7 @@ function CoverCardChoice({
             coverAlreadyExist[0].backgroundImage
           }
           className="cardType"
+          id="cardTypeHalf"
           onClick={() => setTypeOfCoverFunc("half")}
         >
           <StyledHalfBox>
@@ -208,6 +220,10 @@ function CoverCardChoice({
           </StyledHalfBox>
         </StyledTypeElementWrap>
         <StyledTypeElementWrap
+          paddingBottom
+          boxShadow={
+            coverAlreadyExist.length !== 0 && coverAlreadyExist[0].fullCover
+          }
           bgColor={
             coverAlreadyExist.length !== 0 && coverAlreadyExist[0].background
           }
@@ -217,6 +233,7 @@ function CoverCardChoice({
           }
           reverseDirection
           className="cardType"
+          id="cardTypeFull"
           onClick={() => setTypeOfCoverFunc("full")}
         >
           <StyledLinePart upperLine />

@@ -57,6 +57,8 @@ export class CoverCard extends Component {
   setCoverColorFunc = (chosedColor, typeOfBackground) => {
     const { taskId, listOfAllCover } = this.props;
     const coverCardType = document.querySelectorAll(".cardType");
+    const cardTypeFull = document.getElementById("cardTypeFull");
+    const cardTypeHalf = document.getElementById("cardTypeHalf");
     const detailCoverCoverBlock = document.getElementById(
       `detailCoverCoverBlock${taskId}`
     );
@@ -66,6 +68,8 @@ export class CoverCard extends Component {
       ele.style.backgroundColor = chosedColor;
       ele.style.backgroundImage = `url(${chosedColor})`;
     });
+    cardTypeHalf.style.boxShadow = "0 0 0px 2px #0F76B1";
+    cardTypeFull.style.boxShadow = "0 0 0px 2px #fff";
 
     if (typeOfBackground === "color") {
       detailCoverCoverBlock.style.backgroundColor = chosedColor;
@@ -145,6 +149,8 @@ export class CoverCard extends Component {
   setTypeOfCoverFunc = (coverType) => {
     const { taskId, listOfAllCover } = this.props;
     const currentCard = document.getElementById(`${taskId}`);
+    const cardTypeFull = document.getElementById("cardTypeFull");
+    const cardTypeHalf = document.getElementById("cardTypeHalf");
     const matchedCoverColorIndex = listOfAllCover.findIndex(
       (ele) => ele.id === taskId
     );
@@ -155,9 +161,13 @@ export class CoverCard extends Component {
         currentCard.style.backgroundImage =
           listOfAllCover[matchedCoverColorIndex].backgroundImage;
         listOfAllCover[matchedCoverColorIndex].fullCover = true;
+        cardTypeFull.style.boxShadow = "0 0 0px 2px #0F76B1";
+        cardTypeHalf.style.boxShadow = "0 0 0px 2px #fff";
       } else if (coverType !== "full" && matchedCoverColorIndex !== -1) {
         currentCard.style.background = "#fff";
         listOfAllCover[matchedCoverColorIndex].fullCover = false;
+        cardTypeHalf.style.boxShadow = "0 0 0px 2px #0F76B1";
+        cardTypeFull.style.boxShadow = "0 0 0px 2px #fff";
       }
     }
   };

@@ -147,7 +147,7 @@ const StyledRobotSvg = styled.img`
   left: 20%;
   width: 400px;
   transform: rotate(10deg);
-  transition: 0.2s;
+  transition: 0.4s;
   cursor: pointer;
   @media ${device.laptopL} {
     display: block;

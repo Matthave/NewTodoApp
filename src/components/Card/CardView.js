@@ -19,12 +19,10 @@ function CardView({
   listId,
   taskDetailsFunction,
   inputTitle,
-  hideFontSizeLabel,
   visibilityOptionFunction,
   unActiveTasks,
   totalTasks,
   mouseDownFeature,
-  labelFontSizeToggle,
   matchedCover,
 }) {
   return (
