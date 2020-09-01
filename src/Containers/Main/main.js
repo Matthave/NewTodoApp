@@ -303,6 +303,7 @@ const Main = () => {
         listOfAllCover.push({
           id: newIdForCard,
           background: ele.cover[0].background,
+          backgroundImage: ele.cover[0].backgroundImage,
           fullCover: ele.cover[0].fullCover,
         }); // Add proper comment, with new uniqe Id
       }

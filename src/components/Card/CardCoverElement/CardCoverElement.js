@@ -29,7 +29,10 @@ function CardCoverElement({ task }) {
           <StyledCoverBlock
             key={ele.id}
             id={`cardCoverBlock${ele.id}`}
-            style={{ background: ele.background }}
+            style={{
+              background: ele.background,
+              backgroundImage: ele.backgroundImage,
+            }}
           />
         ))
       )}

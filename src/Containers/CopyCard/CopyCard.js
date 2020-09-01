@@ -68,6 +68,7 @@ class CopyCard extends Component {
       listOfAllCover.push({
         id: String(newId),
         background: coverToCopy[0].background,
+        backgroundImage: coverToCopy[0].backgroundImage,
         fullCover: coverToCopy[0].fullCover,
       });
     }

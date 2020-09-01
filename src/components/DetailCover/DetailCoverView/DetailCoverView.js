@@ -73,6 +73,8 @@ const StyledCoverBlock = styled.div`
   display: flex;
   width: 100%;
   height: ${(props) => (props.disabled ? "0px" : "120px")};
+  background-position: center;
+  background-repeat: no-repeat;
   transition: 0.1s linear;
 `;
 
@@ -145,7 +147,10 @@ function DetailCoverView({
         {coverListFilter.length !== 0 ? (
           coverListFilter.map((ele) => (
             <StyledCoverBlock
-              style={{ backgroundColor: ele.background }}
+              style={{
+                backgroundColor: ele.background,
+                backgroundImage: ele.backgroundImage,
+              }}
               key={ele.id}
               id={`detailCoverCoverBlock${taskId}`}
             />

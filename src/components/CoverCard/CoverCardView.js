@@ -53,6 +53,9 @@ function CoverCardView({
   coverAlreadyExist,
   deleteCoverColorFunc,
   setTypeOfCoverFunc,
+  unSplashSearchValue,
+  unSplashChangeFunc,
+  unsplashPhotos,
 }) {
   return (
     <StyledCoverWrap>
@@ -70,6 +73,9 @@ function CoverCardView({
         coverAlreadyExist={coverAlreadyExist}
         deleteCoverColorFunc={deleteCoverColorFunc}
         setTypeOfCoverFunc={setTypeOfCoverFunc}
+        unSplashSearchValue={unSplashSearchValue}
+        unSplashChangeFunc={unSplashChangeFunc}
+        unsplashPhotos={unsplashPhotos}
       />
     </StyledCoverWrap>
   );

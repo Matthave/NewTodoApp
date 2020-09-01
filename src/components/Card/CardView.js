@@ -38,8 +38,16 @@ function CardView({
       style={{
         border: task.priority === "priority" ? "1px solid #db4a36" : null,
         backgroundColor:
-          matchedCover.length !== 0 && matchedCover[0].fullCover
+          matchedCover.length !== 0 &&
+          matchedCover[0].fullCover &&
+          matchedCover[0].background
             ? matchedCover[0].background
+            : "#fff",
+        backgroundImage:
+          matchedCover.length !== 0 &&
+          matchedCover[0].fullCover &&
+          matchedCover[0].backgroundImage
+            ? matchedCover[0].backgroundImage
             : "#fff",
       }}
     >
@@ -49,6 +57,7 @@ function CardView({
         task={task}
         listId={listId}
         visibilityOptionFunction={visibilityOptionFunction}
+        matchedCover={matchedCover}
       />
       <StyledElementWraper>
         <CardTermsElement task={task} matchedCover={matchedCover} />

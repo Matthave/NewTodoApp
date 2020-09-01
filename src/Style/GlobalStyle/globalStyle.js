@@ -69,7 +69,8 @@ const GlobalStyle = createGlobalStyle`
 
   .labelElement{
     align-self:center;
-    width:15%;
+    width:auto;
+    min-width:15%;
     min-height:8px;
     border-radius:5px;
     margin: 4px 4px 0px;

@@ -83,7 +83,7 @@ const StyledWrapLabels = styled.div`
   flex-wrap: wrap;
   width: 260px;
   min-height: 10px;
-  padding: 5px 5px 0px 5px;
+  padding: 4px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #fff;

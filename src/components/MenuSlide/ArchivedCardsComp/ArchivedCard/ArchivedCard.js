@@ -35,7 +35,9 @@ const StyledContent = styled.h3`
   flex-grow: 1;
   font-size: 14px;
   font-weight: 400;
-  color: #172b4d;
+  color: ${(props) => (props.fullCoverStyle ? "#fff" : "#172b4d")};
+  text-shadow: ${(props) =>
+    props.fullCoverStyle ? "0.5px 0.5px #000" : "none"};
 `;
 
 function ArchivedCard({ taskDetailsFunction, archivedCard, listOfAllCover }) {
@@ -61,12 +63,22 @@ function ArchivedCard({ taskDetailsFunction, archivedCard, listOfAllCover }) {
           matchedCover.length !== 0 && matchedCover[0].fullCover
             ? matchedCover[0].background
             : "#fff",
+        backgroundImage:
+          matchedCover.length !== 0 && matchedCover[0].fullCover
+            ? matchedCover[0].backgroundImage
+            : null,
       }}
     >
       <CardCoverElement task={archivedCard} />
       <CardBadgesElement task={archivedCard} matchedCover={matchedCover} />
       <StyledContentWrap>
-        <StyledContent>{archivedCard.taskName}</StyledContent>
+        <StyledContent
+          fullCoverStyle={
+            matchedCover.length !== 0 && matchedCover[0].fullCover
+          }
+        >
+          {archivedCard.taskName}
+        </StyledContent>
       </StyledContentWrap>
       <CardTermsElement task={archivedCard} matchedCover={matchedCover} />
     </StyledCard>
