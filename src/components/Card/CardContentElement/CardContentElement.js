@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { device } from "../../../Style/MediaQuery/mq";
 
 const StyledContentWrap = styled.div`
   display: flex;
@@ -21,14 +22,18 @@ const StyledContent = styled.h3`
 const StyledEdit = styled.span`
   align-self: center;
   margin-bottom: 0px;
-  color: #fff;
-  margin: 0 5px;
+  color: #000;
+  margin: 0 7.5px;
   pointer-events: initial;
   background-color: ${(props) =>
     props.fullCoverStyle ? "rgba(155,155,155,0.5)" : "transparent"};
   box-shadow: ${(props) =>
     props.fullCoverStyle ? "0 0 0 6.5px rgba(155,155,155,0.5)" : "none"};
   transition: 0.1s linear;
+
+  @media ${device.laptop} {
+    color: #fff;
+  }
 `;
 
 function CardContentElement({

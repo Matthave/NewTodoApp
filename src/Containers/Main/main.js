@@ -189,6 +189,8 @@ const Main = () => {
     const matchedTasksList = listOfAllTasksList.filter(
       (ele) => ele.id === taskId
     );
+    const matchedCoverList = listOfAllCover.filter((ele) => ele.id === taskId);
+
     if (matchedPriority.length !== 0) {
       matchedPriority.forEach((element) => {
         const indexOfPriorityToDelete = listOfAllPriorityTasks.findIndex(
@@ -227,6 +229,14 @@ const Main = () => {
           (ele) => ele.id === element.id && ele.listName === element.listName
         );
         listOfAllTasksList.splice(indexOfTaskListToDelete, 1);
+      });
+    }
+    if (matchedCoverList.length !== 0) {
+      matchedCoverList.forEach((element) => {
+        const indexOfCoverToDelete = listOfAllCover.findIndex(
+          (ele) => ele.id === taskId
+        );
+        listOfAllCover.splice(indexOfCoverToDelete, 1);
       });
     }
     // Delete Card Id from array

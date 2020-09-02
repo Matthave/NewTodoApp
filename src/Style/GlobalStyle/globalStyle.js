@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { device } from "../MediaQuery/mq";
+// import { device } from "../MediaQuery/mq";
 
 const GlobalStyle = createGlobalStyle`
   * {
