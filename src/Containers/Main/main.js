@@ -7,6 +7,7 @@ import OptionCover from "../OptionCover/OptionCover";
 import DetailCover from "../DetailCover/DetailCover";
 
 const Main = () => {
+  const [navSearchValue, setNavSearchValue] = useState("");
   const [showThemeOption, showThemeOptionFunction] = useState(false);
   const [whichColor, setWhichColor] = useState(["#76ce8e"]);
   const [visibilityOptionsCover, setVisibilityOptionCover] = useState(false);
@@ -496,6 +497,8 @@ const Main = () => {
         themeToggle={showThemeOptionFunction}
         themeOption={showThemeOption}
         whichColor={whichColor}
+        navSearchValu={navSearchValue}
+        setNavSearchValue={setNavSearchValue}
       />
       <ThemeField themeOption={showThemeOption} setWhichColor={setWhichColor} />
       <MenuBar

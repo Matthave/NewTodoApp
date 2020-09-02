@@ -18,7 +18,7 @@ const StyledOptionList = styled.div`
 
 const StyledX = styled.span`
   position: absolute;
-  top: 12px;
+  top: 8px;
   right: 12px;
   font-size: 14px;
   color: #aaa;

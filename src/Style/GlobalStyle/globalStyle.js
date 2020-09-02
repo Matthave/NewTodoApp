@@ -139,10 +139,7 @@ const GlobalStyle = createGlobalStyle`
 .fa-angle-left, 
 .fa-times
 {
-  font-size:22.5px !important;
-  @media ${device.tablet} {
-  font-size:15px !important;
-  }
+font-size:20px;
 }
   
   .fa-ellipsis-h{

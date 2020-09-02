@@ -68,7 +68,7 @@ const StyledHiperLink = styled.a`
   z-index: 0;
 `;
 
-const Navigation = ({ themeFunction, lighThisColor }) => {
+const Navigation = ({ lighThisColor, navSearchValue, navInputsChangeFunc }) => {
   return (
     <StyledNav className="nav">
       <StyledUl>
@@ -81,7 +81,12 @@ const Navigation = ({ themeFunction, lighThisColor }) => {
           <Styledlogo src={myLogo}></Styledlogo>
         </StyledHiperLink>
         <StyledList lastEle className="transparent">
-          <StyledInput className="item transparent" placeholder="Search..." />
+          <StyledInput
+            className="item transparent"
+            placeholder="Search..."
+            value={navSearchValue}
+            onChange={(e) => navInputsChangeFunc(e)}
+          />
         </StyledList>
       </StyledUl>
     </StyledNav>
