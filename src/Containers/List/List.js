@@ -310,6 +310,13 @@ class List extends Component {
       addNewList,
       copyNewList,
       listOfAllCover,
+      listOfAllComments,
+      listOfAllTerms,
+      listOfAllPriorityTasks,
+      listOfAllBadges,
+      listOfAllTasksId,
+      refresh,
+      setRefresh,
     } = this.props;
     const {
       showAddField,
@@ -371,6 +378,13 @@ class List extends Component {
           addNewList={addNewList}
           copyNewList={copyNewList}
           listOfAllCover={listOfAllCover}
+          listOfAllComments={listOfAllComments}
+          listOfAllTerms={listOfAllTerms}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
+          listOfAllBadges={listOfAllBadges}
+          listOfAllTasksId={listOfAllTasksId}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />
       </div>
     );

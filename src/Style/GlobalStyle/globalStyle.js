@@ -255,7 +255,7 @@ font-size:20px;
   height:10px;
 }
 ::-webkit-scrollbar-thumb:hover{
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.75);
 }
 `;
 

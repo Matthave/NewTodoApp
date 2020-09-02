@@ -20,6 +20,13 @@ const MainField = ({
   listOfAllTasksList,
   setWholeList,
   listOfAllCover,
+  listOfAllComments,
+  listOfAllTerms,
+  listOfAllPriorityTasks,
+  listOfAllBadges,
+  listOfAllTasksId,
+  refresh,
+  setRefresh,
 }) => {
   const [showList, showListHandle] = useState(false);
   const [scrollPosition, updatedScrollPosition] = useState(0);
@@ -120,6 +127,13 @@ const MainField = ({
       moveCardToAnotherList={moveCardToAnotherList}
       copyNewList={copyNewList}
       listOfAllCover={listOfAllCover}
+      listOfAllComments={listOfAllComments}
+      listOfAllTerms={listOfAllTerms}
+      listOfAllPriorityTasks={listOfAllPriorityTasks}
+      listOfAllBadges={listOfAllBadges}
+      listOfAllTasksId={listOfAllTasksId}
+      refresh={refresh}
+      setRefresh={setRefresh}
     />
   );
 };

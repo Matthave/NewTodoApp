@@ -25,6 +25,7 @@ const StyledListInput = styled.input`
   transition: 0.1s linear;
   box-shadow: 0px 0px 1px 0px #888;
   font-size: 15px;
+  pointer-events: ${(props) => (props.disabled ? "none" : null)};
 
   &::placeholder {
     color: inherit;
@@ -112,6 +113,13 @@ function CoreFieldView({
   setWholeList,
   moveCardToAnotherList,
   listOfAllCover,
+  listOfAllComments,
+  listOfAllTerms,
+  listOfAllPriorityTasks,
+  listOfAllBadges,
+  listOfAllTasksId,
+  refresh,
+  setRefresh,
 }) {
   return (
     <StyledMain
@@ -148,10 +156,18 @@ function CoreFieldView({
             addNewList={addNewList}
             copyNewList={copyNewList}
             listOfAllCover={listOfAllCover}
+            listOfAllComments={listOfAllComments}
+            listOfAllTerms={listOfAllTerms}
+            listOfAllPriorityTasks={listOfAllPriorityTasks}
+            listOfAllBadges={listOfAllBadges}
+            listOfAllTasksId={listOfAllTasksId}
+            refresh={refresh}
+            setRefresh={setRefresh}
           />
         ))}
         <StyledWrapAddListBtn bgc={showList ? true : false}>
           <StyledListInput
+            disabled={wholeList.length === 10}
             bgc={showList ? true : false}
             placeholder=" + Add another list"
             onClick={showAddListHandle}

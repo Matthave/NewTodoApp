@@ -70,6 +70,13 @@ function ListView({
   addNewList,
   copyNewList,
   listOfAllCover,
+  listOfAllComments,
+  listOfAllTerms,
+  listOfAllPriorityTasks,
+  listOfAllBadges,
+  listOfAllTasksId,
+  refresh,
+  setRefresh,
 }) {
   return (
     <div
@@ -163,6 +170,15 @@ function ListView({
           listId={id}
           copyNewList={copyNewList}
           copyListVisibility={copyListVisibility}
+          listOfAllCover={listOfAllCover}
+          listOfAllComments={listOfAllComments}
+          listOfAllTerms={listOfAllTerms}
+          listOfAllPriorityTasks={listOfAllPriorityTasks}
+          listOfAllBadges={listOfAllBadges}
+          listOfAllTasksId={listOfAllTasksId}
+          addNewCardFeature={addNewCardFeature}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />
       ) : null}
     </div>

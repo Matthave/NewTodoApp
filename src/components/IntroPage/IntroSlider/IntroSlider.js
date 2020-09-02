@@ -32,9 +32,10 @@ const StyledSliderDiv = styled.div`
 const StyledArrow = styled.span`
   display: none;
   position: relative;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin: auto 35px;
-  padding: 50px;
   box-shadow: 0 10px 20px rgba(74, 115, 159, 0.29);
   transition: 0.1s linear;
   color: #ddd;
@@ -166,7 +167,7 @@ function IntroSlider({ sliderFunc, sliderByDotFunc, allImages, currentImg }) {
       </StyledText>
       <StyledSliderDiv>
         <StyledArrow onClick={() => sliderFunc("left")}>
-          <StyledIcon className="fas fa-angle-left" />
+          <StyledIcon className="fas fa-chevron-left" />
         </StyledArrow>
         <StyledView>
           <StyledImg
@@ -195,7 +196,7 @@ function IntroSlider({ sliderFunc, sliderByDotFunc, allImages, currentImg }) {
           />
         </StyledView>
         <StyledArrow onClick={() => sliderFunc("right")}>
-          <StyledIcon className="fas fa-angle-right" />
+          <StyledIcon className="fas fa-chevron-right" />
         </StyledArrow>
       </StyledSliderDiv>
     </StyledSliderWrap>
