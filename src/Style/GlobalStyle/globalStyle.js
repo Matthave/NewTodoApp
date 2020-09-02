@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
       &:hover .fa-highlighter {
-     color:#777; 
+     color:#222 
     }
   }
 
@@ -136,19 +136,14 @@ const GlobalStyle = createGlobalStyle`
      flex-direction:column;
    }
 
-  .fa-highlighter{
-    align-self:center;
-    margin:2px;
-    margin-bottom:0px;
-    color:#000;
-    @media ${device.laptop} {
-      color:transparent;
-
-      &:hover{
-        color:#000;
-      }
+.fa-angle-left, 
+.fa-times
+{
+  font-size:22.5px !important;
+  @media ${device.tablet} {
+  font-size:15px !important;
   }
-  }
+}
   
   .fa-ellipsis-h{
    padding: 9px ;

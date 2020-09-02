@@ -28,46 +28,48 @@ class TasksListInDetailCover extends Component {
     });
   };
 
-  addSubTaskFunc = () => {
-    const copyOfListTasks = this.props.listOfAllTasksList;
-    const matchedList = copyOfListTasks.filter(
-      (ele) =>
-        ele.id === this.props.taskId && ele.listName === this.props.listName
-    );
+  addSubTaskFunc = (e) => {
+    if (e.target.className.includes("subTaskBtn") || e.which === 13) {
+      const copyOfListTasks = this.props.listOfAllTasksList;
+      const matchedList = copyOfListTasks.filter(
+        (ele) =>
+          ele.id === this.props.taskId && ele.listName === this.props.listName
+      );
 
-    const subTaskAlreadyExist = matchedList[0].subTasksList.filter(
-      (ele) => ele.name === this.state.subTaskInputValue
-    );
+      const subTaskAlreadyExist = matchedList[0].subTasksList.filter(
+        (ele) => ele.name === this.state.subTaskInputValue
+      );
 
-    //If subTask already exist or this is blank subTask
-    if (
-      subTaskAlreadyExist.length !== 0 ||
-      this.state.subTaskInputValue === ""
-    ) {
-      const warnningSpan = document.querySelector(".subTaskWarnSpan");
-      warnningSpan.style.opacity = 1;
+      //If subTask already exist or this is blank subTask
+      if (
+        subTaskAlreadyExist.length !== 0 ||
+        this.state.subTaskInputValue === ""
+      ) {
+        const warnningSpan = document.querySelector(".subTaskWarnSpan");
+        warnningSpan.style.opacity = 1;
+        this.setState({
+          subTaskInputValue: "",
+        });
+        return;
+      }
+
+      //If subTask is right composed just add it to the list of subtask in this card and correct tasksList
+      matchedList[0].subTasksList.push({
+        id: `${this.props.taskId}${this.state.subTaskInputValue}`,
+        name: this.state.subTaskInputValue,
+        active: true,
+      });
+
+      //Updated data about subtask on this card and current tasksList
+      matchedList[0].activeSubtasks += 1;
+      matchedList[0].totalOfSubTasks += 1;
+      //This is for refresh page durring add or checking subTask
+      this.props.closeAllListsWindowsFunc();
       this.setState({
+        subTaskToggleVisi: false,
         subTaskInputValue: "",
       });
-      return;
     }
-
-    //If subTask is right composed just add it to the list of subtask in this card and correct tasksList
-    matchedList[0].subTasksList.push({
-      id: `${this.props.taskId}${this.state.subTaskInputValue}`,
-      name: this.state.subTaskInputValue,
-      active: true,
-    });
-
-    //Updated data about subtask on this card and current tasksList
-    matchedList[0].activeSubtasks += 1;
-    matchedList[0].totalOfSubTasks += 1;
-    //This is for refresh page durring add or checking subTask
-    this.props.closeAllListsWindowsFunc();
-    this.setState({
-      subTaskToggleVisi: false,
-      subTaskInputValue: "",
-    });
   };
 
   deleteTasksList = (listName, taskId) => {

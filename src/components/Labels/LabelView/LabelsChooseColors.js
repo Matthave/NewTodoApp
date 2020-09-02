@@ -17,6 +17,7 @@ const StyledLabels = styled.div`
   margin-bottom: 17.5px;
   box-shadow: 0 0 15px 1px rgba(50, 50, 50, 0.2);
   z-index: 999;
+  overflow-y: hidden;
 `;
 
 const StyledLabelWrapEle = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledTaskName = styled.input`
-  width: calc(100% - 80px);
+  width: calc(100% - 100px);
   background-color: #f4f5f7;
   border-radius: 1px;
   padding: 5px 4px;
@@ -21,6 +21,15 @@ const StyledIcon = styled.span`
   padding-left: 15px;
 `;
 
+const StyledEscape = styled.span`
+  border-radius: 50%;
+  width: 32.5px;
+  height: 32.5px;
+  text-align: center;
+  line-height: 33.5px;
+  background-color: rgba(200, 200, 200, 0.5);
+`;
+
 function Detail_Input({
   taskTitle,
   taskTitleFeature,
@@ -37,7 +46,7 @@ function Detail_Input({
         value={taskTitle}
         onChange={(e) => taskTitleFeature(e)}
       />
-      <span
+      <StyledEscape
         className="fas fa-times close"
         onClick={(e) => updateCard(e, taskTitle, currentListId, taskId)}
       />

@@ -166,13 +166,13 @@ const StyledAuthor = styled.a`
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 5px;
+  padding: 3px;
   background-color: rgba(0, 0, 0, 0.5);
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   text-align: center;
   opacity: 0;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
   color: #fff;
   transition: 0.1s linear;

@@ -19,9 +19,16 @@ const StyledContent = styled.h3`
 `;
 
 const StyledEdit = styled.span`
-  margin: 0 5px;
   align-self: center;
+  margin-bottom: 0px;
+  color: #fff;
+  margin: 0 5px;
   pointer-events: initial;
+  background-color: ${(props) =>
+    props.fullCoverStyle ? "rgba(155,155,155,0.5)" : "transparent"};
+  box-shadow: ${(props) =>
+    props.fullCoverStyle ? "0 0 0 6.5px rgba(155,155,155,0.5)" : "none"};
+  transition: 0.1s linear;
 `;
 
 function CardContentElement({
@@ -38,6 +45,7 @@ function CardContentElement({
         {task.taskName}
       </StyledContent>
       <StyledEdit
+        fullCoverStyle={matchedCover.length !== 0 && matchedCover[0].fullCover}
         className="fas fa-highlighter"
         onClick={(e) =>
           visibilityOptionFunction(

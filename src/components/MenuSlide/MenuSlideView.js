@@ -19,6 +19,7 @@ const StyledMenu = styled.div`
   transition: 0.3s linear;
   z-index: 999;
   padding: 5px 0px;
+  overflow: hidden;
 `;
 
 const StyledLabelTitle = styled.div`

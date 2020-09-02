@@ -254,11 +254,12 @@ function TasksListInDetailCoverView({
           <StyledInput
             className={"detailCoverClose"}
             onChange={(e) => subTaskInupChange(e)}
+            onKeyPress={(e) => addSubTaskFunc(e)}
             value={subTaskInputValue}
           />
           <StyledButton
-            onClick={() => addSubTaskFunc()}
-            className={"detailCoverClose"}
+            onClick={(e) => addSubTaskFunc(e)}
+            className="detailCoverClose subTaskBtn"
           >
             Add SubTask
           </StyledButton>

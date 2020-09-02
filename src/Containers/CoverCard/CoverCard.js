@@ -119,6 +119,8 @@ export class CoverCard extends Component {
   deleteCoverColorFunc = () => {
     const { taskId, listOfAllCover } = this.props;
     const coverCardType = document.querySelectorAll(".cardType");
+    const cardTypeFull = document.getElementById("cardTypeFull");
+    const cardTypeHalf = document.getElementById("cardTypeHalf");
     const cardCover = document.getElementById(`${taskId}`);
     coverCardType.forEach((ele) => {
       ele.style.backgroundColor = "#B4BAC3";
@@ -140,6 +142,8 @@ export class CoverCard extends Component {
     cardCoverBlock.style.backgroundImage = "none";
     cardCoverBlock.style.height = "0px";
     cardCover.style.backgroundImage = null;
+    cardTypeHalf.style.boxShadow = "0 0 0px 2px #fff";
+    cardTypeFull.style.boxShadow = "0 0 0px 2px #fff";
 
     listOfAllCover.splice(matchedCoverIndex, 1);
 
