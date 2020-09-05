@@ -25,6 +25,7 @@ const MainField = ({
   listOfAllPriorityTasks,
   listOfAllBadges,
   listOfAllTasksId,
+  slideMenuState,
   refresh,
   setRefresh,
 }) => {
@@ -132,6 +133,7 @@ const MainField = ({
       listOfAllPriorityTasks={listOfAllPriorityTasks}
       listOfAllBadges={listOfAllBadges}
       listOfAllTasksId={listOfAllTasksId}
+      slideMenuState={slideMenuState}
       refresh={refresh}
       setRefresh={setRefresh}
     />

@@ -315,6 +315,7 @@ class List extends Component {
       listOfAllPriorityTasks,
       listOfAllBadges,
       listOfAllTasksId,
+      slideMenuState,
       refresh,
       setRefresh,
     } = this.props;
@@ -383,6 +384,7 @@ class List extends Component {
           listOfAllPriorityTasks={listOfAllPriorityTasks}
           listOfAllBadges={listOfAllBadges}
           listOfAllTasksId={listOfAllTasksId}
+          slideMenuState={slideMenuState}
           refresh={refresh}
           setRefresh={setRefresh}
         />

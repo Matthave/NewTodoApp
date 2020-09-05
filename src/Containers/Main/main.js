@@ -13,6 +13,7 @@ const Main = () => {
   const [visibilityOptionsCover, setVisibilityOptionCover] = useState(false);
   const [optionCoverData, setOptionCoverData] = useState("");
   const [visibilityTaskDetails, setVisibilityTaskDetails] = useState(false);
+  const [slideMenuState, setSlideMenuState] = useState(false);
   const [taskTitleList, setTaskTitleList] = useState();
   const [taskName, setTaskName] = useState("");
   const [taskId, setTaskId] = useState("");
@@ -155,6 +156,7 @@ const Main = () => {
     );
     const termsToThisCard = listOfAllTerms.filter((term) => term.id === taskId);
     const archivedCard = correctList[0].tasks.splice(taskIndex, 1);
+    console.log(correctList);
 
     archivedCard[0].archived = true;
     archivedCard[0].badges = badgesToThisCard;
@@ -451,6 +453,8 @@ const Main = () => {
         deleteCard={deleteCard}
         showThemeOptionFunction={showThemeOptionFunction}
         setWhichColor={setWhichColor}
+        setSlideMenuState={setSlideMenuState}
+        slideMenuState={slideMenuState}
         listOfAllCover={listOfAllCover}
       />
       <CoreField
@@ -475,6 +479,7 @@ const Main = () => {
         listOfAllPriorityTasks={listOfAllPriorityTasks}
         listOfAllBadges={listOfAllBadges}
         listOfAllTasksId={listOfAllTasksId}
+        slideMenuState={slideMenuState}
         refresh={refresh}
         setRefresh={setRefresh}
       />

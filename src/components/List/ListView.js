@@ -75,6 +75,7 @@ function ListView({
   listOfAllPriorityTasks,
   listOfAllBadges,
   listOfAllTasksId,
+  slideMenuState,
   refresh,
   setRefresh,
 }) {
@@ -110,6 +111,8 @@ function ListView({
           setHideFontSizeLabel={setHideFontSizeLabel}
           listOfAllTasksList={listOfAllTasksList}
           listOfAllCover={listOfAllCover}
+          archiveCard={archiveCard}
+          slideMenuState={slideMenuState}
         />
       ))}
       <div className="blank" />

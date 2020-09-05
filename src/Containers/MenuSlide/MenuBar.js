@@ -8,7 +8,6 @@ import Color from "color";
 export class MenuBar extends Component {
   state = {
     boardNameValue: "Your Todo List",
-    slideMenuState: false,
     labelVisi: false,
     archivedElementVisi: false,
     archivedSearchValue: "",
@@ -83,7 +82,7 @@ export class MenuBar extends Component {
   };
 
   slideMenuFunc = () => {
-    this.setState({ slideMenuState: true });
+    this.props.setSlideMenuState(!this.props.slideMenuState);
   };
 
   hideMenuFunc = (e) => {
@@ -93,8 +92,8 @@ export class MenuBar extends Component {
       searchingClass.includes("main")
     ) {
       this.props.showThemeOptionFunction(false);
+      this.props.setSlideMenuState(false);
       this.setState({
-        slideMenuState: false,
         archivedElementVisi: false,
         backgroundChangeVisi: false,
         showUnsplashPhotosVisi: false,
@@ -116,8 +115,8 @@ export class MenuBar extends Component {
 
     if (searchingClass.includes("backToMenu")) {
       this.props.showThemeOptionFunction(false);
+      this.props.setSlideMenuState(true);
       this.setState({
-        slideMenuState: true,
         backgroundChangeVisi: false,
         labelVisi: false,
         showUnsplashPhotosVisi: false,
@@ -135,8 +134,8 @@ export class MenuBar extends Component {
 
     if (searchingClass.includes("archive")) {
       this.props.showThemeOptionFunction(false);
+      this.props.setSlideMenuState(!this.props.slideMenuState);
       this.setState({
-        slideMenuState: !this.state.slideMenuState,
         backgroundChangeVisi: false,
         showUnsplashPhotosVisi: false,
         labelVisi: false,
@@ -157,9 +156,11 @@ export class MenuBar extends Component {
   //This one is for label and moveToAnotherList window, for X button to close
   toggleCurrentListVisiFunc = (stateToClose) => {
     if (stateToClose === "moveToActiveVisi") {
-      this.setState({ moveToActiveVisi: false, slideMenuState: true });
+      this.props.setSlideMenuState(true);
+      this.setState({ moveToActiveVisi: false });
     } else {
-      this.setState({ labelVisi: true, slideMenuState: false });
+      this.props.setSlideMenuState(false);
+      this.setState({ labelVisi: true });
     }
   };
 
@@ -179,7 +180,8 @@ export class MenuBar extends Component {
   };
 
   backgroundChangeFunc = () => {
-    this.setState({ backgroundChangeVisi: true, slideMenuState: false });
+    this.props.setSlideMenuState(false);
+    this.setState({ backgroundChangeVisi: true });
   };
 
   showUnsplashPhotosFunc = () => {
@@ -191,7 +193,8 @@ export class MenuBar extends Component {
   };
 
   showThemeColorsFunc = () => {
-    this.setState({ backgroundChangeVisi: false, slideMenuState: false });
+    this.props.setSlideMenuState(false);
+    this.setState({ backgroundChangeVisi: false });
     this.props.showThemeOptionFunction(true);
   };
 
@@ -244,10 +247,10 @@ export class MenuBar extends Component {
       deleteCard,
       moveCardToAnotherList,
       listOfAllCover,
+      slideMenuState,
     } = this.props;
     const {
       boardNameValue,
-      slideMenuState,
       labelVisi,
       archivedElementVisi,
       archivedSearchValue,

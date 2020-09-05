@@ -30,6 +30,7 @@ const StyledIcon = styled.span`
   margin-right: 6px;
   font-size: 13px;
   transition: 0.1s linear;
+  pointer-events: none;
 `;
 
 function OptionCoverListView({

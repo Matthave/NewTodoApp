@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CardArchiveWarning from "../../components/CardArchiveWarning/CardArchiveWarning";
 import CardView from "../../components/Card/CardView";
 
 class Card extends Component {
@@ -9,6 +10,7 @@ class Card extends Component {
     offsetX: "",
     offsetY: "",
     cardH: "",
+    cardDeleteWarningVisi: false,
   };
 
   componentDidMount() {
@@ -53,6 +55,8 @@ class Card extends Component {
       addNewCardFeature,
       deleteCardFeatureByMove,
       listId,
+      archiveCard,
+      slideMenuState,
     } = this.props;
 
     const scrollHeighFromMain = Math.floor(scrollPosition);
@@ -62,6 +66,21 @@ class Card extends Component {
     const draggedCardChildren = draggedCard.children;
     const draggenCardLabelsChildren = [...draggedCardChildren[1].children]; //Weard thing that is need to properly dragging without doubling card content?
     const draggedCardTermChildren = [...draggedCard.children[3].children]; //Weard thing that is need to properly dragging without doubling card content?
+
+    if (
+      e.pageX > window.innerWidth - 320 - scrollHeighFromMain &&
+      slideMenuState
+    ) {
+      draggenCardLabelsChildren.forEach((ele) => {
+        ele.textContent = "";
+      });
+      draggedCardTermChildren.forEach((ele) => {
+        ele.textContent = "";
+      });
+      this.props.clearAllBlankSpan();
+      archiveCard(listId, taskId);
+      return;
+    }
 
     if (e.pageX < 285 - scrollHeighFromMain) {
       if (wholeList[0].id === listId) return this.mouseLeaveFeature(card); //When put card in this same place call it
@@ -125,6 +144,16 @@ class Card extends Component {
         all.style.backgroundColor = "transparent";
       });
 
+      if (
+        e.pageX > window.innerWidth - 320 - scrollHeighFromMain &&
+        this.props.slideMenuState
+      ) {
+        this.setState({ cardDeleteWarningVisi: true });
+      } else {
+        if (this.state.cardDeleteWarningVisi)
+          this.setState({ cardDeleteWarningVisi: false });
+      }
+
       for (let i = 1; i < 10; i++) {
         if (e.pageX < 285 - scrollHeighFromMain) {
           allBlankSpan[0].style.width = "100%";
@@ -180,6 +209,8 @@ class Card extends Component {
       listOfAllCover,
     } = this.props;
 
+    const { cardDeleteWarningVisi } = this.state;
+
     const matchedTasksList = listOfAllTasksList.filter(
       (ele) => ele.id === task.id
     );
@@ -195,19 +226,22 @@ class Card extends Component {
     });
 
     return (
-      <CardView
-        task={task}
-        listId={listId}
-        taskDetailsFunction={taskDetailsFunction}
-        inputTitle={inputTitle}
-        hideFontSizeLabel={hideFontSizeLabel}
-        visibilityOptionFunction={visibilityOptionFunction}
-        unActiveTasks={unActiveTasks}
-        totalTasks={totalTasks}
-        mouseDownFeature={this.mouseDownFeature}
-        labelFontSizeToggle={this.labelFontSizeToggle}
-        matchedCover={matchedCover}
-      />
+      <>
+        <CardView
+          task={task}
+          listId={listId}
+          taskDetailsFunction={taskDetailsFunction}
+          inputTitle={inputTitle}
+          hideFontSizeLabel={hideFontSizeLabel}
+          visibilityOptionFunction={visibilityOptionFunction}
+          unActiveTasks={unActiveTasks}
+          totalTasks={totalTasks}
+          mouseDownFeature={this.mouseDownFeature}
+          labelFontSizeToggle={this.labelFontSizeToggle}
+          matchedCover={matchedCover}
+        />
+        <CardArchiveWarning cardDeleteWarningVisi={cardDeleteWarningVisi} />
+      </>
     );
   }
 }

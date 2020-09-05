@@ -118,6 +118,7 @@ function CoreFieldView({
   listOfAllPriorityTasks,
   listOfAllBadges,
   listOfAllTasksId,
+  slideMenuState,
   refresh,
   setRefresh,
 }) {
@@ -161,6 +162,7 @@ function CoreFieldView({
             listOfAllPriorityTasks={listOfAllPriorityTasks}
             listOfAllBadges={listOfAllBadges}
             listOfAllTasksId={listOfAllTasksId}
+            slideMenuState={slideMenuState}
             refresh={refresh}
             setRefresh={setRefresh}
           />
