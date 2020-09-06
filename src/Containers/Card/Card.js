@@ -67,10 +67,7 @@ class Card extends Component {
     const draggenCardLabelsChildren = [...draggedCardChildren[1].children]; //Weard thing that is need to properly dragging without doubling card content?
     const draggedCardTermChildren = [...draggedCard.children[3].children]; //Weard thing that is need to properly dragging without doubling card content?
 
-    if (
-      e.pageX > window.innerWidth - 320 - scrollHeighFromMain &&
-      slideMenuState
-    ) {
+    if (e.pageX > window.innerWidth - 320 && slideMenuState) {
       draggenCardLabelsChildren.forEach((ele) => {
         ele.textContent = "";
       });
@@ -144,10 +141,7 @@ class Card extends Component {
         all.style.backgroundColor = "transparent";
       });
 
-      if (
-        e.pageX > window.innerWidth - 320 - scrollHeighFromMain &&
-        this.props.slideMenuState
-      ) {
+      if (e.pageX > window.innerWidth - 320 && this.props.slideMenuState) {
         this.setState({ cardDeleteWarningVisi: true });
       } else {
         if (this.state.cardDeleteWarningVisi)

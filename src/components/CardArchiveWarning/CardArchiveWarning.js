@@ -9,7 +9,7 @@ const StyledWrapWarning = styled.div`
   transform: translate(-50%);
   width: 320px;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(255, 255, 255, 0.55);
   color: #cb3a26;
   font-size: 15px;
   border-top-left-radius: 3px;

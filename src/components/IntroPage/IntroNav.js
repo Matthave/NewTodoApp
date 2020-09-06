@@ -13,6 +13,7 @@ const StyledNav = styled.nav`
   padding: 10px 10px;
   transition: 0.75s linear;
   font-size: 20px;
+  z-index: 999;
 
   @media ${device.tablet} {
     font-size: 25px;

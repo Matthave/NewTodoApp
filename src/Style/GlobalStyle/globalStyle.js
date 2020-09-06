@@ -232,7 +232,7 @@ font-size:20px;
   background-color: #61bd4f;
   border-radius: 5px;
   padding: 0 15px;
-  margin: 0 auto 20px;
+  margin: 40px auto;
   font-size: 25px;
   text-decoration:none;
   color: #fff;

@@ -6,8 +6,9 @@ import { device } from "../../../Style/MediaQuery/mq";
 const StyledSliderWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: calc(100vh - 80px);
+  min-height: 95vh;
   background-color: #fff;
 `;
 
@@ -32,8 +33,8 @@ const StyledSliderDiv = styled.div`
 const StyledArrow = styled.span`
   display: none;
   position: relative;
-  width: 100px;
-  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   border-radius: 50%;
   margin: auto 35px;
   box-shadow: 0 10px 20px rgba(74, 115, 159, 0.29);
@@ -41,24 +42,24 @@ const StyledArrow = styled.span`
   color: #ddd;
   cursor: pointer;
 
-  &:hover {
-    background-color: #23cfea;
-    color: #fff;
-  }
-
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: inline;
+    &:hover {
+      background-color: #23cfea;
+      color: #fff;
+    }
   }
 `;
 
 const StyledView = styled.div`
   position: relative;
-  width: 100%;
+  width: 90%;
   max-width: 880px;
   max-height: 475px;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(74, 115, 159, 0.29);
   margin: auto 0;
+  margin-bottom: 30px;
   overflow: hidden;
 `;
 
